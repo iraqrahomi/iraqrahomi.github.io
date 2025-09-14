@@ -1,57 +1,177 @@
-<!doctype html>
+# Build a complete, single-file website (index.html) for Rahomi with:
+# - Google site verification meta tag (provided by user)
+# - Embedded profile image (from /mnt/data/صورتي.jpg). If missing, fall back to SVG avatar
+# - Arabic/English, SEO (OG/Twitter/JSON-LD), sticky nav, sections, CTA
+# - Ready to upload as index.html to GitHub Pages
+
+import os, base64, json, datetime
+from PIL import Image, ImageEnhance, ImageFilter, ImageOps, ImageDraw
+import io
+
+# Try to load and enhance the provided image
+def load_enhanced_b64(path):
+    if not os.path.exists(path):
+        return ""
+    img = Image.open(path).convert("RGB")
+    w, h = img.size
+    side = min(w, h)
+    left = (w - side)//2
+    top = (h - side)//2
+    img = img.crop((left, top, left+side, top+side))
+    img = img.resize((640, 640))
+    # gentle enhancements
+    img = ImageEnhance.Brightness(img).enhance(1.08)
+    img = ImageEnhance.Contrast(img).enhance(1.12)
+    img = ImageEnhance.Color(img).enhance(1.03)
+    # vignette + subtle glow ring
+    vignette = Image.new("L", img.size, 0)
+    d = ImageDraw.Draw(vignette)
+    d.ellipse((-60,-60,700,700), fill=255)
+    vignette = vignette.filter(ImageFilter.GaussianBlur(60))
+    shaded = ImageOps.colorize(vignette, black=(5,7,12), white=(5,7,12))
+    img = Image.blend(shaded, img, 0.82)
+    rim = Image.new("RGBA", (700,700), (0,0,0,0))
+    rdraw = ImageDraw.Draw(rim)
+    rdraw.ellipse((10,10,690,690), outline=(26,26,255,90), width=8)
+    rim = rim.filter(ImageFilter.GaussianBlur(8))
+    base_rgba = img.convert("RGBA")
+    base_rgba.alpha_composite(rim, (-30, -30))
+    img = base_rgba.convert("RGB")
+    buf = io.BytesIO()
+    img.save(buf, format="JPEG", quality=90)
+    return base64.b64encode(buf.getvalue()).decode("ascii")
+
+img_b64 = load_enhanced_b64("/mnt/data/صورتي.jpg")
+img_src = f"data:image/jpeg;base64,{img_b64}" if img_b64 else ""
+
+year = datetime.datetime.now().year
+google_verify = "YLNWEIKTYVdiSELM2UBdF4-7132AC2N3yhhFQBdLWIY"
+
+schema_person = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "رحومي البراهيم | Rahomi Al-Brahim",
+  "alternateName": ["Rahomi", "Rahomi Al-Brahim", "رحومي البراهيم"],
+  "jobTitle": "Cybersecurity Engineer / Analyst",
+  "url": "https://iraqrahomi.github.io/",
+  "image": img_src if img_src else "",
+  "sameAs": [
+    "https://www.instagram.com/1.ee3",
+    "https://www.facebook.com/swydawy/",
+    "https://www.linkedin.com/in/%D8%B9%D8%A8%D8%AF-%D8%A7%D9%84%D8%B1%D8%AD%D9%85%D9%86-%D8%A7%D8%A8%D8%B1%D9%87%D9%8A%D9%85-%D9%84%D8%B7%D9%8A%D9%81-744b27364?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app",
+    "https://www.tiktok.com/@1.ee3?is_from_webapp=1&sender_device=pc"
+  ]
+}
+
+# Fallback avatar (SVG) if image missing
+fallback_avatar = (
+    "data:image/svg+xml;utf8,"
+    "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 160 160'>"
+    "<defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'>"
+    "<stop offset='0' stop-color='#1a1aff'/><stop offset='1' stop-color='#0b0b10'/></linearGradient></defs>"
+    "<rect width='160' height='160' fill='url(#g)'/>"
+    "<circle cx='80' cy='60' r='30' fill='#ffffff22' stroke='#cfd0ff'/>"
+    "<rect x='32' y='98' width='96' height='40' rx='20' fill='#ffffff11' stroke='#cfd0ff'/>"
+    "<text x='80' y='148' font-size='18' fill='#cfd0ff' text-anchor='middle'>RAHOMI</text>"
+    "</svg>"
+)
+
+html = f"""<!doctype html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta name="google-site-verification" content="YLNWEIKTYVdiSELM2UBdF4-7132AC2N3yhhFQBdLWIY" />
+  <meta name="google-site-verification" content="{google_verify}" />
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>✪ Rahomi Al-Brahim | رحومي البراهيم – Cybersecurity Engineer</title>
   <meta name="description" content="Rahomi Al-Brahim – Cybersecurity Engineer & OSINT researcher. Account hardening, threat hunting, and awareness.">
   <meta name="theme-color" content="#1a1aff">
 
+  <!-- Social -->
+  <meta property="og:type" content="profile">
+  <meta property="og:title" content="✪ Rahomi Al-Brahim | رحومي البراهيم">
+  <meta property="og:description" content="Cybersecurity Engineer & OSINT researcher focusing on account hardening, threat hunting, and awareness.">
+  <meta property="og:image" content="{img_src or fallback_avatar}">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <script type="application/ld+json">{json.dumps(schema_person, ensure_ascii=False)}</script>
+
   <style>
-    :root{
-      --accent:#1a1aff;--bg:#0b0b10;--panel:#0f1017;--muted:#2b2e36;--text:#e9e9f1;--sub:#b9bbcb;--radius:22px
-    }
-    *{box-sizing:border-box}
-    html,body{margin:0;padding:0;background:
+    :root{{--accent:#1a1aff;--bg:#0b0b10;--panel:#101118;--muted:#2a2d35;--text:#e9e9f1;--sub:#b9bbcb;--radius:22px}}
+    *{{box-sizing:border-box}}
+    html,body{{margin:0;padding:0;background:
       radial-gradient(1100px 550px at 10% 0%, rgba(26,26,255,.12), rgba(26,26,255,0)),
-      var(--bg);color:var(--text);font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,"Noto Sans",Arial;line-height:1.75;scroll-behavior:smooth}
-    .container{max-width:1100px;margin:0 auto;padding:24px}
-    .header{display:flex;gap:18px;align-items:center;flex-wrap:wrap;margin-top:16px}
-    .avatar{position:relative;width:116px;height:116px;border-radius:50%;overflow:hidden;border:2px solid var(--muted);box-shadow:0 20px 50px rgba(0,0,0,.45)}
-    .title h1{margin:0;font-weight:800;letter-spacing:.2px;font-size:clamp(26px,3.3vw,42px)}
-    .title .sub{margin-top:6px;color:var(--sub)}
-    .badges{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px}
-    .badge{padding:6px 12px;border-radius:999px;border:1px solid rgba(26,26,255,.35);background:rgba(26,26,255,.12);color:#d9dbff;font-weight:600;font-size:12px}
-    .panel{margin-top:22px;padding:22px;border:1px solid var(--muted);border-radius:var(--radius);
-    background:linear-gradient(180deg,rgba(255,255,255,.028),rgba(255,255,255,.015))}
-    .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
-    .card{padding:18px;border:1px solid var(--muted);border-radius:16px;background:linear-gradient(180deg,rgba(255,255,255,.02),rgba(255,255,255,.01))}
-    .card h3{margin:0 0 6px;color:#fff}
-    .card p{margin:0;color:var(--sub)}
-    .section-title{margin:28px 0 12px;font-size:clamp(18px,2.2vw,22px);font-weight:800}
-    .section-title .bar{display:block;width:72px;height:3px;background:var(--accent);border-radius:3px;margin-top:6px;opacity:.9}
-    .social{display:flex;flex-wrap:wrap;gap:12px;margin-top:10px;list-style:none;padding:0}
-    .social a{display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:999px;border:1px solid var(--muted);text-decoration:none;color:var(--text)}
-    footer{text-align:center;margin:30px 0 8px;color:var(--sub);font-size:14px}
+      var(--bg);color:var(--text);font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,'Noto Sans',Arial;line-height:1.75;scroll-behavior:smooth}}
+    .container{{max-width:1100px;margin:0 auto;padding:24px}}
+    /* Nav */
+    .nav{{position:sticky;top:0;z-index:5;backdrop-filter:blur(8px);
+      background:linear-gradient(180deg, rgba(11,11,16,.75), rgba(11,11,16,.55));
+      border-bottom:1px solid rgba(255,255,255,.06)}}
+    .nav .row{{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 4px}}
+    .nav .brand{{display:flex;align-items:center;gap:10px}}
+    .nav .dot{{width:10px;height:10px;border-radius:50%;background:var(--accent);box-shadow:0 0 16px var(--accent)}}
+    .nav .links a{{display:inline-flex;align-items:center;gap:8px;padding:8px 12px;margin-inline-start:8px;border:1px solid var(--muted);border-radius:14px;text-decoration:none;color:var(--text)}}
+    .nav .links a:hover{{background:var(--accent);border-color:var(--accent);color:#fff;transform:translateY(-1px)}}
+
+    /* Hero */
+    .hero{{display:grid;grid-template-columns:auto 1fr;gap:18px;align-items:center;margin-top:22px}}
+    .avatar{{position:relative;width:116px;height:116px;border-radius:50%;overflow:hidden;border:2px solid var(--muted);box-shadow:0 20px 50px rgba(0,0,0,.45)}}
+    .avatar::after{{content:'';position:absolute;inset:-12px;filter:blur(18px);background:conic-gradient(from 200deg, rgba(26,26,255,.0), rgba(26,26,255,.5), rgba(26,26,255,.0));opacity:.7}}
+    .title h1{{margin:0;font-weight:800;letter-spacing:.2px;font-size:clamp(26px,3.3vw,42px)}}
+    .title .sub{{margin-top:6px;color:var(--sub)}}
+    .badges{{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px}}
+    .badge{{padding:6px 12px;border-radius:999px;border:1px solid rgba(26,26,255,.35);background:rgba(26,26,255,.12);color:#d9dbff;font-weight:600;font-size:12px}}
+
+    .panel{{margin-top:22px;padding:22px;border:1px solid var(--muted);border-radius:var(--radius);
+      background:linear-gradient(180deg, rgba(255,255,255,.028), rgba(255,255,255,.015))}}
+    .grid-2{{display:grid;grid-template-columns:1fr 1fr;gap:18px}}
+    .cards{{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}}
+    .card{{padding:18px;border:1px solid var(--muted);border-radius:16px;background:linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.01))}}
+    .card h3{{margin:0 0 6px;color:#fff}}
+    .card p{{margin:0;color:#b9bbcb}}
+
+    .section-title{{margin:28px 0 12px;font-size:clamp(18px,2.2vw,22px);font-weight:800}}
+    .section-title .bar{{display:block;width:72px;height:3px;background:var(--accent);border-radius:3px;margin-top:6px;opacity:.9}}
+
+    .cta-row{{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}}
+    .btn{{display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:12px;border:1px solid var(--muted);text-decoration:none;color:var(--text)}}
+    .btn.primary{{background:var(--accent);border-color:var(--accent);color:#fff}}
+    .btn:hover{{transform:translateY(-2px);box-shadow:0 14px 28px rgba(0,0,0,.25)}}
+
+    footer{{text-align:center;margin:30px 0 8px;color:#b9bbcb;font-size:14px}}
+
+    @media (max-width:820px){{
+      .hero{{grid-template-columns:1fr;gap:12px}}
+    }}
   </style>
 </head>
 <body>
+  <nav class="nav" aria-label="Navigation">
+    <div class="container row">
+      <div class="brand">
+        <span class="dot" aria-hidden="true"></span>
+        <strong>✪ Rahomi</strong>
+      </div>
+      <div class="links">
+        <a href="#about">نبذة</a>
+        <a href="#services">الخدمات</a>
+        <a href="#contact">تواصل</a>
+      </div>
+    </div>
+  </nav>
+
   <div class="container">
-    <header class="header">
+    <section class="hero" id="about">
       <div class="avatar">
-        <!-- ضع هنا كود الصورة Base64 أو رابط صورتك -->
+        <img src="{img_src or fallback_avatar}" alt="Rahomi profile" style="width:100%;height:100%;object-fit:cover;">
       </div>
       <div class="title">
         <h1>✪ Rahomi Al-Brahim | رحومي البراهيم</h1>
         <div class="sub">Cybersecurity Engineer – مهندس أمن سيبراني</div>
         <div class="badges">
-          <span class="badge">OSINT</span>
-          <span class="badge">Threat Hunting</span>
-          <span class="badge">Awareness</span>
+          <span class="badge">OSINT</span><span class="badge">Threat Hunting</span><span class="badge">Awareness</span>
         </div>
       </div>
-    </header>
+    </section>
 
     <section class="panel">
       <div class="grid-2">
@@ -62,20 +182,20 @@
         <div class="card">
           <h3>Professional Bio</h3>
           <p>Cybersecurity Engineer & OSINT researcher focused on account hardening, threat hunting, and practical awareness. I deliver actionable guidance and concise, evidence-based reports.</p>
-          <ul class="social">
-            <li><a href="https://www.instagram.com/1.ee3" target="_blank" rel="noopener">Instagram</a></li>
-            <li><a href="https://www.linkedin.com/in/%D8%B9%D8%A8%D8%AF-%D8%A7%D9%84%D8%B1%D8%AD%D9%85%D9%86-%D8%A7%D8%A8%D8%B1%D8%A7%D9%87%D9%8A%D9%85-%D9%84%D8%B7%D9%8A%D9%81-744b27364?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app" target="_blank" rel="noopener">LinkedIn</a></li>
-            <li><a href="https://www.facebook.com/swydawy/" target="_blank" rel="noopener">Facebook</a></li>
-            <li><a href="https://www.tiktok.com/@1.ee3?is_from_webapp=1&sender_device=pc" target="_blank" rel="noopener">TikTok</a></li>
-          </ul>
+          <div class="cta-row">
+            <a class="btn primary" href="https://www.instagram.com/1.ee3" target="_blank" rel="noopener">Instagram DM</a>
+            <a class="btn" href="mailto:osint.rahomi@proton.me">Email</a>
+            <a class="btn" href="https://www.linkedin.com/in/%D8%B9%D8%A8%D8%AF-%D8%A7%D9%84%D8%B1%D8%AD%D9%85%D9%86-%D8%A7%D8%A8%D8%B1%D9%87%D9%8A%D9%85-%D9%84%D8%B7%D9%8A%D9%81-744b27364?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app" target="_blank" rel="noopener">LinkedIn</a>
+          </div>
         </div>
       </div>
     </section>
 
     <h2 class="section-title" id="services">الخدمات <span class="bar"></span></h2>
-    <section class="grid-2">
-      <div class="card"><h3>تأمين الحسابات</h3><p>تفعيل 2FA، سياسات كلمات مرور، نسخ احتياطي، وتدقيق إعدادات الخصوصية.</p></div>
+    <section class="cards">
+      <div class="card"><h3>تأمين الحسابات</h3><p>2FA، سياسات كلمات مرور، نسخ احتياطي، وتدقيق إعدادات الخصوصية.</p></div>
       <div class="card"><h3>OSINT &amp; Threat Hunting</h3><p>جمع وربط بيانات مفتوحة المصدر، مؤشرات قابلة للقياس، وتقارير قابلة للتنفيذ.</p></div>
+      <div class="card"><h3>ورش توعوية</h3><p>محتوى عملي باللهجة العراقية، أمثلة مباشرة، وخطوات جاهزة للتطبيق.</p></div>
     </section>
 
     <h2 class="section-title" id="contact">التواصل <span class="bar"></span></h2>
@@ -83,7 +203,14 @@
       <p>للتعاون أو الاستشارة: <a href="mailto:osint.rahomi@proton.me">osint.rahomi@proton.me</a> — أفضل قناة سريعة: <a href="https://www.instagram.com/1.ee3" target="_blank" rel="noopener">@1.ee3</a></p>
     </section>
 
-    <footer>© 2025 Rahomi Al-Brahim</footer>
+    <footer>© {year} Rahomi Al-Brahim</footer>
   </div>
 </body>
 </html>
+"""
+
+out_path = "/mnt/data/index.html"
+with open(out_path, "w", encoding="utf-8") as f:
+    f.write(html)
+
+out_path
