@@ -9,32 +9,40 @@
     @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap');
     body { font-family: 'Cairo', sans-serif; }
     .gradient-bg { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
-    .btn-main { @apply px-6 py-3 rounded-lg font-bold transition; }
   </style>
 </head>
 <body class="bg-gray-50">
 
-  <!-- القسم العلوي (Hero Section) -->
+  <!-- Hero Section -->
   <header class="gradient-bg text-white min-h-screen flex flex-col justify-center items-center text-center px-6">
     <h1 class="text-5xl font-bold mb-6">👨‍💻 دليل الأمن السيبراني</h1>
     <p class="text-xl max-w-2xl mb-8 opacity-90">
       دليلك البسيط لحماية حساباتك وبياناتك من الهجمات الرقمية 🚀
     </p>
 
-    <!-- أزرار سريعة -->
-    <div class="flex flex-wrap gap-4 justify-center">
-      <a href="#concept" class="bg-white text-blue-600 btn-main hover:bg-gray-200">المفهوم</a>
-      <a href="#importance" class="bg-white text-blue-600 btn-main hover:bg-gray-200">الأهمية</a>
-      <a href="#attacks" class="bg-white text-blue-600 btn-main hover:bg-gray-200">الهجمات</a>
-      <a href="#protection" class="bg-white text-blue-600 btn-main hover:bg-gray-200">الحماية</a>
-      <a href="#resources" class="bg-white text-blue-600 btn-main hover:bg-gray-200">الموارد</a>
-      <a href="#about" class="bg-white text-blue-600 btn-main hover:bg-gray-200">من أنا</a>
-      <a href="#faq" class="bg-white text-blue-600 btn-main hover:bg-gray-200">الأسئلة</a>
-      <a href="#contact" class="bg-white text-blue-600 btn-main hover:bg-gray-200">تواصل</a>
+    <!-- Buttons -->
+    <div class="flex flex-wrap gap-4 justify-center mb-10">
+      <a href="#concept" class="bg-white text-blue-600 px-6 py-3 rounded-lg font-bold hover:bg-gray-200">المفهوم</a>
+      <a href="#importance" class="bg-white text-blue-600 px-6 py-3 rounded-lg font-bold hover:bg-gray-200">الأهمية</a>
+      <a href="#attacks" class="bg-white text-blue-600 px-6 py-3 rounded-lg font-bold hover:bg-gray-200">الهجمات</a>
+      <a href="#protection" class="bg-white text-blue-600 px-6 py-3 rounded-lg font-bold hover:bg-gray-200">الحماية</a>
+      <a href="#resources" class="bg-white text-blue-600 px-6 py-3 rounded-lg font-bold hover:bg-gray-200">الموارد</a>
+      <a href="#about" class="bg-white text-blue-600 px-6 py-3 rounded-lg font-bold hover:bg-gray-200">من أنا</a>
+      <a href="#faq" class="bg-white text-blue-600 px-6 py-3 rounded-lg font-bold hover:bg-gray-200">الأسئلة</a>
+      <a href="#contact" class="bg-white text-blue-600 px-6 py-3 rounded-lg font-bold hover:bg-gray-200">تواصل</a>
+    </div>
+
+    <!-- Social Icons -->
+    <div class="flex gap-6">
+      <a href="https://github.com/iraqrahomi" target="_blank"><img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/github.svg" class="w-8 h-8 invert" alt="GitHub"></a>
+      <a href="https://www.instagram.com/1.ee3" target="_blank"><img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/instagram.svg" class="w-8 h-8 invert" alt="Instagram"></a>
+      <a href="https://www.facebook.com/swydawy/" target="_blank"><img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/facebook.svg" class="w-8 h-8 invert" alt="Facebook"></a>
+      <a href="https://www.tiktok.com/@1.ee3" target="_blank"><img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/tiktok.svg" class="w-8 h-8 invert" alt="TikTok"></a>
+      <a href="https://t.me/endiraq" target="_blank"><img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/telegram.svg" class="w-8 h-8 invert" alt="Telegram"></a>
     </div>
   </header>
 
-  <!-- المحتوى -->
+  <!-- Main Content -->
   <main class="container mx-auto px-6 py-16 space-y-16">
 
     <!-- المفهوم -->
@@ -92,7 +100,8 @@
     <section id="about">
       <h2 class="text-3xl font-bold text-center mb-6">👨‍💻 من أنا</h2>
       <div class="bg-white p-6 rounded-2xl shadow-lg text-center">
-        <p>أنا بسكت — مهندس خبير في هندسة الأمن السيبراني، أشارك خبرتي لحماية حساباتك وأجهزتك.</p>
+        <p>رحومي البراهيم — طالب هندسة أمن سيبراني.  
+        أشارك خبرتي في مجال التوعية الرقمية وOSINT وThreat Hunting.</p>
       </div>
     </section>
 
@@ -118,7 +127,7 @@
 
   <!-- الفوتر -->
   <footer class="bg-gray-800 text-white text-center py-6">
-    <p>&copy; 2025 دليل الأمن السيبراني. جميع الحقوق محفوظة.</p>
+    <p>&copy; 2025 رحومي البراهيم. جميع الحقوق محفوظة.</p>
   </footer>
 
 </body>
