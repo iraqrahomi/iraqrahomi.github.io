@@ -10,33 +10,36 @@
 
   <!-- خط -->
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
-
   <style>
-    body{
-      font-family:"Cairo",sans-serif;
-      background:#f9fafb;
-      box-sizing:border-box;
+    body { font-family: "Cairo", sans-serif; background: #f9fafb; }
+    .gradient-bg { background: linear-gradient(135deg,#667eea 0%,#764ba2 100%); }
+    html { scroll-behavior: smooth; }
+    /* خاص لـ Instagram (gradient) */
+    .instagram {
+      background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
     }
-    .gradient-bg{background:linear-gradient(135deg,#667eea 0%,#764ba2 100%)}
-    html{scroll-behavior:smooth}
   </style>
-
-  <!-- مكتبة الخريطة الذهنية (تضمن عدم ظهور صفحة فارغة) -->
-  <script src="https://cdn.jsdelivr.net/npm/markmap-autoloader"></script>
 </head>
 <body class="bg-gray-50">
 
   <!-- هيدر -->
-  <header class="gradient-bg text-white min-h-[70vh] flex flex-col items-center justify-center text-center px-6">
+  <header class="gradient-bg text-white min-h-[60vh] flex flex-col items-center justify-center text-center px-6">
     <h1 class="text-4xl md:text-5xl font-bold mb-4">👨‍💻 دليل الأمن السيبراني</h1>
     <p class="text-lg md:text-xl opacity-90 max-w-2xl mb-8">
       دليلك المبسط لحماية حساباتك وبياناتك من الهجمات الرقمية 🚀
     </p>
     <div class="flex gap-4 flex-wrap justify-center">
-      <a href="#summary"  class="bg-white text-purple-600 px-6 py-3 rounded-full font-semibold hover:bg-gray-100 transition-colors">📖 الملخص</a>
-      <a href="#mindmap"  class="bg-white text-purple-600 px-6 py-3 rounded-full font-semibold hover:bg-gray-100 transition-colors">🧠 الخريطة الذهنية</a>
-      <a href="#social-media" class="bg-white text-purple-600 px-6 py-3 rounded-full font-semibold hover:bg-gray-100 transition-colors">📱 وسائل التواصل</a>
-      <a href="#contact"  class="bg-white text-purple-600 px-6 py-3 rounded-full font-semibold hover:bg-gray-100 transition-colors">📩 التواصل</a>
+      <a href="#summary" class="bg-white text-purple-600 px-6 py-3 rounded-full font-semibold hover:bg-gray-100 transition-colors">
+        📖 الملخص
+      </a>
+      <a href="#social" class="bg-white text-purple-600 px-6 py-3 rounded-full font-semibold hover:bg-gray-100 transition-colors">
+        📱 تابعنا
+      </a>
+      <a href="#contact" class="bg-white text-purple-600 px-6 py-3 rounded-full font-semibold hover:bg-gray-100 transition-colors">
+        📩 التواصل
+      </a>
     </div>
   </header>
 
@@ -46,224 +49,85 @@
     <!-- الملخص -->
     <section id="summary" class="bg-white p-8 rounded-2xl shadow-lg space-y-6">
       <h2 class="text-3xl font-bold mb-6 text-gray-800">📖 ملخص الحوار مع الخبير أيمن</h2>
-
-      <div class="prose prose-lg max-w-none text-gray-700 leading-relaxed">
-        <p class="text-lg mb-4">
-          الأمن السيبراني لا يقتصر على حماية البرمجيات فقط، بل يشمل الأبعاد التقنية والمادية والتنظيمية. الهدف الأساسي هو حماية الأصول الرقمية والمادية من أي تهديدات.
-        </p>
-
-        <div class="bg-blue-50 p-6 rounded-xl mb-6">
-          <h3 class="text-xl font-semibold mb-4 text-blue-800">🎯 النقاط الأساسية:</h3>
-          <ul class="list-disc pr-6 space-y-2 text-blue-700">
-            <li><b>التعريف:</b> تأمين أي شيء يعتمد على التكنولوجيا وحماية البيانات والأصول.</li>
-            <li><b>النطاق:</b> الأمن التقني + الأمن المادي + الحوكمة.</li>
-            <li><b>مبدأ التوازن:</b> العلاقة بين الأمن وسهولة الاستخدام والوظائف.</li>
-          </ul>
-        </div>
-
-        <p class="mb-4">
-          في عالم الاختراق هناك مصطلحات أساسية مثل <span class="bg-yellow-100 px-2 py-1 rounded font-semibold">الثغرة</span> و
-          <span class="bg-yellow-100 px-2 py-1 rounded font-semibold">الحمولة</span> و
-          <span class="bg-yellow-100 px-2 py-1 rounded font-semibold">الاستغلال</span>.
-          المخترقون ينقسمون إلى: القبعة البيضاء، السوداء، والرمادية. أما داخل الشركات فهناك فرق متخصصة:
-          الأحمر (هجومي)، الأزرق (دفاعي)، البنفسجي (تعاوني).
-        </p>
-
-        <div class="bg-green-50 p-6 rounded-xl mb-6">
-          <h3 class="text-xl font-semibold mb-4 text-green-800">🚀 المسار المهني:</h3>
-          <p class="text-green-700">
-            الشغف هو الأساس، والأساسيات (شبكات، نظم تشغيل، قواعد بيانات) ضرورية. مصادر مثل OWASP وWebGoat وHackThisSite ممتازة للتعلم العملي.
-          </p>
-        </div>
-
-        <div class="bg-purple-50 p-6 rounded-xl">
-          <h3 class="text-xl font-semibold mb-4 text-purple-800">🛡️ أسلوب حياة:</h3>
-          <p class="text-purple-700 mb-4">
-            تعلم الأمن السيبراني يغيّر طريقة التفكير ويزيد وعيك بالمخاطر، حتى في حياتك اليومية.
-          </p>
-          <div class="bg-purple-100 p-4 rounded-lg">
-            <p class="font-semibold text-purple-800">💡 النصيحة الذهبية:</p>
-            <p class="text-purple-700">قلل بصمتك الرقمية وفعل المصادقة الثنائية (2FA)</p>
-          </div>
-        </div>
-      </div>
+      <p class="text-gray-700 leading-relaxed">
+        الأمن السيبراني لا يقتصر على حماية البرمجيات فقط، بل يشمل الأبعاد التقنية والمادية والتنظيمية. الهدف الأساسي هو حماية الأصول الرقمية والمادية من أي تهديدات.
+      </p>
+      <ul class="list-disc pr-6 text-gray-700 space-y-2">
+        <li><b>التعريف:</b> تأمين أي شيء يعتمد على التكنولوجيا وحماية البيانات والأصول.</li>
+        <li><b>النطاق:</b> الأمن التقني + الأمن المادي + الحوكمة.</li>
+        <li><b>مبدأ التوازن:</b> العلاقة بين الأمن وسهولة الاستخدام والوظائف.</li>
+      </ul>
+      <p class="text-gray-700">
+        في عالم الاختراق هناك مصطلحات مثل <b>الثغرة</b>، <b>الحمولة</b>، <b>الاستغلال</b>.  
+        القبعات: البيضاء (أخلاقي) – السوداء (خبيث) – الرمادية (وسط).  
+        الفرق: الأحمر (هجومي) – الأزرق (دفاعي) – البنفسجي (تعاوني).
+      </p>
+      <p class="text-gray-700">
+        أيمن أكد أن <b>الشغف</b> هو الأساس، والأساسيات (شبكات، نظم تشغيل، قواعد بيانات) ضرورية.  
+        مصادر مثل OWASP و WebGoat و HackThisSite تعتبر أدوات تعليمية ممتازة.  
+        تعلم الأمن السيبراني يغير طريقة التفكير ويزيد وعيك بالمخاطر اليومية.  
+        النصيحة الذهبية: قلل بصمتك الرقمية وفعل المصادقة الثنائية (2FA).
+      </p>
     </section>
 
-    <!-- الخريطة الذهنية (Markmap تعمل 100%) -->
-    <section id="mindmap">
-      <h2 class="text-3xl font-bold text-center mb-6 text-gray-800">🧠 الخريطة الذهنية التفاعلية</h2>
-      <div class="bg-white p-6 rounded-2xl shadow-lg">
-        <p class="text-center text-gray-600 mb-4">تفتح وتغلق حسب الضغط • قابلة للسحب والتكبير</p>
-
-        <!-- ✅ هذا هو الجزء المهم: markmap يحول النص داخل <pre class="markmap"> تلقائياً -->
-        <pre class="markmap h-[70vh]">
-# 🧠 الأمن السيبراني والاختراق الأخلاقي — حوار مع الخبير أيمن (منذ 2009)
-
-## ما هو الأمن السيبراني؟
-- تعريف: تأمين أي شيء يعتمد على التكنولوجيا لحماية الأصول الرقمية والمادية.
-- نطاق واسع:
-  - الأمن التقني (أنظمة/تطبيقات/شبكات/أجهزة)
-  - الأمن المادي (مباني/مراكز بيانات/بوابات)
-  - الحوكمة (سياسات وضوابط داخلية)
-- موازنة:
-  - Security ↔️ Usability ↔️ Functionality
-
-## مفاهيم أساسية في الاختراق
-- هاكر: فهم عميق للكمبيوتر وأنظمته
-- ثغرة (Vulnerability)
-- حمولة (Payload)
-- استغلال (Exploit)
-- برمجيات خبيثة (Malware)
-
-## الاختراق الأخلاقي: القبعات والفرق
-- القبعات:
-  - بيضاء (White Hat) — بإذن
-  - سوداء (Black Hat) — غير قانوني
-  - رمادية (Gray Hat) — وسط
-- الفرق:
-  - Red Team — هجومي/محاكاة المهاجم
-  - Blue Team — دفاعي/مراقبة واستجابة
-  - Purple Team — تعاون وتحسين فوري
-
-## المسار المهني وخارطة التعلم
-- الشغف أولاً
-- أساسيات: شبكات • نظم تشغيل • هياكل بيانات • أمن تطبيقات
-- التعلم بالتطبيق (Reverse Engineering)
-- مصادر: OWASP • WebGoat • HackThisSite
-- أدوار: Security Engineer • SOC • Red Team
-
-## الأمن كأسلوب حياة
-- وعي دائم بالمخاطر وتقليل البصمة الرقمية
-- جمع المعلومات (OSINT) وتأثيره
-- مخاطر الذكاء الاصطناعي
-- نصائح: 2FA • كلمات مرور قوية • تحديثات مستمرة
-        </pre>
-      </div>
-    </section>
-
-    <!-- أمان وسائل التواصل الاجتماعي -->
-    <section id="social-media" class="bg-gradient-to-r from-blue-50 to-indigo-50 p-8 rounded-2xl shadow-lg">
-      <h2 class="text-3xl font-bold text-center mb-8 text-gray-800">📱 حماية حساباتك على وسائل التواصل الاجتماعي</h2>
-
-      <div class="grid lg:grid-cols-2 gap-8 mb-8">
-        <!-- المخاطر -->
-        <div class="bg-white p-6 rounded-xl shadow-md">
-          <h3 class="text-2xl font-semibold mb-6 text-red-600">⚠️ المخاطر الشائعة</h3>
-          <ul class="space-y-3 text-sm text-gray-700">
-            <li>🎣 التصيد الإحتيالي — رسائل وروابط مزيفة</li>
-            <li>👤 انتحال الهوية — حسابات مزيفة باسمك</li>
-            <li>🔓 اختراق الحسابات — وصول غير مصرح</li>
-            <li>📊 سرقة البيانات — جمع معلوماتك واستغلالها</li>
-          </ul>
-        </div>
-
-        <!-- الحماية -->
-        <div class="bg-white p-6 rounded-xl shadow-md">
-          <h3 class="text-2xl font-semibold mb-6 text-green-600">🛡️ خطوات الحماية</h3>
-          <ul class="space-y-3 text-sm text-gray-700">
-            <li>🔐 كلمات مرور قوية ومختلفة + مدير كلمات مرور</li>
-            <li>📱 تفعيل المصادقة الثنائية 2FA</li>
-            <li>🔒 تحديث إعدادات الخصوصية دورياً</li>
-            <li>🧹 مراجعة التطبيقات/الأذونات المتصلة</li>
-          </ul>
-        </div>
+    <!-- تابعنا -->
+    <section id="social" class="bg-white p-8 rounded-2xl shadow-lg text-center">
+      <h2 class="text-3xl font-bold mb-6 text-gray-800">📱 تابعنا على وسائل التواصل</h2>
+      <div class="flex flex-wrap justify-center gap-10">
+        <!-- GitHub -->
+        <a href="https://github.com/iraqrahomi" target="_blank" class="hover:scale-110 transition-transform">
+          <svg class="w-10 h-10 text-gray-800" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M12 0C5.373 0 0 5.373 0 12c0 5.302..."></path>
+          </svg>
+        </a>
+        <!-- Instagram -->
+        <a href="https://www.instagram.com/1.ee3" target="_blank" class="hover:scale-110 transition-transform">
+          <svg class="w-10 h-10 instagram" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M12 2.2c3.2 0 3.6 0 4.9.1 3.3.2 4.9..."></path>
+          </svg>
+        </a>
+        <!-- Facebook -->
+        <a href="https://www.facebook.com/swydawy/" target="_blank" class="hover:scale-110 transition-transform">
+          <svg class="w-10 h-10 text-blue-600" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M22.7 0H1.3C.6 0 0 .6 0 1.3v21.3c0..."></path>
+          </svg>
+        </a>
+        <!-- TikTok -->
+        <a href="https://www.tiktok.com/@1.ee3" target="_blank" class="hover:scale-110 transition-transform">
+          <svg class="w-10 h-10 text-black" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02..."></path>
+          </svg>
+        </a>
+        <!-- Telegram -->
+        <a href="https://t.me/endiraq" target="_blank" class="hover:scale-110 transition-transform">
+          <svg class="w-10 h-10 text-sky-500" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M9.7 18.9c-.4 0-.8-.1-1.2-.3L5.6 16l-3-1.3..."></path>
+          </svg>
+        </a>
       </div>
     </section>
 
     <!-- تواصل -->
-    <section id="contact">
-      <h2 class="text-3xl font-bold text-center mb-8 text-gray-800">📩 للتواصل</h2>
-      <div class="bg-white p-8 rounded-2xl shadow-lg text-center space-y-6">
-        <div class="max-w-2xl mx-auto">
-          <p class="text-gray-600 mb-6">
-            للاستفسارات أو طلب المساعدة في مجال الأمن السيبراني:
-          </p>
-
-          <div class="grid md:grid-cols-2 gap-6">
-            <div class="bg-blue-50 p-6 rounded-xl">
-              <div class="text-3xl mb-3">📧</div>
-              <h3 class="font-semibold mb-2">البريد الإلكتروني</h3>
-              <a class="text-blue-600 hover:text-blue-800 transition-colors break-all"
-                 href="mailto:cyberhares.alanbar@proton.me">
-                cyberhares.alanbar@proton.me
-              </a>
-            </div>
-
-            <div class="bg-green-50 p-6 rounded-xl">
-              <div class="text-3xl mb-3">💬</div>
-              <h3 class="font-semibold mb-2">تليجرام</h3>
-              <a class="text-green-600 hover:text-green-800 transition-colors"
-                 target="_blank" rel="noopener noreferrer"
-                 href="https://t.me/cyberhares">
-                @cyberhares
-              </a>
-            </div>
-          </div>
-
-          <div class="mt-8 p-4 bg-yellow-50 rounded-lg">
-            <p class="text-sm text-yellow-800">
-              💡 <strong>نصيحة:</strong> استخدم القنوات الرسمية أعلاه فقط لضمان الأمان.
-            </p>
-          </div>
-
-          <div class="mt-8">
-            <h3 class="text-lg font-semibold mb-4 text-gray-800">تابعنا</h3>
-            <div class="flex gap-6 justify-center">
-              <a href="https://github.com/iraqrahomi" target="_blank" rel="noopener noreferrer" class="hover:scale-110 transition-transform">
-                <img class="w-7 h-7 invert" src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/github.svg" alt="GitHub">
-              </a>
-              <a href="https://www.instagram.com/1.ee3" target="_blank" rel="noopener noreferrer" class="hover:scale-110 transition-transform">
-                <img class="w-7 h-7 invert" src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/instagram.svg" alt="Instagram">
-              </a>
-              <a href="https://t.me/endiraq" target="_blank" rel="noopener noreferrer" class="hover:scale-110 transition-transform">
-                <img class="w-7 h-7 invert" src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/telegram.svg" alt="Telegram">
-              </a>
-              <a href="https://www.tiktok.com/@1.ee3" target="_blank" rel="noopener noreferrer" class="hover:scale-110 transition-transform">
-                <img class="w-7 h-7 invert" src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/tiktok.svg" alt="TikTok">
-              </a>
-              <a href="https://www.facebook.com/swydawy/" target="_blank" rel="noopener noreferrer" class="hover:scale-110 transition-transform">
-                <img class="w-7 h-7 invert" src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/facebook.svg" alt="Facebook">
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
+    <section id="contact" class="bg-white p-8 rounded-2xl shadow-lg text-center">
+      <h2 class="text-3xl font-bold mb-6 text-gray-800">📩 للتواصل</h2>
+      <p class="mb-4 text-gray-600">📧 
+        <a href="mailto:cyberhares.alanbar@proton.me" class="text-purple-600 hover:underline">
+          cyberhares.alanbar@proton.me
+        </a>
+      </p>
+      <p class="text-gray-600">💬 
+        <a href="https://t.me/cyberhares" target="_blank" class="text-purple-600 hover:underline">
+          @cyberhares
+        </a>
+      </p>
     </section>
 
   </main>
 
   <!-- فوتر -->
-  <footer class="bg-gray-800 text-white py-8 mt-16">
-    <div class="container mx-auto px-6 text-center">
-      <p class="mb-3">🛡️ دليل الأمن السيبراني - حماية رقمية شاملة</p>
-      <p class="text-gray-400 text-sm">تذكير: الأمن السيبراني مسؤولية الجميع 🤝</p>
-      <div class="mt-4">
-        <button onclick="window.scrollTo({top:0,behavior:'smooth'})"
-                class="bg-purple-600 hover:bg-purple-700 px-4 py-2 rounded-full transition-colors">
-          ⬆️ العودة للأعلى
-        </button>
-      </div>
-    </div>
+  <footer class="bg-gray-800 text-white text-center py-6">
+    <p>&copy; 2025 رحومي البراهيم. جميع الحقوق محفوظة.</p>
   </footer>
-
-  <!-- تأثيرات ظهور بسيطة عند التمرير -->
-  <script>
-    const observer = new IntersectionObserver((entries)=>{
-      entries.forEach(e=>{
-        if(e.isIntersecting){
-          e.target.style.opacity='1';
-          e.target.style.transform='translateY(0)';
-        }
-      });
-    },{threshold:0.05, rootMargin:'0px 0px -50px 0px'});
-
-    document.querySelectorAll('section').forEach(sec=>{
-      sec.style.opacity='0';
-      sec.style.transform='translateY(14px)';
-      sec.style.transition='opacity .5s ease, transform .5s ease';
-      observer.observe(sec);
-    });
-  </script>
 
 </body>
 </html>
