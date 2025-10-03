@@ -9,6 +9,7 @@
     @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap');
     body { font-family: 'Cairo', sans-serif; }
     .gradient-bg { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+    .btn { @apply px-4 py-2 rounded-lg shadow bg-white hover:bg-gray-100 text-blue-600 font-bold; }
   </style>
 </head>
 <body class="bg-gray-50">
@@ -37,62 +38,20 @@
   <!-- Main Content -->
   <main class="container mx-auto px-6 py-16 space-y-16">
 
-    <!-- المفهوم -->
-    <section id="concept">
-      <h2 class="text-3xl font-bold text-center mb-6">🔎 مفهوم الأمن السيبراني</h2>
-      <div class="bg-white p-6 rounded-2xl shadow-lg">
-        <p>الأمن السيبراني هو حماية الأنظمة والبيانات من الوصول غير المصرح به والهجمات الرقمية.</p>
-      </div>
-    </section>
-
-    <!-- الأهمية -->
-    <section id="importance">
-      <h2 class="text-3xl font-bold text-center mb-6">📌 أهمية الأمن السيبراني</h2>
-      <div class="bg-white p-6 rounded-2xl shadow-lg">
-        <ul class="space-y-2">
-          <li>✔️ حماية بياناتك الشخصية</li>
-          <li>✔️ حماية المؤسسات من الخسائر</li>
-          <li>✔️ تعزيز الأمن الوطني</li>
-        </ul>
-      </div>
-    </section>
-
-    <!-- الهجمات -->
-    <section id="attacks">
-      <h2 class="text-3xl font-bold text-center mb-6">⚠️ أنواع الهجمات</h2>
-      <div class="grid md:grid-cols-3 gap-6">
-        <div class="bg-white p-6 rounded-2xl shadow-lg">🦠 برمجيات خبيثة</div>
-        <div class="bg-white p-6 rounded-2xl shadow-lg">🎣 التصيّد الاحتيالي</div>
-        <div class="bg-white p-6 rounded-2xl shadow-lg">⚡ هجمات DDoS</div>
-      </div>
-    </section>
-
-    <!-- الحماية -->
-    <section id="protection">
-      <h2 class="text-3xl font-bold text-center mb-6">🛡️ طرق الحماية</h2>
-      <div class="grid md:grid-cols-2 gap-6">
-        <div class="bg-white p-6 rounded-2xl shadow-lg">🔐 كلمات مرور قوية</div>
-        <div class="bg-white p-6 rounded-2xl shadow-lg">🔄 تحديث البرمجيات</div>
-        <div class="bg-white p-6 rounded-2xl shadow-lg">📚 التوعية المستمرة</div>
-        <div class="bg-white p-6 rounded-2xl shadow-lg">🛡️ برامج حماية</div>
-      </div>
-    </section>
-
-    <!-- الموارد -->
-    <section id="resources">
-      <h2 class="text-3xl font-bold text-center mb-6">📚 موارد موثوقة ومفيدة</h2>
-      <div class="bg-white p-6 rounded-2xl shadow-lg space-y-2">
-        <p><a href="https://haveibeenpwned.com" target="_blank" class="text-blue-600 hover:underline">Have I Been Pwned</a></p>
-        <p><a href="https://owasp.org" target="_blank" class="text-blue-600 hover:underline">OWASP</a></p>
-        <p>✔️ مسارات تعلم برمجة</p>
-      </div>
-    </section>
-
     <!-- الخريطة الذهنية -->
     <section id="mindmap" class="py-16">
       <h2 class="text-3xl font-bold text-center mb-6">🧠 الخريطة الذهنية</h2>
       <div class="bg-white p-4 rounded-2xl shadow-lg">
-        <div id="markmap" class="w-full h-[70vh] rounded-xl border"></div>
+        <svg id="mindmap-svg" class="w-full h-[70vh]"></svg>
+
+        <!-- أدوات التحكم -->
+        <div class="flex justify-center gap-3 mt-4 flex-wrap">
+          <button id="expandAll" class="btn">🔽 فتح الكل</button>
+          <button id="collapseAll" class="btn">🔼 إغلاق الكل</button>
+          <button id="zoomIn" class="btn">➕ تكبير</button>
+          <button id="zoomOut" class="btn">➖ تصغير</button>
+          <button id="reset" class="btn">♻️ إعادة ضبط</button>
+        </div>
       </div>
     </section>
 
@@ -130,9 +89,13 @@
     <p>&copy; 2025 رحومي البراهيم. جميع الحقوق محفوظة.</p>
   </footer>
 
-  <!-- مكتبة markmap -->
-  <script src="https://cdn.jsdelivr.net/npm/markmap-autoloader"></script>
+  <!-- مكتبات markmap -->
+  <script src="https://cdn.jsdelivr.net/npm/d3@6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/markmap-view"></script>
+  <script src="https://cdn.jsdelivr.net/npm/markmap-lib"></script>
+
   <script>
+    // النص للخريطة الذهنية
     const mdContent = `
 # 🧠 الأمن السيبراني والاختراق الأخلاقي
 
@@ -178,14 +141,20 @@
 - مخاطر الذكاء الاصطناعي
 - نصائح: قلل البصمة الرقمية
 `;
-    window.markmap.autoLoader.renderAll({
-      transformMarkdown: true,
-      content: mdContent,
-      selector: "#markmap",
-      options: {
-        initialExpandLevel: 1   // يبدأ مفتوح بالعقد الرئيسية فقط
-      }
-    });
+
+    const { Markmap, Transformer } = window.markmap;
+    const transformer = new Transformer();
+    const { root } = transformer.transform(mdContent);
+
+    const svg = document.getElementById("mindmap-svg");
+    const mm = Markmap.create(svg, { initialExpandLevel: 1 }, root);
+
+    // أزرار التحكم
+    document.getElementById("expandAll").onclick = () => mm.setData(root, { expandAll: true });
+    document.getElementById("collapseAll").onclick = () => mm.setData(root, { initialExpandLevel: 1 });
+    document.getElementById("zoomIn").onclick = () => mm.zoomBy(1.2);
+    document.getElementById("zoomOut").onclick = () => mm.zoomBy(0.8);
+    document.getElementById("reset").onclick = () => mm.fit();
   </script>
 </body>
 </html>
