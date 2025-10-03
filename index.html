@@ -27,18 +27,10 @@
       <a href="#attacks" class="bg-white text-blue-600 px-6 py-3 rounded-lg font-bold hover:bg-gray-200">الهجمات</a>
       <a href="#protection" class="bg-white text-blue-600 px-6 py-3 rounded-lg font-bold hover:bg-gray-200">الحماية</a>
       <a href="#resources" class="bg-white text-blue-600 px-6 py-3 rounded-lg font-bold hover:bg-gray-200">الموارد</a>
+      <a href="#mindmap" class="bg-white text-blue-600 px-6 py-3 rounded-lg font-bold hover:bg-gray-200">الخريطة</a>
       <a href="#about" class="bg-white text-blue-600 px-6 py-3 rounded-lg font-bold hover:bg-gray-200">من أنا</a>
       <a href="#faq" class="bg-white text-blue-600 px-6 py-3 rounded-lg font-bold hover:bg-gray-200">الأسئلة</a>
       <a href="#contact" class="bg-white text-blue-600 px-6 py-3 rounded-lg font-bold hover:bg-gray-200">تواصل</a>
-    </div>
-
-    <!-- Social Icons -->
-    <div class="flex gap-6">
-      <a href="https://github.com/iraqrahomi" target="_blank"><img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/github.svg" class="w-8 h-8 invert" alt="GitHub"></a>
-      <a href="https://www.instagram.com/1.ee3" target="_blank"><img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/instagram.svg" class="w-8 h-8 invert" alt="Instagram"></a>
-      <a href="https://www.facebook.com/swydawy/" target="_blank"><img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/facebook.svg" class="w-8 h-8 invert" alt="Facebook"></a>
-      <a href="https://www.tiktok.com/@1.ee3" target="_blank"><img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/tiktok.svg" class="w-8 h-8 invert" alt="TikTok"></a>
-      <a href="https://t.me/endiraq" target="_blank"><img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/telegram.svg" class="w-8 h-8 invert" alt="Telegram"></a>
     </div>
   </header>
 
@@ -96,6 +88,14 @@
       </div>
     </section>
 
+    <!-- الخريطة الذهنية -->
+    <section id="mindmap" class="py-16">
+      <h2 class="text-3xl font-bold text-center mb-6">🧠 الخريطة الذهنية</h2>
+      <div class="bg-white p-4 rounded-2xl shadow-lg">
+        <div id="markmap" class="w-full h-[70vh] rounded-xl border"></div>
+      </div>
+    </section>
+
     <!-- من أنا -->
     <section id="about">
       <h2 class="text-3xl font-bold text-center mb-6">👨‍💻 من أنا</h2>
@@ -130,5 +130,62 @@
     <p>&copy; 2025 رحومي البراهيم. جميع الحقوق محفوظة.</p>
   </footer>
 
+  <!-- مكتبة markmap -->
+  <script src="https://cdn.jsdelivr.net/npm/markmap-autoloader"></script>
+  <script>
+    const mdContent = `
+# 🧠 الأمن السيبراني والاختراق الأخلاقي
+
+## 1. مفهوم الأمن السيبراني
+- التعريف الأساسي: حماية الأنظمة والبيانات
+- النطاق:
+  - الأمن التقني
+  - الأمن المادي
+  - الحوكمة والعنصر البشري
+- مبدأ التوازن: Security ↔️ Usability ↔️ Functionality
+
+## 2. الاختراق الأخلاقي
+- مصطلحات:
+  - هاكر
+  - ثغرة
+  - حمولة
+  - استغلال
+- القبعات:
+  - بيضاء
+  - سوداء
+  - رمادية
+- الفرق:
+  - Red Team
+  - Blue Team
+  - Purple Team
+
+## 3. التعلم والمسار المهني
+- الدافع: الشغف
+- خارطة التعلم:
+  - أساسيات
+  - تطبيق عملي
+  - مصادر: OWASP / WebGoat / HackThisSite
+- العمل:
+  - Security Engineer
+  - SOC
+  - Red Team
+  - متطلبات: Problem Solver
+
+## 4. المخاطر والأمان الشخصي
+- حتمية الاختراق
+- الوعي بالمخاطر
+- جمع المعلومات
+- مخاطر الذكاء الاصطناعي
+- نصائح: قلل البصمة الرقمية
+`;
+    window.markmap.autoLoader.renderAll({
+      transformMarkdown: true,
+      content: mdContent,
+      selector: "#markmap",
+      options: {
+        initialExpandLevel: 1   // يبدأ مفتوح بالعقد الرئيسية فقط
+      }
+    });
+  </script>
 </body>
 </html>
