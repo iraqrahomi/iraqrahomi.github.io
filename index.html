@@ -11,174 +11,86 @@
   <!-- خط -->
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
   <style>
-    body { font-family: "Cairo", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; }
+    body { font-family: "Cairo", sans-serif; background: #f9fafb; }
     .gradient-bg { background: linear-gradient(135deg,#667eea 0%,#764ba2 100%); }
     html { scroll-behavior: smooth; }
   </style>
 
-  <!-- مكتبة الخريطة الذهنية (الأضمن لغياب الفراغ) -->
+  <!-- مكتبة الخريطة -->
   <script src="https://cdn.jsdelivr.net/npm/markmap-autoloader"></script>
 </head>
 <body class="bg-gray-50">
 
-  <!-- الهيدر / البطل -->
+  <!-- هيدر -->
   <header class="gradient-bg text-white min-h-[70vh] flex flex-col items-center justify-center text-center px-6">
     <h1 class="text-4xl md:text-5xl font-bold mb-4">👨‍💻 دليل الأمن السيبراني</h1>
     <p class="text-lg md:text-xl opacity-90 max-w-2xl mb-8">
-      دليلك المبسط لحماية حساباتك وبياناتك من الهجمات الرقمية — شرح عملي مختصر وواضح 🚀
+      دليلك المبسط لحماية حساباتك وبياناتك من الهجمات الرقمية 🚀
     </p>
-
-    <!-- أزرار التنقل -->
-    <nav class="flex flex-wrap gap-3 justify-center">
-      <a href="#concept" class="bg-white text-blue-700 px-4 py-2 rounded-lg font-bold hover:bg-gray-100">المفهوم</a>
-      <a href="#importance" class="bg-white text-blue-700 px-4 py-2 rounded-lg font-bold hover:bg-gray-100">الأهمية</a>
-      <a href="#attacks" class="bg-white text-blue-700 px-4 py-2 rounded-lg font-bold hover:bg-gray-100">الهجمات</a>
-      <a href="#protection" class="bg-white text-blue-700 px-4 py-2 rounded-lg font-bold hover:bg-gray-100">الحماية</a>
-      <a href="#resources" class="bg-white text-blue-700 px-4 py-2 rounded-lg font-bold hover:bg-gray-100">الموارد</a>
-      <a href="#mindmap" class="bg-white text-blue-700 px-4 py-2 rounded-lg font-bold hover:bg-gray-100">الخريطة</a>
-      <a href="#about" class="bg-white text-blue-700 px-4 py-2 rounded-lg font-bold hover:bg-gray-100">من أنا</a>
-      <a href="#faq" class="bg-white text-blue-700 px-4 py-2 rounded-lg font-bold hover:bg-gray-100">الأسئلة</a>
-      <a href="#contact" class="bg-white text-blue-700 px-4 py-2 rounded-lg font-bold hover:bg-gray-100">تواصل</a>
-    </nav>
-
-    <!-- روابط تواصل -->
-    <div class="flex gap-5 mt-8 opacity-95">
-      <a href="https://github.com/iraqrahomi" target="_blank" title="GitHub">
-        <img class="w-7 h-7 invert" src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/github.svg" alt="GitHub">
-      </a>
-      <a href="https://www.instagram.com/1.ee3" target="_blank" title="Instagram">
-        <img class="w-7 h-7 invert" src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/instagram.svg" alt="Instagram">
-      </a>
-      <a href="https://t.me/endiraq" target="_blank" title="Telegram">
-        <img class="w-7 h-7 invert" src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/telegram.svg" alt="Telegram">
-      </a>
-      <a href="https://www.tiktok.com/@1.ee3" target="_blank" title="TikTok">
-        <img class="w-7 h-7 invert" src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/tiktok.svg" alt="TikTok">
-      </a>
-      <a href="https://www.facebook.com/swydawy/" target="_blank" title="Facebook">
-        <img class="w-7 h-7 invert" src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/facebook.svg" alt="Facebook">
-      </a>
-    </div>
   </header>
 
   <!-- المحتوى -->
   <main class="container mx-auto px-6 py-14 space-y-16">
 
-    <!-- المفهوم -->
-    <section id="concept">
-      <h2 class="text-3xl font-bold text-center mb-6">🔎 مفهوم الأمن السيبراني</h2>
-      <div class="bg-white p-6 rounded-2xl shadow-lg">
-        <p>الأمن السيبراني هو حماية الأنظمة والأجهزة والشبكات والبيانات من الوصول غير المصرّح به أو التلف أو إساءة الاستخدام. الجوهر: فهم الأصول (Assets) وتقييم المخاطر ووضع ضوابط مناسبة قبل أي أداة.</p>
-      </div>
+    <!-- النص المستخلص -->
+    <section id="summary" class="bg-white p-6 rounded-2xl shadow-lg space-y-4">
+      <h2 class="text-3xl font-bold mb-4">📖 ملخص </h2>
+      <p>الأمن السيبراني لا يقتصر على حماية البرمجيات فقط، بل يشمل الأبعاد التقنية والمادية والتنظيمية. الهدف الأساسي هو حماية الأصول الرقمية والمادية من أي تهديدات.</p>
+      <ul class="list-disc pr-6 space-y-1">
+        <li><b>التعريف:</b> تأمين أي شيء يعتمد على التكنولوجيا وحماية البيانات والأصول.</li>
+        <li><b>النطاق:</b> الأمن التقني + الأمن المادي + الحوكمة.</li>
+        <li><b>مبدأ التوازن:</b> العلاقة بين الأمن وسهولة الاستخدام والوظائف.</li>
+      </ul>
+      <p>في عالم الاختراق هناك مصطلحات أساسية مثل <b>الثغرة</b> و<b>الحمولة</b> و<b>الاستغلال</b>. المخترقون ينقسمون إلى: القبعة البيضاء، السوداء، والرمادية. أما داخل الشركات فهناك فرق متخصصة: الأحمر (هجومي)، الأزرق (دفاعي)، البنفسجي (تعاوني).</p>
+      <p><b>المسار المهني:</b> أيمن أكد أن الشغف هو الأساس، والأساسيات (شبكات، نظم تشغيل، قواعد بيانات) ضرورية. مصادر مثل OWASP وWebGoat وHackThisSite تعتبر أدوات تعليمية ممتازة.</p>
+      <p><b>أسلوب حياة:</b> تعلم الأمن السيبراني يغيّر طريقة التفكير ويزيد وعيك بالمخاطر، حتى في حياتك اليومية. النصيحة الذهبية: قلل بصمتك الرقمية وفعل المصادقة الثنائية (2FA).</p>
     </section>
 
-    <!-- الأهمية -->
-    <section id="importance">
-      <h2 class="text-3xl font-bold text-center mb-6">📌 أهمية الأمن السيبراني</h2>
-      <div class="bg-white p-6 rounded-2xl shadow-lg">
-        <ul class="space-y-2">
-          <li>✔️ حماية خصوصيتك وهويتك الرقمية.</li>
-          <li>✔️ تقليل خسائر المؤسسات وتوقف الأعمال.</li>
-          <li>✔️ دعم الأمن الوطني والبنى التحتية الحيوية.</li>
-        </ul>
-      </div>
-    </section>
-
-    <!-- الهجمات -->
-    <section id="attacks">
-      <h2 class="text-3xl font-bold text-center mb-6">⚠️ أنواع الهجمات الشائعة</h2>
-      <div class="grid md:grid-cols-3 gap-6">
-        <div class="bg-white p-6 rounded-2xl shadow-lg">🦠 برمجيات خبيثة (Malware)</div>
-        <div class="bg-white p-6 rounded-2xl shadow-lg">🎣 تصيّد احتيالي (Phishing)</div>
-        <div class="bg-white p-6 rounded-2xl shadow-lg">⚡ حجب الخدمة (DDoS)</div>
-      </div>
-    </section>
-
-    <!-- الحماية -->
-    <section id="protection">
-      <h2 class="text-3xl font-bold text-center mb-6">🛡️ طرق الحماية الأساسية</h2>
-      <div class="grid md:grid-cols-2 gap-6">
-        <div class="bg-white p-6 rounded-2xl shadow-lg">🔐 كلمات مرور طويلة وفريدة + مدير كلمات مرور</div>
-        <div class="bg-white p-6 rounded-2xl shadow-lg">🔄 تحديثات مستمرة للنظام والتطبيقات</div>
-        <div class="bg-white p-6 rounded-2xl shadow-lg">🔔 تفعيل المصادقة الثنائية (2FA)</div>
-        <div class="bg-white p-6 rounded-2xl shadow-lg">🧠 توعية ونمط استخدام آمن</div>
-      </div>
-    </section>
-
-    <!-- الموارد -->
-    <section id="resources">
-      <h2 class="text-3xl font-bold text-center mb-6">📚 موارد موثوقة</h2>
-      <div class="bg-white p-6 rounded-2xl shadow-lg space-y-2">
-        <p><a class="text-blue-600 hover:underline" target="_blank" href="https://owasp.org">OWASP</a> — أفضل مرجع لأمن تطبيقات الويب.</p>
-        <p><a class="text-blue-600 hover:underline" target="_blank" href="https://haveibeenpwned.com">Have I Been Pwned</a> — التحقق من تسريب بريدك.</p>
-      </div>
-    </section>
-
-    <!-- الخريطة الذهنية (تعمل 100%) -->
+    <!-- الخريطة الذهنية -->
     <section id="mindmap">
-      <h2 class="text-3xl font-bold text-center mb-6">🧠 الخريطة الذهنية</h2>
+      <h2 class="text-3xl font-bold text-center mb-6">🧠 الخريطة الذهنية التفاعلية</h2>
       <div class="bg-white p-4 rounded-2xl shadow-lg">
-        <!-- ملاحظة: autoloader سيحوّل هذا الـ Markdown إلى خريطة تفاعلية تلقائيًا -->
         <pre class="markmap h-[70vh]">
-# 🧠 الأمن السيبراني والاختراق الأخلاقي
+# 🧠 الأمن السيبراني والاختراق الأخلاقي — حوار مع الخبير أيمن
 
-## 1. مفهوم الأمن السيبراني
-- التعريف الأساسي: حماية الأنظمة والبيانات والاتصالات
-- النطاق:
-  - الأمن التقني (أنظمة/شبكات/تطبيقات)
-  - الأمن المادي (مباني/مراكز بيانات)
-  - الحوكمة والعنصر البشري (سياسات/ضوابط)
-- مبدأ التوازن: Security ↔️ Usability ↔️ Functionality
+## ما هو الأمن السيبراني؟
+- تعريف: تأمين أي شيء يعتمد على التكنولوجيا
+- نطاق:
+  - الأمن التقني
+  - الأمن المادي
+  - الحوكمة
+- الموازنة: Security ↔️ Usability ↔️ Functionality
 
-## 2. الاختراق الأخلاقي
-- مصطلحات:
-  - هاكر
-  - ثغرة
-  - حمولة
-  - استغلال
+## مفاهيم أساسية
+- هاكر: فهم عميق للكمبيوتر
+- ثغرة (Vulnerability)
+- حمولة (Payload)
+- استغلال (Exploit)
+- برمجيات خبيثة (Malware)
+
+## الاختراق الأخلاقي
 - القبعات:
-  - بيضاء
-  - سوداء
-  - رمادية
+  - بيضاء (White Hat)
+  - سوداء (Black Hat)
+  - رمادية (Gray Hat)
 - الفرق:
-  - Red Team
-  - Blue Team
-  - Purple Team
+  - Red Team (هجومي)
+  - Blue Team (دفاعي)
+  - Purple Team (تعاوني)
 
-## 3. التعلم والمسار المهني
-- الدافع: الشغف أولاً
-- خارطة التعلم:
-  - أساسيات (شبكات/نظم)
-  - تطبيق عملي (مختبرات/Reverse Engineering)
-  - مصادر: OWASP / WebGoat / HackThisSite
-- العمل:
-  - Security Engineer / SOC / Red Team
-  - المطلوب: Problem Solver + أساسيات قوية
+## المسار المهني
+- الدافع: الشغف
+- الأساسيات: شبكات، نظم، بيانات
+- التعلم بالتطبيق
+- مصادر: OWASP / WebGoat / HackThisSite
+- الأدوار: Security Engineer / SOC / Red Team
 
-## 4. المخاطر والأمان الشخصي
-- حتمية الاختراق
-- جمع المعلومات (OSINT)
+## الأمن كأسلوب حياة
+- وعي دائم بالمخاطر
+- جمع المعلومات (Reconnaissance)
 - مخاطر الذكاء الاصطناعي
-- نصائح: تقليل البصمة الرقمية + 2FA + كلمات مرور قوية
+- نصائح: قلل البصمة الرقمية + 2FA
         </pre>
-      </div>
-    </section>
-
-    <!-- من أنا -->
-    <section id="about">
-      <h2 class="text-3xl font-bold text-center mb-6">👨‍💻 من أنا</h2>
-      <div class="bg-white p-6 rounded-2xl shadow-lg text-center">
-        <p>رحومي البراهيم — طالب هندسة أمن سيبراني. أشارك خبرتي في التوعية الرقمية وOSINT وThreat Hunting.</p>
-      </div>
-    </section>
-
-    <!-- الأسئلة -->
-    <section id="faq">
-      <h2 class="text-3xl font-bold text-center mb-6">❓ الأسئلة الشائعة</h2>
-      <div class="bg-white p-6 rounded-2xl shadow-lg space-y-2">
-        <p><b>أحتاج 2FA؟</b> نعم، تضيف طبقة حماية قوية ضد سرقة الحساب.</p>
-        <p><b>كلمة المرور المثالية؟</b> طويلة وفريدة، وابتعد عن المعادلات المتوقعة.</p>
-        <p><b>كيف أتجنب التصيّد؟</b> افحص الرابط والمرسل، ولا تفتح مرفقات مجهولة.</p>
       </div>
     </section>
 
@@ -186,11 +98,10 @@
     <section id="contact">
       <h2 class="text-3xl font-bold text-center mb-6">📩 للتواصل</h2>
       <div class="bg-white p-6 rounded-2xl shadow-lg text-center space-y-2">
-        <p>الإيميل: <a class="text-blue-600 hover:underline" href="mailto:cyberhares.alanbar@proton.me">cyberhares.alanbar@proton.me</a></p>
-        <p>التلغرام: <a class="text-blue-600 hover:underline" target="_blank" href="https://t.me/endiraq">@endiraq</a></p>
+        <p>📧 <a class="text-blue-600 hover:underline" href="mailto:cyberhares.alanbar@proton.me">cyberhares.alanbar@proton.me</a></p>
+        <p>💬 <a class="text-blue-600 hover:underline" target="_blank" href="https://t.me/endiraq">@endiraq</a></p>
       </div>
     </section>
-
   </main>
 
   <!-- الفوتر -->
