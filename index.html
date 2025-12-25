@@ -2,328 +2,543 @@
 <html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>دليل الأمن السيبراني</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>رحومي البراهيم | Rahomi Al-Brahim</title>
 
-  <!-- Meta -->
-  <meta name="description" content="دليل مبسط لحماية حساباتك وبياناتك: ملخصات، منشورات تعليمية، نصائح لحماية حسابات السوشيال، وطرق التواصل." />
-  <meta name="theme-color" content="#764ba2" />
-
-  <!-- Tailwind -->
+  <!-- Tailwind + Icons + 3D -->
   <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
 
-  <!-- خط -->
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <!-- Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
 
   <style>
-    body{font-family:"Cairo",sans-serif;background:#f9fafb;box-sizing:border-box}
-    .gradient-bg{background:linear-gradient(135deg,#667eea 0%,#764ba2 100%)}
-    html{scroll-behavior:smooth}
+    body { font-family: 'Cairo', sans-serif; background-color: #020617; color: white; overflow-x: hidden; }
+    #canvas-container { position: fixed; inset: 0; z-index: -1; width: 100%; height: 100vh; }
+    .glass { background: rgba(15, 23, 42, 0.82); backdrop-filter: blur(20px); border: 1px solid rgba(255,255,255,0.08); }
+    .active-tab { background: #2563eb !important; color: white !important; box-shadow: 0 0 20px rgba(37, 99, 235, 0.4); }
+    .profile-glow { box-shadow: 0 0 50px rgba(37, 99, 235, 0.30); border: 2px solid rgba(37, 99, 235, 0.55); }
+    .tab-content { display: none; }
+    .tab-content.active { display: block; animation: fadeIn 0.55s ease-out; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
+
+    /* Tool Cards */
+    .tool-card { border-right: 4px solid #2563eb; transition: transform 0.25s ease, background 0.25s ease; }
+    .tool-card:hover { transform: translateY(-2px); background: rgba(37,99,235,0.06); }
+
+    /* Terminal Box */
+    .terminal {
+      background: rgba(2, 6, 23, 0.75);
+      border: 1px solid rgba(148, 163, 184, 0.18);
+      border-radius: 16px;
+      overflow: hidden;
+    }
+    .term-bar {
+      display:flex; align-items:center; gap:10px;
+      padding: 10px 14px;
+      background: rgba(15,23,42,0.7);
+      border-bottom: 1px solid rgba(148, 163, 184, 0.12);
+      font-size: 12px;
+      color: rgba(226,232,240,0.8);
+    }
+    .dot { width:10px; height:10px; border-radius:999px; opacity:.9; }
+    .term-body { padding: 14px; font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; font-size: 12.5px; line-height: 1.7; color: rgba(226,232,240,0.92); }
+    .term-body code { white-space: pre-wrap; word-break: break-word; }
+
+    /* Reduce motion support */
+    @media (prefers-reduced-motion: reduce) {
+      * { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+      #canvas-container { display: none; }
+    }
   </style>
 </head>
-<body class="bg-gray-50">
 
-  <!-- هيدر -->
-  <header class="gradient-bg text-white min-h-[70vh] flex flex-col items-center justify-center text-center px-6">
-    <h1 class="text-4xl md:text-5xl font-bold mb-4">👨‍💻 دليل الأمن السيبراني</h1>
-    <p class="text-lg md:text-xl opacity-90 max-w-2xl mb-8">
-      دليلك المبسط لحماية حساباتك وبياناتك من الهجمات الرقمية 🚀
+<body>
+  <div id="canvas-container" aria-hidden="true"></div>
+
+  <!-- Top Bar -->
+  <div class="max-w-6xl mx-auto px-6 pt-6 flex flex-wrap gap-3 justify-between items-center">
+    <div class="flex items-center gap-2">
+      <div class="w-3 h-3 bg-emerald-500 rounded-full animate-pulse"></div>
+      <span class="text-[10px] md:text-xs font-bold text-slate-400 uppercase tracking-widest italic">
+        Available for Consultations
+      </span>
+    </div>
+
+    <!-- Consultation -> Instagram (كما طلبت) -->
+    <a href="https://www.instagram.com/1.ee3" target="_blank" rel="noopener noreferrer"
+       class="bg-blue-600 hover:bg-blue-700 px-5 py-2 rounded-full text-[10px] md:text-xs font-black transition-all flex items-center gap-2">
+      <i data-lucide="external-link" class="w-3 h-3"></i>
+      اطلب استشارة فنية
+    </a>
+  </div>
+
+  <!-- Header -->
+  <header class="relative pt-10 pb-10 text-center px-4">
+    <div class="inline-block relative mb-6">
+      <div class="w-40 h-40 md:w-52 md:h-52 rounded-full overflow-hidden profile-glow p-1 bg-slate-900">
+        <!-- مسار صورة "حقيقي" (محلي) -->
+        <!-- ضع صورتك هنا: /assets/profile.jpg أو غيّرها حسب مكان ملفك -->
+        <img src="assets/profile.jpg" alt="Rahomi Al-Brahim" class="w-full h-full rounded-full object-cover">
+      </div>
+    </div>
+
+    <h1 class="text-4xl md:text-7xl font-black mb-2 tracking-tighter">
+      رحومي البراهيم <span class="opacity-70">|</span> Rahomi Al-Brahim
+    </h1>
+
+    <p class="text-slate-300 font-bold text-xs md:text-sm mb-2">
+      طالب هندسة الأمن السيبراني
     </p>
-    <nav class="flex gap-4 flex-wrap justify-center">
-      <a href="#summary" class="bg-white text-purple-600 px-6 py-3 rounded-full font-semibold hover:bg-gray-100 transition-colors">📖 الملخص</a>
-      <a href="#instagram" class="bg-white text-purple-600 px-6 py-3 rounded-full font-semibold hover:bg-gray-100 transition-colors">📸 منشورات الإنستغرام</a>
-      <a href="#social-media" class="bg-white text-purple-600 px-6 py-3 rounded-full font-semibold hover:bg-gray-100 transition-colors">📱 وسائل التواصل</a>
-      <a href="#contact" class="bg-white text-purple-600 px-6 py-3 rounded-full font-semibold hover:bg-gray-100 transition-colors">📩 التواصل</a>
-    </nav>
+
+    <p class="text-blue-400 font-bold tracking-[0.25em] text-[10px] md:text-xs uppercase">
+      Cyber Security Specialist
+    </p>
   </header>
 
-  <!-- المحتوى -->
-  <main class="container mx-auto px-6 py-14 space-y-16">
+  <!-- Tabs -->
+  <nav class="max-w-5xl mx-auto px-6 mb-12" role="tablist" aria-label="الأقسام">
+    <div class="glass p-2 rounded-2xl flex flex-wrap justify-center gap-2 shadow-2xl">
+      <button id="tab-info" role="tab" aria-selected="true" aria-controls="panel-info"
+              onclick="openTab(event, 'info')"
+              class="nav-btn active-tab px-6 py-3 rounded-xl font-bold text-sm flex items-center gap-2 transition-all">
+        <i data-lucide="home" class="w-4 h-4"></i> الرئيسية
+      </button>
 
-    <!-- الملخص -->
-    <section id="summary" class="bg-white p-8 rounded-2xl shadow-lg space-y-6">
-      <h2 class="text-3xl font-bold mb-6 text-gray-800">📖 ملخص سيبراني    </h2>
+      <button id="tab-lab" role="tab" aria-selected="false" aria-controls="panel-lab"
+              onclick="openTab(event, 'lab')"
+              class="nav-btn px-6 py-3 rounded-xl font-bold text-sm flex items-center gap-2 transition-all">
+        <i data-lucide="monitor" class="w-4 h-4"></i> الأنظمة
+      </button>
 
-      <div class="prose prose-lg max-w-none text-gray-700 leading-relaxed">
-        <p class="text-lg mb-4">
-          الأمن السيبراني لا يقتصر على حماية البرمجيات فقط، بل يشمل الأبعاد التقنية والمادية والتنظيمية. الهدف الأساسي هو حماية الأصول الرقمية والمادية من أي تهديدات.
+      <button id="tab-tools" role="tab" aria-selected="false" aria-controls="panel-tools"
+              onclick="openTab(event, 'tools')"
+              class="nav-btn px-6 py-3 rounded-xl font-bold text-sm flex items-center gap-2 transition-all">
+        <i data-lucide="terminal" class="w-4 h-4"></i> خانة الأدوات
+      </button>
+
+      <button id="tab-contact" role="tab" aria-selected="false" aria-controls="panel-contact"
+              onclick="openTab(event, 'contact')"
+              class="nav-btn px-6 py-3 rounded-xl font-bold text-sm flex items-center gap-2 transition-all">
+        <i data-lucide="message-square" class="w-4 h-4"></i> التواصل
+      </button>
+    </div>
+  </nav>
+
+  <!-- Content -->
+  <main class="max-w-5xl mx-auto px-6 pb-20">
+
+    <!-- Home / Main -->
+    <section id="panel-info" role="tabpanel" aria-labelledby="tab-info" class="tab-content active">
+      <div class="glass p-8 md:p-12 rounded-[2.5rem] border-t-4 border-blue-600">
+        <h2 class="text-2xl md:text-3xl font-black mb-6 text-blue-500">مسار الأمن السيبراني بشكل واضح</h2>
+
+        <p class="text-slate-300 leading-loose text-base md:text-lg text-justify mb-8">
+          الأمن السيبراني مو “أداة” وحدها — هو مسار متدرّج. إذا تمشي خطوة خطوة، راح تبني أساس قوي وتفهم الهجمات والدفاع بشكل علمي وعملي.
         </p>
 
-        <div class="bg-blue-50 p-6 rounded-xl mb-6">
-          <h3 class="text-xl font-semibold mb-4 text-blue-800">🎯 النقاط الأساسية:</h3>
-          <ul class="list-disc pr-6 space-y-2 text-blue-700">
-            <li><b>التعريف:</b> تأمين أي شيء يعتمد على التكنولوجيا وحماية البيانات والأصول.</li>
-            <li><b>النطاق:</b> الأمن التقني + الأمن المادي + الحوكمة.</li>
-            <li><b>مبدأ التوازن:</b> العلاقة بين الأمن وسهولة الاستخدام والوظائف.</li>
-          </ul>
-        </div>
+        <div class="grid md:grid-cols-2 gap-6">
+          <div class="p-6 rounded-2xl bg-white/5 border border-white/10">
+            <h3 class="font-black text-lg mb-3 flex items-center gap-2">
+              <i data-lucide="route" class="w-5 h-5 text-blue-400"></i> الطريق المختصر (Roadmap)
+            </h3>
+            <ul class="text-slate-300 text-sm leading-7 space-y-2">
+              <li>1) أساسيات الشبكات: IP / Subnet / DNS / HTTP</li>
+              <li>2) Linux + Terminal: أوامر، صلاحيات، خدمات</li>
+              <li>3) برمجة: Python (أتمتة) + أساسيات Web</li>
+              <li>4) أمن الويب: OWASP Top 10 + جلسات + صلاحيات</li>
+              <li>5) مختبر عملي: VM + بيئات تدريب قانونية</li>
+              <li>6) تخصص: Web / Network / DFIR / Cloud / SOC</li>
+              <li>7) بناء بورتفوليو: تقارير، لقطات، توثيق</li>
+            </ul>
+          </div>
 
-        <p class="mb-4">
-          في عالم الاختراق هناك مصطلحات أساسية مثل <span class="bg-yellow-100 px-2 py-1 rounded font-semibold">الثغرة</span> و
-          <span class="bg-yellow-100 px-2 py-1 rounded font-semibold">الحمولة</span> و
-          <span class="bg-yellow-100 px-2 py-1 rounded font-semibold">الاستغلال</span>.
-          المخترقون ينقسمون إلى: القبعة البيضاء، السوداء، والرمادية. أما داخل الشركات فهناك فرق متخصصة: الأحمر (هجومي)، الأزرق (دفاعي)، البنفسجي (تعاوني).
-        </p>
+          <div class="p-6 rounded-2xl bg-white/5 border border-white/10">
+            <h3 class="font-black text-lg mb-3 flex items-center gap-2">
+              <i data-lucide="shield" class="w-5 h-5 text-emerald-400"></i> قاعدة ذهبية
+            </h3>
+            <p class="text-slate-300 text-sm leading-7">
+              الاشتغال يكون قانوني وبموافقة صريحة فقط. أي تدريب أو اختبار يكون على بيئة تملكها أو مُصرّح لك بيها. الهدف: حماية الناس والأنظمة.
+            </p>
 
-        <div class="bg-green-50 p-6 rounded-xl mb-6">
-          <h3 class="text-xl font-semibold mb-4 text-green-800">🚀 المسار المهني:</h3>
-          <p class="text-green-700">
-            الشغف هو الأساس، والأساسيات (شبكات، نظم تشغيل، قواعد بيانات) ضرورية. مصادر مثل OWASP وWebGoat وHackThisSite ممتازة للتعلم العملي.
-          </p>
-        </div>
-
-        <div class="bg-purple-50 p-6 rounded-xl">
-          <h3 class="text-xl font-semibold mb-4 text-purple-800">🛡️ أسلوب حياة:</h3>
-          <p class="text-purple-700 mb-4">
-            تعلم الأمن السيبراني يغيّر طريقة التفكير ويزيد وعيك بالمخاطر، حتى في حياتك اليومية.
-          </p>
-          <div class="bg-purple-100 p-4 rounded-lg">
-            <p class="font-semibold text-purple-800">💡 النصيحة الذهبية:</p>
-            <p class="text-purple-700">قلل بصمتك الرقمية وفعل المصادقة الثنائية (2FA)</p>
+            <div class="mt-5 p-4 rounded-xl bg-black/30 border border-white/10">
+              <p class="text-slate-300 text-sm leading-7">
+                <span class="text-emerald-400 font-black">نصيحة:</span>
+                خليك تكتب “ملاحظات مختبر” لكل تجربة: شنو سويت؟ شنو تعلمت؟ شنو النتيجة؟
+              </p>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- منشورات الإنستغرام (بطاقات تفتح بالرابط) -->
-    <section id="instagram">
-      <h2 class="text-3xl font-bold text-center mb-6 text-gray-800">📸 منشورات الإنستغرام</h2>
-      <div class="bg-white p-6 rounded-2xl shadow-lg">
-        <p class="mb-6 text-center text-gray-600">أحدث المنشورات حول الأمن السيبراني من حسابنا</p>
+    <!-- Systems -->
+    <section id="panel-lab" role="tabpanel" aria-labelledby="tab-lab" class="tab-content">
+      <div class="glass p-8 md:p-12 rounded-[2.5rem] border-t-4 border-purple-600">
+        <h2 class="text-2xl md:text-3xl font-black mb-6 text-purple-400">الأنظمة والبيئة (مختبر آمن)</h2>
 
-        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          <!-- بطاقات -->
-          <article class="bg-gradient-to-br from-pink-50 to-purple-50 p-6 rounded-xl shadow-md hover:shadow-lg transition-shadow cursor-pointer"
-                   onclick="window.open('https://www.instagram.com/reel/CzgqDuxMx1x/?igsh=MTVlbGtwaXlxaTk5bA==','_blank','noopener')">
-            <header class="flex items-center mb-4">
-              <div class="w-10 h-10 bg-gradient-to-r from-pink-500 to-purple-500 rounded-full flex items-center justify-center text-white font-bold">1E</div>
-              <div class="mr-3">
-                <h3 class="font-semibold text-gray-800">1.ee3</h3>
-                <p class="text-xs text-gray-500">منذ يومين</p>
+        <p class="text-slate-300 leading-loose text-base md:text-lg text-justify mb-10">
+          أفضل طريقة تتعلم بيها بشكل صحيح: تبني مختبر منعزل. هذا يخليك تتدرب بدون ما تأثر على جهازك الأساسي.
+        </p>
+
+        <div class="grid md:grid-cols-2 gap-8">
+          <div class="glass p-8 rounded-3xl border-b-4 border-blue-600">
+            <h3 class="text-xl font-black mb-3 flex items-center gap-2">
+              <i data-lucide="layout" class="w-5 h-5 text-blue-400"></i> Kali Linux
+            </h3>
+            <p class="text-slate-400 text-sm leading-7 mb-6">
+              نظام متخصص للتدريب والتحليل الأمني، يحتوي أدوات فحص، مراقبة، وتحليل حركة الشبكة.
+            </p>
+            <a href="https://www.kali.org/get-kali/" target="_blank" rel="noopener noreferrer"
+               class="block w-full text-center py-3 bg-blue-600 rounded-xl font-black text-xs uppercase tracking-widest hover:bg-blue-700 transition">
+              تحميل النظام الرسمي
+            </a>
+          </div>
+
+          <div class="glass p-8 rounded-3xl border-b-4 border-purple-600">
+            <h3 class="text-xl font-black mb-3 flex items-center gap-2">
+              <i data-lucide="box" class="w-5 h-5 text-purple-300"></i> VirtualBox
+            </h3>
+            <p class="text-slate-400 text-sm leading-7 mb-6">
+              برنامج لتشغيل أنظمة وهمية (VM) حتى تسوي تدريب واختبارات داخل بيئة معزولة وآمنة.
+            </p>
+            <a href="https://www.virtualbox.org/wiki/Downloads" target="_blank" rel="noopener noreferrer"
+               class="block w-full text-center py-3 bg-purple-600 rounded-xl font-black text-xs uppercase tracking-widest hover:bg-purple-700 transition">
+              تحميل البرنامج
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Tools -->
+    <section id="panel-tools" role="tabpanel" aria-labelledby="tab-tools" class="tab-content">
+      <div class="glass p-8 md:p-12 rounded-[2.5rem] border-t-4 border-emerald-600">
+        <h2 class="text-2xl md:text-3xl font-black mb-6 text-emerald-400">الأدوات — شرح سهل + مثال تيرمنال</h2>
+
+        <p class="text-slate-300 leading-loose text-base md:text-lg text-justify mb-10">
+          هاي الأدوات هي “عدة الشغل” بالمختبر. كل أداة إلها وظيفة محددة. هنا شرح بسيط + مثال بشكل تيرمنال (ضمن بيئة قانونية/مختبر).
+        </p>
+
+        <div class="space-y-7">
+
+          <!-- Nmap -->
+          <article class="glass p-7 md:p-8 rounded-3xl tool-card">
+            <div class="flex items-start justify-between gap-4 mb-4">
+              <div>
+                <h3 class="text-xl md:text-2xl font-black text-emerald-400 mb-2 flex items-center gap-2">
+                  <i data-lucide="radar" class="w-5 h-5"></i> Nmap
+                </h3>
+                <p class="text-slate-300 text-sm leading-7">
+                  فكرته: “يفهم شنو موجود بالشبكة” — أجهزة فعّالة، منافذ مفتوحة، وخدمات شغّالة.
+                </p>
               </div>
-            </header>
-            <div class="bg-gradient-to-br from-red-400 to-pink-500 h-48 rounded-lg mb-4 flex flex-col items-center justify-center text-white relative overflow-hidden">
-              <div class="absolute inset-0 bg-black/20"></div>
-              <div class="relative z-10 text-center">
-                <div class="text-5xl mb-2">🔐</div>
-                <div class="text-sm font-semibold">كلمات المرور</div>
-                <div class="text-xs opacity-90">نصائح الحماية</div>
-              </div>
-              <div class="absolute bottom-2 right-2 bg-white/20 rounded-full p-1">
-                <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-              </div>
+              <span class="text-[10px] px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-300 font-bold uppercase">
+                Network Recon
+              </span>
             </div>
-            <h4 class="font-bold text-gray-800 mb-2">كلمات المرور القوية</h4>
-            <p class="text-sm text-gray-600 mb-3">نصائح لإنشاء كلمات مرور قوية وآمنة. استخدم مزيجًا من الأحرف والأرقام والرموز.</p>
-            <footer class="flex items-center justify-between text-xs text-gray-500"><span>❤️ 1.2K</span><span>💬 45</span><span>📤 23</span></footer>
-          </article>
 
-          <article class="bg-gradient-to-br from-blue-50 to-cyan-50 p-6 rounded-xl shadow-md hover:shadow-lg transition-shadow cursor-pointer"
-                   onclick="window.open('https://www.instagram.com/reel/Cz1PgOIo4GM/?igsh=cDU3cGhjZ2h0bmtn','_blank','noopener')">
-            <header class="flex items-center mb-4">
-              <div class="w-10 h-10 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-full flex items-center justify-center text-white font-bold">1E</div>
-              <div class="mr-3">
-                <h3 class="font-semibold text-gray-800">1.ee3</h3>
-                <p class="text-xs text-gray-500">منذ 3 أيام</p>
+            <div class="terminal mt-5">
+              <div class="term-bar">
+                <span class="dot" style="background:#ef4444"></span>
+                <span class="dot" style="background:#f59e0b"></span>
+                <span class="dot" style="background:#22c55e"></span>
+                <span class="ml-2">Terminal — Example (Lab)</span>
               </div>
-            </header>
-            <div class="bg-gradient-to-br from-blue-400 to-cyan-500 h-48 rounded-lg mb-4 flex flex-col items-center justify-center text-white relative overflow-hidden">
-              <div class="absolute inset-0 bg-black/20"></div>
-              <div class="relative z-10 text-center">
-                <div class="text-5xl mb-2">📱</div>
-                <div class="text-sm font-semibold">المصادقة الثنائية</div>
-                <div class="text-xs opacity-90">2FA Security</div>
-              </div>
-              <div class="absolute bottom-2 right-2 bg-white/20 rounded-full p-1">
-                <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-              </div>
+              <div class="term-body"><code>$ nmap -sV 127.0.0.1
+# يفحص الخدمات على جهازك (مختبر محلي)
+# -sV: معرفة إصدارات الخدمات</code></div>
             </div>
-            <h4 class="font-bold text-gray-800 mb-2">المصادقة الثنائية</h4>
-            <p class="text-sm text-gray-600 mb-3">لماذا يجب تفعيل 2FA على جميع حساباتك؟ طبقة حماية إضافية مهمة جدًا.</p>
-            <footer class="flex items-center justify-between text-xs text-gray-500"><span>❤️ 890</span><span>💬 32</span><span>📤 18</span></footer>
           </article>
 
-          <article class="bg-gradient-to-br from-green-50 to-emerald-50 p-6 rounded-xl shadow-md hover:shadow-lg transition-shadow cursor-pointer"
-                   onclick="window.open('https://www.instagram.com/p/DODdk23jF7_/?igsh=em5vMmIzOXVhdzNy','_blank','noopener')">
-            <header class="flex items-center mb-4">
-              <div class="w-10 h-10 bg-gradient-to-r from-green-500 to-emerald-500 rounded-full flex items-center justify-center text-white font-bold">1E</div>
-              <div class="mr-3">
-                <h3 class="font-semibold text-gray-800">1.ee3</h3>
-                <p class="text-xs text-gray-500">منذ 5 أيام</p>
+          <!-- Burp Suite -->
+          <article class="glass p-7 md:p-8 rounded-3xl tool-card" style="border-right-color:#3b82f6;">
+            <div class="flex items-start justify-between gap-4 mb-4">
+              <div>
+                <h3 class="text-xl md:text-2xl font-black text-blue-400 mb-2 flex items-center gap-2">
+                  <i data-lucide="shield-alert" class="w-5 h-5"></i> Burp Suite
+                </h3>
+                <p class="text-slate-300 text-sm leading-7">
+                  فكرته: “وسيط” بين المتصفح والموقع، تراقب الطلبات (Requests) وتفهم منطق التحقق والصلاحيات.
+                </p>
               </div>
-            </header>
-            <div class="bg-gradient-to-br from-green-400 to-emerald-500 h-48 rounded-lg mb-4 flex flex-col items-center justify-center text-white relative overflow-hidden">
-              <div class="absolute inset-0 bg-black/20"></div>
-              <div class="relative z-10 text-center">
-                <div class="text-5xl mb-2">🎣</div>
-                <div class="text-sm font-semibold">التصيد الاحتيالي</div>
-                <div class="text-xs opacity-90">Phishing Alert</div>
-              </div>
-              <div class="absolute bottom-2 right-2 bg-white/20 rounded-full p-1">
-                <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>
-              </div>
+              <span class="text-[10px] px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-300 font-bold uppercase">
+                Web Testing
+              </span>
             </div>
-            <h4 class="font-bold text-gray-800 mb-2">احذر من التصيد الاحتيالي</h4>
-            <p class="text-sm text-gray-600 mb-3">كيف تتعرف على رسائل التصيد وتحمي نفسك منها؟ علامات تحذيرية مهمة.</p>
-            <footer class="flex items-center justify-between text-xs text-gray-500"><span>❤️ 1.5K</span><span>💬 67</span><span>📤 34</span></footer>
+
+            <div class="terminal mt-5">
+              <div class="term-bar">
+                <span class="dot" style="background:#ef4444"></span>
+                <span class="dot" style="background:#f59e0b"></span>
+                <span class="dot" style="background:#22c55e"></span>
+                <span class="ml-2">Tip — Clean Workflow</span>
+              </div>
+              <div class="term-body"><code># شغّل Burp ثم:
+# Browser -> Proxy -> Intercept ON
+# افحص: هل الطلب يحتوي Token؟ هل الصلاحيات تتحقق؟</code></div>
+            </div>
           </article>
 
-          <!-- يمكن إبقاء البطاقات 4-6 كما هي لديك أو حذفها -->
-          <article class="bg-gradient-to-br from-orange-50 to-red-50 p-6 rounded-xl shadow-md hover:shadow-lg transition-shadow cursor-pointer"
-                   onclick="window.open('https://www.instagram.com/1.ee3','_blank','noopener')">
-            <header class="flex items-center mb-4">
-              <div class="w-10 h-10 bg-gradient-to-r from-orange-500 to-red-500 rounded-full flex items-center justify-center text-white font-bold">CS</div>
-              <div class="mr-3"><h3 class="font-semibold text-gray-800">cybersecurity_tips</h3><p class="text-xs text-gray-500">منذ أسبوع</p></div>
-            </header>
-            <div class="bg-gradient-to-r from-orange-400 to-red-500 h-48 rounded-lg mb-4 flex items-center justify-center text-white text-4xl">🌐</div>
-            <h4 class="font-bold text-gray-800 mb-2">التصفح الآمن</h4>
-            <p class="text-sm text-gray-600 mb-3">نصائح للتصفح الآمن على الإنترنت وحماية الخصوصية.</p>
-            <footer class="flex items-center justify-between text-xs text-gray-500"><span>❤️ 756</span><span>💬 28</span><span>📤 15</span></footer>
+          <!-- Wireshark -->
+          <article class="glass p-7 md:p-8 rounded-3xl tool-card" style="border-right-color:#a855f7;">
+            <div class="flex items-start justify-between gap-4 mb-4">
+              <div>
+                <h3 class="text-xl md:text-2xl font-black text-purple-300 mb-2 flex items-center gap-2">
+                  <i data-lucide="activity" class="w-5 h-5"></i> Wireshark
+                </h3>
+                <p class="text-slate-300 text-sm leading-7">
+                  فكرته: “يشوف الشبكة وهي تتحرك” — تحليل الترافيك، DNS، HTTP، TLS… مفيد للتشخيص والفهم.
+                </p>
+              </div>
+              <span class="text-[10px] px-3 py-1 rounded-full bg-purple-500/10 border border-purple-500/20 text-purple-200 font-bold uppercase">
+                Traffic Analysis
+              </span>
+            </div>
+
+            <div class="terminal mt-5">
+              <div class="term-bar">
+                <span class="dot" style="background:#ef4444"></span>
+                <span class="dot" style="background:#f59e0b"></span>
+                <span class="dot" style="background:#22c55e"></span>
+                <span class="ml-2">Filters (Wireshark)</span>
+              </div>
+              <div class="term-body"><code># أمثلة فلاتر:
+dns
+http
+tcp.port == 443
+ip.addr == 192.168.1.10</code></div>
+            </div>
           </article>
 
-          <article class="bg-gradient-to-br from-purple-50 to-indigo-50 p-6 rounded-xl shadow-md hover:shadow-lg transition-shadow cursor-pointer"
-                   onclick="window.open('https://www.instagram.com/1.ee3','_blank','noopener')">
-            <header class="flex items-center mb-4">
-              <div class="w-10 h-10 bg-gradient-to-r from-purple-500 to-indigo-500 rounded-full flex items-center justify-center text-white font-bold">CS</div>
-              <div class="mr-3"><h3 class="font-semibold text-gray-800">cybersecurity_tips</h3><p class="text-xs text-gray-500">منذ أسبوع</p></div>
-            </header>
-            <div class="bg-gradient-to-r from-purple-400 to-indigo-500 h-48 rounded-lg mb-4 flex items-center justify-center text-white text-4xl">💻</div>
-            <h4 class="font-bold text-gray-800 mb-2">تحديث البرامج</h4>
-            <p class="text-sm text-gray-600 mb-3">التحديثات الأمنية ضرورة لحماية جهازك من الثغرات.</p>
-            <footer class="flex items-center justify-between text-xs text-gray-500"><span>❤️ 623</span><span>💬 19</span><span>📤 12</span></footer>
+          <!-- WhatWeb -->
+          <article class="glass p-7 md:p-8 rounded-3xl tool-card" style="border-right-color:#22c55e;">
+            <div class="flex items-start justify-between gap-4 mb-4">
+              <div>
+                <h3 class="text-xl md:text-2xl font-black text-emerald-300 mb-2 flex items-center gap-2">
+                  <i data-lucide="globe" class="w-5 h-5"></i> WhatWeb
+                </h3>
+                <p class="text-slate-300 text-sm leading-7">
+                  فكرته: “يعرف تقنية الموقع” — سيرفر، CMS، مكتبات، بصمة عامة تساعدك تفهم البيئة.
+                </p>
+              </div>
+              <span class="text-[10px] px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-200 font-bold uppercase">
+                Fingerprinting
+              </span>
+            </div>
+
+            <div class="terminal mt-5">
+              <div class="term-bar">
+                <span class="dot" style="background:#ef4444"></span>
+                <span class="dot" style="background:#f59e0b"></span>
+                <span class="dot" style="background:#22c55e"></span>
+                <span class="ml-2">Terminal — Example</span>
+              </div>
+              <div class="term-body"><code>$ whatweb https://example.com
+# بصمة عامة لموقع عام (للشرح)</code></div>
+            </div>
           </article>
 
-          <article class="bg-gradient-to-br from-teal-50 to-cyan-50 p-6 rounded-xl shadow-md hover:shadow-lg transition-shadow cursor-pointer"
-                   onclick="window.open('https://www.instagram.com/1.ee3','_blank','noopener')">
-            <header class="flex items-center mb-4">
-              <div class="w-10 h-10 bg-gradient-to-r from-teal-500 to-cyan-500 rounded-full flex items-center justify-center text-white font-bold">CS</div>
-              <div class="mr-3"><h3 class="font-semibold text-gray-800">cybersecurity_tips</h3><p class="text-xs text-gray-500">منذ أسبوعين</p></div>
-            </header>
-            <div class="bg-gradient-to-r from-teal-400 to-cyan-500 h-48 rounded-lg mb-4 flex items-center justify-center text-white text-4xl">☁️</div>
-            <h4 class="font-bold text-gray-800 mb-2">النسخ الاحتياطية</h4>
-            <p class="text-sm text-gray-600 mb-3">قاعدة 3-2-1 لحماية بياناتك من الفقد.</p>
-            <footer class="flex items-center justify-between text-xs text-gray-500"><span>❤️ 934</span><span>💬 41</span><span>📤 27</span></footer>
+          <!-- Nikto -->
+          <article class="glass p-7 md:p-8 rounded-3xl tool-card" style="border-right-color:#f59e0b;">
+            <div class="flex items-start justify-between gap-4 mb-4">
+              <div>
+                <h3 class="text-xl md:text-2xl font-black text-amber-300 mb-2 flex items-center gap-2">
+                  <i data-lucide="scan" class="w-5 h-5"></i> Nikto
+                </h3>
+                <p class="text-slate-300 text-sm leading-7">
+                  فكرته: فحص إعدادات الويب الشائعة والأخطاء المعروفة (Misconfigurations) — ممتاز للمراجعة السريعة داخل المختبر.
+                </p>
+              </div>
+              <span class="text-[10px] px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-200 font-bold uppercase">
+                Web Review
+              </span>
+            </div>
+
+            <div class="terminal mt-5">
+              <div class="term-bar">
+                <span class="dot" style="background:#ef4444"></span>
+                <span class="dot" style="background:#f59e0b"></span>
+                <span class="dot" style="background:#22c55e"></span>
+                <span class="ml-2">Terminal — Local Lab</span>
+              </div>
+              <div class="term-body"><code>$ nikto -h http://127.0.0.1
+# افحص سيرفر محلي عندك بالمختبر</code></div>
+            </div>
           </article>
+
+          <!-- Dirsearch -->
+          <article class="glass p-7 md:p-8 rounded-3xl tool-card" style="border-right-color:#e879f9;">
+            <div class="flex items-start justify-between gap-4 mb-4">
+              <div>
+                <h3 class="text-xl md:text-2xl font-black text-fuchsia-300 mb-2 flex items-center gap-2">
+                  <i data-lucide="folder-search" class="w-5 h-5"></i> Dirsearch
+                </h3>
+                <p class="text-slate-300 text-sm leading-7">
+                  فكرته: يبحث عن مسارات (Paths) وملفات عامة/منسية داخل تطبيق ويب — مفيد لفهم هيكل الموقع داخل بيئة تدريب.
+                </p>
+              </div>
+              <span class="text-[10px] px-3 py-1 rounded-full bg-fuchsia-500/10 border border-fuchsia-500/20 text-fuchsia-200 font-bold uppercase">
+                Content Discovery
+              </span>
+            </div>
+
+            <div class="terminal mt-5">
+              <div class="term-bar">
+                <span class="dot" style="background:#ef4444"></span>
+                <span class="dot" style="background:#f59e0b"></span>
+                <span class="dot" style="background:#22c55e"></span>
+                <span class="ml-2">Terminal — Safe Demo</span>
+              </div>
+              <div class="term-body"><code>$ dirsearch -u http://127.0.0.1 -e php,html,txt
+# استخدمه على سيرفرك المحلي بالمختبر</code></div>
+            </div>
+          </article>
+
         </div>
 
-        <div class="mt-8 text-center">
+        <div class="mt-10 p-6 rounded-2xl bg-white/5 border border-white/10">
+          <p class="text-slate-300 text-sm leading-7">
+            <span class="text-blue-400 font-black">ملاحظة مهمة:</span>
+            الأمثلة هنا هدفها تعليمي داخل مختبرك أو بيئات مصرح بها. لا تستخدم الأدوات على أهداف حقيقية بدون إذن واضح.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="panel-contact" role="tabpanel" aria-labelledby="tab-contact" class="tab-content">
+      <div class="glass p-8 md:p-12 rounded-[2.5rem] border-t-4 border-sky-600">
+        <h2 class="text-2xl md:text-3xl font-black mb-6 text-sky-400">روابط التواصل والحسابات</h2>
+        <p class="text-slate-300 leading-loose text-base md:text-lg text-justify mb-10">
+          كل روابط حساباتي هنا (بدون نقص):
+        </p>
+
+        <div class="grid md:grid-cols-2 gap-4">
           <a href="https://www.instagram.com/1.ee3" target="_blank" rel="noopener noreferrer"
-             class="inline-flex items-center gap-2 bg-gradient-to-r from-pink-500 to-purple-500 text-white px-6 py-3 rounded-full font-semibold hover:from-pink-600 hover:to-purple-600 transition-all">
-            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069z"/></svg>
-            تابعنا على الإنستغرام
+             class="glass p-7 rounded-3xl flex items-center justify-between group hover:bg-pink-500/10 transition-all border border-white/5 hover:border-pink-500">
+            <div class="flex items-center gap-4">
+              <i data-lucide="instagram" class="text-pink-400"></i>
+              <div>
+                <div class="font-black text-lg">Instagram</div>
+                <div class="text-slate-400 text-xs">1.ee3</div>
+              </div>
+            </div>
+            <i data-lucide="external-link" class="w-5 h-5 opacity-60"></i>
           </a>
-        </div>
-      </div>
-    </section>
 
-    <!-- حماية السوشيال -->
-    <section id="social-media" class="bg-gradient-to-r from-blue-50 to-indigo-50 p-8 rounded-2xl shadow-lg">
-      <h2 class="text-3xl font-bold text-center mb-8 text-gray-800">📱 حماية حساباتك على وسائل التواصل</h2>
-      <div class="grid lg:grid-cols-2 gap-8 mb-8">
-        <div class="bg-white p-6 rounded-xl shadow-md">
-          <h3 class="text-2xl font-semibold mb-6 text-red-600">⚠️ المخاطر الشائعة</h3>
-          <ul class="space-y-3 text-sm text-gray-700">
-            <li>🎣 التصيد الاحتيالي — رسائل وروابط مزيفة</li>
-            <li>👤 انتحال الهوية — حسابات مزيفة باسمك</li>
-            <li>🔓 اختراق الحسابات — وصول غير مصرح</li>
-            <li>📊 سرقة البيانات — جمع معلوماتك واستغلالها</li>
-          </ul>
-        </div>
-        <div class="bg-white p-6 rounded-xl shadow-md">
-          <h3 class="text-2xl font-semibold mb-6 text-green-600">🛡️ خطوات الحماية</h3>
-          <ul class="space-y-3 text-sm text-gray-700">
-            <li>🔐 كلمات مرور قوية ومختلفة + مدير كلمات مرور</li>
-            <li>📱 تفعيل المصادقة الثنائية 2FA</li>
-            <li>🔒 تحديث إعدادات الخصوصية دوريًا</li>
-            <li>🧹 مراجعة التطبيقات/الأذونات المتصلة</li>
-          </ul>
-        </div>
-      </div>
-    </section>
+          <a href="https://t.me/endiraq" target="_blank" rel="noopener noreferrer"
+             class="glass p-7 rounded-3xl flex items-center justify-between group hover:bg-sky-500/10 transition-all border border-white/5 hover:border-sky-500">
+            <div class="flex items-center gap-4">
+              <i data-lucide="send" class="text-sky-400"></i>
+              <div>
+                <div class="font-black text-lg">Telegram</div>
+                <div class="text-slate-400 text-xs">@endiraq</div>
+              </div>
+            </div>
+            <i data-lucide="external-link" class="w-5 h-5 opacity-60"></i>
+          </a>
 
-    <!-- تواصل -->
-    <section id="contact">
-      <h2 class="text-3xl font-bold text-center mb-8 text-gray-800">📩 للتواصل</h2>
-      <div class="bg-white p-8 rounded-2xl shadow-lg text-center space-y-6">
-        <div class="max-w-2xl mx-auto">
-          <p class="text-gray-600 mb-6">للاستفسارات أو طلب المساعدة في مجال الأمن السيبراني:</p>
-          <div class="grid md:grid-cols-2 gap-6">
-            <div class="bg-blue-50 p-6 rounded-xl">
-              <div class="text-3xl mb-3">📧</div>
-              <h3 class="font-semibold mb-2">البريد الإلكتروني</h3>
-              <a class="text-blue-600 hover:text-blue-800 transition-colors break-all" href="mailto:cyberhares.alanbar@proton.me">cyberhares.alanbar@proton.me</a>
+          <a href="mailto:cyberhares.alanbar@proton.me"
+             class="glass p-7 rounded-3xl flex items-center justify-between group hover:bg-emerald-500/10 transition-all border border-white/5 hover:border-emerald-500 md:col-span-2">
+            <div class="flex items-center gap-4">
+              <i data-lucide="mail" class="text-emerald-400"></i>
+              <div>
+                <div class="font-black text-lg">Email</div>
+                <div class="text-slate-400 text-xs">cyberhares.alanbar@proton.me</div>
+              </div>
             </div>
-            <div class="bg-green-50 p-6 rounded-xl">
-              <div class="text-3xl mb-3">💬</div>
-              <h3 class="font-semibold mb-2">تليجرام</h3>
-              <a class="text-green-600 hover:text-green-800 transition-colors" target="_blank" rel="noopener noreferrer" href="https://t.me/endiraq">@endiraq</a>
-            </div>
-          </div>
-          <div class="mt-8 p-4 bg-yellow-50 rounded-lg">
-            <p class="text-sm text-yellow-800">💡 <strong>نصيحة:</strong> استخدم القنوات الرسمية أعلاه فقط لضمان الأمان.</p>
-          </div>
-
-          <div class="mt-8">
-            <h3 class="text-lg font-semibold mb-4 text-gray-800">تابعنا على وسائل التواصل</h3>
-            <div class="flex gap-6 justify-center">
-              <a href="https://github.com/iraqrahomi" target="_blank" rel="noopener noreferrer" class="hover:scale-110 transition-transform">
-                <img class="w-8 h-8 invert" src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/github.svg" alt="GitHub">
-              </a>
-              <a href="https://www.instagram.com/1.ee3" target="_blank" rel="noopener noreferrer" class="hover:scale-110 transition-transform">
-                <img class="w-8 h-8" style="filter: hue-rotate(300deg) saturate(2);" src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/instagram.svg" alt="Instagram">
-              </a>
-              <a href="https://www.facebook.com/swydawy/" target="_blank" rel="noopener noreferrer" class="hover:scale-110 transition-transform">
-                <img class="w-8 h-8" style="filter: invert(22%) sepia(95%) saturate(3944%) hue-rotate(202deg) brightness(92%) contrast(101%);" src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/facebook.svg" alt="Facebook">
-              </a>
-              <a href="https://www.tiktok.com/@1.ee3" target="_blank" rel="noopener noreferrer" class="hover:scale-110 transition-transform">
-                <img class="w-8 h-8" src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/tiktok.svg" alt="TikTok">
-              </a>
-              <a href="https://t.me/endiraq" target="_blank" rel="noopener noreferrer" class="hover:scale-110 transition-transform">
-                <img class="w-8 h-8" style="filter: invert(42%) sepia(81%) saturate(1847%) hue-rotate(175deg) brightness(95%) contrast(95%);" src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/telegram.svg" alt="Telegram">
-              </a>
-            </div>
-          </div>
+            <i data-lucide="external-link" class="w-5 h-5 opacity-60"></i>
+          </a>
         </div>
       </div>
     </section>
 
   </main>
 
-  <!-- فوتر -->
-  <footer class="bg-gray-800 text-white py-8 mt-16">
-    <div class="container mx-auto px-6 text-center">
-      <p class="mb-2">🛡️ دليل الأمن السيبراني - حماية رقمية شاملة</p>
-      <p class="text-gray-400 text-sm">تذكير: الأمن السيبراني مسؤولية الجميع 🤝</p>
-      <button onclick="window.scrollTo({top:0,behavior:'smooth'})" class="mt-4 bg-purple-600 hover:bg-purple-700 px-4 py-2 rounded-full transition-colors">
-        ⬆️ العودة للأعلى
-      </button>
+  <!-- Footer -->
+  <footer class="max-w-6xl mx-auto px-6 py-14 border-t border-white/5 mt-14 text-center">
+    <div class="opacity-60 space-y-3">
+      <p class="text-[10px] md:text-xs font-black uppercase tracking-[0.35em]">
+        &copy; 2025 رحومي البراهيم | Rahomi Al-Brahim — Cybersecurity Portfolio
+      </p>
+      <div class="flex justify-center flex-wrap gap-6 text-[9px] font-bold italic uppercase tracking-widest">
+        <span>Ethical Use Only</span>
+        <span class="text-emerald-500">Privacy Respect</span>
+        <span>Learning • Practice • Build</span>
+      </div>
     </div>
   </footer>
 
-  <!-- سكربتات خفيفة -->
   <script>
-    // Smooth anchor scroll (تحاشياً لقفز الصفحة إذا كان الرابط فارغ)
-    document.querySelectorAll('a[href^="#"]').forEach(a=>{
-      a.addEventListener('click',e=>{
-        const id=a.getAttribute('href');
-        if(id.length>1){
-          e.preventDefault();
-          const el=document.querySelector(id);
-          if(el) el.scrollIntoView({behavior:'smooth',block:'start'});
-        }
+    lucide.createIcons();
+
+    const reduceMotion = window.matchMedia &&
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    // Three.js Background (only when motion is allowed)
+    let scene, camera, renderer, sphere;
+
+    if (!reduceMotion) {
+      scene = new THREE.Scene();
+      camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+
+      renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+      renderer.setSize(window.innerWidth, window.innerHeight);
+      document.getElementById("canvas-container").appendChild(renderer.domElement);
+
+      sphere = new THREE.Mesh(
+        new THREE.IcosahedronGeometry(20, 1),
+        new THREE.MeshBasicMaterial({
+          color: 0x2563eb,
+          wireframe: true,
+          transparent: true,
+          opacity: 0.10
+        })
+      );
+
+      scene.add(sphere);
+      camera.position.z = 46;
+
+      function animate() {
+        requestAnimationFrame(animate);
+        sphere.rotation.y += 0.001;
+        sphere.rotation.x += 0.00045;
+        renderer.render(scene, camera);
+      }
+      animate();
+
+      window.addEventListener("resize", () => {
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(window.innerWidth, window.innerHeight);
       });
-    });
+    }
 
-    // ظهور لطيف عند التمرير
-    const io=new IntersectionObserver((es)=>es.forEach(e=>{
-      if(e.isIntersecting){ e.target.style.opacity='1'; e.target.style.transform='translateY(0)'; }
-    }),{threshold:0.1,rootMargin:'0px 0px -50px 0px'});
+    // Tabs
+    function openTab(e, tabId) {
+      const currentButton = e.currentTarget;
 
-    document.querySelectorAll('section').forEach(s=>{
-      s.style.opacity='0'; s.style.transform='translateY(16px)';
-      s.style.transition='opacity .6s ease, transform .6s ease';
-      io.observe(s);
-    });
+      document.querySelectorAll(".nav-btn").forEach((btn) => {
+        btn.classList.remove("active-tab");
+        btn.setAttribute("aria-selected", "false");
+      });
+
+      document.querySelectorAll(".tab-content").forEach((panel) => {
+        panel.classList.remove("active");
+      });
+
+      currentButton.classList.add("active-tab");
+      currentButton.setAttribute("aria-selected", "true");
+
+      const panel = document.getElementById("panel-" + tabId);
+      if (panel) panel.classList.add("active");
+
+      const top = 380;
+      if (reduceMotion) window.scrollTo(0, top);
+      else window.scrollTo({ top, behavior: "smooth" });
+    }
   </script>
 </body>
 </html>
