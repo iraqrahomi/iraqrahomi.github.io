@@ -5,16 +5,27 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>رحومي البراهيم | Rahomi Al-Brahim</title>
 
-  <!-- Tailwind + Icons + 3D -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="رحومي البراهيم | Cybersecurity Specialist">
+  <meta property="og:description" content="كورسات، أدوات، ونصائح ذهبية في الأمن السيبراني.">
+  <meta property="og:image" content="myphoto.jpg">
+  <meta property="twitter:card" content="summary_large_image">
+
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
   <script src="https://unpkg.com/lucide@latest"></script>
-
-  <!-- Font -->
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
 
   <style>
     body { font-family: 'Cairo', sans-serif; background-color: #020617; color: white; overflow-x: hidden; }
+    
+    /* Professional Scrollbar */
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: #020617; }
+    ::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: #2563eb; }
+
+    /* UI Elements */
     #canvas-container { position: fixed; inset: 0; z-index: -1; width: 100%; height: 100vh; }
     .glass { background: rgba(15, 23, 42, 0.82); backdrop-filter: blur(20px); border: 1px solid rgba(255,255,255,0.08); }
     .active-tab { background: #2563eb !important; color: white !important; box-shadow: 0 0 20px rgba(37, 99, 235, 0.4); }
@@ -23,433 +34,217 @@
     .tab-content.active { display: block; animation: fadeIn 0.55s ease-out; }
     @keyframes fadeIn { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
 
-    /* Tool Cards */
+    /* Terminal & Tools */
     .tool-card { border-right: 4px solid #2563eb; transition: transform 0.25s ease, background 0.25s ease; }
     .tool-card:hover { transform: translateY(-2px); background: rgba(37,99,235,0.06); }
+    .terminal { background: rgba(2, 6, 23, 0.75); border: 1px solid rgba(148, 163, 184, 0.18); border-radius: 16px; overflow: hidden; }
+    .term-bar { display:flex; align-items:center; justify-content: space-between; padding: 10px 14px; background: rgba(15,23,42,0.7); border-bottom: 1px solid rgba(148, 163, 184, 0.12); font-size: 12px; color: rgba(226,232,240,0.8); }
+    .term-body { padding: 14px; font-family: ui-monospace, monospace; font-size: 12.5px; line-height: 1.7; color: rgba(226,232,240,0.92); }
+    .copy-btn { background: transparent; border: none; cursor: pointer; color: #94a3b8; transition: color 0.2s; }
+    .copy-btn:hover { color: white; }
+    
+    /* Guide Chips */
+    .chip { font-size: 11px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
+    .badge { font-size: 10px; font-weight: 900; letter-spacing: .2em; text-transform: uppercase; padding: 6px 10px; border-radius: 999px; border: 1px solid rgba(255,255,255,0.10); background: rgba(255,255,255,0.04); }
 
-    /* Terminal Box */
-    .terminal {
-      background: rgba(2, 6, 23, 0.75);
-      border: 1px solid rgba(148, 163, 184, 0.18);
-      border-radius: 16px;
-      overflow: hidden;
-    }
-    .term-bar {
-      display:flex; align-items:center; gap:10px;
-      padding: 10px 14px;
-      background: rgba(15,23,42,0.7);
-      border-bottom: 1px solid rgba(148, 163, 184, 0.12);
-      font-size: 12px;
-      color: rgba(226,232,240,0.8);
-    }
-    .dot { width:10px; height:10px; border-radius:999px; opacity:.9; }
-    .term-body { padding: 14px; font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; font-size: 12.5px; line-height: 1.7; color: rgba(226,232,240,0.92); }
-    .term-body code { white-space: pre-wrap; word-break: break-word; }
-
-    /* Reduce motion support */
-    @media (prefers-reduced-motion: reduce) {
-      * { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
-      #canvas-container { display: none; }
-    }
+    @media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } #canvas-container { display: none; } }
   </style>
 </head>
 
 <body>
   <div id="canvas-container" aria-hidden="true"></div>
 
-  <!-- Top Bar -->
   <div class="max-w-6xl mx-auto px-6 pt-6 flex flex-wrap gap-3 justify-between items-center">
     <div class="flex items-center gap-2">
       <div class="w-3 h-3 bg-emerald-500 rounded-full animate-pulse"></div>
-      <span class="text-[10px] md:text-xs font-bold text-slate-400 uppercase tracking-widest italic">
-        Available for Consultations
-      </span>
+      <span class="text-[10px] md:text-xs font-bold text-slate-400 uppercase tracking-widest italic">Available for Consultations</span>
     </div>
-
-    <!-- Consultation -> Instagram (كما طلبت) -->
-    <a href="https://www.instagram.com/1.ee3" target="_blank" rel="noopener noreferrer"
-       class="bg-blue-600 hover:bg-blue-700 px-5 py-2 rounded-full text-[10px] md:text-xs font-black transition-all flex items-center gap-2">
-      <i data-lucide="external-link" class="w-3 h-3"></i>
-      اطلب استشارة فنية
+    <a href="https://www.instagram.com/1.ee3" target="_blank" class="bg-blue-600 hover:bg-blue-700 px-5 py-2 rounded-full text-[10px] md:text-xs font-black transition-all flex items-center gap-2">
+      <i data-lucide="external-link" class="w-3 h-3"></i> أي استفسار
     </a>
   </div>
 
-  <!-- Header -->
   <header class="relative pt-10 pb-10 text-center px-4">
     <div class="inline-block relative mb-6">
       <div class="w-40 h-40 md:w-52 md:h-52 rounded-full overflow-hidden profile-glow p-1 bg-slate-900">
-        <!-- مسار صورة "حقيقي" (محلي) -->
-        <!-- ضع صورتك هنا: /assets/rahomi-profile.jpg أو غيّرها حسب مكان ملفك -->
         <img src="myphoto.jpg" alt="Rahomi Al-Brahim" class="w-full h-full rounded-full object-cover">
       </div>
     </div>
-
-    <h1 class="text-4xl md:text-7xl font-black mb-2 tracking-tighter">
-      رحومي البراهيم <span class="opacity-70">|</span> Rahomi Al-Brahim
-    </h1>
-
-    <p class="text-slate-300 font-bold text-xs md:text-sm mb-2">
-      طالب هندسة الأمن السيبراني
-    </p>
-
-    <p class="text-blue-400 font-bold tracking-[0.25em] text-[10px] md:text-xs uppercase">
-      Cyber Security Specialist
+    <h1 class="text-4xl md:text-7xl font-black mb-2 tracking-tighter">رحومي البراهيم <span class="opacity-70">|</span> Rahomi Al-Brahim</h1>
+    <p class="text-slate-300 font-bold text-xs md:text-sm mb-2">طالب هندسة الأمن السيبراني</p>
+    <p class="text-blue-400 font-bold tracking-[0.25em] text-[10px] md:text-xs uppercase min-h-[24px]">
+      <span id="typewriter"></span><span class="animate-pulse">_</span>
     </p>
   </header>
 
-  <!-- Tabs -->
-  <nav class="max-w-5xl mx-auto px-6 mb-12" role="tablist" aria-label="الأقسام">
+  <nav class="max-w-5xl mx-auto px-6 mb-12" role="tablist">
     <div class="glass p-2 rounded-2xl flex flex-wrap justify-center gap-2 shadow-2xl">
-      <button id="tab-info" role="tab" aria-selected="true" aria-controls="panel-info"
-              onclick="openTab(event, 'info')"
-              class="nav-btn active-tab px-6 py-3 rounded-xl font-bold text-sm flex items-center gap-2 transition-all">
-        <i data-lucide="home" class="w-4 h-4"></i> الرئيسية
-      </button>
-
-      <button id="tab-lab" role="tab" aria-selected="false" aria-controls="panel-lab"
-              onclick="openTab(event, 'lab')"
-              class="nav-btn px-6 py-3 rounded-xl font-bold text-sm flex items-center gap-2 transition-all">
-        <i data-lucide="monitor" class="w-4 h-4"></i> الأنظمة
-      </button>
-
-      <button id="tab-tools" role="tab" aria-selected="false" aria-controls="panel-tools"
-              onclick="openTab(event, 'tools')"
-              class="nav-btn px-6 py-3 rounded-xl font-bold text-sm flex items-center gap-2 transition-all">
-        <i data-lucide="terminal" class="w-4 h-4"></i> خانة الأدوات
-      </button>
-
-      <button id="tab-contact" role="tab" aria-selected="false" aria-controls="panel-contact"
-              onclick="openTab(event, 'contact')"
-              class="nav-btn px-6 py-3 rounded-xl font-bold text-sm flex items-center gap-2 transition-all">
-        <i data-lucide="message-square" class="w-4 h-4"></i> التواصل
-      </button>
+      <button onclick="openTab(event, 'info')" class="nav-btn active-tab px-6 py-3 rounded-xl font-bold text-sm flex items-center gap-2 transition-all"><i data-lucide="home" class="w-4 h-4"></i> الرئيسية</button>
+      <button onclick="openTab(event, 'lab')" class="nav-btn px-6 py-3 rounded-xl font-bold text-sm flex items-center gap-2 transition-all"><i data-lucide="monitor" class="w-4 h-4"></i> الأنظمة</button>
+      <button onclick="openTab(event, 'tools')" class="nav-btn px-6 py-3 rounded-xl font-bold text-sm flex items-center gap-2 transition-all"><i data-lucide="terminal" class="w-4 h-4"></i>  الأدوات</button>
+      <button onclick="openTab(event, 'laptop')" class="nav-btn px-6 py-3 rounded-xl font-bold text-sm flex items-center gap-2 transition-all"><i data-lucide="laptop" class="w-4 h-4"></i> دليل اللابتوب</button>
+      <button onclick="openTab(event, 'contact')" class="nav-btn px-6 py-3 rounded-xl font-bold text-sm flex items-center gap-2 transition-all"><i data-lucide="message-square" class="w-4 h-4"></i> التواصل</button>
     </div>
   </nav>
 
-  <!-- Content -->
   <main class="max-w-5xl mx-auto px-6 pb-20">
 
-    <!-- Home / Main -->
-    <section id="panel-info" role="tabpanel" aria-labelledby="tab-info" class="tab-content active">
+    <section id="panel-info" class="tab-content active">
       <div class="glass p-8 md:p-12 rounded-[2.5rem] border-t-4 border-blue-600">
-        <h2 class="text-2xl md:text-3xl font-black mb-6 text-blue-500">مسار الأمن السيبراني بشكل واضح</h2>
-
+        <h2 class="text-2xl md:text-3xl font-black mb-6 text-blue-500">مسار الأمن السيبراني</h2>
         <p class="text-slate-300 leading-loose text-base md:text-lg text-justify mb-8">
           الأمن السيبراني مو “أداة” وحدها — هو مسار متدرّج. إذا تمشي خطوة خطوة، راح تبني أساس قوي وتفهم الهجمات والدفاع بشكل علمي وعملي.
         </p>
-
         <div class="grid md:grid-cols-2 gap-6">
           <div class="p-6 rounded-2xl bg-white/5 border border-white/10">
-            <h3 class="font-black text-lg mb-3 flex items-center gap-2">
-              <i data-lucide="route" class="w-5 h-5 text-blue-400"></i> الطريق المختصر (Roadmap)
-            </h3>
+            <h3 class="font-black text-lg mb-3 flex items-center gap-2"><i data-lucide="route" class="w-5 h-5 text-blue-400"></i> Roadmap</h3>
             <ul class="text-slate-300 text-sm leading-7 space-y-2">
-              <li>1) أساسيات الشبكات: IP / Subnet / DNS / HTTP</li>
-              <li>2) Linux + Terminal: أوامر، صلاحيات، خدمات</li>
-              <li>3) برمجة: Python (أتمتة) + أساسيات Web</li>
-              <li>4) أمن الويب: OWASP Top 10 + جلسات + صلاحيات</li>
-              <li>5) مختبر عملي: VM + بيئات تدريب قانونية</li>
-              <li>6) تخصص: Web / Network / DFIR / Cloud / SOC</li>
-              <li>7) بناء بورتفوليو: تقارير، لقطات، توثيق</li>
+              <li>1) أساسيات الشبكات: IP / Subnet / DNS</li>
+              <li>2) Linux + Terminal: أوامر، صلاحيات</li>
+              <li>3) برمجة: Python (أتمتة) + Web Basics</li>
+              <li>4) أمن الويب: OWASP Top 10</li>
+              <li>5) مختبر عملي: VM + بيئات تدريب</li>
             </ul>
           </div>
-
           <div class="p-6 rounded-2xl bg-white/5 border border-white/10">
-            <h3 class="font-black text-lg mb-3 flex items-center gap-2">
-              <i data-lucide="shield" class="w-5 h-5 text-emerald-400"></i> قاعدة ذهبية
-            </h3>
-            <p class="text-slate-300 text-sm leading-7">
-              الاشتغال يكون قانوني وبموافقة صريحة فقط. أي تدريب أو اختبار يكون على بيئة تملكها أو مُصرّح لك بيها. الهدف: حماية الناس والأنظمة.
-            </p>
-
-            <div class="mt-5 p-4 rounded-xl bg-black/30 border border-white/10">
-              <p class="text-slate-300 text-sm leading-7">
-                <span class="text-emerald-400 font-black">نصيحة:</span>
-                خليك تكتب “ملاحظات مختبر” لكل تجربة: شنو سويت؟ شنو تعلمت؟ شنو النتيجة؟
-              </p>
-            </div>
+            <h3 class="font-black text-lg mb-3 flex items-center gap-2"><i data-lucide="shield" class="w-5 h-5 text-emerald-400"></i> قاعدة ذهبية</h3>
+            <p class="text-slate-300 text-sm leading-7">الاشتغال يكون قانوني وبموافقة صريحة فقط. هدفنا حماية الناس والأنظمة.</p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Systems -->
-    <section id="panel-lab" role="tabpanel" aria-labelledby="tab-lab" class="tab-content">
+    <section id="panel-lab" class="tab-content">
       <div class="glass p-8 md:p-12 rounded-[2.5rem] border-t-4 border-purple-600">
-        <h2 class="text-2xl md:text-3xl font-black mb-6 text-purple-400">الأنظمة والبيئة (مختبر آمن)</h2>
-
-        <p class="text-slate-300 leading-loose text-base md:text-lg text-justify mb-10">
-          أفضل طريقة تتعلم بيها بشكل صحيح: تبني مختبر منعزل. هذا يخليك تتدرب بدون ما تأثر على جهازك الأساسي.
-        </p>
-
+        <h2 class="text-2xl md:text-3xl font-black mb-6 text-purple-400">بيئة المختبر (Lab)</h2>
         <div class="grid md:grid-cols-2 gap-8">
           <div class="glass p-8 rounded-3xl border-b-4 border-blue-600">
-            <h3 class="text-xl font-black mb-3 flex items-center gap-2">
-              <i data-lucide="layout" class="w-5 h-5 text-blue-400"></i> Kali Linux
-            </h3>
-            <p class="text-slate-400 text-sm leading-7 mb-6">
-              نظام متخصص للتدريب والتحليل الأمني، يحتوي أدوات فحص، مراقبة، وتحليل حركة الشبكة.
-            </p>
-            <a href="https://www.kali.org/get-kali/" target="_blank" rel="noopener noreferrer"
-               class="block w-full text-center py-3 bg-blue-600 rounded-xl font-black text-xs uppercase tracking-widest hover:bg-blue-700 transition">
-              تحميل النظام الرسمي
-            </a>
+            <h3 class="text-xl font-black mb-3 flex items-center gap-2"><i data-lucide="layout" class="w-5 h-5 text-blue-400"></i> Kali Linux</h3>
+            <p class="text-slate-400 text-sm leading-7 mb-6">نظام متخصص للتدريب والتحليل الأمني.</p>
+            <a href="https://www.kali.org/get-kali/" target="_blank" class="block w-full text-center py-3 bg-blue-600 rounded-xl font-black text-xs uppercase tracking-widest hover:bg-blue-700 transition">تحميل النظام</a>
           </div>
-
           <div class="glass p-8 rounded-3xl border-b-4 border-purple-600">
-            <h3 class="text-xl font-black mb-3 flex items-center gap-2">
-              <i data-lucide="box" class="w-5 h-5 text-purple-300"></i> VirtualBox
-            </h3>
-            <p class="text-slate-400 text-sm leading-7 mb-6">
-              برنامج لتشغيل أنظمة وهمية (VM) حتى تسوي تدريب واختبارات داخل بيئة معزولة وآمنة.
-            </p>
-            <a href="https://www.virtualbox.org/wiki/Downloads" target="_blank" rel="noopener noreferrer"
-               class="block w-full text-center py-3 bg-purple-600 rounded-xl font-black text-xs uppercase tracking-widest hover:bg-purple-700 transition">
-              تحميل البرنامج
-            </a>
+            <h3 class="text-xl font-black mb-3 flex items-center gap-2"><i data-lucide="box" class="w-5 h-5 text-purple-300"></i> VirtualBox</h3>
+            <p class="text-slate-400 text-sm leading-7 mb-6">لتشغيل الأنظمة الوهمية (VM).</p>
+            <a href="https://www.virtualbox.org/wiki/Downloads" target="_blank" class="block w-full text-center py-3 bg-purple-600 rounded-xl font-black text-xs uppercase tracking-widest hover:bg-purple-700 transition">تحميل البرنامج</a>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Tools -->
-    <section id="panel-tools" role="tabpanel" aria-labelledby="tab-tools" class="tab-content">
+    <section id="panel-tools" class="tab-content">
       <div class="glass p-8 md:p-12 rounded-[2.5rem] border-t-4 border-emerald-600">
-        <h2 class="text-2xl md:text-3xl font-black mb-6 text-emerald-400">الأدوات — شرح سهل + مثال تيرمنال</h2>
-
-        <p class="text-slate-300 leading-loose text-base md:text-lg text-justify mb-10">
-          هاي الأدوات هي “عدة الشغل” بالمختبر. كل أداة إلها وظيفة محددة. هنا شرح بسيط + مثال بشكل تيرمنال (ضمن بيئة قانونية/مختبر).
-        </p>
-
+        <h2 class="text-2xl md:text-3xl font-black mb-6 text-emerald-400">أدوات الفحص (Tools)</h2>
         <div class="space-y-7">
-
-          <!-- Nmap -->
           <article class="glass p-7 md:p-8 rounded-3xl tool-card">
             <div class="flex items-start justify-between gap-4 mb-4">
-              <div>
-                <h3 class="text-xl md:text-2xl font-black text-emerald-400 mb-2 flex items-center gap-2">
-                  <i data-lucide="radar" class="w-5 h-5"></i> Nmap
-                </h3>
-                <p class="text-slate-300 text-sm leading-7">
-                  فكرته: “يفهم شنو موجود بالشبكة” — أجهزة فعّالة، منافذ مفتوحة، وخدمات شغّالة.
-                </p>
-              </div>
-              <span class="text-[10px] px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-300 font-bold uppercase">
-                Network Recon
-              </span>
+              <h3 class="text-xl font-black text-emerald-400 flex items-center gap-2"><i data-lucide="radar" class="w-5 h-5"></i> Nmap</h3>
+              <span class="badge text-emerald-300 border-emerald-500/20 bg-emerald-500/10">Recon</span>
             </div>
-
-            <div class="terminal mt-5">
-              <div class="term-bar">
-                <span class="dot" style="background:#ef4444"></span>
-                <span class="dot" style="background:#f59e0b"></span>
-                <span class="dot" style="background:#22c55e"></span>
-                <span class="ml-2">Terminal — Example (Lab)</span>
-              </div>
-              <div class="term-body"><code>$ nmap -sV 127.0.0.1
-# يفحص الخدمات على جهازك (مختبر محلي)
-# -sV: معرفة إصدارات الخدمات</code></div>
+            <div class="terminal mt-5 group relative">
+              <div class="term-bar"><div class="flex gap-2"><span class="dot bg-red-500"></span><span class="dot bg-yellow-500"></span><span class="dot bg-green-500"></span></div><button class="copy-btn opacity-0 group-hover:opacity-100" onclick="copyCode(this, 'nmap -sV 127.0.0.1')"><i data-lucide="copy" class="w-4 h-4"></i></button></div>
+              <div class="term-body"><code>$ nmap -sV 127.0.0.1</code></div>
             </div>
           </article>
-
-          <!-- Burp Suite -->
+          
           <article class="glass p-7 md:p-8 rounded-3xl tool-card" style="border-right-color:#3b82f6;">
             <div class="flex items-start justify-between gap-4 mb-4">
-              <div>
-                <h3 class="text-xl md:text-2xl font-black text-blue-400 mb-2 flex items-center gap-2">
-                  <i data-lucide="shield-alert" class="w-5 h-5"></i> Burp Suite
-                </h3>
-                <p class="text-slate-300 text-sm leading-7">
-                  فكرته: “وسيط” بين المتصفح والموقع، تراقب الطلبات (Requests) وتفهم منطق التحقق والصلاحيات.
-                </p>
-              </div>
-              <span class="text-[10px] px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-300 font-bold uppercase">
-                Web Testing
-              </span>
+              <h3 class="text-xl font-black text-blue-400 flex items-center gap-2"><i data-lucide="shield-alert" class="w-5 h-5"></i> Burp Suite</h3>
+              <span class="badge text-blue-300 border-blue-500/20 bg-blue-500/10">Web</span>
             </div>
-
-            <div class="terminal mt-5">
-              <div class="term-bar">
-                <span class="dot" style="background:#ef4444"></span>
-                <span class="dot" style="background:#f59e0b"></span>
-                <span class="dot" style="background:#22c55e"></span>
-                <span class="ml-2">Tip — Clean Workflow</span>
-              </div>
-              <div class="term-body"><code># شغّل Burp ثم:
-# Browser -> Proxy -> Intercept ON
-# افحص: هل الطلب يحتوي Token؟ هل الصلاحيات تتحقق؟</code></div>
+            <div class="terminal mt-5 group relative">
+              <div class="term-bar"><div class="flex gap-2"><span class="dot bg-red-500"></span><span class="dot bg-yellow-500"></span><span class="dot bg-green-500"></span></div><button class="copy-btn opacity-0 group-hover:opacity-100" onclick="copyCode(this, 'Proxy -> Intercept ON')"><i data-lucide="copy" class="w-4 h-4"></i></button></div>
+              <div class="term-body"><code># Browser -> Proxy -> Intercept ON</code></div>
             </div>
           </article>
 
-          <!-- Wireshark -->
-          <article class="glass p-7 md:p-8 rounded-3xl tool-card" style="border-right-color:#a855f7;">
-            <div class="flex items-start justify-between gap-4 mb-4">
-              <div>
-                <h3 class="text-xl md:text-2xl font-black text-purple-300 mb-2 flex items-center gap-2">
-                  <i data-lucide="activity" class="w-5 h-5"></i> Wireshark
-                </h3>
-                <p class="text-slate-300 text-sm leading-7">
-                  فكرته: “يشوف الشبكة وهي تتحرك” — تحليل الترافيك، DNS، HTTP، TLS… مفيد للتشخيص والفهم.
-                </p>
-              </div>
-              <span class="text-[10px] px-3 py-1 rounded-full bg-purple-500/10 border border-purple-500/20 text-purple-200 font-bold uppercase">
-                Traffic Analysis
-              </span>
-            </div>
-
-            <div class="terminal mt-5">
-              <div class="term-bar">
-                <span class="dot" style="background:#ef4444"></span>
-                <span class="dot" style="background:#f59e0b"></span>
-                <span class="dot" style="background:#22c55e"></span>
-                <span class="ml-2">Filters (Wireshark)</span>
-              </div>
-              <div class="term-body"><code># أمثلة فلاتر:
-dns
-http
-tcp.port == 443
-ip.addr == 192.168.1.10</code></div>
-            </div>
-          </article>
-
-          <!-- WhatWeb -->
-          <article class="glass p-7 md:p-8 rounded-3xl tool-card" style="border-right-color:#22c55e;">
-            <div class="flex items-start justify-between gap-4 mb-4">
-              <div>
-                <h3 class="text-xl md:text-2xl font-black text-emerald-300 mb-2 flex items-center gap-2">
-                  <i data-lucide="globe" class="w-5 h-5"></i> WhatWeb
-                </h3>
-                <p class="text-slate-300 text-sm leading-7">
-                  فكرته: “يعرف تقنية الموقع” — سيرفر، CMS، مكتبات، بصمة عامة تساعدك تفهم البيئة.
-                </p>
-              </div>
-              <span class="text-[10px] px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-200 font-bold uppercase">
-                Fingerprinting
-              </span>
-            </div>
-
-            <div class="terminal mt-5">
-              <div class="term-bar">
-                <span class="dot" style="background:#ef4444"></span>
-                <span class="dot" style="background:#f59e0b"></span>
-                <span class="dot" style="background:#22c55e"></span>
-                <span class="ml-2">Terminal — Example</span>
-              </div>
-              <div class="term-body"><code>$ whatweb https://example.com
-# بصمة عامة لموقع عام (للشرح)</code></div>
-            </div>
-          </article>
-
-          <!-- Nikto -->
-          <article class="glass p-7 md:p-8 rounded-3xl tool-card" style="border-right-color:#f59e0b;">
-            <div class="flex items-start justify-between gap-4 mb-4">
-              <div>
-                <h3 class="text-xl md:text-2xl font-black text-amber-300 mb-2 flex items-center gap-2">
-                  <i data-lucide="scan" class="w-5 h-5"></i> Nikto
-                </h3>
-                <p class="text-slate-300 text-sm leading-7">
-                  فكرته: فحص إعدادات الويب الشائعة والأخطاء المعروفة (Misconfigurations) — ممتاز للمراجعة السريعة داخل المختبر.
-                </p>
-              </div>
-              <span class="text-[10px] px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-200 font-bold uppercase">
-                Web Review
-              </span>
-            </div>
-
-            <div class="terminal mt-5">
-              <div class="term-bar">
-                <span class="dot" style="background:#ef4444"></span>
-                <span class="dot" style="background:#f59e0b"></span>
-                <span class="dot" style="background:#22c55e"></span>
-                <span class="ml-2">Terminal — Local Lab</span>
-              </div>
-              <div class="term-body"><code>$ nikto -h http://127.0.0.1
-# افحص سيرفر محلي عندك بالمختبر</code></div>
-            </div>
-          </article>
-
-          <!-- Dirsearch -->
           <article class="glass p-7 md:p-8 rounded-3xl tool-card" style="border-right-color:#e879f9;">
             <div class="flex items-start justify-between gap-4 mb-4">
-              <div>
-                <h3 class="text-xl md:text-2xl font-black text-fuchsia-300 mb-2 flex items-center gap-2">
-                  <i data-lucide="folder-search" class="w-5 h-5"></i> Dirsearch
-                </h3>
-                <p class="text-slate-300 text-sm leading-7">
-                  فكرته: يبحث عن مسارات (Paths) وملفات عامة/منسية داخل تطبيق ويب — مفيد لفهم هيكل الموقع داخل بيئة تدريب.
-                </p>
-              </div>
-              <span class="text-[10px] px-3 py-1 rounded-full bg-fuchsia-500/10 border border-fuchsia-500/20 text-fuchsia-200 font-bold uppercase">
-                Content Discovery
-              </span>
+              <h3 class="text-xl font-black text-fuchsia-300 flex items-center gap-2"><i data-lucide="folder-search" class="w-5 h-5"></i> Dirsearch</h3>
+              <span class="badge text-fuchsia-300 border-fuchsia-500/20 bg-fuchsia-500/10">Discovery</span>
             </div>
-
-            <div class="terminal mt-5">
-              <div class="term-bar">
-                <span class="dot" style="background:#ef4444"></span>
-                <span class="dot" style="background:#f59e0b"></span>
-                <span class="dot" style="background:#22c55e"></span>
-                <span class="ml-2">Terminal — Safe Demo</span>
-              </div>
-              <div class="term-body"><code>$ dirsearch -u http://127.0.0.1 -e php,html,txt
-# استخدمه على سيرفرك المحلي بالمختبر</code></div>
+            <div class="terminal mt-5 group relative">
+              <div class="term-bar"><div class="flex gap-2"><span class="dot bg-red-500"></span><span class="dot bg-yellow-500"></span><span class="dot bg-green-500"></span></div><button class="copy-btn opacity-0 group-hover:opacity-100" onclick="copyCode(this, 'dirsearch -u http://127.0.0.1')"><i data-lucide="copy" class="w-4 h-4"></i></button></div>
+              <div class="term-body"><code>$ dirsearch -u http://127.0.0.1</code></div>
             </div>
           </article>
-
-        </div>
-
-        <div class="mt-10 p-6 rounded-2xl bg-white/5 border border-white/10">
-          <p class="text-slate-300 text-sm leading-7">
-            <span class="text-blue-400 font-black">ملاحظة مهمة:</span>
-            الأمثلة هنا هدفها تعليمي داخل مختبرك أو بيئات مصرح بها. لا تستخدم الأدوات على أهداف حقيقية بدون إذن واضح.
-          </p>
         </div>
       </div>
     </section>
 
-    <!-- Contact -->
-    <section id="panel-contact" role="tabpanel" aria-labelledby="tab-contact" class="tab-content">
+    <section id="panel-laptop" class="tab-content">
+      <div class="glass p-8 md:p-12 rounded-[2.5rem] border-t-4 border-cyan-600">
+        <h2 class="text-2xl md:text-3xl font-black text-cyan-300 mb-6">دليل شراء اللابتوب</h2>
+        <div class="grid md:grid-cols-3 gap-6 items-start">
+          <div class="md:col-span-1 glass p-6 rounded-3xl border border-white/10">
+            <label class="text-slate-300 text-sm font-bold block mb-2">نوع الاستخدام:</label>
+            <select id="usecase" class="w-full bg-black/30 border border-white/10 rounded-2xl p-3 text-sm outline-none focus:ring-2 focus:ring-cyan-500/40">
+              <option value="programming">برمجة (Programming)</option>
+              <option value="photoshop">تصميم صور (Photoshop)</option>
+              <option value="premiere">مونتاج فيديو (Premiere Pro)</option>
+              <option value="cad">هندسة (CAD/Autodesk)</option>
+              <option value="unity">تطوير ألعاب (Unity)</option>
+              <option value="general">استخدام عام</option>
+            </select>
+          </div>
+          <div class="md:col-span-2 glass p-6 rounded-3xl border border-white/10">
+            <div class="mb-4">
+              <div id="resultTitle" class="font-black text-lg"></div>
+              <div id="resultSub" class="text-slate-400 text-xs"></div>
+            </div>
+            <div class="grid lg:grid-cols-2 gap-6">
+              <div class="p-5 rounded-3xl bg-black/25 border border-white/10">
+                <div class="font-black text-amber-200 mb-3">الحد الأدنى</div>
+                <div id="minSpecs" class="text-sm text-slate-200"></div>
+              </div>
+              <div class="p-5 rounded-3xl bg-black/25 border border-white/10">
+                <div class="font-black text-emerald-200 mb-3">الموصى به</div>
+                <div id="recSpecs" class="text-sm text-slate-200"></div>
+              </div>
+            </div>
+            <div class="mt-4 text-sm text-slate-300">
+               <ul id="realTips"></ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="panel-contact" class="tab-content">
       <div class="glass p-8 md:p-12 rounded-[2.5rem] border-t-4 border-sky-600">
-        <h2 class="text-2xl md:text-3xl font-black mb-6 text-sky-400">روابط التواصل والحسابات</h2>
-        <p class="text-slate-300 leading-loose text-base md:text-lg text-justify mb-10">
-          كل روابط حساباتي هنا (بدون نقص):
-        </p>
-
+        <h2 class="text-2xl md:text-3xl font-black mb-6 text-sky-400">تواصل معي</h2>
         <div class="grid md:grid-cols-2 gap-4">
-          <a href="https://www.instagram.com/1.ee3" target="_blank" rel="noopener noreferrer"
-             class="glass p-7 rounded-3xl flex items-center justify-between group hover:bg-pink-500/10 transition-all border border-white/5 hover:border-pink-500">
-            <div class="flex items-center gap-4">
-              <i data-lucide="instagram" class="text-pink-400"></i>
-              <div>
-                <div class="font-black text-lg">Instagram</div>
-                <div class="text-slate-400 text-xs">1.ee3</div>
-              </div>
+          
+          <a href="https://t.me/endiraq" target="_blank" class="md:col-span-2 glass p-7 rounded-3xl flex items-center justify-between hover:bg-sky-500/10 transition-all border border-white/5 hover:border-sky-500">
+            <div class="flex items-center gap-5">
+               <div class="w-14 h-14 rounded-2xl bg-sky-500/10 flex items-center justify-center shrink-0 border border-sky-500/20">
+                 <i data-lucide="send" class="w-7 h-7 text-sky-300"></i>
+               </div>
+               <div>
+                 <div class="font-black text-lg text-white">قناتي على التلكرام</div>
+                 <div class="text-slate-400 text-xs mb-2">@endiraq</div>
+                 <div class="text-[11px] text-sky-300 font-bold tracking-wide flex flex-wrap gap-2">
+                   <span>✨ كورسات احترافية</span>
+                   <span class="opacity-50">•</span>
+                   <span>🛡️ نصائح أمنية</span>
+                   <span class="opacity-50">•</span>
+                   <span>🚀 مسار تعليمي</span>
+                 </div>
+               </div>
             </div>
+            <div class="hidden md:flex items-center gap-2 text-sky-400 font-black text-xs uppercase tracking-widest">
+              JOIN <i data-lucide="external-link" class="w-4 h-4 opacity-80"></i>
+            </div>
+          </a>
+
+          <a href="https://www.instagram.com/1.ee3" target="_blank" class="glass p-7 rounded-3xl flex items-center justify-between hover:bg-pink-500/10 transition-all border border-white/5 hover:border-pink-500">
+            <div class="flex items-center gap-4"><i data-lucide="instagram" class="text-pink-400"></i><span class="font-black text-lg">Instagram</span></div>
             <i data-lucide="external-link" class="w-5 h-5 opacity-60"></i>
           </a>
 
-          <a href="https://t.me/endiraq" target="_blank" rel="noopener noreferrer"
-             class="glass p-7 rounded-3xl flex items-center justify-between group hover:bg-sky-500/10 transition-all border border-white/5 hover:border-sky-500">
-            <div class="flex items-center gap-4">
-              <i data-lucide="send" class="text-sky-400"></i>
-              <div>
-                <div class="font-black text-lg">Telegram</div>
-                <div class="text-slate-400 text-xs">@endiraq</div>
-              </div>
-            </div>
-            <i data-lucide="external-link" class="w-5 h-5 opacity-60"></i>
-          </a>
-
-          <a href="mailto:cyberhares.alanbar@proton.me"
-             class="glass p-7 rounded-3xl flex items-center justify-between group hover:bg-emerald-500/10 transition-all border border-white/5 hover:border-emerald-500 md:col-span-2">
-            <div class="flex items-center gap-4">
-              <i data-lucide="mail" class="text-emerald-400"></i>
-              <div>
-                <div class="font-black text-lg">Email</div>
-                <div class="text-slate-400 text-xs">cyberhares.alanbar@proton.me</div>
-              </div>
-            </div>
-            <i data-lucide="external-link" class="w-5 h-5 opacity-60"></i>
+          <a href="mailto:cyberhares.alanbar@proton.me" class="glass p-7 rounded-3xl flex items-center justify-between hover:bg-emerald-500/10 transition-all border border-white/5 hover:border-emerald-500">
+             <div class="flex items-center gap-4"><i data-lucide="mail" class="text-emerald-400"></i><span class="font-black text-lg">Email</span></div>
+             <i data-lucide="external-link" class="w-5 h-5 opacity-60"></i>
           </a>
         </div>
       </div>
@@ -457,88 +252,67 @@ ip.addr == 192.168.1.10</code></div>
 
   </main>
 
-  <!-- Footer -->
   <footer class="max-w-6xl mx-auto px-6 py-14 border-t border-white/5 mt-14 text-center">
+    <div class="mb-5 font-mono text-[11px] bg-black/20 inline-block px-4 py-2 rounded-lg border border-white/5">
+      <span class="text-emerald-500 font-bold">Your Connection:</span> 
+      <span id="user-ip" class="text-slate-400">Scanning...</span>
+    </div>
     <div class="opacity-60 space-y-3">
-      <p class="text-[10px] md:text-xs font-black uppercase tracking-[0.35em]">
-        &copy; 2025 رحومي البراهيم | Rahomi Al-Brahim — Cybersecurity Portfolio
-      </p>
-      <div class="flex justify-center flex-wrap gap-6 text-[9px] font-bold italic uppercase tracking-widest">
-        <span>Ethical Use Only</span>
-        <span class="text-emerald-500">Privacy Respect</span>
-        <span>Learning • Practice • Build</span>
-      </div>
+      <p class="text-[10px] md:text-xs font-black uppercase tracking-[0.35em]">&copy; 2025 رحومي البراهيم</p>
     </div>
   </footer>
 
   <script>
     lucide.createIcons();
 
-    const reduceMotion = window.matchMedia &&
-      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    // 1. IP
+    fetch('https://api.ipify.org?format=json').then(r => r.json()).then(d => { document.getElementById('user-ip').textContent = d.ip; }).catch(e => { document.getElementById('user-ip').textContent = "Hidden"; });
 
-    // Three.js Background (only when motion is allowed)
-    let scene, camera, renderer, sphere;
+    // 2. Typewriter
+    const txt = "Cyber Security Specialist";
+    let i = 0;
+    function typeW() { if(i < txt.length) { document.getElementById('typewriter').textContent += txt.charAt(i); i++; setTimeout(typeW, 100); } }
+    window.addEventListener('load', typeW);
 
-    if (!reduceMotion) {
-      scene = new THREE.Scene();
-      camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+    // 3. Copy
+    function copyCode(btn, t) { navigator.clipboard.writeText(t).then(() => { let old = btn.innerHTML; btn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>'; setTimeout(() => btn.innerHTML = old, 2000); }); }
 
-      renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-      renderer.setSize(window.innerWidth, window.innerHeight);
-      document.getElementById("canvas-container").appendChild(renderer.domElement);
-
-      sphere = new THREE.Mesh(
-        new THREE.IcosahedronGeometry(20, 1),
-        new THREE.MeshBasicMaterial({
-          color: 0x2563eb,
-          wireframe: true,
-          transparent: true,
-          opacity: 0.10
-        })
-      );
-
-      scene.add(sphere);
-      camera.position.z = 46;
-
-      function animate() {
-        requestAnimationFrame(animate);
-        sphere.rotation.y += 0.001;
-        sphere.rotation.x += 0.00045;
-        renderer.render(scene, camera);
-      }
-      animate();
-
-      window.addEventListener("resize", () => {
-        camera.aspect = window.innerWidth / window.innerHeight;
-        camera.updateProjectionMatrix();
-        renderer.setSize(window.innerWidth, window.innerHeight);
-      });
+    // 4. Background & Tabs
+    const rm = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (!rm) {
+      const sc = new THREE.Scene(), cam = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
+      const ren = new THREE.WebGLRenderer({antialias:true, alpha:true});
+      ren.setSize(window.innerWidth, window.innerHeight); document.getElementById("canvas-container").appendChild(ren.domElement);
+      const sp = new THREE.Mesh(new THREE.IcosahedronGeometry(20, 1), new THREE.MeshBasicMaterial({color:0x2563eb, wireframe:true, transparent:true, opacity:0.1}));
+      sc.add(sp); cam.position.z = 46;
+      function ani(){ requestAnimationFrame(ani); sp.rotation.y+=0.001; sp.rotation.x+=0.00045; ren.render(sc, cam); } ani();
+      window.addEventListener("resize", ()=>{ cam.aspect=window.innerWidth/window.innerHeight; cam.updateProjectionMatrix(); ren.setSize(window.innerWidth, window.innerHeight); });
+    }
+    function openTab(e, id) {
+      document.querySelectorAll(".nav-btn").forEach(b => { b.classList.remove("active-tab"); b.setAttribute("aria-selected","false"); });
+      document.querySelectorAll(".tab-content").forEach(p => p.classList.remove("active"));
+      e.currentTarget.classList.add("active-tab"); document.getElementById("panel-"+id).classList.add("active");
+      if(!rm) window.scrollTo({top: 380, behavior: "smooth"});
     }
 
-    // Tabs
-    function openTab(e, tabId) {
-      const currentButton = e.currentTarget;
-
-      document.querySelectorAll(".nav-btn").forEach((btn) => {
-        btn.classList.remove("active-tab");
-        btn.setAttribute("aria-selected", "false");
-      });
-
-      document.querySelectorAll(".tab-content").forEach((panel) => {
-        panel.classList.remove("active");
-      });
-
-      currentButton.classList.add("active-tab");
-      currentButton.setAttribute("aria-selected", "true");
-
-      const panel = document.getElementById("panel-" + tabId);
-      if (panel) panel.classList.add("active");
-
-      const top = 380;
-      if (reduceMotion) window.scrollTo(0, top);
-      else window.scrollTo({ top, behavior: "smooth" });
+    // 5. Laptop Data
+    const d = {
+      programming: { title: "برمجة", sub: "VS Code", min: [["CPU","1.6GHz"],["RAM","4GB"]], rec: [["RAM","16GB"],["SSD","Yes"]], tips: ["SSD ضروري."] },
+      photoshop: { title: "Photoshop", sub: "Adobe", min: [["GPU","1.5GB"],["RAM","8GB"]], rec: [["RAM","16GB"],["Display","IPS"]], tips: ["شاشة دقيقة الألوان."] },
+      premiere: { title: "Premiere", sub: "Montage", min: [["CPU","Gen6"],["RAM","8GB"]], rec: [["RAM","32GB"],["GPU","4GB"]], tips: ["التبريد مهم."] },
+      cad: { title: "AutoCAD", sub: "Engineering", min: [["CPU","2.5GHz"],["GPU","1GB"]], rec: [["RAM","16GB"],["GPU","4GB"]], tips: ["كرت الشاشة أساسي."] },
+      unity: { title: "Unity", sub: "Game Dev", min: [["GPU","DX10"],["RAM","8GB"]], rec: [["RAM","16GB"],["GPU","DX12"]], tips: ["مساحة تخزين سريعة."] },
+      general: { title: "استخدام عام", sub: "Office", min: [["CPU","i3"],["RAM","4GB"]], rec: [["RAM","8GB"],["SSD","256GB"]], tips: ["بطارية قوية."] }
+    };
+    function rS(l) { return l.map(([k,v]) => `<div class="spec-row"><div class="text-slate-400 font-bold">${k}</div><div class="text-slate-200 font-black">${v}</div></div>`).join(""); }
+    function rT(l) { return l.map(t => `<li>• ${t}</li>`).join(""); }
+    function upL() {
+      const i = d[document.getElementById("usecase").value];
+      document.getElementById("resultTitle").textContent = i.title; document.getElementById("resultSub").textContent = i.sub;
+      document.getElementById("minSpecs").innerHTML = rS(i.min); document.getElementById("recSpecs").innerHTML = rS(i.rec);
+      document.getElementById("realTips").innerHTML = rT(i.tips);
     }
+    document.getElementById("usecase").addEventListener("change", upL); upL();
   </script>
 </body>
 </html>
