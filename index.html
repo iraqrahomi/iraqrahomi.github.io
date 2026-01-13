@@ -15,6 +15,14 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
   <script src="https://unpkg.com/lucide@latest"></script>
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+  
+  <!-- Markmap Libraries -->
+  <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+  <script src="https://cdn.jsdelivr.net/npm/markmap-view@0.15.4"></script>
+  <script src="https://cdn.jsdelivr.net/npm/markmap-lib@0.15.4/dist/browser/index.min.js"></script>
+  
+  <!-- Font Awesome for Bug Bounty Section -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
   <style>
     body { font-family: 'Cairo', sans-serif; background-color: #020617; color: white; overflow-x: hidden; }
@@ -47,7 +55,217 @@
     .chip { font-size: 11px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
     .badge { font-size: 10px; font-weight: 900; letter-spacing: .2em; text-transform: uppercase; padding: 6px 10px; border-radius: 999px; border: 1px solid rgba(255,255,255,0.10); background: rgba(255,255,255,0.04); }
 
+    /* === Bug Bounty Mindmap Section Styles === */
+    .bugbounty-header {
+      background: rgba(22, 27, 34, 0.95);
+      backdrop-filter: blur(10px);
+      border: 1px solid #30363d;
+    }
+    
+    .bugbounty-btn {
+      background: #21262d;
+      border: 1px solid #30363d;
+      color: #c9d1d9;
+      transition: all 0.3s ease;
+    }
+    
+    .bugbounty-btn:hover {
+      background: #58a6ff;
+      color: #0d1117;
+      border-color: #58a6ff;
+      transform: translateY(-2px);
+    }
+    
+    .bugbounty-btn-danger {
+      background: rgba(248, 81, 73, 0.1);
+      color: #f85149;
+      border-color: #f85149;
+    }
+    
+    .bugbounty-btn-danger:hover {
+      background: #f85149;
+      color: white;
+    }
+    
+    .bugbounty-legend {
+      background: rgba(22, 27, 34, 0.9);
+      backdrop-filter: blur(5px);
+      border: 1px solid #30363d;
+    }
+    
+    .bugbounty-search {
+      background: #21262d;
+      border: 1px solid #30363d;
+    }
+    
+    /* Markmap Box Styles */
+    .markmap-foreign {
+      display: inline-block;
+      cursor: pointer;
+    }
+    
+    .markmap-foreign div {
+      background-color: #21262d;
+      border: 2px solid #30363d;
+      border-radius: 8px;
+      padding: 8px 16px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+      transition: all 0.3s ease;
+      text-align: center;
+      color: #c9d1d9;
+      min-width: 100px;
+      max-width: 300px;
+      font-size: 14px;
+      font-weight: 500;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    /* Level-based styling */
+    .markmap-foreign[data-depth="0"] div {
+      background: linear-gradient(135deg, #58a6ff 0%, #1f6feb 100%);
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      font-size: 18px;
+      font-weight: 700;
+      min-width: 150px;
+    }
+    
+    .markmap-foreign[data-depth="1"] div {
+      background: linear-gradient(135deg, #161b22 0%, #21262d 100%);
+      border-color: #58a6ff;
+      font-size: 16px;
+      font-weight: 600;
+      padding: 10px 20px;
+    }
+    
+    /* Category-based colors */
+    .markmap-foreign.recon div {
+      border-left: 4px solid #3fb950;
+    }
+    
+    .markmap-foreign.attack div {
+      border-left: 4px solid #f85149;
+    }
+    
+    .markmap-foreign.mobile div {
+      border-left: 4px solid #d29922;
+    }
+    
+    .markmap-foreign.cloud div {
+      border-left: 4px solid #58a6ff;
+    }
+    
+    .markmap-foreign.scanner div {
+      border-left: 4px solid #a371f7;
+    }
+    
+    /* Hover effects */
+    .markmap-foreign div:hover {
+      background-color: #2d333b;
+      border-color: #58a6ff;
+      transform: translateY(-4px) scale(1.02);
+      box-shadow: 0 8px 25px rgba(88, 166, 255, 0.2);
+      z-index: 10;
+    }
+    
+    /* Icon styling */
+    .markmap-foreign div i {
+      margin-right: 8px;
+      font-size: 14px;
+    }
+    
+    /* Link styling */
+    .markmap-foreign a {
+      color: #58a6ff;
+      text-decoration: none;
+      font-weight: 600;
+    }
+    
+    .markmap-foreign a:hover {
+      text-decoration: underline;
+      color: #1f6feb;
+    }
+    
+    /* Active node */
+    .markmap-foreign.active div {
+      background-color: #58a6ff;
+      color: #0d1117;
+      border-color: #58a6ff;
+      box-shadow: 0 0 0 3px rgba(88, 166, 255, 0.3);
+    }
+    
+    /* Bug Bounty Tooltip */
+    .bugbounty-tooltip {
+      position: absolute;
+      background: #21262d;
+      border: 1px solid #58a6ff;
+      border-radius: 8px;
+      padding: 15px;
+      max-width: 300px;
+      z-index: 10000;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+    
+    .bugbounty-tooltip h4 {
+      color: #58a6ff;
+      margin-bottom: 8px;
+      font-size: 16px;
+    }
+    
+    .bugbounty-tooltip p {
+      font-size: 14px;
+      color: #c9d1d9;
+      margin-bottom: 5px;
+    }
+    
+    .bugbounty-tooltip .category {
+      display: inline-block;
+      background: rgba(88, 166, 255, 0.1);
+      color: #58a6ff;
+      padding: 3px 8px;
+      border-radius: 4px;
+      font-size: 12px;
+      margin-top: 8px;
+    }
+    
+    /* Animation for nodes */
+    @keyframes bugbounty-pulse {
+      0% { box-shadow: 0 0 0 0 rgba(88, 166, 255, 0.7); }
+      70% { box-shadow: 0 0 0 10px rgba(88, 166, 255, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(88, 166, 255, 0); }
+    }
+    
+    .bugbounty-pulse {
+      animation: bugbounty-pulse 2s infinite;
+    }
+    
+    /* Mindmap Container */
+    #mindmap-container {
+      width: 100%;
+      height: 700px;
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      background: rgba(13, 17, 23, 0.7);
+    }
+    
+    #mindmap {
+      width: 100%;
+      height: 100%;
+    }
+
     @media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } #canvas-container { display: none; } }
+    
+    @media (max-width: 768px) {
+      #mindmap-container {
+        height: 500px;
+      }
+    }
   </style>
 </head>
 
@@ -82,6 +300,7 @@
       <button onclick="openTab(event, 'info')" class="nav-btn active-tab px-6 py-3 rounded-xl font-bold text-sm flex items-center gap-2 transition-all"><i data-lucide="home" class="w-4 h-4"></i> الرئيسية</button>
       <button onclick="openTab(event, 'lab')" class="nav-btn px-6 py-3 rounded-xl font-bold text-sm flex items-center gap-2 transition-all"><i data-lucide="monitor" class="w-4 h-4"></i> الأنظمة</button>
       <button onclick="openTab(event, 'tools')" class="nav-btn px-6 py-3 rounded-xl font-bold text-sm flex items-center gap-2 transition-all"><i data-lucide="terminal" class="w-4 h-4"></i>  الأدوات</button>
+      <button onclick="openTab(event, 'bugbounty')" class="nav-btn px-6 py-3 rounded-xl font-bold text-sm flex items-center gap-2 transition-all"><i data-lucide="git-branch" class="w-4 h-4"></i> Bug Bounty Map</button>
       <button onclick="openTab(event, 'laptop')" class="nav-btn px-6 py-3 rounded-xl font-bold text-sm flex items-center gap-2 transition-all"><i data-lucide="laptop" class="w-4 h-4"></i> دليل اللابتوب</button>
       <button onclick="openTab(event, 'contact')" class="nav-btn px-6 py-3 rounded-xl font-bold text-sm flex items-center gap-2 transition-all"><i data-lucide="message-square" class="w-4 h-4"></i> التواصل</button>
     </div>
@@ -93,7 +312,7 @@
       <div class="glass p-8 md:p-12 rounded-[2.5rem] border-t-4 border-blue-600">
         <h2 class="text-2xl md:text-3xl font-black mb-6 text-blue-500">مسار الأمن السيبراني</h2>
         <p class="text-slate-300 leading-loose text-base md:text-lg text-justify mb-8">
-          الأمن السيبراني مو “أداة” وحدها — هو مسار متدرّج. إذا تمشي خطوة خطوة، راح تبني أساس قوي وتفهم الهجمات والدفاع بشكل علمي وعملي.
+          الأمن السيبراني مو "أداة" وحدها — هو مسار متدرّج. إذا تمشي خطوة خطوة، راح تبني أساس قوي وتفهم الهجمات والدفاع بشكل علمي وعملي.
         </p>
         <div class="grid md:grid-cols-2 gap-6">
           <div class="p-6 rounded-2xl bg-white/5 border border-white/10">
@@ -134,42 +353,339 @@
 
     <section id="panel-tools" class="tab-content">
       <div class="glass p-8 md:p-12 rounded-[2.5rem] border-t-4 border-emerald-600">
-        <h2 class="text-2xl md:text-3xl font-black mb-6 text-emerald-400">أدوات الفحص (Tools)</h2>
+        <h2 class="text-2xl md:text-3xl font-black mb-6 text-emerald-400">أدوات سطر أوامر لينكس</h2>
         <div class="space-y-7">
+          
+          <!-- التنقل والاستكشاف -->
           <article class="glass p-7 md:p-8 rounded-3xl tool-card">
             <div class="flex items-start justify-between gap-4 mb-4">
-              <h3 class="text-xl font-black text-emerald-400 flex items-center gap-2"><i data-lucide="radar" class="w-5 h-5"></i> Nmap</h3>
-              <span class="badge text-emerald-300 border-emerald-500/20 bg-emerald-500/10">Recon</span>
+              <h3 class="text-xl font-black text-emerald-400 flex items-center gap-2"><i data-lucide="compass" class="w-5 h-5"></i> التنقل والاستكشاف</h3>
+              <span class="badge text-emerald-300 border-emerald-500/20 bg-emerald-500/10">Essential</span>
             </div>
             <div class="terminal mt-5 group relative">
-              <div class="term-bar"><div class="flex gap-2"><span class="dot bg-red-500"></span><span class="dot bg-yellow-500"></span><span class="dot bg-green-500"></span></div><button class="copy-btn opacity-0 group-hover:opacity-100" onclick="copyCode(this, 'nmap -sV 127.0.0.1')"><i data-lucide="copy" class="w-4 h-4"></i></button></div>
-              <div class="term-body"><code>$ nmap -sV 127.0.0.1</code></div>
+              <div class="term-bar">
+                <div class="flex gap-2"><span class="dot bg-red-500"></span><span class="dot bg-yellow-500"></span><span class="dot bg-green-500"></span></div>
+                <button class="copy-btn opacity-0 group-hover:opacity-100" onclick="copyCode(this, 'ls -la\ncd ~/Documents\npwd\nfind . -name \"*.txt\"\nlocate passwd')">
+                  <i data-lucide="copy" class="w-4 h-4"></i>
+                </button>
+              </div>
+              <div class="term-body">
+                <code>$ ls -la                # عرض كل الملفات<br>
+$ cd ~/Documents       # الانتقال لمجلد<br>
+$ pwd                  # عرض المسار الحالي<br>
+$ find . -name "*.txt" # بحث عن ملفات txt<br>
+$ locate passwd        # بحث سريع</code>
+              </div>
             </div>
           </article>
           
+          <!-- معالجة الملفات -->
           <article class="glass p-7 md:p-8 rounded-3xl tool-card" style="border-right-color:#3b82f6;">
             <div class="flex items-start justify-between gap-4 mb-4">
-              <h3 class="text-xl font-black text-blue-400 flex items-center gap-2"><i data-lucide="shield-alert" class="w-5 h-5"></i> Burp Suite</h3>
-              <span class="badge text-blue-300 border-blue-500/20 bg-blue-500/10">Web</span>
+              <h3 class="text-xl font-black text-blue-400 flex items-center gap-2"><i data-lucide="folder" class="w-5 h-5"></i> معالجة الملفات</h3>
+              <span class="badge text-blue-300 border-blue-500/20 bg-blue-500/10">Core</span>
             </div>
             <div class="terminal mt-5 group relative">
-              <div class="term-bar"><div class="flex gap-2"><span class="dot bg-red-500"></span><span class="dot bg-yellow-500"></span><span class="dot bg-green-500"></span></div><button class="copy-btn opacity-0 group-hover:opacity-100" onclick="copyCode(this, 'Proxy -> Intercept ON')"><i data-lucide="copy" class="w-4 h-4"></i></button></div>
-              <div class="term-body"><code># Browser -> Proxy -> Intercept ON</code></div>
+              <div class="term-bar">
+                <div class="flex gap-2"><span class="dot bg-red-500"></span><span class="dot bg-yellow-500"></span><span class="dot bg-green-500"></span></div>
+                <button class="copy-btn opacity-0 group-hover:opacity-100" onclick="copyCode(this, 'cp -r source dest\nmv old new\nrm -rf directory\nmkdir -p dir1/dir2')">
+                  <i data-lucide="copy" class="w-4 h-4"></i>
+                </button>
+              </div>
+              <div class="term-body">
+                <code>$ cp -r source dest      # نسخ مجلد<br>
+$ mv old new           # نقل/إعادة تسمية<br>
+$ rm -rf directory     # حذف مجلد بقوة<br>
+$ mkdir -p dir1/dir2   # إنشاء مجلدات متداخلة</code>
+              </div>
             </div>
           </article>
 
+          <!-- عرض المحتوى -->
           <article class="glass p-7 md:p-8 rounded-3xl tool-card" style="border-right-color:#e879f9;">
             <div class="flex items-start justify-between gap-4 mb-4">
-              <h3 class="text-xl font-black text-fuchsia-300 flex items-center gap-2"><i data-lucide="folder-search" class="w-5 h-5"></i> Dirsearch</h3>
-              <span class="badge text-fuchsia-300 border-fuchsia-500/20 bg-fuchsia-500/10">Discovery</span>
+              <h3 class="text-xl font-black text-fuchsia-300 flex items-center gap-2"><i data-lucide="eye" class="w-5 h-5"></i> عرض المحتوى</h3>
+              <span class="badge text-fuchsia-300 border-fuchsia-500/20 bg-fuchsia-500/10">View</span>
             </div>
             <div class="terminal mt-5 group relative">
-              <div class="term-bar"><div class="flex gap-2"><span class="dot bg-red-500"></span><span class="dot bg-yellow-500"></span><span class="dot bg-green-500"></span></div><button class="copy-btn opacity-0 group-hover:opacity-100" onclick="copyCode(this, 'dirsearch -u http://127.0.0.1')"><i data-lucide="copy" class="w-4 h-4"></i></button></div>
-              <div class="term-body"><code>$ dirsearch -u http://127.0.0.1</code></div>
+              <div class="term-bar">
+                <div class="flex gap-2"><span class="dot bg-red-500"></span><span class="dot bg-yellow-500"></span><span class="dot bg-green-500"></span></div>
+                <button class="copy-btn opacity-0 group-hover:opacity-100" onclick="copyCode(this, 'cat file.txt | head -20\ntail -f logfile\nless largefile.txt')">
+                  <i data-lucide="copy" class="w-4 h-4"></i>
+                </button>
+              </div>
+              <div class="term-body">
+                <code>$ cat file.txt | head -20 # أول 20 سطر<br>
+$ tail -f logfile        # متابعة الملف حيًا<br>
+$ less largefile.txt     # عرض صفحة بصفحة</code>
+              </div>
             </div>
           </article>
+
+          <!-- معالجة النصوص -->
+          <article class="glass p-7 md:p-8 rounded-3xl tool-card" style="border-right-color:#f97316;">
+            <div class="flex items-start justify-between gap-4 mb-4">
+              <h3 class="text-xl font-black text-orange-400 flex items-center gap-2"><i data-lucide="file-text" class="w-5 h-5"></i> معالجة النصوص</h3>
+              <span class="badge text-orange-300 border-orange-500/20 bg-orange-500/10">Text</span>
+            </div>
+            <div class="terminal mt-5 group relative">
+              <div class="term-bar">
+                <div class="flex gap-2"><span class="dot bg-red-500"></span><span class="dot bg-yellow-500"></span><span class="dot bg-green-500"></span></div>
+                <button class="copy-btn opacity-0 group-hover:opacity-100" onclick="copyCode(this, 'grep \"error\" logfile\nawk \'{print $1}\' file\nsed \'s/old/new/g\' file\ncut -d: -f1 /etc/passwd\nsort file | uniq\nwc -l file')">
+                  <i data-lucide="copy" class="w-4 h-4"></i>
+                </button>
+              </div>
+              <div class="term-body">
+                <code>$ grep "error" logfile   # بحث عن كلمة<br>
+$ awk '{print $1}' file # استخراج العمود الأول<br>
+$ sed 's/old/new/g' file # استبدال نص<br>
+$ cut -d: -f1 /etc/passwd # استخراج أسماء المستخدمين<br>
+$ sort file | uniq       # ترتيب وإزالة التكرار<br>
+$ wc -l file             # عدد الأسطر</code>
+              </div>
+            </div>
+          </article>
+
+          <!-- الأذونات والمستخدمين -->
+          <article class="glass p-7 md:p-8 rounded-3xl tool-card" style="border-right-color:#8b5cf6;">
+            <div class="flex items-start justify-between gap-4 mb-4">
+              <h3 class="text-xl font-black text-purple-400 flex items-center gap-2"><i data-lucide="shield" class="w-5 h-5"></i> الأذونات والمستخدمين</h3>
+              <span class="badge text-purple-300 border-purple-500/20 bg-purple-500/10">Security</span>
+            </div>
+            <div class="terminal mt-5 group relative">
+              <div class="term-bar">
+                <div class="flex gap-2"><span class="dot bg-red-500"></span><span class="dot bg-yellow-500"></span><span class="dot bg-green-500"></span></div>
+                <button class="copy-btn opacity-0 group-hover:opacity-100" onclick="copyCode(this, 'chmod 755 script.sh\nchmod u+x file\nchown user:group file\nsudo command\nsu - username')">
+                  <i data-lucide="copy" class="w-4 h-4"></i>
+                </button>
+              </div>
+              <div class="term-body">
+                <code>$ chmod 755 script.sh    # rwxr-xr-x<br>
+$ chmod u+x file        # إضافة تنفيذ للمالك<br>
+$ chown user:group file # تغيير المالك والمجموعة<br>
+$ sudo command          # تنفيذ كجذر<br>
+$ su - username         # تغيير المستخدم</code>
+              </div>
+            </div>
+          </article>
+
+          <!-- العمليات -->
+          <article class="glass p-7 md:p-8 rounded-3xl tool-card" style="border-right-color:#06b6d4;">
+            <div class="flex items-start justify-between gap-4 mb-4">
+              <h3 class="text-xl font-black text-cyan-400 flex items-center gap-2"><i data-lucide="activity" class="w-5 h-5"></i> العمليات</h3>
+              <span class="badge text-cyan-300 border-cyan-500/20 bg-cyan-500/10">Process</span>
+            </div>
+            <div class="terminal mt-5 group relative">
+              <div class="term-bar">
+                <div class="flex gap-2"><span class="dot bg-red-500"></span><span class="dot bg-yellow-500"></span><span class="dot bg-green-500"></span></div>
+                <button class="copy-btn opacity-0 group-hover:opacity-100" onclick="copyCode(this, 'ps aux | grep process\ntop\nkill -9 PID\njobs\nbg %1\nfg %1')">
+                  <i data-lucide="copy" class="w-4 h-4"></i>
+                </button>
+              </div>
+              <div class="term-body">
+                <code>$ ps aux | grep process  # البحث عن عملية<br>
+$ top                     # عرض العمليات تفاعليًا<br>
+$ kill -9 PID             # إنهاء عملية<br>
+$ jobs                    # عرض عمليات الخلفية<br>
+$ bg %1                   # إرسال للخلفية<br>
+$ fg %1                   # إحضار للمقدمة</code>
+              </div>
+            </div>
+          </article>
+
+          <!-- الشبكات -->
+          <article class="glass p-7 md:p-8 rounded-3xl tool-card" style="border-right-color:#10b981;">
+            <div class="flex items-start justify-between gap-4 mb-4">
+              <h3 class="text-xl font-black text-emerald-400 flex items-center gap-2"><i data-lucide="network" class="w-5 h-5"></i> الشبكات</h3>
+              <span class="badge text-emerald-300 border-emerald-500/20 bg-emerald-500/10">Network</span>
+            </div>
+            <div class="terminal mt-5 group relative">
+              <div class="term-bar">
+                <div class="flex gap-2"><span class="dot bg-red-500"></span><span class="dot bg-yellow-500"></span><span class="dot bg-green-500"></span></div>
+                <button class="copy-btn opacity-0 group-hover:opacity-100" onclick="copyCode(this, 'ping google.com\nssh user@host\nscp file user@host:/path\nwget URL\nnetstat -tulpn')">
+                  <i data-lucide="copy" class="w-4 h-4"></i>
+                </button>
+              </div>
+              <div class="term-body">
+                <code>$ ping google.com        # اختبار الاتصال<br>
+$ ssh user@host         # اتصال آمن<br>
+$ scp file user@host:/path # نسخ آمن<br>
+$ wget URL              # تنزيل ملف<br>
+$ netstat -tulpn        # المنافذ المفتوحة</code>
+              </div>
+            </div>
+          </article>
+
+          <!-- الأرشيف والضغط -->
+          <article class="glass p-7 md:p-8 rounded-3xl tool-card" style="border-right-color:#f59e0b;">
+            <div class="flex items-start justify-between gap-4 mb-4">
+              <h3 class="text-xl font-black text-amber-400 flex items-center gap-2"><i data-lucide="archive" class="w-5 h-5"></i> الأرشيف والضغط</h3>
+              <span class="badge text-amber-300 border-amber-500/20 bg-amber-500/10">Archive</span>
+            </div>
+            <div class="terminal mt-5 group relative">
+              <div class="term-bar">
+                <div class="flex gap-2"><span class="dot bg-red-500"></span><span class="dot bg-yellow-500"></span><span class="dot bg-green-500"></span></div>
+                <button class="copy-btn opacity-0 group-hover:opacity-100" onclick="copyCode(this, 'tar -czf archive.tar.gz dir\ntar -xzf archive.tar.gz\ngzip file\nzip -r archive.zip dir\nrsync -av source dest')">
+                  <i data-lucide="copy" class="w-4 h-4"></i>
+                </button>
+              </div>
+              <div class="term-body">
+                <code>$ tar -czf archive.tar.gz dir # أرشيف مضغوط<br>
+$ tar -xzf archive.tar.gz   # استخراج أرشيف<br>
+$ gzip file              # ضغط ملف<br>
+$ zip -r archive.zip dir # أرشيف zip<br>
+$ rsync -av source dest  # مزامنة ملفات</code>
+              </div>
+            </div>
+          </article>
+
+          <!-- النظام -->
+          <article class="glass p-7 md:p-8 rounded-3xl tool-card" style="border-right-color:#ef4444;">
+            <div class="flex items-start justify-between gap-4 mb-4">
+              <h3 class="text-xl font-black text-red-400 flex items-center gap-2"><i data-lucide="server" class="w-5 h-5"></i> النظام</h3>
+              <span class="badge text-red-300 border-red-500/20 bg-red-500/10">System</span>
+            </div>
+            <div class="terminal mt-5 group relative">
+              <div class="term-bar">
+                <div class="flex gap-2"><span class="dot bg-red-500"></span><span class="dot bg-yellow-500"></span><span class="dot bg-green-500"></span></div>
+                <button class="copy-btn opacity-0 group-hover:opacity-100" onclick="copyCode(this, 'df -h\nfree -m\nuname -a\ndmesg | tail -20\niostat')">
+                  <i data-lucide="copy" class="w-4 h-4"></i>
+                </button>
+              </div>
+              <div class="term-body">
+                <code>$ df -h                  # مساحة الأقراص<br>
+$ free -m                # استخدام الذاكرة<br>
+$ uname -a               # معلومات النظام<br>
+$ dmesg | tail -20       # آخر رسائل النواة<br>
+$ iostat                 # إحصاءات I/O</code>
+              </div>
+            </div>
+          </article>
+
+        </div>
+        
+        <!-- Tips Section -->
+        <div class="mt-10 glass p-6 rounded-3xl border-l-4 border-blue-600">
+          <h3 class="text-xl font-black text-blue-400 mb-4 flex items-center gap-2"><i data-lucide="lightbulb" class="w-5 h-5"></i> نصائح احترافية</h3>
+          <div class="grid md:grid-cols-2 gap-4">
+            <div class="p-4 bg-white/5 rounded-2xl">
+              <h4 class="font-bold text-emerald-300 mb-2">للمبتدئين (10 أدوات أساسية)</h4>
+              <ul class="text-sm text-slate-300 space-y-1">
+                <li>• ls, cd, pwd - التنقل</li>
+                <li>• cp, mv, rm, mkdir - الملفات</li>
+                <li>• cat, less - العرض</li>
+                <li>• grep - البحث</li>
+                <li>• chmod, sudo - الأذونات</li>
+              </ul>
+            </div>
+            <div class="p-4 bg-white/5 rounded-2xl">
+              <h4 class="font-bold text-blue-300 mb-2">للمتوسطين (10 أدوات متقدمة)</h4>
+              <ul class="text-sm text-slate-300 space-y-1">
+                <li>• find - البحث المتقدم</li>
+                <li>• tar, gzip - الأرشيف</li>
+                <li>• ssh, scp - الاتصال الآمن</li>
+                <li>• ps, top, kill - العمليات</li>
+                <li>• awk, sed - معالجة النصوص</li>
+              </ul>
+            </div>
+          </div>
         </div>
       </div>
+    </section>
+
+    <!-- ===== Bug Bounty Mindmap Section ===== -->
+    <section id="panel-bugbounty" class="tab-content">
+      <div class="glass p-6 md:p-8 rounded-[2.5rem] border-t-4 border-amber-600">
+        <!-- Bug Bounty Header -->
+        <div class="bugbounty-header rounded-2xl p-5 mb-6 flex flex-col md:flex-row justify-between items-center gap-4">
+          <div class="flex items-center gap-3">
+            <div class="w-12 h-12 rounded-xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center">
+              <i class="fas fa-shield-alt text-amber-400 text-xl"></i>
+            </div>
+            <div>
+              <h2 class="text-2xl md:text-3xl font-black text-amber-400">Bug Bounty Toolkit Pro</h2>
+              <p class="text-slate-400 text-sm">خريطة ذهنية تفاعلية لأدوات Bug Bounty</p>
+            </div>
+          </div>
+          <div class="flex gap-3">
+            <button class="bugbounty-btn px-4 py-2 rounded-lg font-bold text-sm flex items-center gap-2" id="zoomIn">
+              <i class="fas fa-search-plus"></i> تكبير
+            </button>
+            <button class="bugbounty-btn px-4 py-2 rounded-lg font-bold text-sm flex items-center gap-2" id="zoomOut">
+              <i class="fas fa-search-minus"></i> تصغير
+            </button>
+            <button class="bugbounty-btn px-4 py-2 rounded-lg font-bold text-sm flex items-center gap-2" id="resetView">
+              <i class="fas fa-sync-alt"></i> إعادة تعيين
+            </button>
+          </div>
+        </div>
+        
+        <!-- Search Box -->
+        <div class="mb-6">
+          <div class="bugbounty-search rounded-xl p-3 flex items-center gap-3 max-w-md mx-auto">
+            <i class="fas fa-search text-slate-500"></i>
+            <input type="text" id="searchInput" placeholder="ابحث عن أداة أو فئة..." class="bg-transparent border-none outline-none text-white flex-1" style="direction: ltr;">
+          </div>
+        </div>
+        
+        <!-- Mindmap Container -->
+        <div id="mindmap-container">
+          <svg id="mindmap"></svg>
+        </div>
+        
+        <!-- Legend & Stats -->
+        <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mt-6">
+          <div class="bugbounty-legend rounded-xl p-4">
+            <h3 class="font-bold mb-3 text-amber-400 flex items-center gap-2"><i class="fas fa-key"></i> وسيلة الإيضاح</h3>
+            <div class="grid grid-cols-2 md:grid-cols-5 gap-3">
+              <div class="flex items-center gap-2">
+                <div class="w-4 h-4 rounded bg-amber-500"></div>
+                <span class="text-xs text-slate-300">الفئات الرئيسية</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <div class="w-4 h-4 rounded bg-emerald-500"></div>
+                <span class="text-xs text-slate-300">الاستطلاع</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <div class="w-4 h-4 rounded bg-red-500"></div>
+                <span class="text-xs text-slate-300">أدوات الهجوم</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <div class="w-4 h-4 rounded bg-yellow-500"></div>
+                <span class="text-xs text-slate-300">الأمن المحمول</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <div class="w-4 h-4 rounded bg-purple-500"></div>
+                <span class="text-xs text-slate-300">الماسحات الضوئية</span>
+              </div>
+            </div>
+          </div>
+          
+          <div class="bg-slate-900/50 rounded-xl p-4 border border-slate-700">
+            <div class="flex items-center gap-3">
+              <i class="fas fa-cube text-amber-400"></i>
+              <div>
+                <div class="text-xs text-slate-400">عدد الأدوات</div>
+                <div class="font-black text-xl"><span id="nodeCount">45</span> أداة</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Tips -->
+        <div class="mt-8 p-5 rounded-2xl bg-blue-900/20 border border-blue-800/30">
+          <h3 class="font-bold text-blue-400 mb-3 flex items-center gap-2"><i class="fas fa-lightbulb"></i> نصائح للاستخدام</h3>
+          <ul class="text-slate-300 text-sm space-y-2">
+            <li class="flex items-start gap-2"><i class="fas fa-mouse-pointer text-xs mt-1 text-blue-400"></i> مرر الماوس فوق أي مربع لرؤية الوصف التفصيلي</li>
+            <li class="flex items-start gap-2"><i class="fas fa-search text-xs mt-1 text-blue-400"></i> استخدم مربع البحث للعثور على أدوات محددة</li>
+            <li class="flex items-start gap-2"><i class="fas fa-expand-alt text-xs mt-1 text-blue-400"></i> استخدم أزرار التكبير/التصغير للتنقل في الخريطة</li>
+            <li class="flex items-start gap-2"><i class="fas fa-external-link-alt text-xs mt-1 text-blue-400"></i> انقر على الروابط لزيارة مستودعات الأدوات</li>
+          </ul>
+        </div>
+      </div>
+      
+      <!-- Tooltip Container -->
+      <div class="bugbounty-tooltip" id="tooltip"></div>
     </section>
 
     <section id="panel-laptop" class="tab-content">
@@ -262,7 +778,350 @@
     </div>
   </footer>
 
+  <!-- Bug Bounty Mindmap Script -->
   <script>
+    // ===== BUG BOUNTY MINDMAP FUNCTIONALITY =====
+    
+    // Enhanced Markdown with categories and descriptions
+    const bugBountyMarkdown = `
+# 🛡️ Bug Bounty Toolkit
+
+## 🔍 Reconnaissance {.recon}
+- **Subdomain Enumeration**
+  - [Amass](https://github.com/OWASP/Amass) - In-depth attack surface mapping
+  - [Subfinder](https://github.com/projectdiscovery/subfinder) - Fast subdomain discovery
+  - [Assetfinder](https://github.com/tomnomnom/assetfinder) - Find related domains/assets
+  - [Findomain](https://github.com/Findomain/Findomain) - Fastest cross-platform subdomain enumerator
+  - [Sublist3r](https://github.com/aboul3la/Sublist3r) - Fast subdomains enumeration tool
+  - [Chaos](https://chaos.projectdiscovery.io) - Regularly updated DNS data
+
+- **DNS Enumeration**
+  - [MassDNS](https://github.com/blechschmidt/massdns) - High-performance DNS stub resolver
+  - [DNSDumpster](https://dnsdumpster.com) - Online DNS recon tool
+  - [Puredns](https://github.com/d3mondev/puredns) - Fast domain resolver and bruteforcer
+  - [AIODNS](https://github.com/stealth/aiodns) - Asynchronous DNS queries
+
+- **Content Discovery**
+  - [FFuF](https://github.com/ffuf/ffuf) - Fast web fuzzer written in Go
+  - [Dirsearch](https://github.com/maurosoria/dirsearch) - Web path scanner
+  - [Gobuster](https://github.com/OJ/gobuster) - Directory/file & DNS busting tool
+  - [Feroxbuster](https://github.com/epi052/feroxbuster) - Fast, simple, recursive content discovery
+
+- **Visual Recon**
+  - [Aquatone](https://github.com/michenriksen/aquatone) - Visual inspection tool
+  - [Eyewitness](https://github.com/FortyNorthSecurity/EyeWitness) - Website screenshot tool
+  - [Gowitness](https://github.com/sensepost/gowitness) - Golang web screenshot utility
+
+- **GitHub Recon**
+  - [TruffleHog](https://github.com/trufflesecurity/trufflehog) - Find secrets in Git
+  - [GitRob](https://github.com/michenriksen/gitrob) - Reconnaissance tool for GitHub
+  - [GitHound](https://github.com/tillson/git-hound) - Find leaked secrets on GitHub
+
+## ⚔️ Attacks & Vulnerabilities {.attack}
+- **SQL Injection**
+  - [SQLMap](https://sqlmap.org/) - Automatic SQL injection tool
+  - [Ghauri](https://github.com/r0oth3x49/ghauri) - Advanced SQL injection scanner
+  - [NoSQLMap](https://github.com/codingo/NoSQLMap) - Automated NoSQL injection tool
+
+- **Cross-Site Scripting (XSS)**
+  - [Dalfox](https://github.com/hahwul/dalfox) - Powerful XSS scanning tool
+  - [XSStrike](https://github.com/s0md3v/XSStrike) - Advanced XSS detection suite
+  - [XSSHunter](https://xsshunter.com) - XSS discovery and exploitation platform
+  - [KXSS](https://github.com/Emoe/kxss) - Reflected XSS scanner
+
+- **Server-Side Request Forgery (SSRF)**
+  - [SSRFmap](https://github.com/swisskyrepo/SSRFmap) - Automatic SSRF testing
+  - [Gopherus](https://github.com/tarunkant/Gopherus) - SSRF tool for Redis, MySQL, etc.
+  - [Interactsh](https://github.com/projectdiscovery/interactsh) - OOB interaction server
+
+- **XML External Entity (XXE)**
+  - [XXEinjector](https://github.com/enjoiz/XXEinjector) - Automatic XXE injection tool
+  - [Docem](https://github.com/whitel1st/docem) - XXE payload generator
+
+- **Remote Code Execution (RCE)**
+  - [Commix](https://github.com/commixproject/commix) - Automated command injection
+
+- **Insecure Direct Object Reference (IDOR)**
+  - [Autorize](https://github.com/PortSwigger/autorize) - Automatic authorization detection
+  - [AutoRepeater](https://github.com/PortSwigger/auto-repeater) - Automated request modification
+
+- **Server-Side Template Injection (SSTI)**
+  - [Tplmap](https://github.com/epinna/tplmap) - Automatic SSTI detection and exploitation
+
+## 📱 Mobile Security {.mobile}
+- **Android Testing**
+  - [MobSF](https://github.com/MobSF/Mobile-Security-Framework-MobSF) - Mobile security framework
+  - [Jadx-GUI](https://github.com/skylot/jadx) - Dex to Java decompiler
+  - [Frida](https://frida.re) - Dynamic instrumentation toolkit
+  - [Objection](https://github.com/sensepost/objection) - Runtime mobile exploration
+  - [ADB](https://developer.android.com/studio/command-line/adb) - Android Debug Bridge
+
+- **iOS Testing**
+  - [MobSF](https://github.com/MobSF/Mobile-Security-Framework-MobSF) - iOS security testing
+  - [Frida](https://frida.re) - iOS dynamic instrumentation
+  - [Objection](https://github.com/sensepost/objection) - iOS runtime toolkit
+  - [Grapefruit](https://github.com/ChiChou/grapefruit) - iOS security assessment
+
+## ☁️ Cloud Security {.cloud}
+- **Amazon Web Services (AWS)**
+  - [Pacu](https://github.com/RhinoSecurityLabs/pacu) - AWS exploitation framework
+  - [ScoutSuite](https://github.com/nccgroup/ScoutSuite) - Multi-cloud security auditing
+  - [CloudMapper](https://github.com/duo-labs/cloudmapper) - AWS environment visualization
+
+- **Microsoft Azure**
+  - [MicroBurst](https://github.com/NetSPI/MicroBurst) - Azure security assessment
+
+- **Google Cloud Platform (GCP)**
+  - [GCPBucketBrute](https://github.com/RhinoSecurityLabs/GCPBucketBrute) - GCP bucket enumeration
+
+## 🛠️ Scanners & Proxies {.scanner}
+- **Burp Suite Ecosystem**
+  - Burp Suite Professional - Industry standard web proxy
+  - [Turbo Intruder](https://portswigger.net/bappstore/9abaa233088242e8be252cd4ff534988) - High-speed attack tool
+  - Burp Collaborator - Network service interaction tool
+
+- **Other Scanners**
+  - [OWASP ZAP](https://www.zaproxy.org) - Free security tool
+  - [Nuclei](https://github.com/projectdiscovery/nuclei) - Fast vulnerability scanner
+  - Nessus - Comprehensive vulnerability scanner
+  - Acunetix - Automated web vulnerability scanner
+
+## 📝 Reporting & Documentation
+- **Note Taking**
+  - [Obsidian](https://obsidian.md) - Knowledge base app
+  - [Notion](https://www.notion.so) - All-in-one workspace
+  - [CherryTree](https://www.giuspen.com/cherrytree) - Hierarchical note taking
+
+- **Report Management**
+  - [Dradis](https://dradisframework.com) - Reporting and collaboration
+  - [DefectDojo](https://www.defectdojo.org) - Vulnerability management
+
+## 🖥️ Operating Systems
+- [Kali Linux](https://www.kali.org) - Penetration testing distribution
+- [Parrot OS](https://parrotsec.org) - Security focused distribution
+- [BlackArch](https://blackarch.org) - Arch Linux for penetration testers
+`;
+
+    // Initialize Markmap when Bug Bounty tab is opened
+    let bugBountyMarkmap = null;
+    
+    function initializeBugBountyMap() {
+      if (bugBountyMarkmap) return;
+      
+      const { Transformer } = window.markmap;
+      const transformer = new Transformer();
+      const { root, features } = transformer.transform(bugBountyMarkdown);
+      const { Markmap, loadCSS, loadJS } = window.markmap;
+
+      if (features.styles) loadCSS(features.styles);
+      if (features.scripts) loadJS(features.scripts, { getMarkmap: () => window.markmap });
+
+      // Create markmap with enhanced options
+      bugBountyMarkmap = Markmap.create('#mindmap', {
+        autoFit: false,
+        fitRatio: 0.9,
+        duration: 500,
+        nodeMinHeight: 30,
+        spacingHorizontal: 100,
+        spacingVertical: 25,
+        paddingX: 15,
+        color: (node) => {
+          const depth = node.d || 0;
+          const colors = [
+            '#58a6ff',    // Level 0
+            '#1f6feb',    // Level 1
+            '#3fb950',    // Level 2
+            '#f85149',    // Level 3
+            '#d29922',    // Level 4
+            '#a371f7',    // Level 5
+          ];
+          return colors[depth] || colors[colors.length - 1];
+        },
+      }, root);
+      
+      // Enhance nodes with interactivity
+      enhanceBugBountyNodes();
+      
+      // Set up controls
+      setupBugBountyControls();
+    }
+    
+    function enhanceBugBountyNodes() {
+      // Add data-depth attribute and classes based on content
+      d3.selectAll('.markmap-foreign').each(function() {
+        const node = d3.select(this);
+        const text = node.text();
+        const parent = node.node().parentNode;
+        
+        // Add depth attribute
+        const depth = parent.getAttribute('data-depth') || 0;
+        node.attr('data-depth', depth);
+        
+        // Add category classes based on content
+        if (text.includes('Recon') || text.includes('Amass') || text.includes('FFuF')) {
+          node.classed('recon', true);
+        } else if (text.includes('Attack') || text.includes('SQL') || text.includes('XSS')) {
+          node.classed('attack', true);
+        } else if (text.includes('Mobile') || text.includes('Android') || text.includes('iOS')) {
+          node.classed('mobile', true);
+        } else if (text.includes('Cloud') || text.includes('AWS') || text.includes('Azure')) {
+          node.classed('cloud', true);
+        } else if (text.includes('Scanner') || text.includes('Burp') || text.includes('ZAP')) {
+          node.classed('scanner', true);
+        }
+        
+        // Add click handler
+        node.on('click', function(event) {
+          event.stopPropagation();
+          
+          // Remove active class from all nodes
+          d3.selectAll('.markmap-foreign').classed('active', false);
+          
+          // Add active class to clicked node
+          node.classed('active', true);
+          
+          // Show tooltip with more info
+          showBugBountyTooltip(node, event);
+        });
+        
+        // Add mouseover handler for tooltip
+        node.on('mouseover', function(event) {
+          showBugBountyTooltip(node, event);
+        });
+        
+        // Add mouseout handler
+        node.on('mouseout', function() {
+          hideBugBountyTooltip();
+        });
+      });
+      
+      // Update node count
+      const nodeCount = d3.selectAll('.markmap-foreign').size();
+      document.getElementById('nodeCount').textContent = nodeCount;
+    }
+    
+    // Tooltip functionality
+    const bugBountyTooltip = document.getElementById('tooltip');
+    
+    function showBugBountyTooltip(node, event) {
+      const text = node.text();
+      const depth = node.attr('data-depth');
+      const rect = node.node().getBoundingClientRect();
+      
+      // Get tooltip content based on node text
+      let content = `<h4>${text}</h4>`;
+      let category = '';
+      
+      if (text.includes('Recon')) category = 'الاستطلاع';
+      else if (text.includes('Attack') || text.includes('SQL') || text.includes('XSS')) category = 'أداة هجوم';
+      else if (text.includes('Mobile')) category = 'أمن الهواتف';
+      else if (text.includes('Cloud')) category = 'أمن السحابة';
+      else if (text.includes('Scanner') || text.includes('Burp')) category = 'ماسح/بروكسي';
+      else if (text.includes('Report')) category = 'التوثيق';
+      else if (text.includes('OS')) category = 'نظام تشغيل';
+      
+      // Add description based on tool
+      let description = '';
+      if (text.includes('Amass')) description = 'أداة متقدمة لرسم خريطة سطح الهجوم واكتشاف الأصول';
+      else if (text.includes('SQLMap')) description = 'أداة آلية لحقن SQL والسيطرة على قواعد البيانات';
+      else if (text.includes('FFuF')) description = 'أداة فحص سريعة للويب لاكتشاف المجلدات والمعلمات';
+      else if (text.includes('Burp')) description = 'المعيار الصناعي لفحص الثغرات والبروكسي';
+      else if (text.includes('Nuclei')) description = 'ماسح سريع ومخصص للثغرات';
+      else if (text.includes('MobSF')) description = 'إطار عمل لاختبار أمن التطبيقات المحمولة';
+      
+      if (description) {
+        content += `<p>${description}</p>`;
+      }
+      
+      if (category) {
+        content += `<div class="category">${category}</div>`;
+      }
+      
+      bugBountyTooltip.innerHTML = content;
+      bugBountyTooltip.style.opacity = '1';
+      bugBountyTooltip.style.left = (rect.left + rect.width + 10) + 'px';
+      bugBountyTooltip.style.top = (rect.top) + 'px';
+    }
+    
+    function hideBugBountyTooltip() {
+      bugBountyTooltip.style.opacity = '0';
+    }
+    
+    function setupBugBountyControls() {
+      // Control buttons functionality
+      document.getElementById('zoomIn').addEventListener('click', () => {
+        if (bugBountyMarkmap) {
+          bugBountyMarkmap.fit();
+          bugBountyMarkmap.zoom(1.2);
+        }
+      });
+      
+      document.getElementById('zoomOut').addEventListener('click', () => {
+        if (bugBountyMarkmap) {
+          bugBountyMarkmap.fit();
+          bugBountyMarkmap.zoom(0.8);
+        }
+      });
+      
+      document.getElementById('resetView').addEventListener('click', () => {
+        if (bugBountyMarkmap) {
+          bugBountyMarkmap.fit();
+        }
+      });
+      
+      // Search functionality
+      document.getElementById('searchInput').addEventListener('input', function(e) {
+        const searchTerm = e.target.value.toLowerCase();
+        
+        d3.selectAll('.markmap-foreign').each(function() {
+          const node = d3.select(this);
+          const text = node.text().toLowerCase();
+          
+          if (searchTerm && text.includes(searchTerm)) {
+            node.classed('bugbounty-pulse', true);
+            node.style('filter', 'brightness(1.3)');
+          } else {
+            node.classed('bugbounty-pulse', false);
+            node.style('filter', 'brightness(1)');
+          }
+        });
+      });
+      
+      // Add keyboard shortcuts for bug bounty section
+      document.addEventListener('keydown', (e) => {
+        // Only activate if we're on the bug bounty tab
+        if (document.getElementById('panel-bugbounty').classList.contains('active')) {
+          // Ctrl + F for search
+          if (e.ctrlKey && e.key === 'f') {
+            e.preventDefault();
+            document.getElementById('searchInput').focus();
+          }
+          
+          // Escape to clear search
+          if (e.key === 'Escape') {
+            document.getElementById('searchInput').value = '';
+            document.getElementById('searchInput').dispatchEvent(new Event('input'));
+            document.getElementById('searchInput').blur();
+          }
+          
+          // Plus/Minus for zoom
+          if (e.key === '+' || e.key === '=') {
+            if (bugBountyMarkmap) bugBountyMarkmap.zoom(1.2);
+          }
+          if (e.key === '-' || e.key === '_') {
+            if (bugBountyMarkmap) bugBountyMarkmap.zoom(0.8);
+          }
+          
+          // 0 for reset
+          if (e.key === '0') {
+            if (bugBountyMarkmap) bugBountyMarkmap.fit();
+          }
+        }
+      });
+    }
+    
+    // ===== ORIGINAL SITE FUNCTIONALITY =====
+    
     lucide.createIcons();
 
     // 1. IP
@@ -288,10 +1147,23 @@
       function ani(){ requestAnimationFrame(ani); sp.rotation.y+=0.001; sp.rotation.x+=0.00045; ren.render(sc, cam); } ani();
       window.addEventListener("resize", ()=>{ cam.aspect=window.innerWidth/window.innerHeight; cam.updateProjectionMatrix(); ren.setSize(window.innerWidth, window.innerHeight); });
     }
+    
     function openTab(e, id) {
       document.querySelectorAll(".nav-btn").forEach(b => { b.classList.remove("active-tab"); b.setAttribute("aria-selected","false"); });
       document.querySelectorAll(".tab-content").forEach(p => p.classList.remove("active"));
-      e.currentTarget.classList.add("active-tab"); document.getElementById("panel-"+id).classList.add("active");
+      e.currentTarget.classList.add("active-tab"); 
+      document.getElementById("panel-"+id).classList.add("active");
+      
+      // Initialize Bug Bounty map if that tab is opened
+      if (id === 'bugbounty') {
+        setTimeout(() => {
+          initializeBugBountyMap();
+          if (bugBountyMarkmap) {
+            bugBountyMarkmap.fit();
+          }
+        }, 100);
+      }
+      
       if(!rm) window.scrollTo({top: 380, behavior: "smooth"});
     }
 
@@ -304,15 +1176,28 @@
       unity: { title: "Unity", sub: "Game Dev", min: [["GPU","DX10"],["RAM","8GB"]], rec: [["RAM","16GB"],["GPU","DX12"]], tips: ["مساحة تخزين سريعة."] },
       general: { title: "استخدام عام", sub: "Office", min: [["CPU","i3"],["RAM","4GB"]], rec: [["RAM","8GB"],["SSD","256GB"]], tips: ["بطارية قوية."] }
     };
+    
     function rS(l) { return l.map(([k,v]) => `<div class="spec-row"><div class="text-slate-400 font-bold">${k}</div><div class="text-slate-200 font-black">${v}</div></div>`).join(""); }
     function rT(l) { return l.map(t => `<li>• ${t}</li>`).join(""); }
+    
     function upL() {
       const i = d[document.getElementById("usecase").value];
-      document.getElementById("resultTitle").textContent = i.title; document.getElementById("resultSub").textContent = i.sub;
-      document.getElementById("minSpecs").innerHTML = rS(i.min); document.getElementById("recSpecs").innerHTML = rS(i.rec);
+      document.getElementById("resultTitle").textContent = i.title; 
+      document.getElementById("resultSub").textContent = i.sub;
+      document.getElementById("minSpecs").innerHTML = rS(i.min); 
+      document.getElementById("recSpecs").innerHTML = rS(i.rec);
       document.getElementById("realTips").innerHTML = rT(i.tips);
     }
-    document.getElementById("usecase").addEventListener("change", upL); upL();
+    
+    document.getElementById("usecase").addEventListener("change", upL); 
+    upL();
+    
+    // Handle window resize for bug bounty map
+    window.addEventListener('resize', () => {
+      if (bugBountyMarkmap && document.getElementById('panel-bugbounty').classList.contains('active')) {
+        bugBountyMarkmap.fit();
+      }
+    });
   </script>
 </body>
 </html>
