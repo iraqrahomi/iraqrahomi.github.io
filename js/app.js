@@ -1,411 +1,510 @@
-// ===== GLOBAL VARIABLES =====
-let bugBountyMarkmap = null;
-let currentSoftwareFilter = 'all';
+// =============================================
+// CYBERSECURITY PORTFOLIO - APP.JS
+// Interactive Features & Rendering
+// =============================================
+
+// Global State
+let currentToolFilter = 'all';
+let currentPathId = null;
 
 // ===== INITIALIZATION =====
 document.addEventListener('DOMContentLoaded', () => {
-  lucide.createIcons();
-  renderLinuxTools();
-  renderCategoryTabs();
-  renderSoftwareGrid();
-  initializeLaptopGuide();
-  initializeBugBountyMap();
+  initializeIcons();
+  initializeThreeJS();
+  initializeStats();
+  initializeLearningPaths();
+  initializeTools();
+  initializeCTF();
+  initializeResources();
+  initializeCommands();
+  initializeScrollAnimations();
+  initializeSmoothScroll();
 });
 
-// ===== 1. IP WITH SECURITY FLAIR =====
-fetch('https://api.ipify.org?format=json')
-  .then(r => r.json())
-  .then(d => { document.getElementById('user-ip').textContent = d.ip; })
-  .catch(() => { 
-    const ipElement = document.getElementById('user-ip');
-    ipElement.textContent = "Protected Connection"; 
-    ipElement.classList.replace('text-slate-400', 'text-emerald-400');
-  });
-
-// ===== 2. TYPEWRITER EFFECT =====
-const txt = "Cyber Security Specialist";
-let i = 0;
-function typeWriter() { 
-  if(i < txt.length) { 
-    document.getElementById('typewriter').textContent += txt.charAt(i); 
-    i++; 
-    setTimeout(typeWriter, 100); 
-  } 
-}
-window.addEventListener('load', typeWriter);
-
-// ===== 3. COPY FUNCTION =====
-window.copyCode = function(btn, code) { 
-  navigator.clipboard.writeText(code).then(() => { 
-    let old = btn.innerHTML; 
-    btn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>'; 
-    setTimeout(() => btn.innerHTML = old, 2000); 
-  }); 
-};
-
-// ===== 4. BACKGROUND THREE.JS (OPTIMIZED) =====
-const rm = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-if (!rm) {
-  const sc = new THREE.Scene();
-  const cam = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
-  const ren = new THREE.WebGLRenderer({antialias:true, alpha:true});
-
-  ren.setSize(window.innerWidth, window.innerHeight); 
-  document.getElementById("canvas-container").appendChild(ren.domElement);
-
-  const sp = new THREE.Mesh(
-    new THREE.IcosahedronGeometry(20, 1), 
-    new THREE.MeshBasicMaterial({color:0x2563eb, wireframe:true, transparent:true, opacity:0.1})
-  );
-  sc.add(sp); 
-  cam.position.z = 46;
-
-  let animationId;
-  let isAnimating = true;
-
-  function animate() { 
-    if (!isAnimating) return;
-    animationId = requestAnimationFrame(animate); 
-    sp.rotation.y += 0.001; 
-    sp.rotation.x += 0.00045; 
-    ren.render(sc, cam); 
+// Initialize Lucide Icons
+function initializeIcons() {
+  if (typeof lucide !== 'undefined') {
+    lucide.createIcons();
   }
-  animate();
-
-  document.addEventListener("visibilitychange", () => {
-    if (document.hidden) {
-      isAnimating = false;
-      cancelAnimationFrame(animationId);
-    } else {
-      isAnimating = true;
-      animate();
-    }
-  });
-
-  window.addEventListener("resize", () => { 
-    cam.aspect = window.innerWidth/window.innerHeight; 
-    cam.updateProjectionMatrix(); 
-    ren.setSize(window.innerWidth, window.innerHeight); 
-  });
 }
 
-// ===== 5. TAB SYSTEM =====
-window.openTab = function(e, id) {
-  document.querySelectorAll(".nav-btn").forEach(b => { 
-    b.classList.remove("active-tab"); 
-    b.setAttribute("aria-selected","false"); 
-  });
-  document.querySelectorAll(".tab-content").forEach(p => p.classList.remove("active"));
-  e.currentTarget.classList.add("active-tab"); 
-  document.getElementById("panel-"+id).classList.add("active");
-
-  if (id === 'bugbounty') {
-    setTimeout(() => {
-      initializeBugBountyMap();
-      if (bugBountyMarkmap) bugBountyMarkmap.fit();
-    }, 100);
-  }
-
-  if(!rm) window.scrollTo({top: 380, behavior: "smooth"});
-};
-
-// ===== 6. RENDER LINUX TOOLS =====
-function renderLinuxTools() {
-  const container = document.getElementById('tools-container');
+// ===== THREE.JS BACKGROUND =====
+function initializeThreeJS() {
+  const container = document.getElementById('canvas-container');
   if (!container) return;
 
-  container.innerHTML = linuxToolsData.map(tool => `
-    <article class="glass p-7 md:p-8 rounded-3xl tool-card" ${tool.borderColor ? `style="border-right-color:${tool.borderColor};"` : ''}>
-      <div class="flex items-start justify-between gap-4 mb-4">
-        <h3 class="text-xl font-black ${tool.color} flex items-center gap-2"><i data-lucide="${tool.icon}" class="w-5 h-5"></i> ${tool.category}</h3>
-        <span class="badge text-emerald-300 border-emerald-500/20 bg-emerald-500/10">${tool.badge}</span>
-      </div>
-      <div class="terminal mt-5 group relative">
-        <div class="term-bar">
-          <div class="flex gap-2"><span class="dot bg-red-500"></span><span class="dot bg-yellow-500"></span><span class="dot bg-green-500"></span></div>
-          <button class="copy-btn opacity-0 group-hover:opacity-100" onclick="copyCode(this, \`${tool.commands}\`)">
-            <i data-lucide="copy" class="w-4 h-4"></i>
-          </button>
-        </div>
-        <div class="term-body">
-          <code>${tool.commands.replace(/\n/g, '<br>')}</code>
-        </div>
-      </div>
-    </article>
-  `).join('');
+  const rm = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (rm) return;
 
-  lucide.createIcons();
+  try {
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    container.appendChild(renderer.domElement);
+
+    // Create Matrix-style particles
+    const particlesGeometry = new THREE.BufferGeometry();
+    const particlesCount = 2000;
+    const posArray = new Float32Array(particlesCount * 3);
+
+    for (let i = 0; i < particlesCount * 3; i++) {
+      posArray[i] = (Math.random() - 0.5) * 10;
+    }
+
+    particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
+
+    const particlesMaterial = new THREE.PointsMaterial({
+      size: 0.005,
+      color: 0x22d3ee,
+      transparent: true,
+      opacity: 0.6
+    });
+
+    const particlesMesh = new THREE.Points(particlesGeometry, particlesMaterial);
+    scene.add(particlesMesh);
+
+    // Add a central glowing sphere
+    const sphereGeometry = new THREE.SphereGeometry(1, 32, 32);
+    const sphereMaterial = new THREE.MeshBasicMaterial({
+      color: 0x22d3ee,
+      wireframe: true,
+      transparent: true,
+      opacity: 0.15
+    });
+    const sphere = new THREE.Mesh(sphereGeometry, sphereMaterial);
+    scene.add(sphere);
+
+    camera.position.z = 3;
+
+    // Animation
+    let animationId;
+    let isAnimating = true;
+
+    function animate() {
+      if (!isAnimating) return;
+      animationId = requestAnimationFrame(animate);
+
+      particlesMesh.rotation.y += 0.0005;
+      particlesMesh.rotation.x += 0.0002;
+
+      sphere.rotation.y += 0.002;
+      sphere.rotation.x += 0.001;
+
+      renderer.render(scene, camera);
+    }
+    animate();
+
+    // Handle visibility
+    document.addEventListener("visibilitychange", () => {
+      isAnimating = document.hidden ? false : true;
+      if (!document.hidden) animate();
+    });
+
+    // Handle resize
+    window.addEventListener("resize", () => {
+      camera.aspect = window.innerWidth / window.innerHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(window.innerWidth, window.innerHeight);
+    });
+  } catch (e) {
+    console.log('Three.js not available');
+  }
 }
 
-// ===== 7. TECH TOP FUNCTIONS =====
-function renderCategoryTabs() {
-  const tabsContainer = document.getElementById('categoryTabs');
-  if (!tabsContainer) return;
+// ===== ANIMATE STATS COUNTER =====
+function initializeStats() {
+  const targets = {
+    tools: platformStats.tools,
+    paths: platformStats.paths,
+    challenges: platformStats.challenges
+  };
 
-  tabsContainer.innerHTML = '<div class="category-tab active" onclick="filterSoftware(\'all\')">الكل</div>';
-
-  softwareCategories.forEach(cat => {
-    tabsContainer.innerHTML += `<div class="category-tab" onclick="filterSoftware('${cat.id}')">${cat.name}</div>`;
+  Object.keys(targets).forEach(key => {
+    animateCounter(`stat${key.charAt(0).toUpperCase() + key.slice(1)}`, targets[key]);
   });
 }
 
-function renderSoftwareGrid(filter = 'all', search = '') {
-  const grid = document.getElementById('softwareGrid');
+function animateCounter(elementId, target) {
+  const element = document.getElementById(elementId);
+  if (!element) return;
+
+  let current = 0;
+  const increment = target / 50;
+  const timer = setInterval(() => {
+    current += increment;
+    if (current >= target) {
+      current = target;
+      clearInterval(timer);
+    }
+    element.textContent = Math.floor(current);
+  }, 30);
+}
+
+// ===== LEARNING PATHS =====
+function initializeLearningPaths() {
+  const grid = document.getElementById('pathsGrid');
   if (!grid) return;
 
-  let filtered = softwareList;
+  grid.innerHTML = learningPaths.map(path => `
+    <div class="glass-card p-8 rounded-3xl path-card cursor-pointer" 
+         style="--accent-color: ${path.color}"
+         onclick="openPath('${path.id}')">
+      <div class="path-icon" style="background: ${path.color}20; color: ${path.color}">
+        ${path.icon}
+      </div>
+      <span class="path-level" style="background: ${path.color}20; color: ${path.color}">
+        ${path.level}
+      </span>
+      <h3 class="text-xl font-black mt-4 mb-3">${path.title}</h3>
+      <p class="text-slate-400 text-sm mb-6 leading-relaxed">${path.description}</p>
+      
+      <div class="space-y-3">
+        ${path.topics.map(topic => `
+          <div class="flex items-start gap-3">
+            <span class="text-lg">${topic.icon}</span>
+            <div>
+              <div class="font-bold text-sm">${topic.title}</div>
+              <div class="text-xs text-slate-500">${topic.items.length} موضوع</div>
+            </div>
+          </div>
+        `).join('')}
+      </div>
+
+      <div class="mt-6 pt-6 border-t border-white/5 flex items-center justify-between">
+        <span class="text-xs text-slate-500">
+          <i data-lucide="clock" class="w-4 h-4 inline-block ml-1"></i>
+          ${path.duration}
+        </span>
+        <span class="text-cyan-400 text-sm font-bold flex items-center gap-1">
+          ابدأ الآن
+          <i data-lucide="arrow-left" class="w-4 h-4"></i>
+        </span>
+      </div>
+    </div>
+  `).join('');
+
+  initializeIcons();
+}
+
+function openPath(pathId) {
+  const path = learningPaths.find(p => p.id === pathId);
+  if (!path) return;
+
+  // Scroll to first topic detail (expandable in future)
+  const toolsSection = document.getElementById('tools');
+  if (toolsSection) {
+    toolsSection.scrollIntoView({ behavior: 'smooth' });
+  }
+}
+
+// ===== TOOLS LIBRARY =====
+function initializeTools() {
+  renderToolTabs();
+  renderTools();
+  setupToolSearch();
+}
+
+function renderToolTabs() {
+  const tabsContainer = document.getElementById('toolsTabs');
+  if (!tabsContainer) return;
+
+  tabsContainer.innerHTML = toolCategories.map(cat => `
+    <button class="tool-category-tab ${cat.id === 'all' ? 'active' : ''}"
+            onclick="filterTools('${cat.id}')"
+            style="${cat.color ? `--tab-color: ${cat.color}` : ''}">
+      <span class="ml-1">${cat.icon}</span>
+      ${cat.name}
+    </button>
+  `).join('');
+}
+
+function renderTools(filter = 'all', search = '') {
+  const grid = document.getElementById('toolsGrid');
+  if (!grid) return;
+
+  let filtered = tools;
 
   if (filter !== 'all') {
-    filtered = filtered.filter(sw => sw.category === filter);
+    filtered = filtered.filter(t => t.category === filter);
   }
 
   if (search) {
     const searchLower = search.toLowerCase();
-    filtered = filtered.filter(sw =>
-      sw.name.toLowerCase().includes(searchLower) ||
-      sw.nameAr.includes(search) ||
-      sw.description.includes(search)
+    filtered = filtered.filter(t =>
+      t.name.toLowerCase().includes(searchLower) ||
+      t.nameAr.includes(search) ||
+      t.description.includes(search)
     );
   }
 
-  document.getElementById('softwareCount').textContent = `عرض ${filtered.length} برنامج`;
-
   if (filtered.length === 0) {
-    grid.innerHTML = '<div class="col-span-full text-center py-12 text-slate-400">لا توجد نتائج</div>';
+    grid.innerHTML = `
+      <div class="col-span-full text-center py-16">
+        <div class="text-6xl mb-4">🔍</div>
+        <p class="text-slate-400">لم نجد أي أداة بهذه المواصفات</p>
+      </div>
+    `;
     return;
   }
 
-  grid.innerHTML = filtered.map(sw => `
-    <div class="software-card">
-      <div class="software-icon">${sw.icon}</div>
-      <div class="software-name">${sw.name}</div>
-      <div class="software-name-ar">${sw.nameAr}</div>
-      <div class="software-desc">${sw.description}</div>
-      <div class="software-meta">
-        <span class="software-badge">${sw.version}</span>
-        ${sw.official ? '<span class="software-badge">رسمي</span>' : ''}
-        ${sw.free ? '<span class="software-badge">مجاني</span>' : ''}
-        <div class="software-rating">
-          <i class="fas fa-star"></i>
-          <span>${sw.rating}</span>
-        </div>
+  grid.innerHTML = filtered.map(tool => `
+    <div class="glass-card p-6 rounded-2xl tool-card" style="--tool-color: ${tool.color}">
+      <div class="tool-icon" style="background: ${tool.color}20; color: ${tool.color}">
+        ${tool.icon}
       </div>
-      <a href="${sw.url}" target="_blank" class="software-link">
-        <span>تحميل</span>
-        <i class="fas fa-external-link-alt"></i>
+      <h3 class="text-lg font-black mb-1">${tool.name}</h3>
+      <p class="text-cyan-400 text-sm mb-3">${tool.nameAr}</p>
+      <p class="text-slate-400 text-sm mb-4 leading-relaxed">${tool.description}</p>
+
+      <div class="flex flex-wrap gap-2 mb-4">
+        <span class="badge badge-official">
+          <i data-lucide="tag" class="w-3 h-3"></i>
+          v${tool.version}
+        </span>
+        ${tool.free ? '<span class="badge badge-free"><i data-lucide="gift" class="w-3 h-3"></i>مجاني</span>' : ''}
+      </div>
+
+      <div class="bg-black/30 rounded-xl p-3 mb-4 font-mono text-xs text-slate-400">
+        ${tool.commands.split('\n').slice(0, 2).join('<br>')}
+      </div>
+
+      <a href="${tool.url}" target="_blank" class="tool-link" style="--tool-color: ${tool.color}">
+        <span>زيارة الموقع</span>
+        <i data-lucide="external-link" class="w-4 h-4"></i>
       </a>
     </div>
   `).join('');
+
+  initializeIcons();
 }
 
-window.filterSoftware = function(filter) {
-  currentSoftwareFilter = filter;
+function filterTools(category) {
+  currentToolFilter = category;
+  const searchInput = document.getElementById('toolsSearch');
+  renderTools(category, searchInput?.value || '');
 
-  document.querySelectorAll('.category-tab').forEach(tab => {
+  // Update active tab
+  document.querySelectorAll('.tool-category-tab').forEach(tab => {
     tab.classList.remove('active');
   });
   event.currentTarget.classList.add('active');
+}
 
-  const search = document.getElementById('softwareSearch').value;
-  renderSoftwareGrid(filter, search);
-};
+function setupToolSearch() {
+  const searchInput = document.getElementById('toolsSearch');
+  if (!searchInput) return;
 
-window.copyAllLinks = function() {
-  const links = softwareList.map(sw => `${sw.name} (${sw.nameAr}): ${sw.url}`).join('\n');
-  navigator.clipboard.writeText(links).then(() => {
-    alert('تم نسخ جميع الروابط!');
+  searchInput.addEventListener('input', (e) => {
+    renderTools(currentToolFilter, e.target.value);
+  });
+}
+
+// ===== CTF SECTION =====
+function initializeCTF() {
+  const grid = document.getElementById('ctfGrid');
+  if (!grid) return;
+
+  grid.innerHTML = ctfPlatforms.map(platform => `
+    <a href="${platform.url}" target="_blank" 
+       class="glass-card p-6 rounded-2xl ctf-card block"
+       style="--difficulty-color: ${platform.color}">
+      <div class="flex items-start justify-between mb-4">
+        <div class="w-14 h-14 rounded-2xl flex items-center justify-center text-2xl"
+             style="background: ${platform.color}20">
+          ${platform.icon}
+        </div>
+        <span class="difficulty-badge difficulty-${platform.difficulty}">
+          ${platform.difficulty === 'easy' ? 'سهل' : platform.difficulty === 'medium' ? 'متوسط' : 'صعب'}
+        </span>
+      </div>
+
+      <h3 class="text-xl font-black mb-1">${platform.name}</h3>
+      <p class="text-slate-400 text-sm mb-1">${platform.nameAr}</p>
+      <p class="text-slate-500 text-sm mb-4">${platform.description}</p>
+
+      <div class="flex items-center gap-4 text-xs text-slate-500 mb-4">
+        <span>
+          <i data-lucide="layers" class="w-4 h-4 inline-block ml-1"></i>
+          ${platform.challenges}
+        </span>
+        <span>
+          <i data-lucide="zap" class="w-4 h-4 inline-block ml-1"></i>
+          ${platform.type}
+        </span>
+      </div>
+
+      <span class="flex items-center justify-center gap-2 py-3 rounded-xl font-bold text-sm"
+            style="background: ${platform.color}20; color: ${platform.color}">
+        <i data-lucide="external-link" class="w-4 h-4"></i>
+        ابدأ الآن
+      </span>
+    </a>
+  `).join('');
+
+  initializeIcons();
+}
+
+// ===== RESOURCES SECTION =====
+function initializeResources() {
+  // YouTube
+  const ytContainer = document.getElementById('youtubeResources');
+  if (ytContainer) {
+    ytContainer.innerHTML = youtubeChannels.map(ch => `
+      <a href="${ch.url}" target="_blank" class="resource-link">
+        <i class="fab fa-youtube text-red-500"></i>
+        <div class="flex-1">
+          <div class="font-bold text-sm">${ch.name}</div>
+          <div class="text-xs text-slate-500">${ch.arabic}</div>
+        </div>
+        <i data-lucide="external-link" class="w-4 h-4 text-slate-500"></i>
+      </a>
+    `).join('');
+  }
+
+  // Courses
+  const coursesContainer = document.getElementById('coursesResources');
+  if (coursesContainer) {
+    coursesContainer.innerHTML = courses.map(course => `
+      <a href="${course.url}" target="_blank" class="resource-link">
+        <i data-lucide="graduation-cap" class="text-cyan-400"></i>
+        <div class="flex-1">
+          <div class="font-bold text-sm">${course.title}</div>
+          <div class="text-xs text-slate-500">${course.arabic}</div>
+        </div>
+        ${course.free ? '<span class="badge badge-free text-xs">مجاني</span>' : ''}
+      </a>
+    `).join('');
+  }
+
+  // Books
+  const booksContainer = document.getElementById('booksResources');
+  if (booksContainer) {
+    booksContainer.innerHTML = books.map(book => `
+      <a href="${book.url}" target="_blank" class="resource-link">
+        <i data-lucide="book-open" class="text-amber-400"></i>
+        <div class="flex-1">
+          <div class="font-bold text-sm">${book.title}</div>
+          <div class="text-xs text-slate-500">${book.author}</div>
+        </div>
+      </a>
+    `).join('');
+  }
+
+  initializeIcons();
+}
+
+// ===== COMMANDS SECTION =====
+function initializeCommands() {
+  const grid = document.getElementById('commandsGrid');
+  if (!grid) return;
+
+  grid.innerHTML = linuxCommands.map(cmd => `
+    <div class="glass-card p-6 rounded-2xl command-card" style="--cmd-color: ${cmd.color}">
+      <div class="flex items-center justify-between mb-4">
+        <h3 class="font-black flex items-center gap-2" style="color: ${cmd.color}">
+          <span class="text-xl">${cmd.icon}</span>
+          ${cmd.category}
+        </h3>
+        <span class="text-xs px-3 py-1 rounded-full" style="background: ${cmd.color}20; color: ${cmd.color}">
+          ${cmd.badge}
+        </span>
+      </div>
+
+      <div class="command-terminal">
+        <div class="command-header">
+          <div class="command-dots">
+            <span class="command-dot" style="background: #ef4444"></span>
+            <span class="command-dot" style="background: #eab308"></span>
+            <span class="command-dot" style="background: #22c55e"></span>
+          </div>
+          <button class="copy-btn" onclick="copyCommands(this, \`${cmd.commands.replace(/`/g, '\\`')}\`)">
+            <i data-lucide="copy" class="w-4 h-4 inline-block ml-1"></i>
+            نسخ
+          </button>
+        </div>
+        <div class="command-body">
+          ${cmd.commands.replace(/\n/g, '<br>').replace(/\$/g, '<span style="color: #22d3ee">$</span>')}
+        </div>
+      </div>
+    </div>
+  `).join('');
+
+  initializeIcons();
+}
+
+// ===== COPY FUNCTION =====
+window.copyCommands = function(btn, commands) {
+  navigator.clipboard.writeText(commands.replace(/<[^>]*>/g, '')).then(() => {
+    const originalHTML = btn.innerHTML;
+    btn.innerHTML = '<i data-lucide="check" class="w-4 h-4 inline-block ml-1"></i> تم!';
+    btn.style.background = '#22c55e';
+    btn.style.color = '#0a0a0f';
+    btn.style.borderColor = '#22c55e';
+    initializeIcons();
+    
+    setTimeout(() => {
+      btn.innerHTML = originalHTML;
+      btn.style.background = '';
+      btn.style.color = '';
+      btn.style.borderColor = '';
+      initializeIcons();
+    }, 2000);
   });
 };
 
-document.getElementById('softwareSearch')?.addEventListener('input', function(e) {
-  renderSoftwareGrid(currentSoftwareFilter, e.target.value);
-});
-
-// ===== 8. LAPTOP GUIDE FUNCTIONS =====
-function initializeLaptopGuide() {
-  const select = document.getElementById('usecase');
-  if (!select) return;
-
-  select.innerHTML = Object.keys(laptopData).map(key => 
-    `<option value="${key}">${laptopData[key].title} (${laptopData[key].sub})</option>`
-  ).join('');
-
-  select.addEventListener('change', updateLaptopGuide);
-  updateLaptopGuide();
-}
-
-function updateLaptopGuide() {
-  const key = document.getElementById('usecase').value;
-  const data = laptopData[key];
-
-  document.getElementById('resultTitle').textContent = data.title;
-  document.getElementById('resultSub').textContent = data.sub;
-
-  document.getElementById('minSpecs').innerHTML = data.min.map(([k,v]) => 
-    `<div class="spec-row"><div class="text-slate-400 font-bold">${k}</div><div class="text-slate-200 font-black">${v}</div></div>`
-  ).join('');
-
-  document.getElementById('recSpecs').innerHTML = data.rec.map(([k,v]) => 
-    `<div class="spec-row"><div class="text-slate-400 font-bold">${k}</div><div class="text-slate-200 font-black">${v}</div></div>`
-  ).join('');
-
-  document.getElementById('realTips').innerHTML = data.tips.map(t => `<li>• ${t}</li>`).join('');
-}
-
-// ===== 9. BUG BOUNTY MAP FUNCTIONS =====
-function initializeBugBountyMap() {
-  if (bugBountyMarkmap) return;
-
-  const { Transformer } = window.markmap;
-  const transformer = new Transformer();
-  const { root, features } = transformer.transform(bugBountyMarkdown);
-  const { Markmap, loadCSS, loadJS } = window.markmap;
-
-  if (features.styles) loadCSS(features.styles);
-  if (features.scripts) loadJS(features.scripts, { getMarkmap: () => window.markmap });
-
-  bugBountyMarkmap = Markmap.create('#mindmap', {
-    autoFit: false,
-    fitRatio: 0.9,
-    duration: 500,
-    nodeMinHeight: 30,
-    spacingHorizontal: 100,
-    spacingVertical: 25,
-    paddingX: 15,
-    color: (node) => {
-      const depth = node.d || 0;
-      const colors = ['#58a6ff', '#1f6feb', '#3fb950', '#f85149', '#d29922', '#a371f7'];
-      return colors[depth] || colors[colors.length - 1];
-    },
-  }, root);
-
-  enhanceBugBountyNodes();
-  setupBugBountyControls();
-}
-
-function enhanceBugBountyNodes() {
-  d3.selectAll('.markmap-foreign').each(function() {
-    const node = d3.select(this);
-    const text = node.text();
-    const parent = node.node().parentNode;
-
-    const depth = parent.getAttribute('data-depth') || 0;
-    node.attr('data-depth', depth);
-
-    if (text.includes('Recon') || text.includes('Amass') || text.includes('FFuF')) node.classed('recon', true);
-    else if (text.includes('Attack') || text.includes('SQL') || text.includes('XSS')) node.classed('attack', true);
-    else if (text.includes('Mobile') || text.includes('Android') || text.includes('iOS')) node.classed('mobile', true);
-    else if (text.includes('Cloud') || text.includes('AWS') || text.includes('Azure')) node.classed('cloud', true);
-    else if (text.includes('Scanner') || text.includes('Burp') || text.includes('ZAP')) node.classed('scanner', true);
-
-    node.on('click', function(event) {
-      event.stopPropagation();
-      d3.selectAll('.markmap-foreign').classed('active', false);
-      node.classed('active', true);
-      showBugBountyTooltip(node, event);
-    });
-
-    node.on('mouseover', function(event) { showBugBountyTooltip(node, event); });
-    node.on('mouseout', function() { hideBugBountyTooltip(); });
-  });
-
-  document.getElementById('nodeCount').textContent = d3.selectAll('.markmap-foreign').size();
-}
-
-const bugBountyTooltip = document.getElementById('tooltip');
-
-function showBugBountyTooltip(node, event) {
-  const text = node.text();
-  const rect = node.node().getBoundingClientRect();
-
-  let content = `<h4>${text}</h4>`;
-  let category = '';
-
-  if (text.includes('Recon')) category = 'الاستطلاع';
-  else if (text.includes('Attack') || text.includes('SQL') || text.includes('XSS')) category = 'أداة هجوم';
-  else if (text.includes('Mobile')) category = 'أمن الهواتف';
-  else if (text.includes('Cloud')) category = 'أمن السحابة';
-  else if (text.includes('Scanner') || text.includes('Burp')) category = 'ماسح/بروكسي';
-  else if (text.includes('Report')) category = 'التوثيق';
-  else if (text.includes('OS')) category = 'نظام تشغيل';
-
-  let description = '';
-  if (text.includes('Amass')) description = 'أداة متقدمة لرسم خريطة سطح الهجوم واكتشاف الأصول';
-  else if (text.includes('SQLMap')) description = 'أداة آلية لحقن SQL والسيطرة على قواعد البيانات';
-  else if (text.includes('FFuF')) description = 'أداة فحص سريعة للويب لاكتشاف المجلدات والمعلمات';
-  else if (text.includes('Burp')) description = 'المعيار الصناعي لفحص الثغرات والبروكسي';
-  else if (text.includes('Nuclei')) description = 'ماسح سريع ومخصص للثغرات';
-  else if (text.includes('MobSF')) description = 'إطار عمل لاختبار أمن التطبيقات المحمولة';
-
-  if (description) content += `<p>${description}</p>`;
-  if (category) content += `<div class="category">${category}</div>`;
-
-  bugBountyTooltip.innerHTML = content;
-  bugBountyTooltip.style.opacity = '1';
-  bugBountyTooltip.style.left = (rect.left + rect.width + 10) + 'px';
-  bugBountyTooltip.style.top = (rect.top) + 'px';
-}
-
-function hideBugBountyTooltip() {
-  bugBountyTooltip.style.opacity = '0';
-}
-
-function setupBugBountyControls() {
-  document.getElementById('zoomIn')?.addEventListener('click', () => {
-    if (bugBountyMarkmap) { bugBountyMarkmap.fit(); bugBountyMarkmap.zoom(1.2); }
-  });
-
-  document.getElementById('zoomOut')?.addEventListener('click', () => {
-    if (bugBountyMarkmap) { bugBountyMarkmap.fit(); bugBountyMarkmap.zoom(0.8); }
-  });
-
-  document.getElementById('resetView')?.addEventListener('click', () => {
-    if (bugBountyMarkmap) bugBountyMarkmap.fit();
-  });
-
-  document.getElementById('searchInput')?.addEventListener('input', function(e) {
-    const searchTerm = e.target.value.toLowerCase();
-    d3.selectAll('.markmap-foreign').each(function() {
-      const node = d3.select(this);
-      const text = node.text().toLowerCase();
-
-      if (searchTerm && text.includes(searchTerm)) {
-        node.classed('bugbounty-pulse', true);
-        node.style('filter', 'brightness(1.3)');
-      } else {
-        node.classed('bugbounty-pulse', false);
-        node.style('filter', 'brightness(1)');
+// ===== SMOOTH SCROLL =====
+function initializeSmoothScroll() {
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+      e.preventDefault();
+      const target = document.querySelector(this.getAttribute('href'));
+      if (target) {
+        target.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start'
+        });
       }
     });
   });
 }
 
-// ===== KEYBOARD SHORTCUTS FOR BUG BOUNTY =====
-document.addEventListener('keydown', (e) => {
-  if (document.getElementById('panel-bugbounty')?.classList.contains('active')) {
-    if (e.ctrlKey && e.key === 'f') {
-      e.preventDefault();
-      document.getElementById('searchInput')?.focus();
-    }
-    if (e.key === 'Escape') {
-      document.getElementById('searchInput').value = '';
-      document.getElementById('searchInput')?.dispatchEvent(new Event('input'));
-      document.getElementById('searchInput')?.blur();
-    }
-    if (e.key === '+' || e.key === '=') {
-      if (bugBountyMarkmap) bugBountyMarkmap.zoom(1.2);
-    }
-    if (e.key === '-' || e.key === '_') {
-      if (bugBountyMarkmap) bugBountyMarkmap.zoom(0.8);
-    }
-    if (e.key === '0') {
-      if (bugBountyMarkmap) bugBountyMarkmap.fit();
-    }
-  }
-});
+// ===== SCROLL ANIMATIONS =====
+function initializeScrollAnimations() {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
+  });
 
-window.addEventListener('resize', () => {
-  if (bugBountyMarkmap && document.getElementById('panel-bugbounty')?.classList.contains('active')) {
-    bugBountyMarkmap.fit();
+  document.querySelectorAll('.animate-on-scroll').forEach(el => {
+    observer.observe(el);
+  });
+}
+
+// ===== MOBILE MENU =====
+window.toggleMobileMenu = function() {
+  const menu = document.getElementById('mobileMenu');
+  if (menu) {
+    menu.classList.toggle('flex');
+    menu.classList.toggle('hidden');
+  }
+};
+
+// ===== NAVBAR SCROLL EFFECT =====
+window.addEventListener('scroll', () => {
+  const nav = document.querySelector('nav');
+  if (nav) {
+    if (window.scrollY > 100) {
+      nav.classList.add('shadow-lg');
+    } else {
+      nav.classList.remove('shadow-lg');
+    }
   }
 });
