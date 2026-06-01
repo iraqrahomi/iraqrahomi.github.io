@@ -3,350 +3,487 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>رحومي البراهيم | Rahomi Al-Brahim</title>
-
-  <!-- Open Graph Meta Tags -->
+  
+  <!-- SEO Meta Tags -->
+  <title>مرجع الأمن السيبراني العربي | تعلم اختبار الاختراق و Bug Bounty من الصفر</title>
+  <meta name="description" content="مصدرك الأول لتعلم الأمن السيبراني. مسارات تعليمية مجانية من الصفر للاحتراف، مكتبة أدوات اختبار الاختراق، تحديات CTF، كورسات، وكتب. مثالي للطلاب العرب المبتدئين والمتوسطين.">
+  <meta name="keywords" content="الأمن السيبراني, اختبار الاختراق, Bug Bounty, CTF, Kali Linux, ethical hacking, OWASP Top 10, ethical hacker, cybersecurity عرب, تعلم الهاكينج, ادوات سيبرانية, sqlmap, nmap, burp suite, امن الشبكات, penetration testing, vulnerability assessment">
+  <meta name="author" content="رحومي البراهيم">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+  <meta name="language" content="Arabic">
+  <meta name="revisit-after" content="7 days">
+  <meta name="rating" content="general">
+  
+  <!-- Canonical URL -->
+  <link rel="canonical" href="https://iraqrahomi.github.io/">
+  
+  <!-- Open Graph / Facebook -->
   <meta property="og:type" content="website">
-  <meta property="og:title" content="رحومي البراهيم | Cybersecurity Specialist">
-  <meta property="og:description" content="كورسات، أدوات، ونصائح ذهبية في الأمن السيبراني.">
-  <meta property="og:image" content="myphoto.jpg">
-  <meta property="twitter:card" content="summary_large_image">
+  <meta property="og:url" content="https://iraqrahomi.github.io/">
+  <meta property="og:title" content="مرجع الأمن السيبراني العربي | تعلم من الصفر للاحتراف">
+  <meta property="og:description" content="مصدرك الأول لتعلم الأمن السيبراني. مسارات تعليمية، أدوات اختبار الاختراق، تحديات CTF، كورسات، وكتب. مجاني 100%.">
+  <meta property="og:image" content="https://iraqrahomi.github.io/myphoto.jpg">
+  <meta property="og:locale" content="ar_AR">
+  <meta property="og:site_name" content="مرجع الأمن السيبراني">
+  
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://iraqrahomi.github.io/">
+  <meta name="twitter:title" content="مرجع الأمن السيبراني العربي | تعلم من الصفر للاحتراف">
+  <meta name="twitter:description" content="مصدرك الأول لتعلم الأمن السيبراني. مسارات تعليمية، أدوات، تحديات CTF. مجاني.">
+  <meta name="twitter:image" content="https://iraqrahomi.github.io/myphoto.jpg">
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/jpeg" href="myphoto.jpg">
+  <link rel="apple-touch-icon" href="myphoto.jpg">
+  
+  <!-- Theme Color -->
+  <meta name="theme-color" content="#0a0a0f">
+  <meta name="msapplication-navbutton-color" content="#0a0a0f">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  
+  <!-- JSON-LD Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "مرجع الأمن السيبراني",
+    "alternateName": "Cybersecurity Arabic Reference",
+    "url": "https://iraqrahomi.github.io/",
+    "description": "مصدرك الأول لتعلم الأمن السيبراني من الصفر للاحتراف",
+    "author": {
+      "@type": "Person",
+      "name": "رحومي البراهيم",
+      "jobTitle": "طالب هندسة الأمن السيبراني",
+      "nationality": {
+        "@type": "Country",
+        "name": "العراق"
+      }
+    },
+    "inLanguage": "ar",
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": "https://iraqrahomi.github.io/#tools?q={search_term_string}",
+      "query-input": "required name=search_term_string"
+    }
+  }
+  </script>
+  
+  <!-- Educational Organization Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "EducationalOrganization",
+    "name": "مرجع الأمن السيبراني",
+    "description": "منصة تعليمية مجانية لتعلم الأمن السيبراني",
+    "url": "https://iraqrahomi.github.io/",
+    "areaServed": {
+      "@type": "Country",
+      "name": "العالم العربي"
+    },
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "مسارات تعلم الأمن السيبراني",
+      "itemListElement": [
+        {
+          "@type": "Course",
+          "name": "مسار المبتدئ في الأمن السيبراني",
+          "description": "تعلم أساسيات الشبكات، Linux، والبرمجة",
+          "provider": {
+            "@type": "Person",
+            "name": "رحومي البراهيم"
+          }
+        },
+        {
+          "@type": "Course",
+          "name": "مسار المتوسط - اختبار الاختراق",
+          "description": "اختبار الاختراق، Bug Bounty، وأمن الويب",
+          "provider": {
+            "@type": "Person",
+            "name": "رحومي البراهيم"
+          }
+        },
+        {
+          "@type": "Course",
+          "name": "مسار المتقدم - Red Team",
+          "description": "Red Team Operations، Malware Analysis، Cloud Security",
+          "provider": {
+            "@type": "Person",
+            "name": "رحومي البراهيم"
+          }
+        }
+      ]
+    }
+  }
+  </script>
+  
+  <!-- Software Application Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "name": "أدوات اختبار الاختراق",
+    "description": "قائمة شاملة بأدوات الأمن السيبراني",
+    "itemListElement": [
+      {
+        "@type": "SoftwareApplication",
+        "name": "Nmap",
+        "applicationCategory": "Network Scanner",
+        "operatingSystem": "Cross-platform",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        }
+      },
+      {
+        "@type": "SoftwareApplication",
+        "name": "Kali Linux",
+        "applicationCategory": "Operating System",
+        "operatingSystem": "Linux",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        }
+      },
+      {
+        "@type": "SoftwareApplication",
+        "name": "Burp Suite",
+        "applicationCategory": "Web Security Scanner",
+        "operatingSystem": "Cross-platform",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        }
+      }
+    ]
+  }
+  </script>
+
+  <!-- Breadcrumb Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "الرئيسية",
+        "item": "https://iraqrahomi.github.io/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "مسارات التعلم",
+        "item": "https://iraqrahomi.github.io/#paths"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "الأدوات",
+        "item": "https://iraqrahomi.github.io/#tools"
+      }
+    ]
+  }
+  </script>
 
   <!-- External Libraries -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
   <script src="https://unpkg.com/lucide@latest"></script>
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
-
-  <!-- Markmap Libraries -->
-  <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
-  <script src="https://cdn.jsdelivr.net/npm/markmap-view@0.15.4"></script>
-  <script src="https://cdn.jsdelivr.net/npm/markmap-lib@0.15.4/dist/browser/index.min.js"></script>
-
-  <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
   <!-- Custom Styles -->
   <link rel="stylesheet" href="css/style.css">
+  
+  <!-- Preconnect to external domains -->
+  <link rel="preconnect" href="https://cdn.tailwindcss.com">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  
+  <!-- Google Analytics (Add your GA4 ID) -->
+  <!-- 
+  Replace G-XXXXXXXXXX with your actual Google Analytics 4 Measurement ID
+  Get your ID from: https://analytics.google.com/
+  -->
+  <!--
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XXXXXXXXXX');
+  </script>
+  -->
 </head>
 
-<body>
+<body class="bg-[#0a0a0f] text-white overflow-x-hidden">
   <div id="canvas-container" aria-hidden="true"></div>
 
-  <!-- Status Bar -->
-  <div class="max-w-6xl mx-auto px-6 pt-6 flex flex-wrap gap-3 justify-between items-center">
-    <div class="flex items-center gap-2">
-      <div class="w-3 h-3 bg-emerald-500 rounded-full animate-pulse"></div>
-      <span class="text-[10px] md:text-xs font-bold text-slate-400 uppercase tracking-widest italic">Available for Consultations</span>
-    </div>
-    <a href="https://www.instagram.com/1.ee3" target="_blank" class="bg-blue-600 hover:bg-blue-700 px-5 py-2 rounded-full text-[10px] md:text-xs font-black transition-all flex items-center gap-2">
-      <i data-lucide="external-link" class="w-3 h-3"></i> أي استفسار
-    </a>
-  </div>
-
-  <!-- Header / Profile -->
-  <header class="relative pt-10 pb-10 text-center px-4">
-    <div class="inline-block relative mb-6">
-      <div class="w-40 h-40 md:w-52 md:h-52 rounded-full overflow-hidden profile-glow p-1 bg-slate-900">
-        <img src="myphoto.jpg" alt="Rahomi Al-Brahim" class="w-full h-full rounded-full object-cover">
+  <!-- Navigation -->
+  <nav class="fixed top-0 left-0 right-0 z-50 bg-[#0a0a0f]/80 backdrop-blur-xl border-b border-white/5">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center font-black text-lg">R</div>
+        <span class="font-black text-lg">Rahomi</span>
       </div>
-    </div>
-    <h1 class="text-4xl md:text-7xl font-black mb-2 tracking-tighter">رحومي البراهيم <span class="opacity-70">|</span> Rahomi Al-Brahim</h1>
-    <p class="text-slate-300 font-bold text-xs md:text-sm mb-2">طالب هندسة الأمن السيبراني</p>
-    <p class="text-blue-400 font-bold tracking-[0.25em] text-[10px] md:text-xs uppercase min-h-[24px]">
-      <span id="typewriter"></span><span class="animate-pulse">_</span>
-    </p>
-  </header>
-
-  <!-- Navigation Tabs -->
-  <nav class="max-w-5xl mx-auto px-6 mb-12" role="tablist">
-    <div class="glass p-2 rounded-2xl flex flex-wrap justify-center gap-2 shadow-2xl">
-      <button onclick="openTab(event, 'info')" class="nav-btn active-tab px-6 py-3 rounded-xl font-bold text-sm flex items-center gap-2 transition-all"><i data-lucide="home" class="w-4 h-4"></i> الرئيسية</button>
-      <button onclick="openTab(event, 'lab')" class="nav-btn px-6 py-3 rounded-xl font-bold text-sm flex items-center gap-2 transition-all"><i data-lucide="monitor" class="w-4 h-4"></i> الأنظمة</button>
-      <button onclick="openTab(event, 'tools')" class="nav-btn px-6 py-3 rounded-xl font-bold text-sm flex items-center gap-2 transition-all"><i data-lucide="terminal" class="w-4 h-4"></i> الأدوات</button>
-      <button onclick="openTab(event, 'bugbounty')" class="nav-btn px-6 py-3 rounded-xl font-bold text-sm flex items-center gap-2 transition-all"><i data-lucide="git-branch" class="w-4 h-4"></i> Bug Bounty Map</button>
-      <button onclick="openTab(event, 'laptop')" class="nav-btn px-6 py-3 rounded-xl font-bold text-sm flex items-center gap-2 transition-all"><i data-lucide="laptop" class="w-4 h-4"></i> دليل اللابتوب</button>
-      <button onclick="openTab(event, 'techtop')" class="nav-btn px-6 py-3 rounded-xl font-bold text-sm flex items-center gap-2 transition-all"><i data-lucide="package" class="w-4 h-4"></i> دليل البرامج</button>
-      <button onclick="openTab(event, 'contact')" class="nav-btn px-6 py-3 rounded-xl font-bold text-sm flex items-center gap-2 transition-all"><i data-lucide="message-square" class="w-4 h-4"></i> التواصل</button>
+      <div class="hidden md:flex items-center gap-8">
+        <a href="#home" class="nav-link">الرئيسية</a>
+        <a href="#paths" class="nav-link">مسارات التعلم</a>
+        <a href="#tools" class="nav-link">الأدوات</a>
+        <a href="#ctf" class="nav-link">التحديات</a>
+        <a href="#resources" class="nav-link">الموارد</a>
+        <a href="#contact" class="nav-link">تواصل</a>
+      </div>
+      <button class="md:hidden text-2xl" onclick="toggleMobileMenu()">
+        <i data-lucide="menu"></i>
+      </button>
     </div>
   </nav>
 
-  <!-- Main Content -->
-  <main class="max-w-5xl mx-auto px-6 pb-20">
+  <!-- Mobile Menu -->
+  <div id="mobileMenu" class="fixed inset-0 z-40 bg-[#0a0a0f]/95 backdrop-blur-xl hidden flex-col items-center justify-center gap-6">
+    <a href="#home" class="text-2xl font-bold" onclick="toggleMobileMenu()">الرئيسية</a>
+    <a href="#paths" class="text-2xl font-bold" onclick="toggleMobileMenu()">مسارات التعلم</a>
+    <a href="#tools" class="text-2xl font-bold" onclick="toggleMobileMenu()">الأدوات</a>
+    <a href="#ctf" class="text-2xl font-bold" onclick="toggleMobileMenu()">التحديات</a>
+    <a href="#resources" class="text-2xl font-bold" onclick="toggleMobileMenu()">الموارد</a>
+    <a href="#contact" class="text-2xl font-bold" onclick="toggleMobileMenu()">تواصل</a>
+  </div>
 
-    <!-- Info Tab -->
-    <section id="panel-info" class="tab-content active">
-      <div class="glass p-8 md:p-12 rounded-[2.5rem] border-t-4 border-blue-600">
-        <h2 class="text-2xl md:text-3xl font-black mb-6 text-blue-500">مسار الأمن السيبراني</h2>
-        <p class="text-slate-300 leading-loose text-base md:text-lg text-justify mb-8">
-          الأمن السيبراني مو "أداة" وحدها — هو مسار متدرّج. إذا تمشي خطوة خطوة، راح تبني أساس قوي وتفهم الهجمات والدفاع بشكل علمي وعملي.
-        </p>
-        <div class="grid md:grid-cols-2 gap-6">
-          <div class="p-6 rounded-2xl bg-white/5 border border-white/10">
-            <h3 class="font-black text-lg mb-3 flex items-center gap-2"><i data-lucide="route" class="w-5 h-5 text-blue-400"></i> Roadmap</h3>
-            <ul class="text-slate-300 text-sm leading-7 space-y-2">
-              <li>1) أساسيات الشبكات: IP / Subnet / DNS</li>
-              <li>2) Linux + Terminal: أوامر، صلاحيات</li>
-              <li>3) برمجة: Python (أتمتة) + Web Basics</li>
-              <li>4) أمن الويب: OWASP Top 10</li>
-              <li>5) مختبر عملي: VM + بيئات تدريب</li>
-            </ul>
-          </div>
-          <div class="p-6 rounded-2xl bg-white/5 border border-white/10">
-            <h3 class="font-black text-lg mb-3 flex items-center gap-2"><i data-lucide="shield" class="w-5 h-5 text-emerald-400"></i> قاعدة ذهبية</h3>
-            <p class="text-slate-300 text-sm leading-7">الاشتغال يكون قانوني وبموافقة صريحة فقط. هدفنا حماية الناس والأنظمة.</p>
-          </div>
+  <!-- Hero Section -->
+  <section id="home" class="min-h-screen flex items-center justify-center relative pt-20">
+    <div class="absolute inset-0 bg-gradient-to-b from-transparent via-[#0a0a0f]/50 to-[#0a0a0f]"></div>
+    <div class="max-w-5xl mx-auto px-6 text-center relative z-10">
+      <div class="inline-block mb-6 px-4 py-2 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 text-sm font-bold">
+        🚀 مرحباً بك في عالم الأمن السيبراني
+      </div>
+      <h1 class="text-4xl md:text-7xl font-black mb-6 leading-tight">
+        <span class="glitch-text" data-text="ابدأ رحلتك">ابدأ رحلتك</span>
+        <br>
+        <span class="bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-500 bg-clip-text text-transparent">في الأمن السيبراني</span>
+      </h1>
+      <p class="text-lg md:text-xl text-slate-400 max-w-2xl mx-auto mb-10 leading-relaxed">
+        مصدر تعليمي شامل يأخذك من الصفر إلى الاحتراف. مسارات منظمة، أدوات عملية، وتحديات حقيقية.
+      </p>
+      
+      <!-- Stats -->
+      <div class="grid grid-cols-3 gap-6 max-w-2xl mx-auto mb-12">
+        <div class="glass-card p-6 rounded-2xl">
+          <div class="text-3xl md:text-4xl font-black text-cyan-400 mb-1" id="statTools">0</div>
+          <div class="text-xs text-slate-500 uppercase tracking-wider">أداة</div>
+        </div>
+        <div class="glass-card p-6 rounded-2xl">
+          <div class="text-3xl md:text-4xl font-black text-emerald-400 mb-1" id="statPaths">0</div>
+          <div class="text-xs text-slate-500 uppercase tracking-wider">مسار</div>
+        </div>
+        <div class="glass-card p-6 rounded-2xl">
+          <div class="text-3xl md:text-4xl font-black text-amber-400 mb-1" id="statChallenges">0</div>
+          <div class="text-xs text-slate-500 uppercase tracking-wider">تحدي</div>
         </div>
       </div>
-    </section>
 
-    <!-- Lab Tab -->
-    <section id="panel-lab" class="tab-content">
-      <div class="glass p-8 md:p-12 rounded-[2.5rem] border-t-4 border-purple-600">
-        <h2 class="text-2xl md:text-3xl font-black mb-6 text-purple-400">بيئة المختبر (Lab)</h2>
-        <div class="grid md:grid-cols-2 gap-8">
-          <div class="glass p-8 rounded-3xl border-b-4 border-blue-600">
-            <h3 class="text-xl font-black mb-3 flex items-center gap-2"><i data-lucide="layout" class="w-5 h-5 text-blue-400"></i> Kali Linux</h3>
-            <p class="text-slate-400 text-sm leading-7 mb-6">نظام متخصص للتدريب والتحليل الأمني.</p>
-            <a href="https://www.kali.org/get-kali/" target="_blank" class="block w-full text-center py-3 bg-blue-600 rounded-xl font-black text-xs uppercase tracking-widest hover:bg-blue-700 transition">تحميل النظام</a>
-          </div>
-          <div class="glass p-8 rounded-3xl border-b-4 border-purple-600">
-            <h3 class="text-xl font-black mb-3 flex items-center gap-2"><i data-lucide="box" class="w-5 h-5 text-purple-300"></i> VirtualBox</h3>
-            <p class="text-slate-400 text-sm leading-7 mb-6">لتشغيل الأنظمة الوهمية (VM).</p>
-            <a href="https://www.virtualbox.org/wiki/Downloads" target="_blank" class="block w-full text-center py-3 bg-purple-600 rounded-xl font-black text-xs uppercase tracking-widest hover:bg-purple-700 transition">تحميل البرنامج</a>
-          </div>
+      <!-- CTA Buttons -->
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="#paths" class="px-8 py-4 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-xl font-bold text-lg hover:scale-105 transition-transform shadow-lg shadow-cyan-500/25">
+          <i data-lucide="rocket" class="w-5 h-5 inline-block ml-2"></i>
+          ابدأ الآن
+        </a>
+        <a href="#resources" class="px-8 py-4 bg-white/5 border border-white/10 rounded-xl font-bold text-lg hover:bg-white/10 transition">
+          <i data-lucide="book-open" class="w-5 h-5 inline-block ml-2"></i>
+          استكشف الموارد
+        </a>
+      </div>
+    </div>
+
+    <!-- Scroll Indicator -->
+    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
+      <i data-lucide="chevrons-down" class="w-8 h-8 text-slate-500"></i>
+    </div>
+  </section>
+
+  <!-- Learning Paths Section -->
+  <section id="paths" class="py-24 px-6">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl md:text-5xl font-black mb-4">مسارات <span class="text-cyan-400">التعلم</span></h2>
+        <p class="text-slate-400 max-w-xl mx-auto">اختر المسار المناسب لمستواك وابدأ رحلتك</p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-8" id="pathsGrid">
+        <!-- Paths will be rendered by JavaScript -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Tools Section -->
+  <section id="tools" class="py-24 px-6 bg-gradient-to-b from-transparent via-blue-950/20 to-transparent">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl md:text-5xl font-black mb-4">مكتبة <span class="text-emerald-400">الأدوات</span></h2>
+        <p class="text-slate-400 max-w-xl mx-auto">أدوات أساسية لكل متعلم في الأمن السيبراني</p>
+      </div>
+
+      <!-- Tools Tabs -->
+      <div class="flex flex-wrap justify-center gap-3 mb-10" id="toolsTabs">
+        <!-- Tabs rendered by JS -->
+      </div>
+
+      <!-- Search -->
+      <div class="max-w-md mx-auto mb-10">
+        <div class="relative">
+          <input type="text" id="toolsSearch" placeholder="ابحث عن أداة..." 
+            class="w-full px-6 py-4 bg-white/5 border border-white/10 rounded-2xl focus:border-cyan-500 focus:ring-2 focus:ring-cyan-500/20 outline-none transition">
+          <i data-lucide="search" class="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500 w-5 h-5"></i>
         </div>
       </div>
-    </section>
 
-    <!-- Tools Tab -->
-    <section id="panel-tools" class="tab-content">
-      <div class="glass p-8 md:p-12 rounded-[2.5rem] border-t-4 border-emerald-600">
-        <h2 class="text-2xl md:text-3xl font-black mb-6 text-emerald-400">أدوات سطر أوامر لينكس</h2>
-        <div class="space-y-7" id="tools-container">
-          <!-- يتم تعبئة المحتوى عبر JavaScript -->
-        </div>
-
-        <!-- Tips Section -->
-        <div class="mt-10 glass p-6 rounded-3xl border-l-4 border-blue-600">
-          <h3 class="text-xl font-black text-blue-400 mb-4 flex items-center gap-2"><i data-lucide="lightbulb" class="w-5 h-5"></i> نصائح احترافية</h3>
-          <div class="grid md:grid-cols-2 gap-4">
-            <div class="p-4 bg-white/5 rounded-2xl">
-              <h4 class="font-bold text-emerald-300 mb-2">للمبتدئين (10 أدوات أساسية)</h4>
-              <ul class="text-sm text-slate-300 space-y-1">
-                <li>• ls, cd, pwd - التنقل</li>
-                <li>• cp, mv, rm, mkdir - الملفات</li>
-                <li>• cat, less - العرض</li>
-                <li>• grep - البحث</li>
-                <li>• chmod, sudo - الأذونات</li>
-              </ul>
-            </div>
-            <div class="p-4 bg-white/5 rounded-2xl">
-              <h4 class="font-bold text-blue-300 mb-2">للمتوسطين (10 أدوات متقدمة)</h4>
-              <ul class="text-sm text-slate-300 space-y-1">
-                <li>• find - البحث المتقدم</li>
-                <li>• tar, gzip - الأرشيف</li>
-                <li>• ssh, scp - الاتصال الآمن</li>
-                <li>• ps, top, kill - العمليات</li>
-                <li>• awk, sed - معالجة النصوص</li>
-              </ul>
-            </div>
-          </div>
-        </div>
+      <!-- Tools Grid -->
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6" id="toolsGrid">
+        <!-- Tools rendered by JavaScript -->
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- Bug Bounty Tab -->
-    <section id="panel-bugbounty" class="tab-content">
-      <div class="glass p-6 md:p-8 rounded-[2.5rem] border-t-4 border-amber-600">
-        <!-- يتم تعبئة المحتوى عبر JavaScript -->
-        <div class="bugbounty-header rounded-2xl p-5 mb-6 flex flex-col md:flex-row justify-between items-center gap-4">
-          <div class="flex items-center gap-3">
-            <div class="w-12 h-12 rounded-xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center">
-              <i class="fas fa-shield-alt text-amber-400 text-xl"></i>
+  <!-- CTF Section -->
+  <section id="ctf" class="py-24 px-6">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl md:text-5xl font-black mb-4">تحديات <span class="text-amber-400">CTF</span></h2>
+        <p class="text-slate-400 max-w-xl mx-auto">طبّق مهاراتك على تحديات حقيقية من منصات عالمية</p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6" id="ctfGrid">
+        <!-- CTF Challenges rendered by JavaScript -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Resources Section -->
+  <section id="resources" class="py-24 px-6 bg-gradient-to-b from-transparent via-purple-950/20 to-transparent">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl md:text-5xl font-black mb-4">الموارد <span class="text-purple-400">التعليمية</span></h2>
+        <p class="text-slate-400 max-w-xl mx-auto">مقاطع فيديو، كورسات، وكتب لتقوية أساسك</p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- YouTube Resources -->
+        <div class="glass-card p-8 rounded-3xl">
+          <div class="flex items-center gap-4 mb-6">
+            <div class="w-14 h-14 rounded-2xl bg-red-500/20 flex items-center justify-center">
+              <i class="fab fa-youtube text-2xl text-red-500"></i>
             </div>
             <div>
-              <h2 class="text-2xl md:text-3xl font-black text-amber-400">Bug Bounty Toolkit Pro</h2>
-              <p class="text-slate-400 text-sm">خريطة ذهنية تفاعلية لأدوات Bug Bounty</p>
+              <h3 class="font-black text-xl">YouTube</h3>
+              <p class="text-slate-500 text-sm">قنوات عربية وإنجليزية</p>
             </div>
           </div>
-          <div class="flex gap-3">
-            <button class="bugbounty-btn px-4 py-2 rounded-lg font-bold text-sm flex items-center gap-2" id="zoomIn">
-              <i class="fas fa-search-plus"></i> تكبير
-            </button>
-            <button class="bugbounty-btn px-4 py-2 rounded-lg font-bold text-sm flex items-center gap-2" id="zoomOut">
-              <i class="fas fa-search-minus"></i> تصغير
-            </button>
-            <button class="bugbounty-btn px-4 py-2 rounded-lg font-bold text-sm flex items-center gap-2" id="resetView">
-              <i class="fas fa-sync-alt"></i> إعادة تعيين
-            </button>
+          <div class="space-y-3" id="youtubeResources">
+            <!-- Rendered by JS -->
           </div>
         </div>
 
-        <div class="mb-6">
-          <div class="bugbounty-search rounded-xl p-3 flex items-center gap-3 max-w-md mx-auto">
-            <i class="fas fa-search text-slate-500"></i>
-            <input type="text" id="searchInput" placeholder="ابحث عن أداة أو فئة..." class="bg-transparent border-none outline-none text-white flex-1" style="direction: ltr;">
+        <!-- Courses -->
+        <div class="glass-card p-8 rounded-3xl">
+          <div class="flex items-center gap-4 mb-6">
+            <div class="w-14 h-14 rounded-2xl bg-cyan-500/20 flex items-center justify-center">
+              <i data-lucide="graduation-cap" class="w-7 h-7 text-cyan-400"></i>
+            </div>
+            <div>
+              <h3 class="font-black text-xl">الكورسات</h3>
+              <p class="text-slate-500 text-sm">منصات تعليمية مجانية ومدفوعة</p>
+            </div>
+          </div>
+          <div class="space-y-3" id="coursesResources">
+            <!-- Rendered by JS -->
           </div>
         </div>
 
-        <div id="mindmap-container">
-          <svg id="mindmap"></svg>
-        </div>
-
-        <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mt-6">
-          <div class="bugbounty-legend rounded-xl p-4">
-            <h3 class="font-bold mb-3 text-amber-400 flex items-center gap-2"><i class="fas fa-key"></i> وسيلة الإيضاح</h3>
-            <div class="grid grid-cols-2 md:grid-cols-5 gap-3">
-              <div class="flex items-center gap-2"><div class="w-4 h-4 rounded bg-amber-500"></div><span class="text-xs text-slate-300">الفئات الرئيسية</span></div>
-              <div class="flex items-center gap-2"><div class="w-4 h-4 rounded bg-emerald-500"></div><span class="text-xs text-slate-300">الاستطلاع</span></div>
-              <div class="flex items-center gap-2"><div class="w-4 h-4 rounded bg-red-500"></div><span class="text-xs text-slate-300">أدوات الهجوم</span></div>
-              <div class="flex items-center gap-2"><div class="w-4 h-4 rounded bg-yellow-500"></div><span class="text-xs text-slate-300">الأمن المحمول</span></div>
-              <div class="flex items-center gap-2"><div class="w-4 h-4 rounded bg-purple-500"></div><span class="text-xs text-slate-300">الماسحات الضوئية</span></div>
+        <!-- Books -->
+        <div class="glass-card p-8 rounded-3xl">
+          <div class="flex items-center gap-4 mb-6">
+            <div class="w-14 h-14 rounded-2xl bg-amber-500/20 flex items-center justify-center">
+              <i data-lucide="book-open" class="w-7 h-7 text-amber-400"></i>
+            </div>
+            <div>
+              <h3 class="font-black text-xl">الكتب</h3>
+              <p class="text-slate-500 text-sm">مراجع أساسية للمهنيين</p>
             </div>
           </div>
-          <div class="bg-slate-900/50 rounded-xl p-4 border border-slate-700">
-            <div class="flex items-center gap-3">
-              <i class="fas fa-cube text-amber-400"></i>
-              <div>
-                <div class="text-xs text-slate-400">عدد الأدوات</div>
-                <div class="font-black text-xl"><span id="nodeCount">45</span> أداة</div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="mt-8 p-5 rounded-2xl bg-blue-900/20 border border-blue-800/30">
-          <h3 class="font-bold text-blue-400 mb-3 flex items-center gap-2"><i class="fas fa-lightbulb"></i> نصائح للاستخدام</h3>
-          <ul class="text-slate-300 text-sm space-y-2">
-            <li class="flex items-start gap-2"><i class="fas fa-mouse-pointer text-xs mt-1 text-blue-400"></i> مرر الماوس فوق أي مربع لرؤية الوصف التفصيلي</li>
-            <li class="flex items-start gap-2"><i class="fas fa-search text-xs mt-1 text-blue-400"></i> استخدم مربع البحث للعثور على أدوات محددة</li>
-            <li class="flex items-start gap-2"><i class="fas fa-expand-alt text-xs mt-1 text-blue-400"></i> استخدم أزرار التكبير/التصغير للتنقل في الخريطة</li>
-            <li class="flex items-start gap-2"><i class="fas fa-external-link-alt text-xs mt-1 text-blue-400"></i> انقر على الروابط لزيارة مستودعات الأدوات</li>
-          </ul>
-        </div>
-      </div>
-      <div class="bugbounty-tooltip" id="tooltip"></div>
-    </section>
-
-    <!-- Laptop Guide Tab -->
-    <section id="panel-laptop" class="tab-content">
-      <div class="glass p-8 md:p-12 rounded-[2.5rem] border-t-4 border-cyan-600">
-        <h2 class="text-2xl md:text-3xl font-black text-cyan-300 mb-6">دليل شراء اللابتوب</h2>
-        <div class="grid md:grid-cols-3 gap-6 items-start">
-          <div class="md:col-span-1 glass p-6 rounded-3xl border border-white/10">
-            <label class="text-slate-300 text-sm font-bold block mb-2">نوع الاستخدام:</label>
-            <select id="usecase" class="w-full bg-black/30 border border-white/10 rounded-2xl p-3 text-sm outline-none focus:ring-2 focus:ring-cyan-500/40"></select>
-          </div>
-          <div class="md:col-span-2 glass p-6 rounded-3xl border border-white/10">
-            <div class="mb-4">
-              <div id="resultTitle" class="font-black text-lg"></div>
-              <div id="resultSub" class="text-slate-400 text-xs"></div>
-            </div>
-            <div class="grid lg:grid-cols-2 gap-6">
-              <div class="p-5 rounded-3xl bg-black/25 border border-white/10">
-                <div class="font-black text-amber-200 mb-3">الحد الأدنى</div>
-                <div id="minSpecs" class="text-sm text-slate-200"></div>
-              </div>
-              <div class="p-5 rounded-3xl bg-black/25 border border-white/10">
-                <div class="font-black text-emerald-200 mb-3">الموصى به</div>
-                <div id="recSpecs" class="text-sm text-slate-200"></div>
-              </div>
-            </div>
-            <div class="mt-4 text-sm text-slate-300">
-              <ul id="realTips"></ul>
-            </div>
+          <div class="space-y-3" id="booksResources">
+            <!-- Rendered by JS -->
           </div>
         </div>
       </div>
-    </section>
-
-    <!-- TechTop Tab -->
-    <section id="panel-techtop" class="tab-content">
-      <div class="glass p-6 md:p-8 rounded-[2.5rem] border-t-4 border-cyan-600">
-        <div class="laptop-guide-header">
-          <div class="laptop-guide-icon">⚡</div>
-          <div>
-            <div class="laptop-guide-title">دليل البرامج الأساسية</div>
-            <div class="laptop-guide-subtitle">TECH TOP · روابط رسمية فقط</div>
-          </div>
-        </div>
-
-        <div class="laptop-search">
-          <input type="text" id="softwareSearch" placeholder="ابحث عن برنامج... (مثال: kali, python, vlc)">
-          <i class="fas fa-search"></i>
-        </div>
-
-        <div class="category-tabs" id="categoryTabs">
-          <div class="category-tab active" onclick="filterSoftware('all')">الكل</div>
-        </div>
-
-        <div class="software-grid" id="softwareGrid"></div>
-
-        <div class="flex justify-between items-center mt-8 pt-6 border-t border-white/5">
-          <div class="text-sm text-slate-400" id="softwareCount">عرض 9 برامج</div>
-          <div class="flex gap-3">
-            <button class="bg-white/5 hover:bg-cyan-500/20 text-white px-4 py-2 rounded-xl text-sm flex items-center gap-2 transition-all" onclick="copyAllLinks()">
-              <i class="fas fa-copy"></i> نسخ جميع الروابط
-            </button>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Contact Tab -->
-    <section id="panel-contact" class="tab-content">
-      <div class="glass p-8 md:p-12 rounded-[2.5rem] border-t-4 border-sky-600">
-        <h2 class="text-2xl md:text-3xl font-black mb-6 text-sky-400">تواصل معي</h2>
-        <div class="grid md:grid-cols-2 gap-4">
-          <a href="https://t.me/endiraq" target="_blank" class="md:col-span-2 glass p-7 rounded-3xl flex items-center justify-between hover:bg-sky-500/10 transition-all border border-white/5 hover:border-sky-500">
-            <div class="flex items-center gap-5">
-              <div class="w-14 h-14 rounded-2xl bg-sky-500/10 flex items-center justify-center shrink-0 border border-sky-500/20">
-                <i data-lucide="send" class="w-7 h-7 text-sky-300"></i>
-              </div>
-              <div>
-                <div class="font-black text-lg text-white">قناتي على التلكرام</div>
-                <div class="text-slate-400 text-xs mb-2">@endiraq</div>
-                <div class="text-[11px] text-sky-300 font-bold tracking-wide flex flex-wrap gap-2">
-                  <span>✨ كورسات احترافية</span>
-                  <span class="opacity-50">•</span>
-                  <span>🛡️ نصائح أمنية</span>
-                  <span class="opacity-50">•</span>
-                  <span>🚀 مسار تعليمي</span>
-                </div>
-              </div>
-            </div>
-            <div class="hidden md:flex items-center gap-2 text-sky-400 font-black text-xs uppercase tracking-widest">
-              JOIN <i data-lucide="external-link" class="w-4 h-4 opacity-80"></i>
-            </div>
-          </a>
-
-          <a href="https://www.instagram.com/1.ee3" target="_blank" class="glass p-7 rounded-3xl flex items-center justify-between hover:bg-pink-500/10 transition-all border border-white/5 hover:border-pink-500">
-            <div class="flex items-center gap-4"><i data-lucide="instagram" class="text-pink-400"></i><span class="font-black text-lg">Instagram</span></div>
-            <i data-lucide="external-link" class="w-5 h-5 opacity-60"></i>
-          </a>
-
-          <a href="mailto:cyberhares.alanbar@proton.me" class="glass p-7 rounded-3xl flex items-center justify-between hover:bg-emerald-500/10 transition-all border border-white/5 hover:border-emerald-500">
-            <div class="flex items-center gap-4"><i data-lucide="mail" class="text-emerald-400"></i><span class="font-black text-lg">Email</span></div>
-            <i data-lucide="external-link" class="w-5 h-5 opacity-60"></i>
-          </a>
-        </div>
-      </div>
-    </section>
-
-  </main>
-
-  <footer class="max-w-6xl mx-auto px-6 py-14 border-t border-white/5 mt-14 text-center">
-    <div class="mb-5 font-mono text-[11px] bg-black/20 inline-block px-4 py-2 rounded-lg border border-white/5">
-      <span class="text-emerald-500 font-bold">Your Connection:</span> 
-      <span id="user-ip" class="text-slate-400">Scanning...</span>
     </div>
-    <div class="opacity-60 space-y-3">
-      <p class="text-[10px] md:text-xs font-black uppercase tracking-[0.35em]">&copy; 2025 رحومي البراهيم</p>
+  </section>
+
+  <!-- Linux Commands Quick Reference -->
+  <section id="commands" class="py-24 px-6">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl md:text-5xl font-black mb-4">دليل <span class="text-emerald-400">أوامر Linux</span></h2>
+        <p class="text-slate-400 max-w-xl mx-auto">أوامر أساسية للمبتدئين والمحترفين</p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6" id="commandsGrid">
+        <!-- Commands rendered by JavaScript -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="py-24 px-6 bg-gradient-to-b from-transparent via-sky-950/20 to-transparent">
+    <div class="max-w-4xl mx-auto text-center">
+      <div class="mb-12">
+        <h2 class="text-3xl md:text-5xl font-black mb-4">تواصل <span class="text-sky-400">معنا</span></h2>
+        <p class="text-slate-400 max-w-xl mx-auto">انضم لمجتمعنا وتابع أحدث المحتوى</p>
+      </div>
+
+      <!-- Profile Card -->
+      <div class="glass-card p-8 md:p-12 rounded-3xl max-w-md mx-auto mb-12">
+        <div class="w-32 h-32 mx-auto mb-6 rounded-full overflow-hidden border-4 border-cyan-500/30 shadow-lg shadow-cyan-500/20">
+          <img src="myphoto.jpg" alt="رحومي البراهيم" class="w-full h-full object-cover">
+        </div>
+        <h3 class="text-2xl font-black mb-2">رحومي البراهيم</h3>
+        <p class="text-cyan-400 font-bold mb-6">طالب هندسة الأمن السيبراني</p>
+        
+        <div class="space-y-4">
+          <a href="https://t.me/endiraq" target="_blank" class="flex items-center justify-center gap-3 px-6 py-4 bg-sky-500/10 border border-sky-500/20 rounded-xl hover:bg-sky-500/20 transition">
+            <i data-lucide="send" class="w-5 h-5 text-sky-400"></i>
+            <span class="font-bold">قناة Telegram</span>
+          </a>
+          <a href="https://www.instagram.com/1.ee3" target="_blank" class="flex items-center justify-center gap-3 px-6 py-4 bg-pink-500/10 border border-pink-500/20 rounded-xl hover:bg-pink-500/20 transition">
+            <i data-lucide="instagram" class="w-5 h-5 text-pink-400"></i>
+            <span class="font-bold">Instagram</span>
+          </a>
+          <a href="mailto:cyberhares.alanbar@proton.me" class="flex items-center justify-center gap-3 px-6 py-4 bg-emerald-500/10 border border-emerald-500/20 rounded-xl hover:bg-emerald-500/20 transition">
+            <i data-lucide="mail" class="w-5 h-5 text-emerald-400"></i>
+            <span class="font-bold">Email</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="py-12 px-6 border-t border-white/5">
+    <div class="max-w-6xl mx-auto text-center">
+      <p class="text-slate-500 text-sm">
+        © 2025 رحومي البراهيم | صُنع بـ 💜 للمجتمع العربي
+      </p>
+      <p class="text-slate-600 text-xs mt-2">
+        تعلم Ethically • Practice Legally • Grow Constantly
+      </p>
     </div>
   </footer>
 
-  <!-- JavaScript Files -->
+  <!-- JavaScript -->
   <script src="js/data.js"></script>
   <script src="js/app.js"></script>
 </body>
