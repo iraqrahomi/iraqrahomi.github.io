@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <!-- SEO Meta Tags -->
+  <title>مرجع الأمن السيبراني العربي | تعلم اختبار الاختراق و Bug Bounty من الصفر</title>
+  <meta name="description" content="مصدرك الأول لتعلم الأمن السيبراني. مسارات تعليمية مجانية من الصفر للاحتراف، مكتبة أدوات اختبار الاختراق، تحديات CTF، كورسات، وكتب. مثالي للطلاب العرب المبتدئين والمتوسطين.">
+  <meta name="keywords" content="الأمن السيبراني, اختبار الاختراق, Bug Bounty, CTF, Kali Linux, ethical hacking, OWASP Top 10, ethical hacker, cybersecurity عرب, تعلم الهاكينج, ادوات سيبرانية, sqlmap, nmap, burp suite, امن الشبكات, penetration testing, vulnerability assessment">
+  <meta name="author" content="رحومي البراهيم">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+  <meta name="language" content="Arabic">
+  <meta name="revisit-after" content="7 days">
+  <meta name="rating" content="general">
+  
+  <!-- Canonical URL -->
+  <link rel="canonical" href="https://iraqrahomi.github.io/">
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://iraqrahomi.github.io/">
+  <meta property="og:title" content="مرجع الأمن السيبراني العربي | تعلم من الصفر للاحتراف">
+  <meta property="og:description" content="مصدرك الأول لتعلم الأمن السيبراني. مسارات تعليمية، أدوات اختبار الاختراق، تحديات CTF، كورسات، وكتب. مجاني 100%.">
+  <meta property="og:image" content="https://iraqrahomi.github.io/myphoto.jpg">
+  <meta property="og:locale" content="ar_AR">
+  <meta property="og:site_name" content="مرجع الأمن السيبراني">
+  
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://iraqrahomi.github.io/">
+  <meta name="twitter:title" content="مرجع الأمن السيبراني العربي | تعلم من الصفر للاحتراف">
+  <meta name="twitter:description" content="مصدرك الأول لتعلم الأمن السيبراني. مسارات تعليمية، أدوات، تحديات CTF. مجاني.">
+  <meta name="twitter:image" content="https://iraqrahomi.github.io/myphoto.jpg">
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/jpeg" href="myphoto.jpg">
+  <link rel="apple-touch-icon" href="myphoto.jpg">
+  
+  <!-- Theme Color -->
+  <meta name="theme-color" content="#0a0a0f">
+  <meta name="msapplication-navbutton-color" content="#0a0a0f">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  
+  <!-- JSON-LD Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "مرجع الأمن السيبراني",
+    "alternateName": "Cybersecurity Arabic Reference",
+    "url": "https://iraqrahomi.github.io/",
+    "description": "مصدرك الأول لتعلم الأمن السيبراني من الصفر للاحتراف",
+    "author": {
+      "@type": "Person",
+      "name": "رحومي البراهيم",
+      "jobTitle": "طالب هندسة الأمن السيبراني",
+      "nationality": {
+        "@type": "Country",
+        "name": "العراق"
+      }
+    },
+    "inLanguage": "ar",
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": "https://iraqrahomi.github.io/#tools?q={search_term_string}",
+      "query-input": "required name=search_term_string"
+    }
+  }
+  </script>
+  
+  <!-- Educational Organization Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "EducationalOrganization",
+    "name": "مرجع الأمن السيبراني",
+    "description": "منصة تعليمية مجانية لتعلم الأمن السيبراني",
+    "url": "https://iraqrahomi.github.io/",
+    "areaServed": {
+      "@type": "Country",
+      "name": "العالم العربي"
+    },
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "مسارات تعلم الأمن السيبراني",
+      "itemListElement": [
+        {
+          "@type": "Course",
+          "name": "مسار المبتدئ في الأمن السيبراني",
+          "description": "تعلم أساسيات الشبكات، Linux، والبرمجة",
+          "provider": {
+            "@type": "Person",
+            "name": "رحومي البراهيم"
+          }
+        },
+        {
+          "@type": "Course",
+          "name": "مسار المتوسط - اختبار الاختراق",
+          "description": "اختبار الاختراق، Bug Bounty، وأمن الويب",
+          "provider": {
+            "@type": "Person",
+            "name": "رحومي البراهيم"
+          }
+        },
+        {
+          "@type": "Course",
+          "name": "مسار المتقدم - Red Team",
+          "description": "Red Team Operations، Malware Analysis، Cloud Security",
+          "provider": {
+            "@type": "Person",
+            "name": "رحومي البراهيم"
+          }
+        }
+      ]
+    }
+  }
+  </script>
+  
+  <!-- Software Application Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "name": "أدوات اختبار الاختراق",
+    "description": "قائمة شاملة بأدوات الأمن السيبراني",
+    "itemListElement": [
+      {
+        "@type": "SoftwareApplication",
+        "name": "Nmap",
+        "applicationCategory": "Network Scanner",
+        "operatingSystem": "Cross-platform",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        }
+      },
+      {
+        "@type": "SoftwareApplication",
+        "name": "Kali Linux",
+        "applicationCategory": "Operating System",
+        "operatingSystem": "Linux",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        }
+      },
+      {
+        "@type": "SoftwareApplication",
+        "name": "Burp Suite",
+        "applicationCategory": "Web Security Scanner",
+        "operatingSystem": "Cross-platform",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        }
+      }
+    ]
+  }
+  </script>
+
+  <!-- Breadcrumb Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "الرئيسية",
+        "item": "https://iraqrahomi.github.io/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "مسارات التعلم",
+        "item": "https://iraqrahomi.github.io/#paths"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "الأدوات",
+        "item": "https://iraqrahomi.github.io/#tools"
+      }
+    ]
+  }
+  </script>
+
+  <!-- External Libraries -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="css/style.css">
+  
+  <!-- Preconnect to external domains -->
+  <link rel="preconnect" href="https://cdn.tailwindcss.com">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  
+  <!-- Google Analytics (Add your GA4 ID) -->
+  <!-- 
+  Replace G-XXXXXXXXXX with your actual Google Analytics 4 Measurement ID
+  Get your ID from: https://analytics.google.com/
+  -->
+  <!--
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XXXXXXXXXX');
+  </script>
+  -->
+</head>
+
+<body class="bg-[#0a0a0f] text-white overflow-x-hidden">
+  <div id="canvas-container" aria-hidden="true"></div>
+
+  <!-- Navigation -->
+  <nav class="fixed top-0 left-0 right-0 z-50 bg-[#0a0a0f]/80 backdrop-blur-xl border-b border-white/5">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center font-black text-lg">R</div>
+        <span class="font-black text-lg">Rahomi</span>
+      </div>
+      <div class="hidden md:flex items-center gap-8">
+        <a href="#home" class="nav-link">الرئيسية</a>
+        <a href="#paths" class="nav-link">مسارات التعلم</a>
+        <a href="#tools" class="nav-link">الأدوات</a>
+        <a href="#ctf" class="nav-link">التحديات</a>
+        <a href="#resources" class="nav-link">الموارد</a>
+        <a href="#contact" class="nav-link">تواصل</a>
+      </div>
+      <button class="md:hidden text-2xl" onclick="toggleMobileMenu()">
+        <i data-lucide="menu"></i>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div id="mobileMenu" class="fixed inset-0 z-40 bg-[#0a0a0f]/95 backdrop-blur-xl hidden flex-col items-center justify-center gap-6">
+    <a href="#home" class="text-2xl font-bold" onclick="toggleMobileMenu()">الرئيسية</a>
+    <a href="#paths" class="text-2xl font-bold" onclick="toggleMobileMenu()">مسارات التعلم</a>
+    <a href="#tools" class="text-2xl font-bold" onclick="toggleMobileMenu()">الأدوات</a>
+    <a href="#ctf" class="text-2xl font-bold" onclick="toggleMobileMenu()">التحديات</a>
+    <a href="#resources" class="text-2xl font-bold" onclick="toggleMobileMenu()">الموارد</a>
+    <a href="#contact" class="text-2xl font-bold" onclick="toggleMobileMenu()">تواصل</a>
+  </div>
+
+  <!-- Hero Section -->
+  <section id="home" class="min-h-screen flex items-center justify-center relative pt-20">
+    <div class="absolute inset-0 bg-gradient-to-b from-transparent via-[#0a0a0f]/50 to-[#0a0a0f]"></div>
+    <div class="max-w-5xl mx-auto px-6 text-center relative z-10">
+      <div class="inline-block mb-6 px-4 py-2 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 text-sm font-bold">
+        🚀 مرحباً بك في عالم الأمن السيبراني
+      </div>
+      <h1 class="text-4xl md:text-7xl font-black mb-6 leading-tight">
+        <span class="glitch-text" data-text="ابدأ رحلتك">ابدأ رحلتك</span>
+        <br>
+        <span class="bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-500 bg-clip-text text-transparent">في الأمن السيبراني</span>
+      </h1>
+      <p class="text-lg md:text-xl text-slate-400 max-w-2xl mx-auto mb-10 leading-relaxed">
+        مصدر تعليمي شامل يأخذك من الصفر إلى الاحتراف. مسارات منظمة، أدوات عملية، وتحديات حقيقية.
+      </p>
+      
+      <!-- Stats -->
+      <div class="grid grid-cols-3 gap-6 max-w-2xl mx-auto mb-12">
+        <div class="glass-card p-6 rounded-2xl">
+          <div class="text-3xl md:text-4xl font-black text-cyan-400 mb-1" id="statTools">0</div>
+          <div class="text-xs text-slate-500 uppercase tracking-wider">أداة</div>
+        </div>
+        <div class="glass-card p-6 rounded-2xl">
+          <div class="text-3xl md:text-4xl font-black text-emerald-400 mb-1" id="statPaths">0</div>
+          <div class="text-xs text-slate-500 uppercase tracking-wider">مسار</div>
+        </div>
+        <div class="glass-card p-6 rounded-2xl">
+          <div class="text-3xl md:text-4xl font-black text-amber-400 mb-1" id="statChallenges">0</div>
+          <div class="text-xs text-slate-500 uppercase tracking-wider">تحدي</div>
+        </div>
+      </div>
+
+      <!-- CTA Buttons -->
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="#paths" class="px-8 py-4 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-xl font-bold text-lg hover:scale-105 transition-transform shadow-lg shadow-cyan-500/25">
+          <i data-lucide="rocket" class="w-5 h-5 inline-block ml-2"></i>
+          ابدأ الآن
+        </a>
+        <a href="#resources" class="px-8 py-4 bg-white/5 border border-white/10 rounded-xl font-bold text-lg hover:bg-white/10 transition">
+          <i data-lucide="book-open" class="w-5 h-5 inline-block ml-2"></i>
+          استكشف الموارد
+        </a>
+      </div>
+    </div>
+
+    <!-- Scroll Indicator -->
+    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
+      <i data-lucide="chevrons-down" class="w-8 h-8 text-slate-500"></i>
+    </div>
+  </section>
+
+  <!-- Learning Paths Section -->
+  <section id="paths" class="py-24 px-6">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl md:text-5xl font-black mb-4">مسارات <span class="text-cyan-400">التعلم</span></h2>
+        <p class="text-slate-400 max-w-xl mx-auto">اختر المسار المناسب لمستواك وابدأ رحلتك</p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-8" id="pathsGrid">
+        <!-- Paths will be rendered by JavaScript -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Tools Section -->
+  <section id="tools" class="py-24 px-6 bg-gradient-to-b from-transparent via-blue-950/20 to-transparent">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl md:text-5xl font-black mb-4">مكتبة <span class="text-emerald-400">الأدوات</span></h2>
+        <p class="text-slate-400 max-w-xl mx-auto">أدوات أساسية لكل متعلم في الأمن السيبراني</p>
+      </div>
+
+      <!-- Tools Tabs -->
+      <div class="flex flex-wrap justify-center gap-3 mb-10" id="toolsTabs">
+        <!-- Tabs rendered by JS -->
+      </div>
+
+      <!-- Search -->
+      <div class="max-w-md mx-auto mb-10">
+        <div class="relative">
+          <input type="text" id="toolsSearch" placeholder="ابحث عن أداة..." 
+            class="w-full px-6 py-4 bg-white/5 border border-white/10 rounded-2xl focus:border-cyan-500 focus:ring-2 focus:ring-cyan-500/20 outline-none transition">
+          <i data-lucide="search" class="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500 w-5 h-5"></i>
+        </div>
+      </div>
+
+      <!-- Tools Grid -->
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6" id="toolsGrid">
+        <!-- Tools rendered by JavaScript -->
+      </div>
+    </div>
+  </section>
+
+  <!-- CTF Section -->
+  <section id="ctf" class="py-24 px-6">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl md:text-5xl font-black mb-4">تحديات <span class="text-amber-400">CTF</span></h2>
+        <p class="text-slate-400 max-w-xl mx-auto">طبّق مهاراتك على تحديات حقيقية من منصات عالمية</p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6" id="ctfGrid">
+        <!-- CTF Challenges rendered by JavaScript -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Resources Section -->
+  <section id="resources" class="py-24 px-6 bg-gradient-to-b from-transparent via-purple-950/20 to-transparent">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl md:text-5xl font-black mb-4">الموارد <span class="text-purple-400">التعليمية</span></h2>
+        <p class="text-slate-400 max-w-xl mx-auto">مقاطع فيديو، كورسات، وكتب لتقوية أساسك</p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- YouTube Resources -->
+        <div class="glass-card p-8 rounded-3xl">
+          <div class="flex items-center gap-4 mb-6">
+            <div class="w-14 h-14 rounded-2xl bg-red-500/20 flex items-center justify-center">
+              <i class="fab fa-youtube text-2xl text-red-500"></i>
+            </div>
+            <div>
+              <h3 class="font-black text-xl">YouTube</h3>
+              <p class="text-slate-500 text-sm">قنوات عربية وإنجليزية</p>
+            </div>
+          </div>
+          <div class="space-y-3" id="youtubeResources">
+            <!-- Rendered by JS -->
+          </div>
+        </div>
+
+        <!-- Courses -->
+        <div class="glass-card p-8 rounded-3xl">
+          <div class="flex items-center gap-4 mb-6">
+            <div class="w-14 h-14 rounded-2xl bg-cyan-500/20 flex items-center justify-center">
+              <i data-lucide="graduation-cap" class="w-7 h-7 text-cyan-400"></i>
+            </div>
+            <div>
+              <h3 class="font-black text-xl">الكورسات</h3>
+              <p class="text-slate-500 text-sm">منصات تعليمية مجانية ومدفوعة</p>
+            </div>
+          </div>
+          <div class="space-y-3" id="coursesResources">
+            <!-- Rendered by JS -->
+          </div>
+        </div>
+
+        <!-- Books -->
+        <div class="glass-card p-8 rounded-3xl">
+          <div class="flex items-center gap-4 mb-6">
+            <div class="w-14 h-14 rounded-2xl bg-amber-500/20 flex items-center justify-center">
+              <i data-lucide="book-open" class="w-7 h-7 text-amber-400"></i>
+            </div>
+            <div>
+              <h3 class="font-black text-xl">الكتب</h3>
+              <p class="text-slate-500 text-sm">مراجع أساسية للمهنيين</p>
+            </div>
+          </div>
+          <div class="space-y-3" id="booksResources">
+            <!-- Rendered by JS -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Linux Commands Quick Reference -->
+  <section id="commands" class="py-24 px-6">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl md:text-5xl font-black mb-4">دليل <span class="text-emerald-400">أوامر Linux</span></h2>
+        <p class="text-slate-400 max-w-xl mx-auto">أوامر أساسية للمبتدئين والمحترفين</p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6" id="commandsGrid">
+        <!-- Commands rendered by JavaScript -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="py-24 px-6 bg-gradient-to-b from-transparent via-sky-950/20 to-transparent">
+    <div class="max-w-4xl mx-auto text-center">
+      <div class="mb-12">
+        <h2 class="text-3xl md:text-5xl font-black mb-4">تواصل <span class="text-sky-400">معنا</span></h2>
+        <p class="text-slate-400 max-w-xl mx-auto">انضم لمجتمعنا وتابع أحدث المحتوى</p>
+      </div>
+
+      <!-- Profile Card -->
+      <div class="glass-card p-8 md:p-12 rounded-3xl max-w-md mx-auto mb-12">
+        <div class="w-32 h-32 mx-auto mb-6 rounded-full overflow-hidden border-4 border-cyan-500/30 shadow-lg shadow-cyan-500/20">
+          <img src="myphoto.jpg" alt="رحومي البراهيم" class="w-full h-full object-cover">
+        </div>
+        <h3 class="text-2xl font-black mb-2">رحومي البراهيم</h3>
+        <p class="text-cyan-400 font-bold mb-6">طالب هندسة الأمن السيبراني</p>
+        
+        <div class="space-y-4">
+          <a href="https://t.me/endiraq" target="_blank" class="flex items-center justify-center gap-3 px-6 py-4 bg-sky-500/10 border border-sky-500/20 rounded-xl hover:bg-sky-500/20 transition">
+            <i data-lucide="send" class="w-5 h-5 text-sky-400"></i>
+            <span class="font-bold">قناة Telegram</span>
+          </a>
+          <a href="https://www.instagram.com/1.ee3" target="_blank" class="flex items-center justify-center gap-3 px-6 py-4 bg-pink-500/10 border border-pink-500/20 rounded-xl hover:bg-pink-500/20 transition">
+            <i data-lucide="instagram" class="w-5 h-5 text-pink-400"></i>
+            <span class="font-bold">Instagram</span>
+          </a>
+          <a href="mailto:cyberhares.alanbar@proton.me" class="flex items-center justify-center gap-3 px-6 py-4 bg-emerald-500/10 border border-emerald-500/20 rounded-xl hover:bg-emerald-500/20 transition">
+            <i data-lucide="mail" class="w-5 h-5 text-emerald-400"></i>
+            <span class="font-bold">Email</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="py-12 px-6 border-t border-white/5">
+    <div class="max-w-6xl mx-auto text-center">
+      <p class="text-slate-500 text-sm">
+        © 2025 رحومي البراهيم | صُنع بـ 💜 للمجتمع العربي
+      </p>
+      <p class="text-slate-600 text-xs mt-2">
+        Learn Ethically • Practice Legally • Grow Constantly
+      </p>
+    </div>
+  </footer>
+
+  <!-- JavaScript -->
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
