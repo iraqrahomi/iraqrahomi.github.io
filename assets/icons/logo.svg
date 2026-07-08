@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 60">
+  <!-- Shield Icon -->
+  <g transform="translate(5, 5)">
+    <defs>
+      <linearGradient id="cyShield" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#0ea5e9"/>
+        <stop offset="100%" stop-color="#1e40af"/>
+      </linearGradient>
+    </defs>
+    <path d="M25 0 L50 8 L50 28 C50 42 38 50 25 52 C12 50 0 42 0 28 L0 8 Z"
+          fill="url(#cyShield)" stroke="#fff" stroke-width="1.5"/>
+    <text x="25" y="32" font-family="Arial Black, sans-serif" font-size="22" font-weight="900"
+          fill="#fff" text-anchor="middle">C</text>
+  </g>
+
+  <!-- CyberAr Text -->
+  <text x="65" y="32" font-family="Arial Black, sans-serif" font-size="24" font-weight="900"
+        fill="#0f172a">Cyber</text>
+  <text x="135" y="32" font-family="Arial Black, sans-serif" font-size="24" font-weight="900"
+        fill="#0ea5e9">Ar</text>
+
+  <!-- Tagline -->
+  <text x="65" y="50" font-family="Arial, sans-serif" font-size="9" font-weight="600"
+        fill="#64748b" letter-spacing="2">CYBERSECURITY REFERENCE</text>
+</svg>

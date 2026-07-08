@@ -1,0 +1,621 @@
+{
+  "paths": [
+    {
+      "id": "beginner",
+      "title": "مسار المبتدئ",
+      "subtitle": "الأساسيات من الصفر",
+      "description": "ابدأ رحلتك في الأمن السيبراني بفهم الأساسيات: الشبكات، نظام Linux، والبرمجة. مصمم للمبتدئين بدون أي خلفية تقنية.",
+      "duration": "3-6 أشهر",
+      "level": "مبتدئ",
+      "color": "cyan",
+      "icon": "sprout",
+      "topics": [
+        "أساسيات الشبكات (TCP/IP, DNS, HTTP)",
+        "نظام Linux وسطر الأوامر",
+        "مقدمة في البرمجة (Python/Bash)",
+        "فهم نظام التشغيل",
+        "مفاهيم التشفير الأساسية",
+        "مقدمة في OWASP Top 10"
+      ],
+      "resources": [
+        "CompTIA Network+",
+        "Linux Fundamentals (TryHackMe)",
+        "Python for Everybody (Coursera)",
+        "OverTheWire Bandit"
+      ]
+    },
+    {
+      "id": "intermediate",
+      "title": "مسار المتوسط",
+      "subtitle": "اختبار الاختراق و Bug Bounty",
+      "description": "تعمق في اختبار الاختراق وأمن تطبيقات الويب. تعلم استخدام الأدوات المهنية وابدأ رحلتك في Bug Bounty Programs.",
+      "duration": "6-9 أشهر",
+      "level": "متوسط",
+      "color": "emerald",
+      "icon": "target",
+      "topics": [
+        "اختبار اختراق تطبيقات الويب",
+        "Burp Suite باحترافية",
+        "OWASP Top 10 بعمق",
+        "Bug Bounty Methodology",
+        "SQL Injection, XSS, CSRF",
+        "Active Directory Attacks"
+      ],
+      "resources": [
+        "PortSwigger Web Security Academy",
+        "HackTheBox",
+        "TryHackMe Offensive Path",
+        "PNPT Certification"
+      ]
+    },
+    {
+      "id": "advanced",
+      "title": "مسار المتقدم",
+      "subtitle": "Red Team و Cloud Security",
+      "description": "احترف عمليات Red Team، تحليل البرمجيات الخبيثة، وأمن السحابة. هذا المسار للمحترفين الراغبين في العمل على مستوى المؤسسات.",
+      "duration": "9-12 شهر",
+      "level": "متقدم",
+      "color": "purple",
+      "icon": "shield-alert",
+      "topics": [
+        "Red Team Operations",
+        "Malware Analysis & Reverse Engineering",
+        "Cloud Security (AWS/Azure/GCP)",
+        "Container Security (Docker/K8s)",
+        "Advanced Exploitation",
+        "OSCP / OSCE / CRTO"
+      ],
+      "resources": [
+        "Offensive Security OSCP",
+        "SANS SEC660",
+        "Zero Point Security CRTO",
+        "Cloud Security Alliance (CCSP)"
+      ]
+    }
+  ],
+  "tools": {
+    "networking": [
+      {
+        "name": "Nmap",
+        "description": "ماسح الشبكات الأشهر. يستخدم لاكتشاف المنافذ والخدمات ونظام التشغيل.",
+        "category": "Network Scanner",
+        "platform": "Cross-platform",
+        "license": "GPL-2.0",
+        "website": "https://nmap.org",
+        "difficulty": "متوسط",
+        "tags": ["network", "scanning", "reconnaissance"]
+      },
+      {
+        "name": "Wireshark",
+        "description": "محلل حزم الشبكة. يلتقط ويفحص حركة المرور على الشبكة بعمق.",
+        "category": "Packet Analyzer",
+        "platform": "Cross-platform",
+        "license": "GPL-2.0",
+        "website": "https://www.wireshark.org",
+        "difficulty": "متوسط",
+        "tags": ["network", "forensics", "analysis"]
+      },
+      {
+        "name": "Masscan",
+        "description": "أسرع ماسح منافذ في العالم. يفحص الإنترنت بالكامل في دقائق.",
+        "category": "Port Scanner",
+        "platform": "Cross-platform",
+        "license": "AGPL-3.0",
+        "website": "https://github.com/robertdavidgraham/masscan",
+        "difficulty": "متقدم",
+        "tags": ["network", "scanning", "performance"]
+      },
+      {
+        "name": "Netcat",
+        "description": "سكين الجيش السويسري للشبكات. أداة متعددة الاستخدامات لاتصالات TCP/UDP.",
+        "category": "Network Utility",
+        "platform": "Cross-platform",
+        "license": "GPL-2.0",
+        "website": "https://nc110.sourceforge.io",
+        "difficulty": "مبتدئ",
+        "tags": ["network", "utility", "pivoting"]
+      }
+    ],
+    "web": [
+      {
+        "name": "Burp Suite",
+        "description": "المنصة الأشمل لاختبار اختراق تطبيقات الويب. تتضمن Proxy, Scanner, Intruder, Repeater.",
+        "category": "Web Security Scanner",
+        "platform": "Cross-platform (Java)",
+        "license": "Community + Pro",
+        "website": "https://portswigger.net/burp",
+        "difficulty": "متوسط",
+        "tags": ["web", "proxy", "scanner"]
+      },
+      {
+        "name": "OWASP ZAP",
+        "description": "بديل مفتوح المصدر لـ Burp Suite. ماسح أمان تطبيقات ويب آلي.",
+        "category": "Web Security Scanner",
+        "platform": "Cross-platform",
+        "license": "Apache-2.0",
+        "website": "https://www.zaproxy.org",
+        "difficulty": "مبتدئ",
+        "tags": ["web", "scanner", "opensource"]
+      },
+      {
+        "name": "SQLMap",
+        "description": "أداة كشف واستغلال ثغرات SQL Injection آلياً. تدعم جميع قواعد البيانات الرئيسية.",
+        "category": "SQL Injection",
+        "platform": "Cross-platform",
+        "license": "GPL-2.0",
+        "website": "https://sqlmap.org",
+        "difficulty": "متوسط",
+        "tags": ["web", "sqli", "exploitation"]
+      },
+      {
+        "name": "Nikto",
+        "description": "ماسنر ثغرات خوادم الويب. يفحص أكثر من 6700 ملف/برنامج خطير.",
+        "category": "Web Server Scanner",
+        "platform": "Cross-platform",
+        "license": "GPL-2.0",
+        "website": "https://github.com/sullo/nikto",
+        "difficulty": "مبتدئ",
+        "tags": ["web", "server", "vulnerability"]
+      },
+      {
+        "name": "Gobuster",
+        "description": "أداة سريعة لفرض brute-force على المجلدات والملفات والنطاقات الفرعية.",
+        "category": "Directory Buster",
+        "platform": "Cross-platform (Go)",
+        "license": "Apache-2.0",
+        "website": "https://github.com/OJ/gobuster",
+        "difficulty": "متوسط",
+        "tags": ["web", "bruteforce", "reconnaissance"]
+      }
+    ],
+    "exploitation": [
+      {
+        "name": "Metasploit",
+        "description": "إطار عمل اختبار الاختراق الأشهر. يحتوي على آلاف الاستغلالات والـ payloads.",
+        "category": "Exploitation Framework",
+        "platform": "Cross-platform",
+        "license": "BSD-3-Clause",
+        "website": "https://www.metasploit.com",
+        "difficulty": "متوسط",
+        "tags": ["exploit", "framework", "payloads"]
+      },
+      {
+        "name": "Cobalt Strike",
+        "description": "منصة Red Team تجارية لمحاكاة خصوم متقدمين (APT). تُستخدم في عمليات المؤسسات.",
+        "category": "Red Team Platform",
+        "platform": "Windows",
+        "license": "Commercial",
+        "website": "https://www.cobaltstrike.com",
+        "difficulty": "متقدم",
+        "tags": ["redteam", "c2", "apt"]
+      },
+      {
+        "name": "CrackMapExec",
+        "description": "أداة ما بعد الاستغلال لشبكات Active Directory. تجمع بين عدة أدوات في واجهة واحدة.",
+        "category": "AD Post-Exploitation",
+        "platform": "Linux",
+        "license": "GPL-3.0",
+        "website": "https://github.com/byt3bl33d3r/CrackMapExec",
+        "difficulty": "متقدم",
+        "tags": ["active-directory", "postexploit", "windows"]
+      },
+      {
+        "name": "BloodHound",
+        "description": "أداة رسم خرائط علاقات Active Directory. تكشف مسارات الهجوم المخفية.",
+        "category": "AD Analysis",
+        "platform": "Cross-platform",
+        "license": "GPL-3.0",
+        "website": "https://github.com/BloodHoundAD/BloodHound",
+        "difficulty": "متقدم",
+        "tags": ["active-directory", "visualization", "attack-paths"]
+      }
+    ],
+    "osint": [
+      {
+        "name": "Maltego",
+        "description": "أداة OSINT لاستخراج البيانات وتصورها من مصادر متعددة. تكشف العلاقات بين الكيانات.",
+        "category": "OSINT Platform",
+        "platform": "Cross-platform (Java)",
+        "license": "Commercial + Community",
+        "website": "https://www.maltego.com",
+        "difficulty": "متوسط",
+        "tags": ["osint", "visualization", "reconnaissance"]
+      },
+      {
+        "name": "theHarvester",
+        "description": "أداة OSINT لجمع عناوين البريد الإلكتروني، النطاقات الفرعية، والأسماء من مصادر عامة.",
+        "category": "OSINT",
+        "platform": "Cross-platform",
+        "license": "GPL-2.0",
+        "website": "https://github.com/laramies/theHarvester",
+        "difficulty": "مبتدئ",
+        "tags": ["osint", "emails", "subdomains"]
+      },
+      {
+        "name": "Sherlock",
+        "description": "يبحث عن أسماء المستخدمين في أكثر من 400 شبكة اجتماعية ومواقع ويب.",
+        "category": "Username OSINT",
+        "platform": "Cross-platform",
+        "license": "MIT",
+        "website": "https://github.com/sherlock-project/sherlock",
+        "difficulty": "مبتدئ",
+        "tags": ["osint", "social-media", "usernames"]
+      },
+      {
+        "name": "Recon-ng",
+        "description": "إطار عمل OSINT كامل مستوحى من Metasploit. وحدات قابلة للتوسيع.",
+        "category": "OSINT Framework",
+        "platform": "Cross-platform",
+        "license": "GPL-3.0",
+        "website": "https://github.com/lanmaster53/recon-ng",
+        "difficulty": "متوسط",
+        "tags": ["osint", "framework", "modular"]
+      }
+    ],
+    "wireless": [
+      {
+        "name": "Aircrack-ng",
+        "description": "مجموعة أدوات كاملة لتقييم أمان شبكات WiFi. كسر تشفير WEP/WPA/WPA2.",
+        "category": "WiFi Security",
+        "platform": "Linux",
+        "license": "GPL-2.0",
+        "website": "https://www.aircrack-ng.org",
+        "difficulty": "متوسط",
+        "tags": ["wireless", "wifi", "wpa"]
+      },
+      {
+        "name": "Wifite",
+        "description": "أداة آلية لاختبار أمان الشبكات اللاسلكية. تختصر خطوات aircrack-ng المتعددة.",
+        "category": "WiFi Automation",
+        "platform": "Linux",
+        "license": "GPL-2.0",
+        "website": "https://github.com/derv82/wifite2",
+        "difficulty": "متوسط",
+        "tags": ["wireless", "automation", "wpa"]
+      }
+    ],
+    "forensics": [
+      {
+        "name": "Autopsy",
+        "description": "منصة تحقيقات جنائية رقمية مفتوحة المصدر. تحليل الأقراص والذاكرة.",
+        "category": "Digital Forensics",
+        "platform": "Windows/Linux",
+        "license": "GPL-2.0",
+        "website": "https://www.autopsy.com",
+        "difficulty": "متوسط",
+        "tags": ["forensics", "disk", "investigation"]
+      },
+      {
+        "name": "Volatility",
+        "description": "إطار عمل تحليل ذاكرة الوصول العشوائي. استخراج البرمجيات الخبيثة من dumps الذاكرة.",
+        "category": "Memory Forensics",
+        "platform": "Cross-platform",
+        "license": "GPL-2.0",
+        "website": "https://www.volatilityfoundation.org",
+        "difficulty": "متقدم",
+        "tags": ["forensics", "memory", "malware"]
+      },
+      {
+        "name": "Binwalk",
+        "description": "أداة تحليل وتحليل firmware. تستخرج الملفات المضمنة في صور البرامج الثابتة.",
+        "category": "Firmware Analysis",
+        "platform": "Cross-platform",
+        "license": "MIT",
+        "website": "https://github.com/ReFirmLabs/binwalk",
+        "difficulty": "متوسط",
+        "tags": ["forensics", "firmware", "iot"]
+      }
+    ],
+    "passwords": [
+      {
+        "name": "Hashcat",
+        "description": "أسرع أداة لكسر كلمات المرور في العالم. تدعم أكثر من 300 خوارزمية hashing.",
+        "category": "Password Cracker",
+        "platform": "Cross-platform",
+        "license": "MIT",
+        "website": "https://hashcat.net/hashcat",
+        "difficulty": "متقدم",
+        "tags": ["passwords", "cracking", "gpu"]
+      },
+      {
+        "name": "John the Ripper",
+        "description": "كاسر كلمات المرور الكلاسيكي. يدعم مئات أنواع hashes وأنماط متعددة.",
+        "category": "Password Cracker",
+        "platform": "Cross-platform",
+        "license": "GPL-2.0",
+        "website": "https://www.openwall.com/john",
+        "difficulty": "متوسط",
+        "tags": ["passwords", "cracking", "dictionary"]
+      },
+      {
+        "name": "Hydra",
+        "description": "أداة brute-force للشبكات. تدعم SSH, FTP, HTTP, RDP وأكثر.",
+        "category": "Network Login Cracker",
+        "platform": "Cross-platform",
+        "license": "GPL-3.0",
+        "website": "https://github.com/vanhauser-thc/thc-hydra",
+        "difficulty": "متوسط",
+        "tags": ["bruteforce", "network", "logins"]
+      }
+    ]
+  },
+  "ctf": [
+    {
+      "name": "TryHackMe",
+      "description": "منصة تعليمية تفاعلية بمحتوى موجه للمبتدئين والمحترفين. غرف (rooms) بتوجيه خطوة بخطوة.",
+      "url": "https://tryhackme.com",
+      "difficulty": "مبتدئ - متقدم",
+      "type": "Learning Platform",
+      "language": "English",
+      "price": "مجاني + Premium"
+    },
+    {
+      "name": "HackTheBox",
+      "description": "منصة عالمية لاختبار الاختراق. آلات (machines) حقيقية، تحديات، ومسابقات.",
+      "url": "https://www.hackthebox.com",
+      "difficulty": "متوسط - متقدم",
+      "type": "Practice Platform",
+      "language": "English",
+      "price": "مجاني + VIP"
+    },
+    {
+      "name": "PortSwigger Web Security Academy",
+      "description": "أكاديمية أمن الويب المجانية من مطوري Burp Suite. مختبرات تفاعلية مجانية 100%.",
+      "url": "https://portswigger.net/web-security",
+      "difficulty": "مبتدئ - متقدم",
+      "type": "Free Academy",
+      "language": "English",
+      "price": "مجاني"
+    },
+    {
+      "name": "OverTheWire",
+      "description": "تحديات wargames للتعلم عبر SSH. Bandit للمبتدئين، Narnia/Behemoth للمتقدمين.",
+      "url": "https://overthewire.org/wargames",
+      "difficulty": "مبتدئ - متقدم",
+      "type": "Wargames",
+      "language": "English",
+      "price": "مجاني"
+    },
+    {
+      "name": "PicoCTF",
+      "description": "أكبر مسابقة CTF سنوية للطلاب من Carnegie Mellon. مناسبة للمبتدئين.",
+      "url": "https://picoctf.org",
+      "difficulty": "مبتدئ - متوسط",
+      "type": "CTF Competition",
+      "language": "English",
+      "price": "مجاني"
+    },
+    {
+      "name": "Root Me",
+      "description": "منصة فرنسية تضم تحديات متنوعة في جميع مجالات الأمن السيبراني.",
+      "url": "https://www.root-me.org",
+      "difficulty": "متوسط - متقدم",
+      "type": "Practice Platform",
+      "language": "French/English",
+      "price": "مجاني"
+    }
+  ],
+  "resources": {
+    "youtube": [
+      {
+        "name": "NetworkChuck",
+        "description": "قناة ممتازة للمبتدئين. محتوى عملي وشيق عن الأمن السيبراني والشبكات.",
+        "url": "https://www.youtube.com/@NetworkChuck",
+        "language": "English",
+        "subscribers": "3M+"
+      },
+      {
+        "name": "John Hammond",
+        "description": "قناة متخصصة في CTFs، تحليل البرمجيات الخبيثة، ومحتوى تقني عميق.",
+        "url": "https://www.youtube.com/@_JohnHammond",
+        "language": "English",
+        "subscribers": "500K+"
+      },
+      {
+        "name": "IppSec",
+        "description": "الأفضل في walkthroughs HackTheBox. يشرح تقنيات الاختراق خطوة بخطوة.",
+        "url": "https://www.youtube.com/@ippsec",
+        "language": "English",
+        "subscribers": "500K+"
+      },
+      {
+        "name": "The Cyber Mentor",
+        "description": "قناة Heath Adams. محتوى عن Ethical Hacking، Bug Bounty، والتحضير للشهادات.",
+        "url": "https://www.youtube.com/@TCMSecurityAcademy",
+        "language": "English",
+        "subscribers": "1M+"
+      },
+      {
+      "name": "مجتمع iSecur1ty",
+      "description": "مجتمع عربي رائد في الأمن السيبراني. محتوى تعليمي ومقالات بالعربية.",
+      "url": "https://www.youtube.com/@isecur1ty",
+      "language": "Arabic",
+      "subscribers": "100K+"
+      },
+      {
+        "name": "محمد عيسى | M7modReda",
+      "description": "قناة عربية ممتازة في الأمن السيبراني و Bug Bounty.",
+      "url": "https://www.youtube.com/@M7modReda",
+      "language": "Arabic",
+      "subscribers": "50K+"
+      }
+    ],
+    "courses": [
+      {
+        "name": "TryHackMe Premium",
+        "description": "مسارات تعلم منظمة من الصفر للاحتراف مع مختبرات تفاعلية.",
+        "url": "https://tryhackme.com",
+        "price": "$10/شهر",
+        "level": "مبتدئ - متقدم"
+      },
+      {
+        "name": "PortSwigger Web Security Academy",
+        "description": "دروس مجانية شاملة في أمان تطبيقات الويب من خبراء Burp Suite.",
+        "url": "https://portswigger.net/web-security",
+        "price": "مجاني",
+        "level": "مبتدئ - متقدم"
+      },
+      {
+        "name": "HackTheBox Academy",
+        "description": "دورات تفاعلية مع مختبرات متخصصة في مجالات محددة.",
+        "url": "https://academy.hackthebox.com",
+        "price": "مجاني + Premium",
+        "level": "متوسط - متقدم"
+      },
+      {
+        "name": "SANS Cyber Aces",
+        "description": "دورات مجانية في أساسيات الأمن السيبراني من SANS Institute.",
+        "url": "https://www.cyberaces.org",
+        "price": "مجاني",
+        "level": "مبتدئ"
+      },
+      {
+        "name": "Coursera - Google Cybersecurity Certificate",
+        "description": "شهادة مهنية من Google تغطي أساسيات الأمن السيبراني.",
+        "url": "https://www.coursera.org/professional-certificates/google-cybersecurity",
+        "price": "مجاني + شهادة مدفوعة",
+        "level": "مبتدئ"
+      }
+    ],
+    "books": [
+      {
+        "title": "The Web Application Hacker's Handbook",
+        "author": "Stuttard & Pinto",
+        "description": "المرجع الأشمل لاختبار اختراق تطبيقات الويب. طبعة ثانية.",
+        "level": "متوسط - متقدم",
+        "year": 2011
+      },
+      {
+        "title": "Hacking: The Art of Exploitation",
+        "author": "Jon Erickson",
+        "description": "كتاب عميق يستكشف البرمجة، الشبكات، والاستغلال من الأساس.",
+        "level": "متوسط - متقدم",
+        "year": 2008
+      },
+      {
+        "title": "The Hacker Playbook 3",
+        "author": "Peter Kim",
+        "description": "دليل عملي لاختبار الاختراق بأسلوب كرة القدم. أحدث تقنيات الهجوم.",
+        "level": "متوسط",
+        "year": 2018
+      },
+      {
+        "title": "Red Team Field Manual (RTFM)",
+        "author": "Ben Clark",
+        "description": "مرجع سريع للأوامر والتقنيات المستخدمة في Red Team.",
+        "level": "متوسط - متقدم",
+        "year": 2014
+      },
+      {
+        "title": "Penetration Testing",
+        "author": "Georgia Weidman",
+        "description": "مقدمة شاملة لاختبار الاختراق. ممتاز للمبتدئين والمتوسطين.",
+        "level": "مبتدئ - متوسط",
+        "year": 2014
+      },
+      {
+        "title": "Network Security Assessment",
+        "author": "Chris McNab",
+        "description": "دليل تقييم أمان الشبكات. تقنيات استطلاع متقدمة.",
+        "level": "متقدم",
+        "year": 2016
+      }
+    ],
+    "certifications": [
+      {
+        "name": "CompTIA Security+",
+        "description": "شهادة أساسية معترف بها عالمياً. نقطة دخول ممتازة للمهنة.",
+        "cost": "$390",
+        "level": "مبتدئ"
+      },
+      {
+        "name": "CEH (Certified Ethical Hacker)",
+        "description": "شهادة EC-Council في الاختراق الأخلاقي. مطلوبة في سوق العمل.",
+        "cost": "$1,199+",
+        "level": "متوسط"
+      },
+      {
+        "name": "OSCP (Offensive Security Certified Professional)",
+        "description": "الأكثر طلباً في اختبار الاختراق العملي. امتحان 24 ساعة.",
+        "cost": "$1,749",
+        "level": "متقدم"
+      },
+      {
+        "name": "PNPT (Practical Network Penetration Tester)",
+        "description": "شهادة عملية من TCM Security. تركز على Active Directory.",
+        "cost": "$499",
+        "level": "متوسط"
+      },
+      {
+        "name": "CRTO (Certified Red Team Operator)",
+        "description": "شهادة متقدمة في عمليات Red Team من Zero Point Security.",
+        "cost": "$549",
+        "level": "متقدم"
+      }
+    ]
+  },
+  "commands": [
+    {
+      "category": "معلومات النظام",
+      "icon": "info",
+      "commands": [
+        {"cmd": "uname -a", "description": "عرض معلومات النظام والنواة"},
+        {"cmd": "whoami", "description": "عرض اسم المستخدم الحالي"},
+        {"cmd": "id", "description": "عرض معرف المستخدم والمجموعات"},
+        {"cmd": "hostname", "description": "عرض اسم الجهاز"},
+        {"cmd": "uptime", "description": "مدة تشغيل النظام"}
+      ]
+    },
+    {
+      "category": "التنقل",
+      "icon": "navigation",
+      "commands": [
+        {"cmd": "pwd", "description": "طباعة مجلد العمل الحالي"},
+        {"cmd": "ls -la", "description": "قائمة الملفات مع التفاصيل"},
+        {"cmd": "cd /path", "description": "تغيير المجلد"},
+        {"cmd": "find / -name 'file'", "description": "البحث عن ملف في النظام"}
+      ]
+    },
+    {
+      "category": "الملفات",
+      "icon": "file",
+      "commands": [
+        {"cmd": "cat file.txt", "description": "عرض محتوى ملف"},
+        {"cmd": "nano file.txt", "description": "تحرير ملف في المحرر nano"},
+        {"cmd": "chmod 755 file", "description": "تغيير صلاحيات الملف"},
+        {"cmd": "chown user:group file", "description": "تغيير ملكية الملف"},
+        {"cmd": "grep 'pattern' file", "description": "البحث عن نص في ملف"}
+      ]
+    },
+    {
+      "category": "الشبكات",
+      "icon": "network",
+      "commands": [
+        {"cmd": "ifconfig / ip a", "description": "عرض واجهات الشبكة وعناوين IP"},
+        {"cmd": "ping host", "description": "فحص اتصال الشبكة"},
+        {"cmd": "netstat -tulnp", "description": "عرض المنافذ المفتوحة والخدمات"},
+        {"cmd": "ss -tulnp", "description": "بديل أحدث لـ netstat"},
+        {"cmd": "curl -I https://url", "description": "جلب ترويسات HTTP"},
+        {"cmd": "wget url", "description": "تنزيل ملف من الإنترنت"}
+      ]
+    },
+    {
+      "category": "اختبار الاختراق",
+      "icon": "shield",
+      "commands": [
+        {"cmd": "nmap -sV -sC target", "description": "فحص المنافذ والخدمات الافتراضية"},
+        {"cmd": "nmap -p- target", "description": "فحص جميع المنافذ (65535)"},
+        {"cmd": "gobuster dir -u url -w wordlist", "description": "اكتشاف المجلدات والملفات المخفية"},
+        {"cmd": "sqlmap -u 'url' --dbs", "description": "كشف واستغلال SQL Injection"},
+        {"cmd": "hydra -L users.txt -P pass.txt target service", "description": "هجوم brute-force على خدمة"},
+        {"cmd": "john --wordlist=rockyou.txt hash.txt", "description": "كسر كلمات المرور"}
+      ]
+    }
+  ],
+  "stats": {
+    "tools": 50,
+    "paths": 3,
+    "challenges": 6,
+    "articles": 5
+  }
+}

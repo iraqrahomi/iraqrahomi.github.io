@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+Disallow: /js/
+Disallow: /css/
+Disallow: /data/
+
+Sitemap: https://iraqrahomi.github.io/sitemap.xml
+Sitemap: https://iraqrahomi.github.io/sitemap.xml

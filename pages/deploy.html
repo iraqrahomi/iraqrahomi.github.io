@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>دليل النشر | CyberAr - انشر موقعك على الإنترنت</title>
+  <meta name="description" content="دليل خطوة بخطوة لنشر موقع CyberAr على GitHub Pages وربطه بنطاق cyberar.com مجاناً.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://iraqrahomi.github.io/pages/deploy.html">
+
+  <link rel="icon" type="image/svg+xml" href="../assets/icons/favicon.svg">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body class="bg-white text-slate-900">
+
+  <nav class="fixed top-0 left-0 right-0 z-50 bg-white/85 backdrop-blur-xl border-b border-slate-200">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+      <a href="../index.html" class="flex items-center gap-3">
+        <img src="../assets/icons/logo.svg" alt="CyberAr" class="h-10">
+      </a>
+      <div class="hidden md:flex items-center gap-6 text-sm">
+        <a href="../index.html" class="nav-link">الرئيسية</a>
+        <a href="tools.html" class="nav-link">الأدوات</a>
+        <a href="books.html" class="nav-link">المكتبة</a>
+        <a href="deploy.html" class="nav-link active">النشر</a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="pt-32 pb-12 px-6 bg-gradient-to-b from-cyan-50 to-white">
+    <div class="max-w-4xl mx-auto text-center">
+      <div class="section-eyebrow">🚀 دليل النشر</div>
+      <h1 class="section-title">انشر <span class="accent">CyberAr</span> على الإنترنت</h1>
+      <p class="text-slate-600 max-w-2xl mx-auto text-lg">
+        3 طرق مجانية 100% لنشر موقعك والحصول على رابط مباشر. كل طريقة مع شرح خطوة بخطوة.
+      </p>
+    </div>
+  </header>
+
+  <article class="py-12 px-6">
+    <div class="max-w-4xl mx-auto">
+
+      <!-- الطريقة 1 -->
+      <section class="mb-12">
+        <div class="glass-card p-8 border-r-4 border-cyan-500">
+          <div class="flex items-center gap-4 mb-6">
+            <div class="w-16 h-16 rounded-2xl bg-cyan-500 text-white flex items-center justify-center font-black text-2xl">1</div>
+            <div>
+              <h2 class="text-2xl font-black text-slate-900">GitHub Pages (موصى به)</h2>
+              <p class="text-slate-600">مجاني · HTTPS تلقائي · يدعم Domain مخصص</p>
+            </div>
+          </div>
+
+          <div class="space-y-6">
+            <div>
+              <h3 class="font-black text-lg mb-3 text-slate-900 flex items-center gap-2">
+                <i class="fa-solid fa-circle-check text-cyan-600"></i>
+                الخطوة 1: أنشئ مستودع GitHub
+              </h3>
+              <ol class="list-decimal mr-6 space-y-2 text-slate-700">
+                <li>روح <a href="https://github.com/new" target="_blank" rel="noopener" class="text-cyan-600 font-bold hover:underline">github.com/new</a></li>
+                <li>اسم المستودع: <code class="font-mono bg-slate-100 px-2 py-1 rounded text-sm">iraqrahomi.github.io</code></li>
+                <li>اختر <strong>Public</strong></li>
+                <li>اضغط <strong>Create repository</strong></li>
+              </ol>
+            </div>
+
+            <div>
+              <h3 class="font-black text-lg mb-3 text-slate-900 flex items-center gap-2">
+                <i class="fa-solid fa-circle-check text-cyan-600"></i>
+                الخطوة 2: ارفع الملفات
+              </h3>
+              <p class="text-slate-700 mb-3">افتح PowerShell في مجلد المشروع ونفّذ:</p>
+              <div class="bg-slate-900 text-slate-100 p-4 rounded-xl font-mono text-sm overflow-x-auto" dir="ltr">
+                <p class="text-slate-400 mb-2"># Initialize git</p>
+                <p>git init</p>
+                <p>git add .</p>
+                <p>git commit -m "🚀 Launch CyberAr v2.0"</p>
+                <p>git branch -M main</p>
+                <p class="text-slate-400 mt-3 mb-2"># Connect to GitHub</p>
+                <p>git remote add origin https://github.com/iraqrahomi/iraqrahomi.github.io.git</p>
+                <p>git push -u origin main</p>
+              </div>
+            </div>
+
+            <div>
+              <h3 class="font-black text-lg mb-3 text-slate-900 flex items-center gap-2">
+                <i class="fa-solid fa-circle-check text-cyan-600"></i>
+                الخطوة 3: فعّل GitHub Pages
+              </h3>
+              <ol class="list-decimal mr-6 space-y-2 text-slate-700">
+                <li>روح **Settings** في المستودع</li>
+                <li>اختر **Pages** من القائمة الجانبية</li>
+                <li>تحت **Source**: اختر **GitHub Actions**</li>
+                <li>انتظر 2-3 دقائق</li>
+                <li>موقعك الآن لايف على: <code class="font-mono bg-slate-100 px-2 py-1 rounded">https://iraqrahomi.github.io</code></li>
+              </ol>
+            </div>
+
+            <div class="callout">
+              <p class="text-sm text-slate-700">
+                ✅ <strong>مميزات:</strong> HTTPS مجاني · PWA جاهز · SEO كامل · صفر تكلفة
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- الطريقة 2 -->
+      <section class="mb-12">
+        <div class="glass-card p-8 border-r-4 border-blue-500">
+          <div class="flex items-center gap-4 mb-6">
+            <div class="w-16 h-16 rounded-2xl bg-blue-500 text-white flex items-center justify-center font-black text-2xl">2</div>
+            <div>
+              <h2 class="text-2xl font-black text-slate-900">Netlify (سحب وإفلات)</h2>
+              <p class="text-slate-600">مجاني · بدون Git · نشر خلال ثوانٍ</p>
+            </div>
+          </div>
+
+          <ol class="list-decimal mr-6 space-y-3 text-slate-700">
+            <li>روح <a href="https://app.netlify.com/drop" target="_blank" rel="noopener" class="text-blue-600 font-bold hover:underline">app.netlify.com/drop</a></li>
+            <li><strong>اسحب مجلد المشروع كامل</strong> وأفلته في الصفحة</li>
+            <li>انتظر 30 ثانية</li>
+            <li>موقعك لايف على: <code class="font-mono bg-slate-100 px-2 py-1 rounded">https://random-name.netlify.app</code></li>
+            <li>يمكنك تغيير الاسم إلى <code class="font-mono bg-slate-100 px-2 py-1 rounded">cyberar.netlify.app</code></li>
+          </ol>
+        </div>
+      </section>
+
+      <!-- الطريقة 3 -->
+      <section class="mb-12">
+        <div class="glass-card p-8 border-r-4 border-sky-500">
+          <div class="flex items-center gap-4 mb-6">
+            <div class="w-16 h-16 rounded-2xl bg-sky-500 text-white flex items-center justify-center font-black text-2xl">3</div>
+            <div>
+              <h2 class="text-2xl font-black text-slate-900">Vercel (الأسرع)</h2>
+              <p class="text-slate-600">مجاني · CDN عالمي · أداء خرافي</p>
+            </div>
+          </div>
+
+          <ol class="list-decimal mr-6 space-y-3 text-slate-700">
+            <li>روح <a href="https://vercel.com/new" target="_blank" rel="noopener" class="text-sky-600 font-bold hover:underline">vercel.com/new</a></li>
+            <li>سجّل دخول بحساب GitHub</li>
+            <li>اختر المستودع <code class="font-mono bg-slate-100 px-2 py-1 rounded">iraqrahomi.github.io</code></li>
+            <li>اضغط <strong>Deploy</strong></li>
+            <li>خلال 60 ثانية موقعك لايف على: <code class="font-mono bg-slate-100 px-2 py-1 rounded">cyberar.vercel.app</code></li>
+          </ol>
+        </div>
+      </section>
+
+      <!-- ربط Domain مخصص -->
+      <section class="mb-12">
+        <h2 class="text-3xl font-black mb-6 text-slate-900 flex items-center gap-3">
+          <span class="w-10 h-10 rounded-lg bg-amber-100 flex items-center justify-center text-amber-600 font-black">
+            <i class="fa-solid fa-globe"></i>
+          </span>
+          ربط Domain مخصص (cyberar.com)
+        </h2>
+
+        <div class="glass-card p-8">
+          <h3 class="font-black text-lg mb-3 text-slate-900">1. اشترِ النطاق</h3>
+          <p class="text-slate-700 mb-3">من Namecheap أو GoDaddy أو Cloudflare Registrar. ابحث عن <code class="font-mono bg-slate-100 px-2 py-1 rounded">cyberar.com</code></p>
+
+          <h3 class="font-black text-lg mb-3 mt-6 text-slate-900">2. أضف DNS Records</h3>
+          <p class="text-slate-700 mb-3">في إعدادات DNS للنطاق:</p>
+          <div class="bg-slate-900 text-slate-100 p-4 rounded-xl font-mono text-sm overflow-x-auto" dir="ltr">
+            <p class="text-cyan-400"># For apex domain (cyberar.com)</p>
+            <p>A    @    185.199.108.153</p>
+            <p>A    @    185.199.109.153</p>
+            <p>A    @    185.199.110.153</p>
+            <p>A    @    185.199.111.153</p>
+            <p class="text-cyan-400 mt-3"># For www subdomain</p>
+            <p>CNAME www  iraqrahomi.github.io</p>
+          </div>
+
+          <h3 class="font-black text-lg mb-3 mt-6 text-slate-900">3. فعّل Domain في GitHub</h3>
+          <ol class="list-decimal mr-6 space-y-2 text-slate-700">
+            <li>Settings → Pages → Custom domain</li>
+            <li>اكتب: <code class="font-mono bg-slate-100 px-2 py-1 rounded">cyberar.com</code></li>
+            <li>فعّل <strong>Enforce HTTPS</strong></li>
+            <li>انتظر 24 ساعة للتفعيل الكامل</li>
+          </ol>
+        </div>
+      </section>
+
+      <!-- Checklist -->
+      <section class="mb-12">
+        <h2 class="text-3xl font-black mb-6 text-slate-900 flex items-center gap-3">
+          <span class="w-10 h-10 rounded-lg bg-emerald-100 flex items-center justify-center text-emerald-600 font-black">
+            <i class="fa-solid fa-list-check"></i>
+          </span>
+          Checklist قبل النشر
+        </h2>
+
+        <div class="glass-card p-6">
+          <ul class="space-y-3 text-slate-700">
+            <li class="flex items-start gap-3"><input type="checkbox" checked class="mt-1"> <span>اختبار الموقع محلياً (http://localhost:8080)</span></li>
+            <li class="flex items-start gap-3"><input type="checkbox" checked class="mt-1"> <span>كل الصفحات تعمل بدون 404</span></li>
+            <li class="flex items-start gap-3"><input type="checkbox" checked class="mt-1"> <span>SEO meta tags كاملة (title, description, OG)</span></li>
+            <li class="flex items-start gap-3"><input type="checkbox" checked class="mt-1"> <span>الصور مضغوطة (myphoto.jpg &lt; 50KB)</span></li>
+            <li class="flex items-start gap-3"><input type="checkbox" checked class="mt-1"> <span>Favicon + Logo موجودين</span></li>
+            <li class="flex items-start gap-3"><input type="checkbox" checked class="mt-1"> <span>PWA manifest جاهز</span></li>
+            <li class="flex items-start gap-3"><input type="checkbox" checked class="mt-1"> <span>sitemap.xml محدّث</span></li>
+            <li class="flex items-start gap-3"><input type="checkbox" checked class="mt-1"> <span>robots.txt صحيح</span></li>
+            <li class="flex items-start gap-3"><input type="checkbox"> <span>اختبار Lighthouse على Chrome DevTools</span></li>
+            <li class="flex items-start gap-3"><input type="checkbox"> <span>اختبار على الجوال الحقيقي</span></li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- بعد النشر -->
+      <section class="mb-12">
+        <div class="callout-blue">
+          <h3 class="font-black text-lg mb-3 text-slate-900">🎯 بعد النشر — الخطوات التالية</h3>
+          <ol class="list-decimal mr-6 space-y-2 text-slate-700">
+            <li><strong>أضف الموقع لـ Google Search Console</strong> — لإظهار في نتائج البحث</li>
+            <li><strong>سجّل في Bing Webmaster</strong></li>
+            <li><strong>أضف Google Analytics</strong> لتتبع الزوار</li>
+            <li><strong>شارك على Twitter</strong> بهاشتاق #CyberAr #سيبراني_عربي</li>
+            <li><strong>انشر في Reddit</strong>: r/cybersecurity, r/netsec</li>
+            <li><strong>شارك في Hacker News</strong></li>
+            <li><strong>أضف لـ Product Hunt</strong></li>
+          </ol>
+        </div>
+      </section>
+
+    </div>
+  </article>
+
+  <footer class="py-12 px-6 border-t border-slate-200 text-center">
+    <p class="text-slate-500 text-sm">© 2025 CyberAr · رحومي البراهيم</p>
+  </footer>
+
+</body>
+</html>

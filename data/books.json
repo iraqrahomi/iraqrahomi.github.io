@@ -1,0 +1,527 @@
+{
+  "categories": [
+    {
+      "id": "bug-bounty",
+      "title": "Bug Bounty",
+      "icon": "fa-bug",
+      "color": "red"
+    },
+    {
+      "id": "kali-linux",
+      "title": "Kali Linux",
+      "icon": "fa-linux",
+      "color": "blue"
+    },
+    {
+      "id": "web-security",
+      "title": "أمن تطبيقات الويب",
+      "icon": "fa-globe",
+      "color": "emerald"
+    },
+    {
+      "id": "python-hacking",
+      "title": "Python للاختراق",
+      "icon": "fa-code",
+      "color": "yellow"
+    },
+    {
+      "id": "red-team",
+      "title": "Red Team",
+      "icon": "fa-shield-halved",
+      "color": "purple"
+    },
+    {
+      "id": "linux",
+      "title": "Linux",
+      "icon": "fa-terminal",
+      "color": "slate"
+    },
+    {
+      "id": "networking",
+      "title": "الشبكات",
+      "icon": "fa-network-wired",
+      "color": "cyan"
+    },
+    {
+      "id": "wifi",
+      "title": "WiFi والاسلكي",
+      "icon": "fa-wifi",
+      "color": "indigo"
+    },
+    {
+      "id": "soc",
+      "title": "SOC & Detection",
+      "icon": "fa-eye",
+      "color": "orange"
+    },
+    {
+      "id": "certification",
+      "title": "شهادات مهنية",
+      "icon": "fa-certificate",
+      "color": "amber"
+    },
+    {
+      "id": "osint",
+      "title": "OSINT",
+      "icon": "fa-user-secret",
+      "color": "pink"
+    }
+  ],
+  "books": [
+    {
+      "id": "antivirus-hackers-handbook",
+      "title": "Antivirus Hacker's Handbook",
+      "file": "Antivirus-Hackers-Handbook.pdf",
+      "category": "red-team",
+      "level": "متقدم",
+      "language": "English",
+      "pages": null,
+      "description": "دليل عميق لكيفية عمل برامج مكافحة الفيروسات وكيفية تجاوزها. مرجع أساسي لمحلل البرمجيات الخبيثة.",
+      "tags": [
+        "Malware",
+        "Reverse Engineering",
+        "Antivirus Bypass"
+      ]
+    },
+    {
+      "id": "autopsy-kali",
+      "title": "Autopsy for Kali Linux",
+      "file": "Autopsy for Kali Linux.pdf",
+      "category": "red-team",
+      "level": "متوسط",
+      "language": "English",
+      "description": "دليل استخدام Autopsy كأداة تحقيقات جنائية رقمية على Kali Linux.",
+      "tags": [
+        "Forensics",
+        "Autopsy",
+        "Investigation"
+      ]
+    },
+    {
+      "id": "black-hat-python",
+      "title": "Black Hat Python",
+      "file": "Black Hat Python.pdf",
+      "category": "python-hacking",
+      "level": "متوسط",
+      "language": "English",
+      "description": "كتاب مشهور عن استخدام Python في الاختراق الأخلاقي: بناء أدوات، شبكات، استغلال، ويب.",
+      "tags": [
+        "Python",
+        "Hacking",
+        "Networking"
+      ],
+      "summaryUrl": "pages/book-black-hat-python.html"
+    },
+    {
+      "id": "bug-bounty-course-1",
+      "title": "Bug Bounty Course - Vol 1",
+      "file": "Bug Bounty Course-1.pdf",
+      "category": "bug-bounty",
+      "level": "مبتدئ",
+      "language": "English",
+      "description": "أساسيات Bug Bounty: كيف تبدأ، المنصات، منهجية البحث.",
+      "tags": [
+        "Bug Bounty",
+        "Web Security"
+      ]
+    },
+    {
+      "id": "bug-bounty-course-3",
+      "title": "Bug Bounty Course - Vol 3",
+      "file": "Bug Bounty Course-3.pdf",
+      "category": "bug-bounty",
+      "level": "متوسط",
+      "language": "English",
+      "description": "تقنيات متقدمة في Bug Bounty: أتمتة، recon، كتابة تقارير.",
+      "tags": [
+        "Bug Bounty",
+        "Automation"
+      ]
+    },
+    {
+      "id": "bug-bounty-course-5",
+      "title": "Bug Bounty Course - Vol 5",
+      "file": "Bug Bounty Course-5.pdf",
+      "category": "bug-bounty",
+      "level": "متوسط",
+      "language": "English",
+      "description": "تطبيقات ويب متقدمة، ثغرات API، ومنطق الأعمال.",
+      "tags": [
+        "Bug Bounty",
+        "API",
+        "Business Logic"
+      ]
+    },
+    {
+      "id": "bug-bounty-course-6",
+      "title": "Bug Bounty Course - Vol 6",
+      "file": "Bug Bounty COurse-6.pdf",
+      "category": "bug-bounty",
+      "level": "متوسط",
+      "language": "English",
+      "description": "تقنيات متقدمة في Reconnaissance وتعداد Subdomains.",
+      "tags": [
+        "Bug Bounty",
+        "Recon"
+      ]
+    },
+    {
+      "id": "bug-bounty-course-7",
+      "title": "Bug Bounty Course - Vol 7",
+      "file": "Bug Bounty Course-7.pdf",
+      "category": "bug-bounty",
+      "level": "متقدم",
+      "language": "English",
+      "description": "Mobile Application Security و Android Hacking.",
+      "tags": [
+        "Bug Bounty",
+        "Mobile",
+        "Android"
+      ]
+    },
+    {
+      "id": "bug-bounty-course-8",
+      "title": "Bug Bounty Course - Vol 8",
+      "file": "Bug Bounty Course-8.pdf",
+      "category": "bug-bounty",
+      "level": "متقدم",
+      "language": "English",
+      "description": "OAuth, Authentication bugs, و Session Management.",
+      "tags": [
+        "Bug Bounty",
+        "Authentication",
+        "OAuth"
+      ]
+    },
+    {
+      "id": "bug-bounty-course-9",
+      "title": "Bug Bounty Course - Vol 9",
+      "file": "Bug Bounty Course-9.pdf",
+      "category": "bug-bounty",
+      "level": "متقدم",
+      "language": "English",
+      "description": "تقنيات الـ Chaining، التصعيد، وكسب مكافآت أكبر.",
+      "tags": [
+        "Bug Bounty",
+        "Chaining"
+      ]
+    },
+    {
+      "id": "bug-bounty-tools",
+      "title": "Must-Have Tools for Bug Bounty Hunters",
+      "file": "≡اأ_Bug_Bounty_Hunters_&_Pentesters_ظô_Must_Have_Tools!_.pdf",
+      "category": "bug-bounty",
+      "level": "مبتدئ",
+      "language": "English",
+      "description": "دليل الأدوات الأساسية لكل باحث Bug Bounty ومختبر اختراق.",
+      "tags": [
+        "Bug Bounty",
+        "Tools"
+      ]
+    },
+    {
+      "id": "bug-bounty-training",
+      "title": "Bug Bounty Training Program",
+      "file": "Bug Bounty Training Program.pdf",
+      "category": "bug-bounty",
+      "level": "متوسط",
+      "language": "English",
+      "description": "برنامج تدريبي متكامل للانتقال من مبتدئ إلى محترف في Bug Bounty.",
+      "tags": [
+        "Bug Bounty",
+        "Training"
+      ],
+      "summaryUrl": "pages/book-bug-bounty-rfi.html"
+    },
+    {
+      "id": "bypasses-waf",
+      "title": "Bypasses for the most popular WAFs",
+      "file": "Bypasses for the most popular WAFs.pdf",
+      "category": "web-security",
+      "level": "متقدم",
+      "language": "English",
+      "description": "تقنيات تجاوز جدران حماية تطبيقات الويب (Cloudflare, Akamai, AWS WAF).",
+      "tags": [
+        "WAF",
+        "Bypass",
+        "Web Security"
+      ]
+    },
+    {
+      "id": "comptia-security-plus",
+      "title": "CompTIA Security+ SY0-701 Cheat Sheet",
+      "file": "CompTIA Security+ SY0-701 Cheat Sheet.pdf",
+      "category": "certification",
+      "level": "مبتدئ",
+      "language": "English",
+      "description": "ورقة مراجعة سريعة لامتحان CompTIA Security+ أحدث إصدار.",
+      "tags": [
+        "Security+",
+        "Cheat Sheet",
+        "Certification"
+      ],
+      "summaryUrl": "pages/book-comptia-security-plus.html"
+    },
+    {
+      "id": "encryption-hashing",
+      "title": "Encryption vs Hashing vs Encoding",
+      "file": "Encryption vs Hashing vs Encoding.pdf",
+      "category": "web-security",
+      "level": "مبتدئ",
+      "language": "English",
+      "description": "الفرق الجوهري بين التشفير والهاش والترميز — أساسيات لكل مختص.",
+      "tags": [
+        "Cryptography",
+        "Encryption",
+        "Hashing"
+      ]
+    },
+    {
+      "id": "ethical-hacking-python",
+      "title": "Ethical Hacking with Python",
+      "file": "Ethical Hacking with Python Programming.pdf",
+      "category": "python-hacking",
+      "level": "متوسط",
+      "language": "English",
+      "description": "بناء أدوات اختبار اختراق احترافية باستخدام Python.",
+      "tags": [
+        "Python",
+        "Hacking",
+        "Tools Development"
+      ]
+    },
+    {
+      "id": "dmitry-tool",
+      "title": "Information Gathering with Dmitry",
+      "file": "A beginner friendly Information Gathering Tool (Dmitry).pdf",
+      "category": "osint",
+      "level": "مبتدئ",
+      "language": "English",
+      "description": "دليل استخدام أداة Dmitry لجمع المعلومات (OSINT).",
+      "tags": [
+        "OSINT",
+        "Reconnaissance",
+        "Dmitry"
+      ]
+    },
+    {
+      "id": "from-day-zero-to-zero-day",
+      "title": "From Day Zero to Zero Day",
+      "author": "Eugene Lim",
+      "file": "From_Day_Zero_to_Zero_Day_-_Eugene_Lim.pdf",
+      "category": "red-team",
+      "level": "متقدم",
+      "language": "English",
+      "description": "رحلة اكتشاف ثغرة Zero-Day: من نقطة البداية إلى نشر الاستغلال.",
+      "tags": [
+        "Zero-Day",
+        "Vulnerability Research",
+        "Exploit Development"
+      ]
+    },
+    {
+      "id": "google-darks",
+      "title": "Google Darks Cheat Sheet",
+      "file": "Google Darks Cheat Sheet.pdf",
+      "category": "osint",
+      "level": "مبتدئ",
+      "language": "English",
+      "description": "كل Google Dorking operators مع أمثلة — أداة OSINT لا غنى عنها.",
+      "tags": [
+        "Google Dorks",
+        "OSINT",
+        "Recon"
+      ]
+    },
+    {
+      "id": "hacker-roadmap",
+      "title": "Hacker Roadmap - Hack Everything",
+      "file": "Hacker-Roadmap-Hack-Everything-Own-the-Web-zsb6rs (1).pdf",
+      "category": "bug-bounty",
+      "level": "مبتدئ",
+      "language": "English",
+      "description": "خارطة طريق شاملة لتعلم اختبار الاختراق من الصفر للاحتراف.",
+      "tags": [
+        "Roadmap",
+        "Learning Path"
+      ],
+      "summaryUrl": "pages/book-hacker-roadmap.html"
+    },
+    {
+      "id": "kali-linux-pdf",
+      "title": "Kali Linux - Complete Reference",
+      "file": "KALI LINUX.pdf",
+      "category": "kali-linux",
+      "level": "متوسط",
+      "language": "English",
+      "description": "المرجع الشامل لـ Kali Linux: التثبيت، الأدوات، الاستخدامات.",
+      "tags": [
+        "Kali Linux",
+        "Pentesting",
+        "Tools"
+      ]
+    },
+    {
+      "id": "linux-basics-hacking",
+      "title": "Linux Basics for Hacking",
+      "file": "Linux-Basic-For-Hacking.pdf",
+      "category": "linux",
+      "level": "مبتدئ",
+      "language": "English",
+      "description": "Linux من منظور اختبار الاختراق: الأساسيات اللي تحتاجها للبدء.",
+      "tags": [
+        "Linux",
+        "Hacking",
+        "Beginner"
+      ]
+    },
+    {
+      "id": "linux-cmd-cheatsheet",
+      "title": "Linux Command Cheatsheet",
+      "file": "Linux CMD Cheatsheet - codelivly.pdf",
+      "category": "linux",
+      "level": "مبتدئ",
+      "language": "English",
+      "description": "ورقة مرجعية سريعة لأهم أوامر Linux.",
+      "tags": [
+        "Linux",
+        "Cheat Sheet",
+        "Commands"
+      ]
+    },
+    {
+      "id": "linux-security-fundamentals",
+      "title": "Linux Security Fundamentals",
+      "file": "Linux Security Fundamentals.pdf",
+      "category": "linux",
+      "level": "متوسط",
+      "language": "English",
+      "description": "أساسيات تأمين Linux: الصلاحيات، SELinux، AppArmor، التحديثات.",
+      "tags": [
+        "Linux Security",
+        "Hardening",
+        "SELinux"
+      ]
+    },
+    {
+      "id": "metasploit-2nd",
+      "title": "Metasploit - 2nd Edition",
+      "file": "Metasploit 2nd Edition.pdf",
+      "category": "red-team",
+      "level": "متوسط",
+      "language": "English",
+      "description": "المرجع الشامل لـ Metasploit: من الأساسيات إلى الاستغلال المتقدم.",
+      "tags": [
+        "Metasploit",
+        "Exploitation",
+        "Framework"
+      ]
+    },
+    {
+      "id": "networking-fundamentals",
+      "title": "Networking Fundamentals",
+      "file": "Networking Fundamentals.pdf",
+      "category": "networking",
+      "level": "مبتدئ",
+      "language": "English",
+      "description": "أساسيات الشبكات: TCP/IP, DNS, HTTP, Subnetting. ضروري قبل أي اختبار اختراق.",
+      "tags": [
+        "Networking",
+        "TCP/IP",
+        "DNS"
+      ]
+    },
+    {
+      "id": "red-team-guide",
+      "title": "The Red Team Guide",
+      "file": "The Red Team Guide.pdf",
+      "category": "red-team",
+      "level": "متقدم",
+      "language": "English",
+      "description": "دليل شامل لعمليات Red Team: التخطيط، التنفيذ، التقارير.",
+      "tags": [
+        "Red Team",
+        "Operations",
+        "Adversary Simulation"
+      ]
+    },
+    {
+      "id": "red-team-toolkit",
+      "title": "Red Team Toolkit",
+      "file": "Red Team Toolkit.pdf",
+      "category": "red-team",
+      "level": "متقدم",
+      "language": "English",
+      "description": "مجموعة الأدوات الأساسية لعمليات Red Team.",
+      "tags": [
+        "Red Team",
+        "Tools",
+        "C2"
+      ]
+    },
+    {
+      "id": "soc-fundamentals",
+      "title": "SOC Security Operation",
+      "file": "SOC  Security Operation .pdf",
+      "category": "soc",
+      "level": "متوسط",
+      "language": "English",
+      "description": "أساسيات العمل في Security Operations Center: SIEM، Alerts، Incident Response.",
+      "tags": [
+        "SOC",
+        "SIEM",
+        "Incident Response"
+      ]
+    },
+    {
+      "id": "soc-open-source",
+      "title": "Open-Source Security Operations Center",
+      "file": "Open-Source Security Operations Center (SOC).pdf",
+      "category": "soc",
+      "level": "متوسط",
+      "language": "English",
+      "description": "بناء SOC باستخدام أدوات مفتوحة المصدر.",
+      "tags": [
+        "SOC",
+        "Open Source",
+        "SIEM"
+      ]
+    },
+    {
+      "id": "wifi-hacking",
+      "title": "WiFi Hacking",
+      "file": "WiFi Hacking .pdf",
+      "category": "wifi",
+      "level": "متوسط",
+      "language": "English",
+      "description": "اختراق شبكات WiFi: WEP, WPA, WPA2, WPS — تقنيات عملية.",
+      "tags": [
+        "WiFi",
+        "WPA2",
+        "Wireless"
+      ]
+    },
+    {
+      "id": "wifi-hacking-notes",
+      "title": "WiFi Hacking Notes",
+      "file": "Wifi Hacking Notes.pdf",
+      "category": "wifi",
+      "level": "مبتدئ",
+      "language": "English",
+      "description": "ملاحظات سريعة عن اختراق الشبكات اللاسلكية.",
+      "tags": [
+        "WiFi",
+        "Notes"
+      ]
+    }
+  ],
+  "stats": {
+    "totalBooks": 32,
+    "categories": 11,
+    "totalSize": "120 MB",
+    "languages": [
+      "English",
+      "Arabic"
+    ]
+  }
+}

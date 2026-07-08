@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>مراجعة كتاب سطر أوامر لينكس | رحومي البراهيم</title>
+  <meta name="description" content="مراجعة شاملة لكتاب The Linux Command Line لمؤلفه William Shotts بترجمة عبد اللطيف أيمش. رأي مختص في الكتاب ومدى مناسبته للمتخصصين العرب في الأمن السيبراني.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://iraqrahomi.github.io/pages/linux-book-review.html">
+
+  <meta property="og:title" content="مراجعة كتاب سطر أوامر لينكس">
+  <meta property="og:description" content="مراجعة وتقييم كتاب Linux Command Line بالعربي">
+  <meta property="og:type" content="article">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Review",
+    "itemReviewed": {
+      "@type": "Book",
+      "name": "The Linux Command Line",
+      "alternateName": "سطر أوامر لينكس",
+      "author": "William E. Shotts, Jr.",
+      "translator": "عبد اللطيف محمد أديب ايمش",
+      "inLanguage": "ar",
+      "bookFormat": "EBook",
+      "license": "CC BY-NC-ND 3.0"
+    },
+    "reviewRating": {
+      "@type": "Rating",
+      "ratingValue": "5",
+      "bestRating": "5"
+    },
+    "author": {"@type": "Person", "name": "رحومي البراهيم"},
+    "datePublished": "2026-02-26",
+    "reviewBody": "مراجعة شاملة لكتاب The Linux Command Line بالعربي"
+  }
+  </script>
+
+  <link rel="icon" type="image/svg+xml" href="../assets/icons/favicon.svg">
+  <link rel="manifest" href="../manifest.json">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="../css/style.css">
+  <meta property="og:image" content="https://iraqrahomi.github.io/assets/og-image.png">
+  <meta property="og:title" content="مراجعة كتاب سطر أوامر لينكس | رحومي البراهيم">
+  <meta property="og:description" content="مراجعة شاملة لكتاب The Linux Command Line لمؤلفه William Shotts بترجمة عبد اللطيف أيمش. رأي مختص في الكتاب ومدى مناسبته للمتخصصين العرب في الأمن السيبراني.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://iraqrahomi.github.io/pages/linux-book-review.html">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="مراجعة كتاب سطر أوامر لينكس | رحومي البراهيم">
+  <meta name="twitter:description" content="مراجعة شاملة لكتاب The Linux Command Line لمؤلفه William Shotts بترجمة عبد اللطيف أيمش. رأي مختص في الكتاب ومدى مناسبته للمتخصصين العرب في الأمن السيبراني.">
+  <meta name="twitter:image" content="https://iraqrahomi.github.io/assets/og-image.png">
+</head>
+<body class="bg-white text-slate-900">
+
+  <!-- Navigation -->
+  <nav class="fixed top-0 left-0 right-0 z-50 bg-white/85 backdrop-blur-xl border-b border-slate-200">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+      <a href="../index.html" class="flex items-center gap-3">
+        <img src="../assets/icons/logo.svg" alt="CyberAr" class="h-10">
+      </a>
+      <div class="hidden md:flex items-center gap-6 text-sm">
+        <a href="../index.html" class="nav-link">الرئيسية</a>
+        <a href="../index.html#paths" class="nav-link">المسارات</a>
+        <a href="tools.html" class="nav-link">الأدوات</a>
+        <a href="ctf.html" class="nav-link">التحديات</a>
+        <a href="resources.html" class="nav-link">الموارد</a>
+        <a href="blog.html" class="nav-link active">المقالات</a>
+        <a href="about.html" class="nav-link">عنّي</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <header class="pt-32 pb-12 px-6 bg-gradient-to-b from-blue-50 to-white">
+    <div class="max-w-4xl mx-auto">
+      <nav class="text-sm text-slate-500 mb-6" aria-label="breadcrumb">
+        <a href="../index.html" class="hover:text-blue-600">الرئيسية</a>
+        <span class="mx-2">›</span>
+        <a href="blog.html" class="hover:text-blue-600">المقالات</a>
+        <span class="mx-2">›</span>
+        <span class="text-slate-700">مراجعة كتاب</span>
+      </nav>
+
+      <div class="flex flex-wrap items-center gap-3 mb-6">
+        <span class="chip">مراجعة كتاب</span>
+        <span class="chip-soft">Linux</span>
+        <span class="chip-soft">CC BY-NC-ND</span>
+        <span class="text-xs text-slate-500">📅 26 فبراير 2026 · ⏱️ 8 دقائق قراءة</span>
+      </div>
+
+      <h1 class="text-4xl md:text-5xl font-black mb-6 text-slate-900 leading-tight">
+        مراجعة كتاب <span class="section-title accent">سطر أوامر لينكس</span>
+      </h1>
+
+      <p class="text-xl text-slate-600 leading-relaxed mb-8">
+        رأيي كمختص في الأمن السيبراني في واحدة من أفضل الكتب العربية لتعلم Linux من الصفر للاحتراف. هل يستحق وقتك؟
+      </p>
+
+      <!-- Book Card -->
+      <div class="glass-card p-8 bg-gradient-to-br from-blue-50 to-white">
+        <div class="grid md:grid-cols-3 gap-6 items-center">
+          <div class="md:col-span-1 flex justify-center">
+            <div class="w-32 h-44 bg-gradient-to-br from-blue-600 to-blue-800 rounded-lg shadow-xl flex items-center justify-center text-white font-black text-center p-4">
+              <div>
+                <i class="fa-brands fa-linux text-4xl mb-2"></i>
+                <div class="text-sm">سطر أوامر</div>
+                <div class="text-sm">لينكس</div>
+              </div>
+            </div>
+          </div>
+          <div class="md:col-span-2">
+            <h2 class="text-2xl font-black mb-2 text-slate-900">The Linux Command Line</h2>
+            <p class="text-sm text-slate-500 mb-4">النسخة العربية المترجمة</p>
+            <dl class="space-y-2 text-sm">
+              <div class="flex">
+                <dt class="font-bold text-slate-700 ml-3 w-24">المؤلف:</dt>
+                <dd class="text-slate-600">William E. Shotts, Jr.</dd>
+              </div>
+              <div class="flex">
+                <dt class="font-bold text-slate-700 ml-3 w-24">المترجم:</dt>
+                <dd class="text-slate-600">عبد اللطيف محمد أديب أيمش</dd>
+              </div>
+              <div class="flex">
+                <dt class="font-bold text-slate-700 ml-3 w-24">السنة:</dt>
+                <dd class="text-slate-600">2014</dd>
+              </div>
+              <div class="flex">
+                <dt class="font-bold text-slate-700 ml-3 w-24">الصفحات:</dt>
+                <dd class="text-slate-600">564 صفحة</dd>
+              </div>
+              <div class="flex">
+                <dt class="font-bold text-slate-700 ml-3 w-24">الترخيص:</dt>
+                <dd class="text-slate-600">CC BY-NC-ND 3.0</dd>
+              </div>
+            </dl>
+          </div>
+        </div>
+      </div>
+
+      <!-- التقييم -->
+      <div class="mt-8 flex flex-wrap items-center justify-center gap-6 text-center">
+        <div>
+          <div class="text-4xl font-black text-blue-600 mb-1">5/5 ⭐</div>
+          <div class="text-xs text-slate-500 uppercase tracking-wider">تقييمي</div>
+        </div>
+        <div class="text-slate-300">|</div>
+        <div>
+          <div class="text-4xl font-black text-blue-600 mb-1">564</div>
+          <div class="text-xs text-slate-500 uppercase tracking-wider">صفحة</div>
+        </div>
+        <div class="text-slate-300">|</div>
+        <div>
+          <div class="text-4xl font-black text-blue-600 mb-1">36</div>
+          <div class="text-xs text-slate-500 uppercase tracking-wider">فصل</div>
+        </div>
+        <div class="text-slate-300">|</div>
+        <div>
+          <div class="text-4xl font-black text-blue-600 mb-1">4</div>
+          <div class="text-xs text-slate-500 uppercase tracking-wider">أبواب</div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Article Body -->
+  <article class="py-16 px-6">
+    <div class="max-w-3xl mx-auto prose-content">
+
+      <!-- للحين -->
+      <section class="mb-12">
+        <h2 class="text-3xl font-black mb-6 text-slate-900 flex items-center gap-3">
+          <span class="w-10 h-10 rounded-lg bg-blue-100 flex items-center justify-center text-blue-600 font-black">؟</span>
+          ليش هذا الكتاب مهم لمختص الأمن السيبراني؟
+        </h2>
+        <p class="text-slate-700 leading-loose text-lg mb-4">
+          أكثر من <strong class="text-blue-600">90% من أدوات الأمن السيبراني</strong> تشتغل على Linux. لو ما عندك أساس قوي في سطر الأوامر، رح تواجه صعوبة في:
+        </p>
+        <ul class="space-y-3 text-slate-700">
+          <li class="flex items-start gap-3">
+            <i class="fa-solid fa-xmark text-red-500 mt-1"></i>
+            <span>تشغيل أدوات مثل <code class="font-mono">nmap</code>, <code class="font-mono">sqlmap</code>, <code class="font-mono">metasploit</code></span>
+          </li>
+          <li class="flex items-start gap-3">
+            <i class="fa-solid fa-xmark text-red-500 mt-1"></i>
+            <span>التنقل في أنظمة الاختراق (Kali Linux, Parrot)</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <i class="fa-solid fa-xmark text-red-500 mt-1"></i>
+            <span>كتابة سكربتات Bash لأتمتة المهام</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <i class="fa-solid fa-xmark text-red-500 mt-1"></i>
+            <span>قراءة وتحليل logs وملفات التكوين</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <i class="fa-solid fa-xmark text-red-500 mt-1"></i>
+            <span>فهم منصات مثل HackTheBox و TryHackMe</span>
+          </li>
+        </ul>
+        <p class="text-slate-700 leading-loose text-lg mt-4">
+          هذا الكتاب يبني عندك <strong class="text-blue-600">الأساس المتين</strong> اللي تحتاجه قبل ما تبدأ بأي اختبار اختراق فعلي.
+        </p>
+      </section>
+
+      <!-- شو يغطي -->
+      <section class="mb-12">
+        <h2 class="text-3xl font-black mb-6 text-slate-900 flex items-center gap-3">
+          <span class="w-10 h-10 rounded-lg bg-blue-100 flex items-center justify-center text-blue-600 font-black">📚</span>
+          شو يغطي الكتاب؟
+        </h2>
+        <p class="text-slate-700 mb-6">الكتاب مقسوم لـ 4 أبواب كبيرة، وكل باب فيه فصول تعمّق في موضوع معين:</p>
+
+        <div class="space-y-4">
+          <div class="glass-card p-6 border-r-4 border-blue-500">
+            <h3 class="font-black text-lg mb-2 text-slate-900">الباب الأول: أساسيات سطر الأوامر</h3>
+            <p class="text-slate-600 mb-2"><strong>10 فصول</strong> تغطي الأساسيات:</p>
+            <p class="text-sm text-slate-700">الصدفة، نظام الملفات، استكشاف النظام، معالجة الملفات، الأوامر، إعادة التوجيه، الأذونات، العمليات. هذا الباب <strong class="text-blue-600">الأساس اللي تبني عليه كل شي</strong>.</p>
+          </div>
+
+          <div class="glass-card p-6 border-r-4 border-blue-600">
+            <h3 class="font-black text-lg mb-2 text-slate-900">الباب الثاني: الإعدادات والبيئة</h3>
+            <p class="text-slate-600 mb-2"><strong>3 فصول</strong> متقدمة:</p>
+            <p class="text-sm text-slate-700">البيئة، محرر vi، تخصيص الـ shell. الباب هذا يفرق بين اللي يعرف الأساس واللي يحترفه.</p>
+          </div>
+
+          <div class="glass-card p-6 border-r-4 border-blue-700">
+            <h3 class="font-black text-lg mb-2 text-slate-900">الباب الثالث: المهام الشائعة</h3>
+            <p class="text-slate-600 mb-2"><strong>10 فصول</strong> عملية:</p>
+            <p class="text-sm text-slate-700">إدارة الحزم، التخزين، الشبكات، البحث، الأرشفة، التعابير النظامية (Regex)، معالجة النصوص. <strong class="text-blue-600">هذا الباب كنز لمختص الأمن</strong> — كل أداة بتحتاجها موجودة هنا.</p>
+          </div>
+
+          <div class="glass-card p-6 border-r-4 border-sky-500">
+            <h3 class="font-black text-lg mb-2 text-slate-900">الباب الرابع: كتابة سكربتات Shell</h3>
+            <p class="text-slate-600 mb-2"><strong>13 فصل</strong> متقدم جداً:</p>
+            <p class="text-sm text-slate-700">يأخذك من كتابة أول سكربت إلى بناء سكربتات احترافية. ممتاز لمن يبي يبني أدواته الخاصة أو يفهم أدوات مفتوحة المصدر.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ليش ممتاز -->
+      <section class="mb-12">
+        <h2 class="text-3xl font-black mb-6 text-slate-900 flex items-center gap-3">
+          <span class="w-10 h-10 rounded-lg bg-blue-100 flex items-center justify-center text-blue-600 font-black">⭐</span>
+          ليش أعطي الكتاب 5/5؟
+        </h2>
+
+        <div class="space-y-4">
+          <div class="glass-card p-6">
+            <h3 class="font-black text-lg mb-2 text-slate-900 flex items-center gap-2">
+              <i class="fa-solid fa-1 text-blue-600"></i>
+              يبدأ من الصفر المطلق
+            </h3>
+            <p class="text-slate-700">ما يفترض عندك أي معرفة سابقة. لو عمرك ما فتحت Terminal، هذا الكتاب يبدأ معك من "ما هي الصدفة".</p>
+          </div>
+
+          <div class="glass-card p-6">
+            <h3 class="font-black text-lg mb-2 text-slate-900 flex items-center gap-2">
+              <i class="fa-solid fa-2 text-blue-600"></i>
+              أمثلة عملية في كل صفحة
+            </h3>
+            <p class="text-slate-700">كل مفهوم يتبعه مثال تنفّذه بنفسك. الكتاب عملي وليس نظري — هذا اللي يميّزه عن غيره.</p>
+          </div>
+
+          <div class="glass-card p-6">
+            <h3 class="font-black text-lg mb-2 text-slate-900 flex items-center gap-2">
+              <i class="fa-solid fa-3 text-blue-600"></i>
+              يبني تفكير "Linux" لا حفظ أوامر
+            </h3>
+            <p class="text-slate-700">بدل ما يحفظك 100 أمر، يفهّمك كيف تشتغل الأشياء — فتستطيع اكتشاف أوامر جديدة بنفسك لاحقاً.</p>
+          </div>
+
+          <div class="glass-card p-6">
+            <h3 class="font-black text-lg mb-2 text-slate-900 flex items-center gap-2">
+              <i class="fa-solid fa-4 text-blue-600"></i>
+              النسخة العربية ممتازة الترجمة
+            </h3>
+            <p class="text-slate-700">المترجم (عبد اللطيف أيمش) حافظ على المصطلحات التقنية الأصلية مع شرحها بالعربي — مثالي للمبتدئ والمتوسط.</p>
+          </div>
+
+          <div class="glass-card p-6">
+            <h3 class="font-black text-lg mb-2 text-slate-900 flex items-center gap-2">
+              <i class="fa-solid fa-5 text-blue-600"></i>
+              مرجع دائم (لا كتاب قراءة فقط)
+            </h3>
+            <p class="text-slate-700">564 صفحة = ترجع له كثير كل ما احتجت تتذكر كيف تسوي شي معين. كثير مختصين يحتفظون فيه بجانب الشاشة.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- نقاط الضعف -->
+      <section class="mb-12">
+        <h2 class="text-3xl font-black mb-6 text-slate-900 flex items-center gap-3">
+          <span class="w-10 h-10 rounded-lg bg-blue-100 flex items-center justify-center text-blue-600 font-black">⚖️</span>
+          نقاط لازم تعرفها قبل البدء
+        </h2>
+
+        <div class="callout">
+          <p class="font-bold mb-3 text-slate-900">⚠️ الموضوع ليس سيئاً في الكتاب، لكن انتبه:</p>
+          <ul class="space-y-3 text-slate-700">
+            <li class="flex items-start gap-3">
+              <i class="fa-solid fa-info-circle text-blue-600 mt-1"></i>
+              <span><strong>العمر الزمني:</strong> الكتاب من 2014. بعض الأمثلة على توزيعات قديمة (CentOS 6) ما تشتغل تماماً على التوزيعات الحديثة. الحل: طبّق المفاهيم على Ubuntu/Debian الحديثة.</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <i class="fa-solid fa-info-circle text-blue-600 mt-1"></i>
+              <span><strong>الترخيص CC BY-NC-ND:</strong> يعني ما تقدر تنسخ محتواه حرفياً أو تنشره معدّلاً. لكن تقدر تقرأه مجاناً وتشارك الرابط.</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <i class="fa-solid fa-info-circle text-blue-600 mt-1"></i>
+              <span><strong>النسخة الأصلية أحدث:</strong> الكتاب الأصلي بالإنجليزية وصل لإصدار أحدث. لو تجيد الإنجليزية، المصدر الأصلي فيه تحديثات.</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <i class="fa-solid fa-info-circle text-blue-600 mt-1"></i>
+              <span><strong>يحتاج صبر:</strong> 564 صفحة مو شغلة يوم. خصص 30-60 دقيقة يومياً لمدة 2-3 أشهر.</span>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- لمن يناسب -->
+      <section class="mb-12">
+        <h2 class="text-3xl font-black mb-6 text-slate-900 flex items-center gap-3">
+          <span class="w-10 h-10 rounded-lg bg-blue-100 flex items-center justify-center text-blue-600 font-black">🎯</span>
+          لمن هذا الكتاب؟
+        </h2>
+
+        <div class="grid md:grid-cols-2 gap-4">
+          <div class="glass-card p-6 border-r-4 border-emerald-500">
+            <h3 class="font-black text-lg mb-3 text-emerald-700">✅ مناسب جداً لـ</h3>
+            <ul class="space-y-2 text-slate-700">
+              <li class="flex items-start gap-2">
+                <i class="fa-solid fa-check text-emerald-500 mt-1"></i>
+                <span>مبتدئ يريد تعلم Linux من الصفر</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <i class="fa-solid fa-check text-emerald-500 mt-1"></i>
+                <span>متوسط يبي يحترف سطر الأوامر</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <i class="fa-solid fa-check text-emerald-500 mt-1"></i>
+                <span>مختص سيبراني يبي أساس متين</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <i class="fa-solid fa-check text-emerald-500 mt-1"></i>
+                <span>مطور يبي يكتب سكربتات Bash</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <i class="fa-solid fa-check text-emerald-500 mt-1"></i>
+                <span>أي شخص يفضّل التعلم العميق بدون عجلة</span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="glass-card p-6 border-r-4 border-orange-500">
+            <h3 class="font-black text-lg mb-3 text-orange-700">⚠️ مو الأفضل لـ</h3>
+            <ul class="space-y-2 text-slate-700">
+              <li class="flex items-start gap-2">
+                <i class="fa-solid fa-xmark text-orange-500 mt-1"></i>
+                <span>من يبي نتيجة سريعة في يومين (جرّب cheatsheet)</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <i class="fa-solid fa-xmark text-orange-500 mt-1"></i>
+                <span>من يبي تعلم موضوع محدد فقط (كتاب متخصص أفضل)</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <i class="fa-solid fa-xmark text-orange-500 mt-1"></i>
+                <span>من ما عنده صبر للقراءة الطويلة (جرّب فيديوهات)</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- كيف تبدأ -->
+      <section class="mb-12">
+        <h2 class="text-3xl font-black mb-6 text-slate-900 flex items-center gap-3">
+          <span class="w-10 h-10 rounded-lg bg-blue-100 flex items-center justify-center text-blue-600 font-black">🚀</span>
+          كيف تبدأ مع الكتاب؟
+        </h2>
+
+        <div class="glass-card p-6">
+          <h3 class="font-black text-lg mb-4 text-slate-900">📋 خطة قراءة مقترحة (8 أسابيع)</h3>
+          <div class="space-y-4">
+            <div class="border-r-4 border-blue-300 pr-4">
+              <p class="font-bold text-blue-700">الأسابيع 1-3: الباب الأول</p>
+              <p class="text-sm text-slate-600">الأساسيات + تمارين يدوية على كل فصل</p>
+            </div>
+            <div class="border-r-4 border-blue-400 pr-4">
+              <p class="font-bold text-blue-700">الأسبوع 4: الباب الثاني</p>
+              <p class="text-sm text-slate-600">تخصيص البيئة + تعلّم vi (محرر أساسي)</p>
+            </div>
+            <div class="border-r-4 border-blue-500 pr-4">
+              <p class="font-bold text-blue-700">الأسابيع 5-6: الباب الثالث</p>
+              <p class="text-sm text-slate-600">تطبيقات عملية + Regex (ضروري جداً)</p>
+            </div>
+            <div class="border-r-4 border-sky-500 pr-4">
+              <p class="font-bold text-sky-700">الأسابيع 7-8: الباب الرابع</p>
+              <p class="text-sm text-slate-600">سكربتات Shell + مشاريع صغيرة</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- رأيي النهائي -->
+      <section class="mb-12">
+        <h2 class="text-3xl font-black mb-6 text-slate-900 flex items-center gap-3">
+          <span class="w-10 h-10 rounded-lg bg-blue-100 flex items-center justify-center text-blue-600 font-black">💭</span>
+          رأيي النهائي
+        </h2>
+
+        <div class="glass-card p-8 bg-blue-50/50 border-blue-200">
+          <p class="text-slate-700 leading-loose text-lg mb-4">
+            كتاب <strong class="text-blue-600">"سطر أوامر لينكس"</strong> من <strong>William Shotts</strong> هو من أفضل الكتب العربية المتاحة لتعلم Linux من الصفر للاحتراف.
+          </p>
+          <p class="text-slate-700 leading-loose text-lg mb-4">
+            نقطته الأقوى إنه <strong>ما يحفظك أوامر</strong> — يفهّمك كيف تشتغل الصدفة، فتستطيع لاحقاً التعامل مع أي توزيعة وأي أداة بسهولة.
+          </p>
+          <p class="text-slate-700 leading-loose text-lg mb-6">
+            لمختص الأمن السيبراني تحديداً: هذا الكتاب <strong class="text-blue-600">استثمار</strong>. لأنه يبني الأساس اللي فوقه تتعلم Nmap, Wireshark, Metasploit وأي أداة تانية باحترافية.
+          </p>
+          <div class="bg-white p-5 rounded-lg border border-blue-200">
+            <p class="text-sm text-slate-700">
+              <strong>💡 نصيحتي الشخصية:</strong> اقرأه بجانب <a href="tools.html" class="text-blue-600 font-bold hover:underline">قسم الأدوات</a> في موقعنا. كل ما تقرأ فصل عن أداة (مثل ls, grep, find)، جرّبها مباشرة على جهازك. كذا تتحول القراءة لمهارة عملية.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- الترخيص -->
+      <section class="mb-12">
+        <div class="callout">
+          <p class="font-bold mb-2 text-slate-900">📜 ملاحظة عن الترخيص والمصدر</p>
+          <p class="text-sm text-slate-700 leading-loose">
+            الكتاب مرخص بموجب <strong>CC BY-NC-ND 3.0</strong> — مما يعني: يمكنك قراءته ومشاركته مجاناً مع نسب الكتاب للمؤلف، لكن لا يمكنك نشر محتوى معدّل منه أو استخدامه تجارياً.
+            <br><br>
+            <strong>المصدر الأصلي:</strong> الكتاب الأصلي متاح مجاناً على <a href="http://linuxcommand.org/tlcl.php" target="_blank" rel="noopener" class="text-blue-600 font-bold hover:underline">linuxcommand.org</a> بالإنجليزية.
+            <br>
+            <strong>النسخة العربية:</strong> متاحة عبر مواقع مشاركة الكتب التقنية العربية.
+          </p>
+        </div>
+      </section>
+
+      <!-- أنسب لكتب أخرى -->
+      <section class="mb-12">
+        <h2 class="text-3xl font-black mb-6 text-slate-900 flex items-center gap-3">
+          <span class="w-10 h-10 rounded-lg bg-blue-100 flex items-center justify-center text-blue-600 font-black">📖</span>
+          مراجعات كتب أخرى قد تعجبك
+        </h2>
+
+        <div class="grid md:grid-cols-2 gap-4">
+          <a href="claude-skills.html" class="glass-card p-6 block hover:scale-105 transition">
+            <h3 class="font-black text-lg mb-2 text-slate-900 flex items-center gap-2">
+              <i class="fa-solid fa-robot text-blue-600"></i>
+              دليل بناء Skills لـ Claude
+            </h3>
+            <p class="text-sm text-slate-600">ملخص ومراجعة للدليل الرسمي من Anthropic</p>
+          </a>
+
+          <a href="resources.html" class="glass-card p-6 block hover:scale-105 transition">
+            <h3 class="font-black text-lg mb-2 text-slate-900 flex items-center gap-2">
+              <i class="fa-solid fa-book text-blue-600"></i>
+              كل الكتب الموصى بها
+            </h3>
+            <p class="text-sm text-slate-600">قائمة شاملة بمراجع الأمن السيبراني</p>
+          </a>
+        </div>
+      </section>
+
+    </div>
+  </article>
+
+  <!-- Footer -->
+  <footer class="py-12 px-6 border-t border-slate-200 text-center">
+    <p class="text-slate-500 text-sm">© 2025 رحومي البراهيم | صُنع بـ 💙 للمجتمع العربي</p>
+  </footer>
+
+</body>
+</html>

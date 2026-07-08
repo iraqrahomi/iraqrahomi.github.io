@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <linearGradient id="g" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#16a34a"/>
+      <stop offset="100%" stop-color="#14532d"/>
+    </linearGradient>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect width="800" height="400" fill="url(#g)"/>
+  <rect width="800" height="400" fill="url(#grid)"/>
+  <text x="50%" y="48%" font-family="Arial Black, sans-serif" font-size="80" font-weight="900"
+        fill="#ffffff" text-anchor="middle" dominant-baseline="middle">Kali Linux</text>
+  <text x="50%" y="62%" font-family="Arial, sans-serif" font-size="36" font-weight="600" fill="rgba(255,255,255,0.8)" text-anchor="middle" dominant-baseline="middle">إعداد بيئة الاختبار</text>
+</svg>

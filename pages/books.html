@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>مكتبة الكتب المجانية | CyberAr - كتب الأمن السيبراني</title>
+  <meta name="description" content="أكثر من 30 كتاب PDF مجاني في الأمن السيبراني: Bug Bounty، Kali Linux، Python Hacking، Red Team، Linux، الشبكات، والشهادات المهنية. مرجع شامل للمختصين العرب.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://iraqrahomi.github.io/pages/books.html">
+
+  <meta property="og:title" content="مكتبة الكتب المجانية | رحومي البراهيم">
+  <meta property="og:description" content="30+ كتاب PDF مجاني في الأمن السيبراني">
+  <meta property="og:type" content="website">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": "مكتبة الكتب المجانية",
+    "description": "مجموعة كتب PDF مجانية في الأمن السيبراني"
+  }
+  </script>
+
+  <link rel="icon" type="image/svg+xml" href="../assets/icons/favicon.svg">
+  <link rel="manifest" href="../manifest.json">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="../css/style.css">
+  <meta property="og:image" content="https://iraqrahomi.github.io/assets/og-image.png">
+  <meta property="og:title" content="مكتبة الكتب المجانية | CyberAr - كتب الأمن السيبراني">
+  <meta property="og:description" content="أكثر من 30 كتاب PDF مجاني في الأمن السيبراني: Bug Bounty، Kali Linux، Python Hacking، Red Team، Linux، الشبكات، والشهادات المهنية. مرجع شامل للمختصين العرب.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://iraqrahomi.github.io/pages/books.html">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="مكتبة الكتب المجانية | CyberAr - كتب الأمن السيبراني">
+  <meta name="twitter:description" content="أكثر من 30 كتاب PDF مجاني في الأمن السيبراني: Bug Bounty، Kali Linux، Python Hacking، Red Team، Linux، الشبكات، والشهادات المهنية. مرجع شامل للمختصين العرب.">
+  <meta name="twitter:image" content="https://iraqrahomi.github.io/assets/og-image.png">
+</head>
+<body class="bg-white text-slate-900">
+
+  <!-- Navigation -->
+  <nav class="fixed top-0 left-0 right-0 z-50 bg-white/85 backdrop-blur-xl border-b border-slate-200">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+      <a href="../index.html" class="flex items-center gap-3">
+        <img src="../assets/icons/logo.svg" alt="CyberAr" class="h-10">
+      </a>
+      <div class="hidden md:flex items-center gap-6 text-sm">
+        <a href="../index.html" class="nav-link">الرئيسية</a>
+        <a href="../index.html#paths" class="nav-link">المسارات</a>
+        <a href="tools.html" class="nav-link">الأدوات</a>
+        <a href="ctf.html" class="nav-link">التحديات</a>
+        <a href="resources.html" class="nav-link">الموارد</a>
+        <a href="books.html" class="nav-link active">المكتبة</a>
+        <a href="blog.html" class="nav-link">المقالات</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <header class="pt-32 pb-12 px-6 bg-gradient-to-b from-blue-50 to-white">
+    <div class="max-w-6xl mx-auto text-center">
+      <div class="section-eyebrow">📚 مكتبة الكتب المجانية</div>
+      <h1 class="section-title">
+        أكثر من <span class="accent">30 كتاب PDF</span> مجاني
+      </h1>
+      <p class="text-slate-600 max-w-2xl mx-auto text-lg">
+        مرجع شامل لأفضل الكتب المتخصصة في الأمن السيبراني، اختبار الاختراق، Bug Bounty، Red Team والمزيد
+      </p>
+    </div>
+  </header>
+
+  <!-- Stats -->
+  <section class="px-6 pb-8">
+    <div class="max-w-5xl mx-auto">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4" id="statsGrid"></div>
+    </div>
+  </section>
+
+  <!-- Filters -->
+  <section class="px-6 pb-8">
+    <div class="max-w-6xl mx-auto">
+      <div class="flex flex-wrap justify-center gap-3" id="categoryFilters">
+        <button class="filter-btn active" data-category="all">الكل</button>
+        <button class="filter-btn" data-category="bug-bounty"><i class="fa-solid fa-bug ml-1"></i>Bug Bounty</button>
+        <button class="filter-btn" data-category="kali-linux"><i class="fa-brands fa-linux ml-1"></i>Kali</button>
+        <button class="filter-btn" data-category="web-security"><i class="fa-solid fa-globe ml-1"></i>أمن الويب</button>
+        <button class="filter-btn" data-category="python-hacking"><i class="fa-solid fa-code ml-1"></i>Python</button>
+        <button class="filter-btn" data-category="red-team"><i class="fa-solid fa-shield-halved ml-1"></i>Red Team</button>
+        <button class="filter-btn" data-category="linux"><i class="fa-solid fa-terminal ml-1"></i>Linux</button>
+        <button class="filter-btn" data-category="networking"><i class="fa-solid fa-network-wired ml-1"></i>الشبكات</button>
+        <button class="filter-btn" data-category="wifi"><i class="fa-solid fa-wifi ml-1"></i>WiFi</button>
+        <button class="filter-btn" data-category="soc"><i class="fa-solid fa-eye ml-1"></i>SOC</button>
+        <button class="filter-btn" data-category="certification"><i class="fa-solid fa-certificate ml-1"></i>شهادات</button>
+        <button class="filter-btn" data-category="osint"><i class="fa-solid fa-user-secret ml-1"></i>OSINT</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Search -->
+  <section class="px-6 pb-12">
+    <div class="max-w-2xl mx-auto">
+      <div class="relative">
+        <input type="text" id="bookSearch" placeholder="ابحث عن كتاب... (مثال: bug bounty, kali, python)"
+          class="w-full px-6 py-4 bg-white border border-slate-300 rounded-2xl focus:border-blue-500 focus:ring-4 focus:ring-blue-100 outline-none transition">
+        <i class="fa-solid fa-search absolute left-4 top-1/2 -translate-y-1/2 text-slate-400"></i>
+      </div>
+    </div>
+  </section>
+
+  <!-- Books Grid -->
+  <section class="px-6 pb-24">
+    <div class="max-w-6xl mx-auto">
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6" id="booksGrid"></div>
+    </div>
+  </section>
+
+  <!-- Featured Summaries -->
+  <section class="px-6 pb-24">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-12">
+        <div class="section-eyebrow">📖 ملخصات عربية جاهزة</div>
+        <h2 class="section-title">ملخصات كتب <span class="accent">عربية</span></h2>
+        <p class="text-slate-600 max-w-xl mx-auto text-lg">ملخصات عربية احترافية لأكثر الكتب فائدة - توفر عليك ساعات من القراءة</p>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-6">
+        <a href="book-black-hat-python.html" class="glass-card p-6 block hover:scale-105 transition border-r-4 border-yellow-500">
+          <div class="flex items-start gap-4">
+            <div class="w-14 h-14 bg-yellow-500 rounded-xl flex items-center justify-center flex-shrink-0">
+              <i class="fa-brands fa-python text-white text-2xl"></i>
+            </div>
+            <div>
+              <h3 class="font-black text-lg mb-1 text-slate-900">Black Hat Python</h3>
+              <p class="text-sm text-slate-600 mb-2">دليلك لبناء أدوات الاختراق بـ Python</p>
+              <span class="chip">ملخص عربي شامل</span>
+            </div>
+          </div>
+        </a>
+
+        <a href="book-comptia-security-plus.html" class="glass-card p-6 block hover:scale-105 transition border-r-4 border-amber-500">
+          <div class="flex items-start gap-4">
+            <div class="w-14 h-14 bg-amber-500 rounded-xl flex items-center justify-center flex-shrink-0">
+              <i class="fa-solid fa-certificate text-white text-2xl"></i>
+            </div>
+            <div>
+              <h3 class="font-black text-lg mb-1 text-slate-900">CompTIA Security+ SY0-701</h3>
+              <p class="text-sm text-slate-600 mb-2">دليلك الكامل لاجتياز الشهادة الأساسية</p>
+              <span class="chip">ملخص + نصائح النجاح</span>
+            </div>
+          </div>
+        </a>
+
+        <a href="book-bug-bounty-rfi.html" class="glass-card p-6 block hover:scale-105 transition border-r-4 border-red-500">
+          <div class="flex items-start gap-4">
+            <div class="w-14 h-14 bg-red-500 rounded-xl flex items-center justify-center flex-shrink-0">
+              <i class="fa-solid fa-bug text-white text-2xl"></i>
+            </div>
+            <div>
+              <h3 class="font-black text-lg mb-1 text-slate-900">دليل RFI الشامل</h3>
+              <p class="text-sm text-slate-600 mb-2">Remote File Inclusion - من Bug Bounty Training</p>
+              <span class="chip">شرح + أمثلة + حماية</span>
+            </div>
+          </div>
+        </a>
+
+        <a href="book-hacker-roadmap.html" class="glass-card p-6 block hover:scale-105 transition border-r-4 border-cyan-500">
+          <div class="flex items-start gap-4">
+            <div class="w-14 h-14 bg-cyan-500 rounded-xl flex items-center justify-center flex-shrink-0">
+              <i class="fa-solid fa-route text-white text-2xl"></i>
+            </div>
+            <div>
+              <h3 class="font-black text-lg mb-1 text-slate-900">Hacker Roadmap</h3>
+              <p class="text-sm text-slate-600 mb-2">خارطة طريق من الصفر للاحتراف</p>
+              <span class="chip">4 مراحل كاملة</span>
+            </div>
+          </div>
+        </a>
+
+        <a href="linux-book-review.html" class="glass-card p-6 block hover:scale-105 transition border-r-4 border-slate-500">
+          <div class="flex items-start gap-4">
+            <div class="w-14 h-14 bg-slate-700 rounded-xl flex items-center justify-center flex-shrink-0">
+              <i class="fa-brands fa-linux text-white text-2xl"></i>
+            </div>
+            <div>
+              <h3 class="font-black text-lg mb-1 text-slate-900">مراجعة كتاب Linux Command Line</h3>
+              <p class="text-sm text-slate-600 mb-2">رأي مختص في 564 صفحة من William Shotts</p>
+              <span class="chip">مراجعة + نصائح</span>
+            </div>
+          </div>
+        </a>
+
+        <a href="claude-skills.html" class="glass-card p-6 block hover:scale-105 transition border-r-4 border-purple-500">
+          <div class="flex items-start gap-4">
+            <div class="w-14 h-14 bg-purple-600 rounded-xl flex items-center justify-center flex-shrink-0">
+              <i class="fa-solid fa-robot text-white text-2xl"></i>
+            </div>
+            <div>
+              <h3 class="font-black text-lg mb-1 text-slate-900">Claude Skills Guide</h3>
+              <p class="text-sm text-slate-600 mb-2">دليل بناء Skills لـ Claude من Anthropic</p>
+              <span class="chip">ملخص + تطبيقات</span>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Important Notice -->
+  <section class="px-6 pb-24">
+    <div class="max-w-4xl mx-auto">
+      <div class="callout">
+        <h3 class="font-black text-lg mb-3 text-slate-900 flex items-center gap-2">
+          <i class="fa-solid fa-circle-info text-amber-600"></i>
+          ملاحظة قانونية مهمة
+        </h3>
+        <p class="text-slate-700 leading-loose">
+          الكتب في هذه الصفحة مصادر تعليمية مشهورة في المجتمع الأمني العالمي. نوصي بشدة بقراءة كل كتاب بتمعّن والاستفادة منه لأغراض تعليمية وأخلاقية وقانونية فقط.
+          <br><br>
+          <strong>تذكير:</strong> تطبيق ما تتعلمه بدون إذن كتابي من مالك النظام جريمة يعاقب عليها القانون. <strong>تعلم أخلاقياً • تطبّق قانونياً • تنمو باستمرار.</strong>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="py-12 px-6 border-t border-slate-200 text-center">
+    <p class="text-slate-500 text-sm">© 2025 رحومي البراهيم | صُنع بـ 💙 للمجتمع العربي</p>
+  </footer>
+
+  <script src="../js/books.js"></script>
+</body>
+</html>

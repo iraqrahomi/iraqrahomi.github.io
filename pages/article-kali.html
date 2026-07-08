@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kali Linux Setup - دليل التثبيت الكامل | CyberAr</title>
+  <meta name="description" content="دليل تثبيت Kali Linux الكامل في VMware لاختبار الاختراق الأخلاقي. خطوة بخطوة مع نصائح الأمان.">
+  <link rel="canonical" href="https://iraqrahomi.github.io/pages/article-kali.html">
+  <meta property="og:title" content="Kali Linux Setup - دليل التثبيت | CyberAr">
+  <meta property="og:description" content="دليل تثبيت Kali Linux في VMware">
+  <meta property="og:type" content="article">
+  <meta property="og:image" content="https://iraqrahomi.github.io/assets/og-image.png">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Kali Linux - دليل التثبيت والإعداد",
+    "author": {"@type": "Person", "name": "رحومي البراهيم"},
+    "datePublished": "2026-03-01",
+    "inLanguage": "ar"
+  }
+  </script>
+
+  <link rel="icon" type="image/svg+xml" href="../assets/icons/favicon.svg">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body class="bg-white text-slate-900">
+
+  <nav class="fixed top-0 left-0 right-0 z-50 bg-white/85 backdrop-blur-xl border-b border-slate-200">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+      <a href="../index.html" class="flex items-center gap-3">
+        <img src="../assets/icons/logo.svg" alt="CyberAr" class="h-10">
+      </a>
+      <div class="hidden md:flex items-center gap-6 text-sm">
+        <a href="../index.html" class="nav-link">الرئيسية</a>
+        <a href="tools.html" class="nav-link">الأدوات</a>
+        <a href="books.html" class="nav-link">المكتبة</a>
+        <a href="blog.html" class="nav-link active">المقالات</a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="pt-32 pb-12 px-6 bg-gradient-to-b from-blue-50 to-white">
+    <div class="max-w-4xl mx-auto">
+      <nav class="text-sm text-slate-500 mb-6">
+        <a href="../index.html" class="hover:text-blue-600">الرئيسية</a>
+        <span class="mx-2">›</span>
+        <a href="blog.html" class="hover:text-blue-600">المقالات</a>
+        <span class="mx-2">›</span>
+        <span>Kali Linux</span>
+      </nav>
+
+      <div class="flex flex-wrap items-center gap-3 mb-6">
+        <span class="chip">Beginner</span>
+        <span class="chip-soft">Setup</span>
+        <span class="text-xs text-slate-500">📅 1 مارس 2026 · ⏱️ 18 دقيقة</span>
+      </div>
+
+      <h1 class="text-4xl md:text-5xl font-black mb-6 text-slate-900 leading-tight">
+        Kali Linux - <span class="section-title accent">دليل التثبيت الكامل</span>
+      </h1>
+      <p class="text-xl text-slate-600 leading-relaxed">
+        ثبّت Kali Linux في VMware وأعد بيئة اختبار اختراق احترافية. خطوة بخطوة مع نصائح الأمان.
+      </p>
+    </div>
+  </header>
+
+  <article class="py-12 px-6">
+    <div class="max-w-3xl mx-auto prose-content">
+
+      <!-- ما هي -->
+      <section class="mb-12">
+        <h2 class="text-3xl font-black mb-6 text-slate-900 flex items-center gap-3">
+          <span class="w-10 h-10 rounded-lg bg-blue-100 flex items-center justify-center text-blue-600 font-black">؟</span>
+          ما هي Kali Linux؟
+        </h2>
+        <p class="text-slate-700 leading-loose text-lg mb-4">
+          Kali Linux هي توزيعة Debian-based مصممة خصيصاً لـ <strong class="text-blue-600">اختبار الاختراق الأخلاقي</strong>. تحتوي على أكثر من <strong>600 أداة أمان</strong> مثبتة مسبقاً.
+        </p>
+        <div class="grid md:grid-cols-3 gap-3">
+          <div class="glass-card p-4 text-center">
+            <i class="fa-solid fa-shield-halved text-3xl text-blue-600 mb-2"></i>
+            <p class="text-sm font-bold">Nmap, Wireshark</p>
+          </div>
+          <div class="glass-card p-4 text-center">
+            <i class="fa-solid fa-globe text-3xl text-blue-600 mb-2"></i>
+            <p class="text-sm font-bold">Burp Suite, ZAP</p>
+          </div>
+          <div class="glass-card p-4 text-center">
+            <i class="fa-solid fa-bomb text-3xl text-blue-600 mb-2"></i>
+            <p class="text-sm font-bold">Metasploit, sqlmap</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- التحميل -->
+      <section class="mb-12">
+        <h2 class="text-3xl font-black mb-6 text-slate-900 flex items-center gap-3">
+          <span class="w-10 h-10 rounded-lg bg-blue-100 flex items-center justify-center text-blue-600 font-black">📥</span>
+          تحميل Kali Linux
+        </h2>
+
+        <div class="glass-card p-6">
+          <ol class="list-decimal mr-6 space-y-3 text-slate-700">
+            <li>روح <a href="https://www.kali.org/get-kali/" target="_blank" rel="noopener" class="text-blue-600 font-bold hover:underline">kali.org/get-kali</a></li>
+            <li>اختر إصدار <strong>Installer Images</strong> (مو Live - تحتاج تثبيت كامل)</li>
+            <li>للـ VM اختر <strong>Kali Linux 64-Bit (Installer)</strong></li>
+            <li>حمّل ملف ISO (~4GB)</li>
+            <li>تحقق من الـ SHA256 للتأكد إن الملف ما تالف</li>
+          </ol>
+
+          <div class="callout mt-6">
+            <p class="text-sm text-slate-700">
+              💡 <strong>نصيحة:</strong> لا تستخدم Kali على جهازك الأساسي كـ primary OS. استخدمها في Virtual Machine لعزل آمن.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- إعداد VMware -->
+      <section class="mb-12">
+        <h2 class="text-3xl font-black mb-6 text-slate-900 flex items-center gap-3">
+          <span class="w-10 h-10 rounded-lg bg-blue-100 flex items-center justify-center text-blue-600 font-black">💻</span>
+          إعداد VMware Workstation
+        </h2>
+
+        <div class="space-y-4">
+          <div class="glass-card p-5">
+            <h3 class="font-black mb-3 text-slate-900">1. إنشاء VM جديد</h3>
+            <ul class="text-sm text-slate-700 space-y-2 mr-4 list-disc">
+              <li>File → New Virtual Machine</li>
+              <li>اختر <strong>Typical (recommended)</strong></li>
+              <li>اختر <strong>Installer disc image file (ISO)</strong></li>
+              <li>اختر ملف Kali ISO اللي حملته</li>
+              <li>اختر <strong>Linux → Debian 11/12 64-bit</strong></li>
+              <li>اسم: Kali Linux</li>
+              <li>Disk: 50GB على الأقل (الأفضل 100GB)</li>
+              <li>Customize Hardware:
+                <ul class="mr-4 list-circle mt-1">
+                  <li>RAM: 4GB كحد أدنى (8GB أفضل)</li>
+                  <li>CPUs: 2 على الأقل</li>
+                  <li>Network: NAT</li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+
+          <div class="glass-card p-5">
+            <h3 class="font-black mb-3 text-slate-900">2. تثبيت Kali</h3>
+            <ol class="list-decimal mr-6 space-y-2 text-slate-700 text-sm">
+              <li>شغّل VM</li>
+              <li>اختر <strong>Graphical Install</strong></li>
+              <li>اختر اللغة: English (الواجهة الرسومية أسهل)</li>
+              <li>Keyboard: Arabic أو English</li>
+              <li>Hostname: <code class="font-mono bg-slate-100 px-1 rounded">kali</code></li>
+              <li>Domain name: اتركه فارغ</li>
+              <li>كلمة مرور root: <strong>اختر كلمة قوية!</strong></li>
+              <li>Disk partitioning: <strong>Guided - use entire disk</strong></li>
+              <li>انتظر التثبيت (10-15 دقيقة)</li>
+              <li>Reboot</li>
+            </ol>
+          </div>
+        </div>
+      </section>
+
+      <!-- ما بعد التثبيت -->
+      <section class="mb-12">
+        <h2 class="text-3xl font-black mb-6 text-slate-900 flex items-center gap-3">
+          <span class="w-10 h-10 rounded-lg bg-blue-100 flex items-center justify-center text-blue-600 font-black">🔧</span>
+          ما بعد التثبيت (5 أشياء فوراً)
+        </h2>
+
+        <div class="glass-card p-6">
+          <h3 class="font-black mb-2 text-slate-900">1. تحديث النظام</h3>
+          <div class="bg-slate-900 text-slate-100 p-3 rounded-lg font-mono text-xs overflow-x-auto mb-4" dir="ltr">
+            <p class="text-emerald-400">sudo apt update && sudo apt upgrade -y</p>
+            <p class="text-emerald-400">sudo apt dist-upgrade -y</p>
+          </div>
+
+          <h3 class="font-black mb-2 mt-4 text-slate-900">2. تثبيت VMware Tools</h3>
+          <div class="bg-slate-900 text-slate-100 p-3 rounded-lg font-mono text-xs overflow-x-auto mb-4" dir="ltr">
+            <p class="text-emerald-400">sudo apt install open-vm-tools-desktop -y</p>
+            <p class="text-emerald-400">sudo reboot</p>
+          </div>
+          <p class="text-sm text-slate-600 mb-4">هذا يحسّن: نسخ/لصق، دقة الشاشة، مشاركة الملفات.</p>
+
+          <h3 class="font-black mb-2 mt-4 text-slate-900">3. إنشاء user غير root (للأمان)</h3>
+          <div class="bg-slate-900 text-slate-100 p-3 rounded-lg font-mono text-xs overflow-x-auto mb-4" dir="ltr">
+            <p class="text-emerald-400">sudo adduser pentester</p>
+            <p class="text-emerald-400">sudo usermod -aG sudo pentester</p>
+          </div>
+
+          <h3 class="font-black mb-2 mt-4 text-slate-900">4. تثبيت أدوات إضافية</h3>
+          <div class="bg-slate-900 text-slate-100 p-3 rounded-lg font-mono text-xs overflow-x-auto mb-4" dir="ltr">
+            <p class="text-emerald-400">sudo apt install -y gedit git curl wget vim</p>
+            <p class="text-emerald-400">sudo apt install -y gobuster ffuf burpsuite</p>
+          </div>
+
+          <h3 class="font-black mb-2 mt-4 text-slate-900">5. تفعيل snapshots</h3>
+          <p class="text-sm text-slate-600 mb-2">في VMware: VM → Snapshot → Take Snapshot</p>
+          <p class="text-xs text-slate-500">لو خربطت النظام، ترجع للـ snapshot بنقرة واحدة.</p>
+        </div>
+      </section>
+
+      <!-- بدائل -->
+      <section class="mb-12">
+        <h2 class="text-3xl font-black mb-6 text-slate-900 flex items-center gap-3">
+          <span class="w-10 h-10 rounded-lg bg-blue-100 flex items-center justify-center text-blue-600 font-black">🔄</span>
+          بدائل لـ Kali Linux
+        </h2>
+
+        <div class="grid md:grid-cols-2 gap-4">
+          <div class="glass-card p-4">
+            <h3 class="font-black mb-2 text-slate-900">Parrot Security OS</h3>
+            <p class="text-xs text-slate-600">أخف من Kali، واجهة أجمل. مناسب للـ daily driver.</p>
+          </div>
+          <div class="glass-card p-4">
+            <h3 class="font-black mb-2 text-slate-900">BlackArch</h3>
+            <p class="text-xs text-slate-600">Arch-based، 2300+ أداة. للمحترفين فقط.</p>
+          </div>
+          <div class="glass-card p-4">
+            <h3 class="font-black mb-2 text-slate-900">TryHackMe AttackBox</h3>
+            <p class="text-xs text-slate-600">VM جاهز في المتصفح، ما يحتاج تثبيت.</p>
+          </div>
+          <div class="glass-card p-4">
+            <h3 class="font-black mb-2 text-slate-900">HackTheBox Pwnbox</h3>
+            <p class="text-xs text-slate-600">VM في المتصفح مع كل الأدوات مثبتة.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- نصائح -->
+      <section class="mb-12">
+        <div class="callout">
+          <h3 class="font-black mb-2 text-slate-900">⚠️ نصائح أمان مهمة</h3>
+          <ul class="space-y-2 text-sm text-slate-700">
+            <li>• <strong>لا تستخدم Kali للتصفح اليومي</strong> - فيه أدوات هجوم</li>
+            <li>• <strong>لا تخزن بيانات حقيقية</strong> على Kali</li>
+            <li>• <strong>استخدم VPN</strong> على الـ Host network</li>
+            <li>• <strong>حدّث باستمرار</strong> - الثغرات في Kali = ثغرات لك</li>
+            <li>• <strong>اعمل snapshot نظيف</strong> بعد التثبيت مباشرة</li>
+            <li>• <strong>اقرأ /usr/share/doc/*</strong> لتعلم كل أداة</li>
+          </ul>
+        </div>
+      </section>
+
+    </div>
+  </article>
+
+  <footer class="py-12 px-6 border-t border-slate-200 text-center">
+    <p class="text-slate-500 text-sm">© 2025 CyberAr · رحومي البراهيم</p>
+  </footer>
+
+</body>
+</html>

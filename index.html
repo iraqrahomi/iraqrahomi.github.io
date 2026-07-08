@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- SEO Meta Tags -->
+  <title>CyberAr - مرجع الأمن السيبراني العربي</title>
+  <meta name="description" content="CyberAr - مرجع الأمن السيبراني العربي. مسارات تعلم، 50+ أداة، 32 كتاب مجاني، تحديات CTF، وشهادات مهنية. مجاني 100%.">
+  <meta name="keywords" content="CyberAr, الأمن السيبراني, cybersecurity عربي, اختبار الاختراق, Bug Bounty, CTF, Kali Linux, ethical hacking, OWASP Top 10, pentesting, red team, رحومي البراهيم">
+  <meta name="author" content="رحومي البراهيم - CyberAr">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+  <meta name="language" content="Arabic">
+  <meta name="revisit-after" content="3 days">
+  <meta name="rating" content="general">
+
+  <link rel="canonical" href="https://iraqrahomi.github.io/">
+
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://iraqrahomi.github.io/">
+  <meta property="og:title" content="CyberAr - مرجع الأمن السيبراني العربي">
+  <meta property="og:description" content="مرجعك الشامل لتعلم الأمن السيبراني بالعربي. مسارات، أدوات، تحديات، شهادات، كتب مجانية.">
+  <meta property="og:image" content="https://iraqrahomi.github.io/assets/og-image.png">
+  <meta property="og:locale" content="ar_AR">
+  <meta property="og:site_name" content="CyberAr">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://iraqrahomi.github.io/">
+  <meta name="twitter:title" content="CyberAr - مرجع الأمن السيبراني العربي">
+  <meta name="twitter:description" content="مرجعك الشامل لتعلم الأمن السيبراني بالعربي. مجاني 100%.">
+  <meta name="twitter:image" content="https://iraqrahomi.github.io/assets/og-image.png">
+
+  <link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/icons/favicon-16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/icons/apple-touch-icon.png">
+
+  <meta name="theme-color" content="#0ea5e9">
+  <meta name="msapplication-navbutton-color" content="#0ea5e9">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+
+  <link rel="manifest" href="manifest.json">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="CyberAr">
+
+  <link rel="alternate" type="application/rss+xml" title="CyberAr" href="feed.xml">
+
+  <!-- Structured Data: WebSite -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "CyberAr",
+    "alternateName": "مرجع الأمن السيبراني العربي",
+    "url": "https://iraqrahomi.github.io/",
+    "description": "مرجع شامل ومجاني للمختصين في الأمن السيبراني العرب",
+    "author": {
+      "@type": "Person",
+      "name": "رحومي البراهيم",
+      "jobTitle": "طالب هندسة الأمن السيبراني",
+      "nationality": {"@type": "Country", "name": "العراق"},
+      "url": "https://iraqrahomi.github.io/pages/about.html"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "CyberAr",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://iraqrahomi.github.io/assets/icons/logo.svg"
+      }
+    },
+    "inLanguage": "ar",
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": "https://iraqrahomi.github.io/pages/tools.html?q={search_term_string}",
+      "query-input": "required name=search_term_string"
+    }
+  }
+  </script>
+
+  <!-- Structured Data: Organization -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "CyberAr",
+    "url": "https://iraqrahomi.github.io/",
+    "logo": "https://iraqrahomi.github.io/assets/icons/logo.svg",
+    "description": "منصة تعليمية مجانية لتعلم الأمن السيبراني بالعربي",
+    "founder": {
+      "@type": "Person",
+      "name": "رحومي البراهيم"
+    },
+    "sameAs": [
+      "https://t.me/endiraq",
+      "https://www.instagram.com/1.ee3"
+    ]
+  }
+  </script>
+
+  <!-- Structured Data: FAQ -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {"@type": "Question", "name": "ما هو CyberAr؟", "acceptedAnswer": {"@type": "Answer", "text": "CyberAr هو مرجعك الشامل لتعلم الأمن السيبراني باللغة العربية. يقدم مسارات تعلم، أدوات، كتب مجانية، تحديات CTF، وشهادات مهنية للمختصين العرب."}},
+      {"@type": "Question", "name": "كيف أبدأ في الأمن السيبراني؟", "acceptedAnswer": {"@type": "Answer", "text": "ابدأ بمسار المبتدئ في CyberAr. تعلم أساسيات الشبكات، Linux، البرمجة، ثم تدرب على منصات مثل TryHackMe وHackTheBox."}},
+      {"@type": "Question", "name": "هل محتوى CyberAr مجاني؟", "acceptedAnswer": {"@type": "Answer", "text": "نعم، كل محتوى CyberAr مجاني 100% بما في ذلك 32 كتاب PDF، أكثر من 50 أداة، ومقالات تعليمية عميقة."}}
+    ]
+  }
+  </script>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+
+  <link rel="preconnect" href="https://cdn.tailwindcss.com">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+</head>
+
+<body class="bg-white text-slate-900 overflow-x-hidden">
+  <div id="canvas-container" aria-hidden="true"></div>
+
+  <!-- Navigation -->
+  <nav class="fixed top-0 left-0 right-0 z-50 bg-white/85 backdrop-blur-xl border-b border-slate-200">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+      <a href="/" class="flex items-center gap-3">
+        <img src="assets/icons/logo.svg" alt="CyberAr Logo" class="h-10" loading="eager">
+      </a>
+      <div class="hidden md:flex items-center gap-8">
+        <a href="#home" class="nav-link active">الرئيسية</a>
+        <a href="#paths" class="nav-link">مسارات التعلم</a>
+        <a href="pages/tools.html" class="nav-link">الأدوات</a>
+        <a href="pages/ctf.html" class="nav-link">التحديات</a>
+        <a href="pages/resources.html" class="nav-link">الموارد</a>
+        <a href="pages/books.html" class="nav-link">المكتبة</a>
+        <a href="pages/blog.html" class="nav-link">المقالات</a>
+        <a href="pages/deploy.html" class="nav-link">النشر</a>
+        <a href="pages/about.html" class="nav-link">عنّي</a>
+      </div>
+      <button class="md:hidden text-2xl text-slate-700" onclick="toggleMobileMenu()" aria-label="القائمة">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div id="mobileMenu" class="fixed inset-0 z-40 hidden flex-col items-center justify-center gap-6">
+    <a href="#home" class="text-2xl font-bold" onclick="toggleMobileMenu()">الرئيسية</a>
+    <a href="#paths" class="text-2xl font-bold" onclick="toggleMobileMenu()">مسارات التعلم</a>
+    <a href="pages/tools.html" class="text-2xl font-bold" onclick="toggleMobileMenu()">الأدوات</a>
+    <a href="pages/ctf.html" class="text-2xl font-bold" onclick="toggleMobileMenu()">التحديات</a>
+    <a href="pages/resources.html" class="text-2xl font-bold" onclick="toggleMobileMenu()">الموارد</a>
+    <a href="pages/books.html" class="text-2xl font-bold" onclick="toggleMobileMenu()">المكتبة</a>
+    <a href="pages/blog.html" class="text-2xl font-bold" onclick="toggleMobileMenu()">المقالات</a>
+    <a href="pages/deploy.html" class="text-2xl font-bold" onclick="toggleMobileMenu()">النشر</a>
+    <a href="pages/about.html" class="text-2xl font-bold" onclick="toggleMobileMenu()">عنّي</a>
+  </div>
+
+  <!-- Hero Section -->
+  <section id="home" class="hero-bg min-h-screen flex items-center justify-center relative pt-20">
+    <div class="max-w-5xl mx-auto px-6 text-center relative z-10">
+      <div class="section-eyebrow">🛡️ CyberAr — مرجعك السيبراني بالعربي</div>
+      <h1 class="text-4xl md:text-7xl font-black mb-6 leading-tight">
+        <span class="glitch-text" data-text="من الصفر">من الصفر</span>
+        <br>
+        <span class="section-title accent">إلى الاحتراف السيبراني</span>
+      </h1>
+      <p class="text-lg md:text-xl text-slate-600 max-w-2xl mx-auto mb-10 leading-relaxed">
+        أكثر من <strong class="text-cyan-600">50 أداة احترافية</strong>، <strong class="text-blue-600">32 كتاب PDF مجاني</strong>، و<strong class="text-sky-600">3 مسارات تعلم كاملة</strong> في مرجع واحد شامل للمختصين العرب.
+      </p>
+
+      <!-- Stats -->
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-3xl mx-auto mb-12">
+        <div class="glass-card p-5">
+          <div class="text-3xl md:text-4xl font-black text-cyan-600 mb-1">50+</div>
+          <div class="text-xs text-slate-500 uppercase tracking-wider">أداة</div>
+        </div>
+        <div class="glass-card p-5">
+          <div class="text-3xl md:text-4xl font-black text-blue-600 mb-1">32</div>
+          <div class="text-xs text-slate-500 uppercase tracking-wider">كتاب PDF</div>
+        </div>
+        <div class="glass-card p-5">
+          <div class="text-3xl md:text-4xl font-black text-sky-600 mb-1">6</div>
+          <div class="text-xs text-slate-500 uppercase tracking-wider">منصات CTF</div>
+        </div>
+        <div class="glass-card p-5">
+          <div class="text-3xl md:text-4xl font-black text-cyan-700 mb-1">100%</div>
+          <div class="text-xs text-slate-500 uppercase tracking-wider">مجاني</div>
+        </div>
+      </div>
+
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="#paths" class="btn-primary">
+          <i class="fa-solid fa-rocket ml-2"></i>
+          ابدأ الآن
+        </a>
+        <a href="pages/books.html" class="btn-secondary">
+          <i class="fa-solid fa-book ml-2"></i>
+          المكتبة المجانية
+        </a>
+      </div>
+    </div>
+
+    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
+      <i class="fa-solid fa-chevrons-down text-slate-400 text-2xl"></i>
+    </div>
+  </section>
+
+  <!-- Learning Paths Section -->
+  <section id="paths" class="py-24 px-6" aria-labelledby="paths-heading">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-16">
+        <div class="section-eyebrow">🎯 اختر مسارك</div>
+        <h2 id="paths-heading" class="section-title">مسارات <span class="accent">التعلم</span></h2>
+        <p class="text-slate-600 max-w-xl mx-auto text-lg">اختر المسار المناسب لمستواك وابدأ رحلتك في عالم الأمن السيبراني</p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-8">
+        <article class="glass-card p-8">
+          <div class="w-14 h-14 rounded-2xl bg-cyan-100 flex items-center justify-center mb-6">
+            <i class="fa-solid fa-seedling text-2xl text-cyan-600"></i>
+          </div>
+          <div class="chip mb-4">مبتدئ</div>
+          <h3 class="text-2xl font-black mb-2 text-slate-900">مسار المبتدئ</h3>
+          <p class="text-slate-600 mb-6 leading-relaxed">الأساسيات من الصفر: الشبكات، Linux، البرمجة، ومقدمة في OWASP Top 10.</p>
+          <ul class="space-y-2 text-sm text-slate-700 mb-6">
+            <li><i class="fa-solid fa-check text-cyan-600 ml-2"></i>أساسيات الشبكات (TCP/IP, DNS, HTTP)</li>
+            <li><i class="fa-solid fa-check text-cyan-600 ml-2"></i>نظام Linux وسطر الأوامر</li>
+            <li><i class="fa-solid fa-check text-cyan-600 ml-2"></i>مقدمة Python و Bash</li>
+            <li><i class="fa-solid fa-check text-cyan-600 ml-2"></i>OWASP Top 10</li>
+          </ul>
+          <div class="text-xs text-slate-500 mb-4">⏱️ 3-6 أشهر</div>
+          <a href="pages/blog.html#beginner" class="block text-center px-6 py-3 bg-cyan-50 border border-cyan-200 rounded-xl font-bold text-cyan-600 hover:bg-cyan-100 transition">ابدأ المسار</a>
+        </article>
+
+        <article class="glass-card p-8 relative border-blue-300">
+          <div class="absolute -top-3 -right-3 px-3 py-1 rounded-full bg-blue-600 text-white text-xs font-bold shadow-md">الأكثر طلباً</div>
+          <div class="w-14 h-14 rounded-2xl bg-blue-100 flex items-center justify-center mb-6">
+            <i class="fa-solid fa-bullseye text-2xl text-blue-600"></i>
+          </div>
+          <div class="chip mb-4">متوسط</div>
+          <h3 class="text-2xl font-black mb-2 text-slate-900">اختبار الاختراق</h3>
+          <p class="text-slate-600 mb-6 leading-relaxed">Burp Suite، OWASP، Bug Bounty، و Active Directory Attacks.</p>
+          <ul class="space-y-2 text-sm text-slate-700 mb-6">
+            <li><i class="fa-solid fa-check text-blue-600 ml-2"></i>Burp Suite باحترافية</li>
+            <li><i class="fa-solid fa-check text-blue-600 ml-2"></i>SQLi, XSS, CSRF</li>
+            <li><i class="fa-solid fa-check text-blue-600 ml-2"></i>Bug Bounty Methodology</li>
+            <li><i class="fa-solid fa-check text-blue-600 ml-2"></i>Active Directory</li>
+          </ul>
+          <div class="text-xs text-slate-500 mb-4">⏱️ 6-9 أشهر</div>
+          <a href="pages/blog.html#intermediate" class="block text-center px-6 py-3 bg-blue-600 text-white rounded-xl font-bold hover:bg-blue-700 transition">ابدأ المسار</a>
+        </article>
+
+        <article class="glass-card p-8">
+          <div class="w-14 h-14 rounded-2xl bg-sky-100 flex items-center justify-center mb-6">
+            <i class="fa-solid fa-shield-halved text-2xl text-sky-600"></i>
+          </div>
+          <div class="chip mb-4">متقدم</div>
+          <h3 class="text-2xl font-black mb-2 text-slate-900">Red Team</h3>
+          <p class="text-slate-600 mb-6 leading-relaxed">Red Team Operations، Malware Analysis، و Cloud Security.</p>
+          <ul class="space-y-2 text-sm text-slate-700 mb-6">
+            <li><i class="fa-solid fa-check text-sky-600 ml-2"></i>Red Team Operations</li>
+            <li><i class="fa-solid fa-check text-sky-600 ml-2"></i>Malware Analysis</li>
+            <li><i class="fa-solid fa-check text-sky-600 ml-2"></i>Cloud Security</li>
+            <li><i class="fa-solid fa-check text-sky-600 ml-2"></i>OSCP / CRTO</li>
+          </ul>
+          <div class="text-xs text-slate-500 mb-4">⏱️ 9-12 شهر</div>
+          <a href="pages/blog.html#advanced" class="block text-center px-6 py-3 bg-sky-50 border border-sky-200 rounded-xl font-bold text-sky-600 hover:bg-sky-100 transition">ابدأ المسار</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Tools Section -->
+  <section id="tools" class="py-24 px-6 bg-slate-50" aria-labelledby="tools-heading">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-16">
+        <div class="section-eyebrow">🛠️ أدوات احترافية</div>
+        <h2 id="tools-heading" class="section-title">مكتبة <span class="accent">الأدوات</span></h2>
+        <p class="text-slate-600 max-w-xl mx-auto text-lg">أكثر من 50 أداة احترافية مصنفة حسب التخصص</p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4 mb-12">
+        <a href="pages/tools.html#networking" class="glass-card p-6 text-center hover:scale-105 transition">
+          <i class="fa-solid fa-network-wired text-3xl text-cyan-600 mb-3"></i>
+          <h3 class="font-bold text-slate-900">الشبكات</h3>
+          <p class="text-xs text-slate-500 mt-1">Nmap, Wireshark, Masscan</p>
+        </a>
+        <a href="pages/tools.html#web" class="glass-card p-6 text-center hover:scale-105 transition">
+          <i class="fa-solid fa-globe text-3xl text-blue-600 mb-3"></i>
+          <h3 class="font-bold text-slate-900">تطبيقات الويب</h3>
+          <p class="text-xs text-slate-500 mt-1">Burp, ZAP, SQLMap</p>
+        </a>
+        <a href="pages/tools.html#exploitation" class="glass-card p-6 text-center hover:scale-105 transition">
+          <i class="fa-solid fa-bomb text-3xl text-sky-600 mb-3"></i>
+          <h3 class="font-bold text-slate-900">الاستغلال</h3>
+          <p class="text-xs text-slate-500 mt-1">Metasploit, Cobalt Strike</p>
+        </a>
+        <a href="pages/tools.html#osint" class="glass-card p-6 text-center hover:scale-105 transition">
+          <i class="fa-solid fa-user-secret text-3xl text-cyan-700 mb-3"></i>
+          <h3 class="font-bold text-slate-900">OSINT</h3>
+          <p class="text-xs text-slate-500 mt-1">Maltego, Sherlock</p>
+        </a>
+      </div>
+
+      <div class="text-center">
+        <a href="pages/tools.html" class="btn-secondary">استكشف جميع الأدوات ←</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Books -->
+  <section class="py-24 px-6" aria-labelledby="books-heading">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-16">
+        <div class="section-eyebrow">📚 مكتبة مجانية</div>
+        <h2 id="books-heading" class="section-title">32 كتاب PDF <span class="accent">احترافي</span></h2>
+        <p class="text-slate-600 max-w-xl mx-auto text-lg">حمّل واقرأ - كل المحتوى بالعربي والإنجليزي مجاني 100%</p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-6 mb-12">
+        <a href="pages/books.html" class="glass-card p-6 block hover:scale-105 transition border-r-4 border-yellow-500">
+          <div class="w-14 h-14 bg-yellow-500 rounded-xl flex items-center justify-center mb-4">
+            <i class="fa-brands fa-python text-white text-2xl"></i>
+          </div>
+          <h3 class="font-black text-lg text-slate-900 mb-2">Black Hat Python</h3>
+          <p class="text-sm text-slate-600">دليلك لبناء أدوات الاختراق بـ Python مع كود عملي</p>
+        </a>
+
+        <a href="pages/books.html" class="glass-card p-6 block hover:scale-105 transition border-r-4 border-amber-500">
+          <div class="w-14 h-14 bg-amber-500 rounded-xl flex items-center justify-center mb-4">
+            <i class="fa-solid fa-certificate text-white text-2xl"></i>
+          </div>
+          <h3 class="font-black text-lg text-slate-900 mb-2">CompTIA Security+</h3>
+          <p class="text-sm text-slate-600">دليلك لاجتياز شهادة الأمن السيبراني الأساسية</p>
+        </a>
+
+        <a href="pages/books.html" class="glass-card p-6 block hover:scale-105 transition border-r-4 border-red-500">
+          <div class="w-14 h-14 bg-red-500 rounded-xl flex items-center justify-center mb-4">
+            <i class="fa-solid fa-bug text-white text-2xl"></i>
+          </div>
+          <h3 class="font-black text-lg text-slate-900 mb-2">Bug Bounty Training</h3>
+          <p class="text-sm text-slate-600">9 مجلدات كاملة لاحتراف Bug Bounty</p>
+        </a>
+      </div>
+
+      <div class="text-center">
+        <a href="pages/books.html" class="btn-primary">
+          <i class="fa-solid fa-book ml-2"></i>
+          استكشف المكتبة كاملة
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Latest Articles -->
+  <section id="articles" class="py-24 px-6 bg-slate-50" aria-labelledby="articles-heading">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-16">
+        <div class="section-eyebrow">📝 محتوى عربي احترافي</div>
+        <h2 id="articles-heading" class="section-title">أحدث <span class="accent">المقالات</span></h2>
+        <p class="text-slate-600 max-w-xl mx-auto text-lg">مقالات تعليمية عميقة للمختصين العرب</p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-6" id="latestArticles"></div>
+
+      <div class="text-center mt-12">
+        <a href="pages/blog.html" class="btn-secondary">جميع المقالات ←</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="py-24 px-6">
+    <div class="max-w-4xl mx-auto text-center">
+      <div class="mb-12">
+        <div class="section-eyebrow">📬 تواصل</div>
+        <h2 class="section-title">انضم لمجتمع <span class="accent">CyberAr</span></h2>
+        <p class="text-slate-600 max-w-xl mx-auto text-lg">تابعنا للحصول على أحدث المحتوى والأدوات</p>
+      </div>
+
+      <div class="glass-card p-8 md:p-12 max-w-md mx-auto">
+        <img src="myphoto.jpg" alt="رحومي البراهيم - مؤسس CyberAr" class="w-32 h-32 mx-auto mb-6 rounded-full object-cover border-4 border-cyan-200 shadow-lg" loading="lazy" width="128" height="128">
+        <h3 class="text-2xl font-black mb-2 text-slate-900">رحومي البراهيم</h3>
+        <p class="text-cyan-600 font-bold mb-6">مؤسس CyberAr · طالب هندسة الأمن السيبراني</p>
+
+        <div class="space-y-3">
+          <a href="https://t.me/endiraq" target="_blank" rel="noopener" class="list-row">
+            <span class="font-bold text-slate-700">Telegram</span>
+            <i class="fa-brands fa-telegram text-cyan-500 text-xl"></i>
+          </a>
+          <a href="https://www.instagram.com/1.ee3" target="_blank" rel="noopener" class="list-row">
+            <span class="font-bold text-slate-700">Instagram</span>
+            <i class="fa-brands fa-instagram text-pink-500 text-xl"></i>
+          </a>
+          <a href="mailto:cyberhares.alanbar@proton.me" class="list-row">
+            <span class="font-bold text-slate-700">Email</span>
+            <i class="fa-solid fa-envelope text-blue-600 text-xl"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="py-12 px-6 bg-slate-50 border-t border-slate-200">
+    <div class="max-w-6xl mx-auto">
+      <div class="grid md:grid-cols-4 gap-8 mb-8">
+        <div>
+          <img src="assets/icons/logo.svg" alt="CyberAr" class="h-10 mb-4">
+          <p class="text-sm text-slate-500">مرجعك الشامل لتعلم الأمن السيبراني باللغة العربية. من الصفر للاحتراف.</p>
+        </div>
+        <div>
+          <h4 class="font-bold mb-3 text-cyan-600">التعلم</h4>
+          <ul class="space-y-2 text-sm text-slate-600">
+            <li><a href="#paths" class="hover:text-cyan-600">المسارات</a></li>
+            <li><a href="pages/tools.html" class="hover:text-cyan-600">الأدوات</a></li>
+            <li><a href="pages/ctf.html" class="hover:text-cyan-600">التحديات</a></li>
+            <li><a href="pages/commands.html" class="hover:text-cyan-600">أوامر Linux</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-bold mb-3 text-blue-600">المصادر</h4>
+          <ul class="space-y-2 text-sm text-slate-600">
+            <li><a href="pages/books.html" class="hover:text-blue-600">مكتبة الكتب</a></li>
+            <li><a href="pages/resources.html" class="hover:text-blue-600">الكتب</a></li>
+            <li><a href="pages/resources.html#courses" class="hover:text-blue-600">الكورسات</a></li>
+            <li><a href="pages/resources.html#certifications" class="hover:text-blue-600">الشهادات</a></li>
+            <li><a href="pages/blog.html" class="hover:text-blue-600">المقالات</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-bold mb-3 text-sky-600">المزيد</h4>
+          <ul class="space-y-2 text-sm text-slate-600">
+            <li><a href="pages/about.html" class="hover:text-sky-600">عنّي</a></li>
+            <li><a href="#contact" class="hover:text-sky-600">تواصل</a></li>
+            <li><a href="sitemap.xml" class="hover:text-sky-600">Sitemap</a></li>
+            <li><a href="feed.xml" class="hover:text-sky-600">RSS</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="border-t border-slate-200 pt-8 text-center">
+        <p class="text-slate-500 text-sm">
+          © 2025 CyberAr · رحومي البراهيم | صُنع بـ 💙 للمجتمع العربي
+        </p>
+        <p class="text-slate-400 text-xs mt-2 font-mono">تعلم Ethically • Practice Legally • Grow Constantly</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/app.js"></script>
+  <script src="js/articles-loader.js"></script>
+</body>
+</html>

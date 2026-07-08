@@ -1,0 +1,191 @@
+[
+  {
+    "id": "black-hat-python",
+    "title": "ملخص Black Hat Python - دليلك لبناء أدوات الاختراق",
+    "excerpt": "ملخص عربي شامل لكتاب Justin Seitz. تعلم بناء أدوات اختراق بـ Python.",
+    "category": "books",
+    "date": "2026-02-28",
+    "readingTime": "15 دقيقة",
+    "level": "متوسط",
+    "tags": [
+      "Python",
+      "Hacking",
+      "Black Hat"
+    ],
+    "author": "رحومي البراهيم",
+    "image": "assets/articles/bhp.svg",
+    "url": "pages/book-black-hat-python.html"
+  },
+  {
+    "id": "owasp-top-10-2024",
+    "title": "OWASP Top 10 - دليل شامل للمختصين العرب",
+    "excerpt": "دليل عربي شامل لـ OWASP Top 10 - أخطر 10 ثغرات في تطبيقات الويب 2024 مع أمثلة عملية ودفاع.",
+    "category": "web-security",
+    "date": "2026-03-01",
+    "readingTime": "25 دقيقة",
+    "level": "متوسط",
+    "tags": [
+      "OWASP",
+      "Web Security",
+      "Penetration Testing"
+    ],
+    "author": "رحومي البراهيم",
+    "image": "assets/articles/owasp.svg",
+    "url": "pages/article-owasp.html"
+  },
+  {
+    "id": "burp-suite-mastery",
+    "title": "Burp Suite - دليل الإتقان من الصفر للاحتراف",
+    "excerpt": "دليل شامل لإتقان Burp Suite في اختبار اختراق تطبيقات الويب. Proxy, Repeater, Intruder, Scanner باحترافية.",
+    "category": "tools",
+    "date": "2026-03-01",
+    "readingTime": "20 دقيقة",
+    "level": "متوسط",
+    "tags": [
+      "Burp Suite",
+      "Web Security",
+      "Tools"
+    ],
+    "author": "رحومي البراهيم",
+    "image": "assets/articles/burp.svg",
+    "url": "pages/article-burp.html"
+  },
+  {
+    "id": "sql-injection-deep-dive",
+    "title": "SQL Injection - الهجوم والدفاع باحترافية",
+    "excerpt": "كل ما تحتاج معرفته عن SQL Injection: من الأساسيات إلى التقنيات المتقدمة.",
+    "category": "web-security",
+    "date": "2026-03-01",
+    "readingTime": "22 دقيقة",
+    "level": "متوسط",
+    "tags": [
+      "SQL Injection",
+      "Web Security",
+      "OWASP"
+    ],
+    "author": "رحومي البراهيم",
+    "image": "assets/articles/sqli.svg",
+    "url": "pages/article-sqli.html"
+  },
+  {
+    "id": "kali-linux-setup",
+    "title": "Kali Linux Setup - دليل التثبيت الكامل",
+    "excerpt": "دليل تثبيت Kali Linux في VMware لاختبار الاختراق الأخلاقي. خطوة بخطوة مع نصائح الأمان.",
+    "category": "beginner",
+    "date": "2026-03-01",
+    "readingTime": "18 دقيقة",
+    "level": "مبتدئ",
+    "tags": [
+      "Kali Linux",
+      "Setup",
+      "Beginner"
+    ],
+    "author": "رحومي البراهيم",
+    "image": "assets/articles/kali.svg",
+    "url": "pages/article-kali.html"
+  },
+  {
+    "id": "active-directory-attacks",
+    "title": "هجمات Active Directory - منهجية شاملة",
+    "excerpt": "دليل شامل لهجمات AD: Kerberoasting, Pass-the-Hash, DCSync, Golden Ticket. أدوات مثل BloodHound و Mimikatz.",
+    "category": "advanced",
+    "date": "2026-03-01",
+    "readingTime": "30 دقيقة",
+    "level": "متقدم",
+    "tags": [
+      "Active Directory",
+      "Red Team",
+      "Windows"
+    ],
+    "author": "رحومي البراهيم",
+    "image": "assets/articles/ad.svg",
+    "url": "pages/article-ad.html"
+  },
+  {
+    "id": "comptia-security-plus",
+    "title": "ملخص CompTIA Security+ SY0-701 - دليلك للنجاح",
+    "excerpt": "دليلك الكامل بالعربي لاجتياز شهادة الأمن السيبراني الأساسية. كل المجالات الخمسة بمفاهيم واضحة.",
+    "category": "books",
+    "date": "2026-02-28",
+    "readingTime": "18 دقيقة",
+    "level": "مبتدئ",
+    "tags": [
+      "Security+",
+      "Certification",
+      "SY0-701"
+    ],
+    "author": "رحومي البراهيم",
+    "image": "assets/articles/comptia.svg",
+    "url": "pages/book-comptia-security-plus.html"
+  },
+  {
+    "id": "bug-bounty-rfi",
+    "title": "دليل RFI الشامل - Remote File Inclusion",
+    "excerpt": "تعلم ثغرات RFI: كيف تحدث، كيف تُستغل، وكيف تحمي تطبيقاتك. CVSS 9.8!",
+    "category": "books",
+    "date": "2026-02-27",
+    "readingTime": "10 دقائق",
+    "level": "متوسط",
+    "tags": [
+      "RFI",
+      "Web Security",
+      "Bug Bounty"
+    ],
+    "author": "رحومي البراهيم",
+    "image": "assets/articles/rfi.svg",
+    "url": "pages/book-bug-bounty-rfi.html"
+  },
+  {
+    "id": "hacker-roadmap",
+    "title": "Hacker Roadmap - دليلك لاحتراف الأمن السيبراني",
+    "excerpt": "خارطة طريق كاملة من الصفر للاحتراف: ماذا تدرس، بأي ترتيب، وأي مصادر تستخدم.",
+    "category": "books",
+    "date": "2026-02-27",
+    "readingTime": "12 دقيقة",
+    "level": "مبتدئ",
+    "tags": [
+      "Roadmap",
+      "Learning Path",
+      "Cybersecurity"
+    ],
+    "author": "رحومي البراهيم",
+    "image": "assets/articles/roadmap.svg",
+    "url": "pages/book-hacker-roadmap.html"
+  },
+  {
+    "id": "linux-book-review",
+    "title": "مراجعة كتاب سطر أوامر لينكس - رأي مختص",
+    "excerpt": "مراجعة شاملة لكتاب The Linux Command Line بالعربي. هل يستحق وقتك كمتخصص؟",
+    "category": "books",
+    "date": "2026-02-26",
+    "readingTime": "8 دقائق",
+    "level": "مبتدئ",
+    "tags": [
+      "Linux",
+      "كتب",
+      "مراجعة"
+    ],
+    "author": "رحومي البراهيم",
+    "image": "assets/articles/linux.svg",
+    "url": "pages/linux-book-review.html"
+  },
+  {
+    "id": "claude-skills-guide",
+    "title": "دليل بناء Skills لـ Claude - ملخص ومراجعة عربية",
+    "excerpt": "ملخص ومراجعة عربية شاملة للدليل الرسمي من Anthropic.",
+    "category": "ai-tools",
+    "date": "2026-02-25",
+    "readingTime": "15 دقيقة",
+    "level": "متوسط",
+    "tags": [
+      "Claude",
+      "AI",
+      "Anthropic",
+      "Skills",
+      "MCP"
+    ],
+    "author": "رحومي البراهيم",
+    "image": "assets/articles/claude.svg",
+    "url": "pages/claude-skills.html"
+  }
+]

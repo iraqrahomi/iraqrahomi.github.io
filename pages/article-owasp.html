@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>OWASP Top 10 2024 - دليل شامل للمختصين العرب | CyberAr</title>
+  <meta name="description" content="دليل عربي شامل لـ OWASP Top 10 - أخطر 10 ثغرات في تطبيقات الويب 2024. شرح كل ثغرة، أمثلة عملية، استغلال، ودفاع.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://iraqrahomi.github.io/pages/article-owasp.html">
+
+  <meta property="og:title" content="OWASP Top 10 2024 - دليل شامل | CyberAr">
+  <meta property="og:description" content="دليل عربي شامل لـ OWASP Top 10 - أخطر 10 ثغرات في تطبيقات الويب">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://iraqrahomi.github.io/pages/article-owasp.html">
+  <meta property="og:image" content="https://iraqrahomi.github.io/assets/og-image.png">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="OWASP Top 10 2024 - CyberAr">
+  <meta name="twitter:description" content="أخطر 10 ثغرات تطبيقات الويب - شرح عربي شامل">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "OWASP Top 10 - دليل شامل للمختصين العرب",
+    "author": {"@type": "Person", "name": "رحومي البراهيم"},
+    "datePublished": "2026-03-01",
+    "inLanguage": "ar",
+    "articleSection": "Web Security"
+  }
+  </script>
+
+  <link rel="icon" type="image/svg+xml" href="../assets/icons/favicon.svg">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body class="bg-white text-slate-900">
+
+  <nav class="fixed top-0 left-0 right-0 z-50 bg-white/85 backdrop-blur-xl border-b border-slate-200">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+      <a href="../index.html" class="flex items-center gap-3">
+        <img src="../assets/icons/logo.svg" alt="CyberAr" class="h-10">
+      </a>
+      <div class="hidden md:flex items-center gap-6 text-sm">
+        <a href="../index.html" class="nav-link">الرئيسية</a>
+        <a href="tools.html" class="nav-link">الأدوات</a>
+        <a href="books.html" class="nav-link">المكتبة</a>
+        <a href="blog.html" class="nav-link active">المقالات</a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="pt-32 pb-12 px-6 bg-gradient-to-b from-red-50 to-white">
+    <div class="max-w-4xl mx-auto">
+      <nav class="text-sm text-slate-500 mb-6">
+        <a href="../index.html" class="hover:text-blue-600">الرئيسية</a>
+        <span class="mx-2">›</span>
+        <a href="blog.html" class="hover:text-blue-600">المقالات</a>
+        <span class="mx-2">›</span>
+        <span class="text-slate-700">OWASP Top 10</span>
+      </nav>
+
+      <div class="flex flex-wrap items-center gap-3 mb-6">
+        <span class="chip">Web Security</span>
+        <span class="chip-soft">OWASP 2024</span>
+        <span class="text-xs text-slate-500">📅 1 مارس 2026 · ⏱️ 25 دقيقة</span>
+      </div>
+
+      <h1 class="text-4xl md:text-5xl font-black mb-6 text-slate-900 leading-tight">
+        OWASP Top 10 - <span class="section-title accent">أخطر 10 ثغرات ويب</span>
+      </h1>
+      <p class="text-xl text-slate-600 leading-relaxed">
+        الدليل الأكثر طلباً في أمن تطبيقات الويب. شرح كل ثغرة بأمثلة عملية، استغلال، ودفاع.
+      </p>
+    </div>
+  </header>
+
+  <article class="py-12 px-6">
+    <div class="max-w-3xl mx-auto prose-content">
+
+      <!-- ما هي OWASP -->
+      <section class="mb-12">
+        <h2 class="text-3xl font-black mb-6 text-slate-900 flex items-center gap-3">
+          <span class="w-10 h-10 rounded-lg bg-red-100 flex items-center justify-center text-red-600 font-black">؟</span>
+          ما هي OWASP Top 10؟
+        </h2>
+        <p class="text-slate-700 leading-loose text-lg mb-4">
+          OWASP (Open Web Application Security Project) هي مؤسسة غير ربحية تنشر كل 3-4 سنوات قائمة بأخطر 10 فئات من ثغرات تطبيقات الويب. القائمة هي المعيار العالمي الذي يستخدمه:
+        </p>
+        <ul class="space-y-2 text-slate-700">
+          <li class="flex items-start gap-3"><i class="fa-solid fa-check-circle text-red-500 mt-1"></i><span>شركات Fortune 500 في تقييم تطبيقاتها</span></li>
+          <li class="flex items-start gap-3"><i class="fa-solid fa-check-circle text-red-500 mt-1"></i><span>الباحثون الأمنيون لاختبار اختراق منظم</span></li>
+          <li class="flex items-start gap-3"><i class="fa-solid fa-check-circle text-red-500 mt-1"></i><span>الحكومات (مثل DoD الأمريكي) كحد أدنى للأمان</span></li>
+          <li class="flex items-start gap-3"><i class="fa-solid fa-check-circle text-red-500 mt-1"></i><span>مطورون كـ checklist لتأمين تطبيقاتهم</span></li>
+        </ul>
+      </section>
+
+      <!-- A01: Broken Access Control -->
+      <section class="mb-12">
+        <div class="glass-card p-6 border-r-4 border-red-500">
+          <div class="flex items-center gap-3 mb-4">
+            <span class="w-12 h-12 rounded-lg bg-red-600 text-white flex items-center justify-center font-black text-lg">A01</span>
+            <h2 class="text-2xl font-black text-slate-900">Broken Access Control</h2>
+          </div>
+          <p class="text-slate-700 mb-4 leading-loose"><strong>الوصف:</strong> المستخدم يقدر يصل لموارد ما من حقه - مثل تعديل user ID في URL لرؤية حساب غيره.</p>
+
+          <h3 class="font-black text-lg mb-2 text-slate-900">🎯 أمثلة شائعة:</h3>
+          <ul class="space-y-2 text-slate-700 mb-4 text-sm">
+            <li>• تغيير ID في URL: <code class="font-mono bg-slate-100 px-1 rounded">/user/123/profile</code> → <code class="font-mono bg-slate-100 px-1 rounded">/user/124/profile</code></li>
+            <li>• الوصول لـ API endpoints بدون تحقق الصلاحيات</li>
+            <li>• رفع صلاحيات المستخدم من user إلى admin</li>
+            <li>• JWT tokens مزورة أو معاد استخدامها</li>
+          </ul>
+
+          <h3 class="font-black text-lg mb-2 text-slate-900">⚔️ كيف تستغل:</h3>
+          <div class="bg-slate-900 text-slate-100 p-3 rounded-lg font-mono text-xs overflow-x-auto mb-4" dir="ltr">
+            <p class="text-slate-400"># اختبار IDOR</p>
+            <p class="text-emerald-400">GET /api/users/1001/profile</p>
+            <p class="text-emerald-400">GET /api/users/1002/profile  &lt;-- مستخدم آخر</p>
+            <p class="text-emerald-400">GET /api/users/1003/admin  &lt;-- محاولة admin</p>
+          </div>
+
+          <h3 class="font-black text-lg mb-2 text-slate-900">🛡️ الدفاع:</h3>
+          <ul class="space-y-2 text-slate-700 text-sm">
+            <li>• تطبيق authorization في كل endpoint (لا تعتمد على UI)</li>
+            <li>• استخدام policy engines (Casbin, OPA)</li>
+            <li>• تعطيل حسابات المستخدمين المحذوفين فوراً</li>
+            <li>• تسجيل محاولات الوصول غير المصرح بها</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- A02: Cryptographic Failures -->
+      <section class="mb-12">
+        <div class="glass-card p-6 border-r-4 border-orange-500">
+          <div class="flex items-center gap-3 mb-4">
+            <span class="w-12 h-12 rounded-lg bg-orange-600 text-white flex items-center justify-center font-black text-lg">A02</span>
+            <h2 class="text-2xl font-black text-slate-900">Cryptographic Failures</h2>
+          </div>
+          <p class="text-slate-700 mb-4 leading-loose"><strong>الوصف:</strong> ضعف في التشفير أو عدم استخدامه - بيانات حساسة مكشوفة.</p>
+
+          <h3 class="font-black text-lg mb-2 text-slate-900">🎯 أمثلة:</h3>
+          <ul class="space-y-2 text-slate-700 mb-4 text-sm">
+            <li>• تخزين كلمات المرور بدون hash (أو MD5 - مكسور)</li>
+            <li>• HTTP بدلاً من HTTPS</li>
+            <li>• استخدام تشفير قديم (DES, RC4, SHA1)</li>
+            <li>• مفاتيح تشفير مكشوفة في الكود</li>
+          </ul>
+
+          <h3 class="font-black text-lg mb-2 text-slate-900">🛡️ الدفاع:</h3>
+          <ul class="space-y-2 text-slate-700 text-sm">
+            <li>• bcrypt أو Argon2 لكلمات المرور (cost 12+)</li>
+            <li>• TLS 1.3 فقط</li>
+            <li>• AES-256 للبيانات في حالة السكون</li>
+            <li>• إدارة مفاتيح في HSM أو Vault</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- A03: Injection -->
+      <section class="mb-12">
+        <div class="glass-card p-6 border-r-4 border-yellow-500">
+          <div class="flex items-center gap-3 mb-4">
+            <span class="w-12 h-12 rounded-lg bg-yellow-600 text-white flex items-center justify-center font-black text-lg">A03</span>
+            <h2 class="text-2xl font-black text-slate-900">Injection</h2>
+          </div>
+          <p class="text-slate-700 mb-4 leading-loose"><strong>الوصف:</strong> المهاجم يحقن كود ضار في input - SQL, NoSQL, OS commands, LDAP...</p>
+
+          <h3 class="font-black text-lg mb-2 text-slate-900">🎯 SQL Injection مثال:</h3>
+          <div class="bg-slate-900 text-slate-100 p-3 rounded-lg font-mono text-xs overflow-x-auto mb-4" dir="ltr">
+            <p class="text-slate-400"># Input عادي</p>
+            <p class="text-emerald-400">username: admin</p>
+            <p class="text-emerald-400">password: mypass</p>
+            <p class="text-slate-400 mt-2"># Input ضار</p>
+            <p class="text-red-400">username: admin' OR '1'='1</p>
+            <p class="text-red-400">password: anything</p>
+            <p class="text-slate-400 mt-2"># يصبح الاستعلام:</p>
+            <p class="text-yellow-400">SELECT * FROM users WHERE username='admin' OR '1'='1' AND password='anything'</p>
+          </div>
+
+          <h3 class="font-black text-lg mb-2 text-slate-900">🛡️ الدفاع:</h3>
+          <ul class="space-y-2 text-slate-700 text-sm">
+            <li>• Prepared Statements / Parameterized Queries (الأهم)</li>
+            <li>• ORMs (Hibernate, Sequelize)</li>
+            <li>• Input Validation (لكن لا تعتمد عليه وحده)</li>
+            <li>• Least Privilege على DB user</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- A04 & A05 -->
+      <section class="mb-12">
+        <h2 class="text-2xl font-black mb-6 text-slate-900">⚡ باقي القائمة المختصرة:</h2>
+
+        <div class="space-y-4">
+          <div class="glass-card p-5 border-r-4 border-lime-500">
+            <div class="flex items-center gap-3 mb-2">
+              <span class="w-10 h-10 rounded bg-lime-600 text-white flex items-center justify-center font-black text-sm">A04</span>
+              <h3 class="font-black text-lg text-slate-900">Insecure Design</h3>
+            </div>
+            <p class="text-sm text-slate-700">ثغرات في التصميم نفسه - مو في الكود. مثل workflow يسمح بشيء خطير.</p>
+          </div>
+
+          <div class="glass-card p-5 border-r-4 border-green-500">
+            <div class="flex items-center gap-3 mb-2">
+              <span class="w-10 h-10 rounded bg-green-600 text-white flex items-center justify-center font-black text-sm">A05</span>
+              <h3 class="font-black text-lg text-slate-900">Security Misconfiguration</h3>
+            </div>
+            <p class="text-sm text-slate-700">إعدادات افتراضية، debug mode في production، صلاحيات مفتوحة.</p>
+          </div>
+
+          <div class="glass-card p-5 border-r-4 border-teal-500">
+            <div class="flex items-center gap-3 mb-2">
+              <span class="w-10 h-10 rounded bg-teal-600 text-white flex items-center justify-center font-black text-sm">A06</span>
+              <h3 class="font-black text-lg text-slate-900">Vulnerable Components</h3>
+            </div>
+            <p class="text-sm text-slate-700">مكتبات قديمة أو معروفة بثغرات - 70%+ من التطبيقات تستخدم مكونات قديمة.</p>
+          </div>
+
+          <div class="glass-card p-5 border-r-4 border-cyan-500">
+            <div class="flex items-center gap-3 mb-2">
+              <span class="w-10 h-10 rounded bg-cyan-600 text-white flex items-center justify-center font-black text-sm">A07</span>
+              <h3 class="font-black text-lg text-slate-900">Authentication Failures</h3>
+            </div>
+            <p class="text-sm text-slate-700">ثغرات في login - كلمات مرور ضعيفة، session hijacking، credential stuffing.</p>
+          </div>
+
+          <div class="glass-card p-5 border-r-4 border-blue-500">
+            <div class="flex items-center gap-3 mb-2">
+              <span class="w-10 h-10 rounded bg-blue-600 text-white flex items-center justify-center font-black text-sm">A08</span>
+              <h3 class="font-black text-lg text-slate-900">Software & Data Integrity</h3>
+            </div>
+            <p class="text-sm text-slate-700">عدم التحقق من updates, CI/CD pipelines مكشوفة, deserialization attacks.</p>
+          </div>
+
+          <div class="glass-card p-5 border-r-4 border-indigo-500">
+            <div class="flex items-center gap-3 mb-2">
+              <span class="w-10 h-10 rounded bg-indigo-600 text-white flex items-center justify-center font-black text-sm">A09</span>
+              <h3 class="font-black text-lg text-slate-900">Logging & Monitoring Failures</h3>
+            </div>
+            <p class="text-sm text-slate-700">عدم تسجيل الهجمات - المهاجم يبقى شهور بدون ما حد يلاحظ.</p>
+          </div>
+
+          <div class="glass-card p-5 border-r-4 border-purple-500">
+            <div class="flex items-center gap-3 mb-2">
+              <span class="w-10 h-10 rounded bg-purple-600 text-white flex items-center justify-center font-black text-sm">A10</span>
+              <h3 class="font-black text-lg text-slate-900">SSRF (Server-Side Request Forgery)</h3>
+            </div>
+            <p class="text-sm text-slate-700">السيرفر يجلب موارد من URL يتحكم فيه المهاجم - يصل لـ internal services.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- كيف تبدأ -->
+      <section class="mb-12">
+        <div class="callout-blue">
+          <h3 class="font-black text-lg mb-3 text-slate-900">🎯 كيف تبدأ تعلم OWASP Top 10؟</h3>
+          <ol class="list-decimal mr-6 space-y-2 text-slate-700">
+            <li>ابدأ بـ PortSwigger Web Security Academy (مجاني 100%)</li>
+            <li>طبّق على DVWA أو bWAPP</li>
+            <li>جرّب TryHackMe OWASP Top 10 rooms</li>
+            <li>بعدها ابدأ Bug Bounty على HackerOne</li>
+          </ol>
+        </div>
+      </section>
+
+    </div>
+  </article>
+
+  <footer class="py-12 px-6 border-t border-slate-200 text-center">
+    <p class="text-slate-500 text-sm">© 2025 CyberAr · رحومي البراهيم</p>
+  </footer>
+
+</body>
+</html>

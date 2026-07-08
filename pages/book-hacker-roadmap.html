@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ملخص Hacker Roadmap - دليلك لاحتراف السيبر | CyberAr</title>
+  <meta name="description" content="ملخص عربي شامل لكتاب Hacker Roadmap. خارطة طريق خطوة بخطوة لتعلم اختبار الاختراق من الصفر للاحتراف: الشبكات، Linux، البرمجة، Web، Network Pentesting، Red Team.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://iraqrahomi.github.io/pages/book-hacker-roadmap.html">
+
+  <meta property="og:title" content="ملخص Hacker Roadmap بالعربي">
+  <meta property="og:description" content="خارطة طريق تعلم الأمن السيبراني - من الصفر للاحتراف">
+  <meta property="og:type" content="article">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "ملخص Hacker Roadmap - دليلك لاحتراف الأمن السيبراني",
+    "author": {"@type": "Person", "name": "رحومي البراهيم"},
+    "datePublished": "2026-02-27",
+    "inLanguage": "ar",
+    "articleSection": "Cybersecurity Learning Path"
+  }
+  </script>
+
+  <link rel="icon" type="image/svg+xml" href="../assets/icons/favicon.svg">
+  <link rel="manifest" href="../manifest.json">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="../css/style.css">
+  <meta property="og:image" content="https://iraqrahomi.github.io/assets/og-image.png">
+  <meta property="og:title" content="ملخص Hacker Roadmap - دليلك الشامل لاحتراف الأمن السيبراني | رحومي ...">
+  <meta property="og:description" content="ملخص عربي شامل لكتاب Hacker Roadmap. خارطة طريق خطوة بخطوة لتعلم اختبار الاختراق من الصفر للاحتراف: الشبكات، Linux، البرمجة، Web، Network Pentesting، Red Team.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://iraqrahomi.github.io/pages/book-hacker-roadmap.html">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="ملخص Hacker Roadmap - دليلك الشامل لاحتراف الأمن السيبراني | رحومي ...">
+  <meta name="twitter:description" content="ملخص عربي شامل لكتاب Hacker Roadmap. خارطة طريق خطوة بخطوة لتعلم اختبار الاختراق من الصفر للاحتراف: الشبكات، Linux، البرمجة، Web، Network Pentesting، Red Team.">
+  <meta name="twitter:image" content="https://iraqrahomi.github.io/assets/og-image.png">
+</head>
+<body class="bg-white text-slate-900">
+
+  <nav class="fixed top-0 left-0 right-0 z-50 bg-white/85 backdrop-blur-xl border-b border-slate-200">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+      <a href="../index.html" class="flex items-center gap-3">
+        <img src="../assets/icons/logo.svg" alt="CyberAr" class="h-10">
+      </a>
+      <div class="hidden md:flex items-center gap-6 text-sm">
+        <a href="../index.html" class="nav-link">الرئيسية</a>
+        <a href="../index.html#paths" class="nav-link">المسارات</a>
+        <a href="tools.html" class="nav-link">الأدوات</a>
+        <a href="ctf.html" class="nav-link">التحديات</a>
+        <a href="resources.html" class="nav-link">الموارد</a>
+        <a href="books.html" class="nav-link">المكتبة</a>
+        <a href="blog.html" class="nav-link active">المقالات</a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="pt-32 pb-12 px-6 bg-gradient-to-b from-blue-50 to-white">
+    <div class="max-w-4xl mx-auto">
+      <nav class="text-sm text-slate-500 mb-6">
+        <a href="../index.html" class="hover:text-blue-600">الرئيسية</a>
+        <span class="mx-2">›</span>
+        <a href="books.html" class="hover:text-blue-600">المكتبة</a>
+        <span class="mx-2">›</span>
+        <span class="text-slate-700">Hacker Roadmap</span>
+      </nav>
+
+      <div class="flex flex-wrap items-center gap-3 mb-6">
+        <span class="chip">ملخص كتاب</span>
+        <span class="chip-soft">Learning Path</span>
+        <span class="text-xs text-slate-500">📅 27 فبراير 2026 · ⏱️ 12 دقيقة قراءة</span>
+      </div>
+
+      <h1 class="text-4xl md:text-5xl font-black mb-6 text-slate-900 leading-tight">
+        Hacker Roadmap - <span class="section-title accent">دليلك لاحتراف الأمن السيبراني</span>
+      </h1>
+
+      <p class="text-xl text-slate-600 leading-relaxed mb-8">
+        خارطة طريق كاملة من الصفر للاحتراف: ماذا تدرس، بأي ترتيب، وأي مصادر تستخدم. هذا الملخص العربي يختصر أشهر roadmap في الساحة العالمية.
+      </p>
+
+      <!-- Source Card -->
+      <div class="glass-card p-6 bg-blue-50/50 border-blue-200">
+        <div class="flex items-start gap-4">
+          <div class="w-14 h-14 bg-blue-600 rounded-xl flex items-center justify-center flex-shrink-0">
+            <i class="fa-solid fa-route text-white text-2xl"></i>
+          </div>
+          <div>
+            <p class="font-bold text-slate-900 mb-1">عن الكتاب الأصلي</p>
+            <p class="text-sm text-slate-700">"Hacker Roadmap: Hack Everything, Own the Web" - من أشهر المراجع في مجتمع الأمن السيبراني العالمي. يغطي مسار تعلم كامل خطوة بخطوة.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <article class="py-16 px-6">
+    <div class="max-w-3xl mx-auto prose-content">
+
+      <!-- مقدمة -->
+      <section class="mb-12">
+        <h2 class="text-3xl font-black mb-6 text-slate-900 flex items-center gap-3">
+          <span class="w-10 h-10 rounded-lg bg-blue-100 flex items-center justify-center text-blue-600 font-black">!</span>
+          ليش تحتاج Roadmap؟
+        </h2>
+        <p class="text-slate-700 leading-loose text-lg mb-4">
+          <strong class="text-blue-600">أكبر مشكلة للمبتدئ</strong> في الأمن السيبراني: يبدأ يدرس كل شي عشوائياً، يضيع وقت، يحبط، ويوقف.
+        </p>
+        <p class="text-slate-700 leading-loose text-lg mb-4">
+          الـ Roadmap يحل هالمشكلة: يقول لك بالضبط <strong>شو تدرس أولاً، شو ثانياً، وأي مصادر</strong>. بدون خارطة طريق، أنت تتسلق جبل بدون GPS.
+        </p>
+
+        <div class="callout-blue">
+          <p class="font-bold mb-2 text-slate-900">💡 الفكرة الأساسية:</p>
+          <p class="text-slate-700">الأمن السيبراني مجال <strong>واسع جداً</strong>. مستحيل تحترفه كله. اختر تخصص (Web, Network, Mobile, Cloud...) وركّز فيه. الـ Roadmap يساعدك تحدد طريقك.</p>
+        </div>
+      </section>
+
+      <!-- المرحلة 1 -->
+      <section class="mb-12">
+        <h2 class="text-3xl font-black mb-6 text-slate-900 flex items-center gap-3">
+          <span class="w-10 h-10 rounded-lg bg-emerald-100 flex items-center justify-center text-emerald-600 font-black">1</span>
+          المرحلة 1: الأساسيات (شهر 1-3)
+        </h2>
+        <p class="text-slate-700 mb-6 leading-loose">قبل ما تفكر في اختراق أي شي، لازم تفهم الأساس. بدونها، رح تواجه صعوبة في كل ما بعد.</p>
+
+        <div class="space-y-4">
+          <div class="glass-card p-5">
+            <h3 class="font-black text-lg mb-2 text-slate-900">🌐 أساسيات الشبكات</h3>
+            <p class="text-slate-600 mb-3">افهم كيف الإنترنت يشتغل: TCP/IP, DNS, HTTP, HTTPS, IP addresses.</p>
+            <div class="bg-slate-50 p-4 rounded-lg">
+              <p class="text-sm font-bold text-slate-700 mb-2">📚 مصادر مقترحة:</p>
+              <ul class="text-sm text-slate-600 space-y-1">
+                <li>• Professor Messer Network+ (YouTube مجاني)</li>
+                <li>• كتاب Networking Fundamentals (متاح في مكتبتنا)</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="glass-card p-5">
+            <h3 class="font-black text-lg mb-2 text-slate-900">🐧 أساسيات Linux</h3>
+            <p class="text-slate-600 mb-3">90% من أدوات الاختراق تشتغل على Linux. اتعلم: navigation, file ops, permissions, shell scripting.</p>
+            <div class="bg-slate-50 p-4 rounded-lg">
+              <p class="text-sm font-bold text-slate-700 mb-2">📚 مصادر مقترحة:</p>
+              <ul class="text-sm text-slate-600 space-y-1">
+                <li>• كتاب The Linux Command Line (مراجعتنا موجودة)</li>
+                <li>• OverTheWire Bandit (تحديات عملية)</li>
+                <li>• TryHackMe Linux Fundamentals</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="glass-card p-5">
+            <h3 class="font-black text-lg mb-2 text-slate-900">💻 أساسيات البرمجة</h3>
+            <p class="text-slate-600 mb-3">ابدأ بـ Python - اللغة الأكثر استخداماً في الأمن السيبراني. اتعلم basics، functions، networking، file I/O.</p>
+            <div class="bg-slate-50 p-4 rounded-lg">
+              <p class="text-sm font-bold text-slate-700 mb-2">📚 مصادر مقترحة:</p>
+              <ul class="text-sm text-slate-600 space-y-1">
+                <li>• Python.org Tutorial</li>
+                <li>• Automate the Boring Stuff (مجاني)</li>
+                <li>• كتاب Black Hat Python (متاح في مكتبتنا)</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- المرحلة 2 -->
+      <section class="mb-12">
+        <h2 class="text-3xl font-black mb-6 text-slate-900 flex items-center gap-3">
+          <span class="w-10 h-10 rounded-lg bg-blue-100 flex items-center justify-center text-blue-600 font-black">2</span>
+          المرحلة 2: أساسيات الاختراق (شهر 4-6)
+        </h2>
+
+        <div class="space-y-4">
+          <div class="glass-card p-5">
+            <h3 class="font-black text-lg mb-2 text-slate-900">🛠️ إعداد بيئة الاختبار</h3>
+            <p class="text-slate-600 mb-3">ثبّت Kali Linux في VM. تعلّم كيف تشغّل وتختبر أدوات أساسية (nmap, burp, wireshark).</p>
+          </div>
+
+          <div class="glass-card p-5">
+            <h3 class="font-black text-lg mb-2 text-slate-900">🎯 تعلّم على منصات تدريب</h3>
+            <p class="text-slate-600 mb-3">لا تطبق على أهداف حقيقية! استخدم منصات قانونية: TryHackMe, HackTheBox, PortSwigger Academy.</p>
+            <div class="bg-emerald-50 border-r-4 border-emerald-500 p-4 rounded-lg">
+              <p class="text-sm text-emerald-800 font-bold">✅ ابدأ بـ TryHackMe - مناسب للمبتدئين مع توجيه خطوة بخطوة.</p>
+            </div>
+          </div>
+
+          <div class="glass-card p-5">
+            <h3 class="font-black text-lg mb-2 text-slate-900">📖 تعلّم OWASP Top 10</h3>
+            <p class="text-slate-600 mb-3">افهم أخطر 10 ثغرات في تطبيقات الويب. <a href="blog.html" class="text-blue-600 font-bold hover:underline">عندنا مقال مخصص عنهم</a>.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- المرحلة 3 -->
+      <section class="mb-12">
+        <h2 class="text-3xl font-black mb-6 text-slate-900 flex items-center gap-3">
+          <span class="w-10 h-10 rounded-lg bg-purple-100 flex items-center justify-center text-purple-600 font-black">3</span>
+          المرحلة 3: اختر التخصص (شهر 7-12)
+        </h2>
+        <p class="text-slate-700 mb-6 leading-loose">هنا تختار تخصصك بناءً على اهتمامك:</p>
+
+        <div class="grid md:grid-cols-2 gap-4">
+          <div class="glass-card p-5 border-r-4 border-blue-500">
+            <h3 class="font-black text-lg mb-2 text-slate-900">🌐 Web Application Security</h3>
+            <p class="text-sm text-slate-600 mb-3">اختبار اختراق تطبيقات الويب - الأكثر طلباً في سوق العمل.</p>
+            <ul class="text-xs text-slate-500 space-y-1">
+              <li>• Burp Suite باحترافية</li>
+              <li>• XSS, SQLi, CSRF, IDOR</li>
+              <li>• Bug Bounty على HackerOne</li>
+            </ul>
+          </div>
+
+          <div class="glass-card p-5 border-r-4 border-emerald-500">
+            <h3 class="font-black text-lg mb-2 text-slate-900">🔍 Network Penetration Testing</h3>
+            <p class="text-sm text-slate-600 mb-3">اختراق الشبكات والبنية التحتية.</p>
+            <ul class="text-xs text-slate-500 space-y-1">
+              <li>• Active Directory</li>
+              <li>• Metasploit</li>
+              <li>• OSCP certification</li>
+            </ul>
+          </div>
+
+          <div class="glass-card p-5 border-r-4 border-red-500">
+            <h3 class="font-black text-lg mb-2 text-slate-900">🦠 Malware Analysis</h3>
+            <p class="text-sm text-slate-600 mb-3">تحليل البرمجيات الخبيثة وفهم سلوكها.</p>
+            <ul class="text-xs text-slate-500 space-y-1">
+              <li>• Reverse Engineering</li>
+              <li>• IDA Pro, Ghidra</li>
+              <li>• Memory Forensics</li>
+            </ul>
+          </div>
+
+          <div class="glass-card p-5 border-r-4 border-sky-500">
+            <h3 class="font-black text-lg mb-2 text-slate-900">☁️ Cloud Security</h3>
+            <p class="text-sm text-slate-600 mb-3">تأمين بيئات AWS, Azure, GCP.</p>
+            <ul class="text-xs text-slate-500 space-y-1">
+              <li>• AWS Security Specialty</li>
+              <li>• Container Security</li>
+              <li>• Kubernetes Hardening</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- المرحلة 4 -->
+      <section class="mb-12">
+        <h2 class="text-3xl font-black mb-6 text-slate-900 flex items-center gap-3">
+          <span class="w-10 h-10 rounded-lg bg-red-100 flex items-center justify-center text-red-600 font-black">4</span>
+          المرحلة 4: الاحتراف (سنة 2+)
+        </h2>
+
+        <div class="glass-card p-6 bg-red-50/30 border-red-200">
+          <h3 class="font-black text-lg mb-3 text-slate-900">🎯 الشهادات المهنية المهمة</h3>
+          <div class="space-y-3">
+            <div class="flex items-center justify-between bg-white p-3 rounded-lg">
+              <div>
+                <p class="font-bold text-slate-900">CompTIA Security+</p>
+                <p class="text-xs text-slate-500">شهادة تأسيسية معترف بها عالمياً</p>
+              </div>
+              <span class="chip">مبتدئ</span>
+            </div>
+            <div class="flex items-center justify-between bg-white p-3 rounded-lg">
+              <div>
+                <p class="font-bold text-slate-900">CEH - Certified Ethical Hacker</p>
+                <p class="text-xs text-slate-500">مطلوبة في سوق العمل</p>
+              </div>
+              <span class="chip">متوسط</span>
+            </div>
+            <div class="flex items-center justify-between bg-white p-3 rounded-lg">
+              <div>
+                <p class="font-bold text-slate-900">OSCP</p>
+                <p class="text-xs text-slate-500">الأكثر طلباً - اختبار اختراق عملي 24 ساعة</p>
+              </div>
+              <span class="chip">متقدم</span>
+            </div>
+            <div class="flex items-center justify-between bg-white p-3 rounded-lg">
+              <div>
+                <p class="font-bold text-slate-900">PNPT / CRTO</p>
+                <p class="text-xs text-slate-500">Active Directory + Red Team</p>
+              </div>
+              <span class="chip">متقدم</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- نصائح -->
+      <section class="mb-12">
+        <h2 class="text-3xl font-black mb-6 text-slate-900 flex items-center gap-3">
+          <span class="w-10 h-10 rounded-lg bg-blue-100 flex items-center justify-center text-blue-600 font-black">💡</span>
+          نصائح ذهبية
+        </h2>
+
+        <div class="space-y-4">
+          <div class="glass-card p-5 border-r-4 border-amber-500">
+            <h3 class="font-black mb-2 text-slate-900">1. تدرّب يومياً، حتى 30 دقيقة</h3>
+            <p class="text-slate-600 text-sm">الاستمرارية أهم من الكمية. ساعة كل يوم أفضل من 10 ساعات يوم واحد في الأسبوع.</p>
+          </div>
+
+          <div class="glass-card p-5 border-r-4 border-amber-500">
+            <h3 class="font-black mb-2 text-slate-900">2. طبّق كل شي تتعلمه</h3>
+            <p class="text-slate-600 text-sm">ما تكتفِ بالقراءة. كل مفهوم جديد، افتح VM وجرّبه بيدك.</p>
+          </div>
+
+          <div class="glass-card p-5 border-r-4 border-amber-500">
+            <h3 class="font-black mb-2 text-slate-900">3. وثّق رحلتك</h3>
+            <p class="text-slate-600 text-sm">اكتب ملاحظاتك. أنشئ مدونة. هذا يساعدك تثبت المعلومة ويعطيك Portfolio قوي.</p>
+          </div>
+
+          <div class="glass-card p-5 border-r-4 border-amber-500">
+            <h3 class="font-black mb-2 text-slate-900">4. انضم لمجتمع</h3>
+            <p class="text-slate-600 text-sm">تعلم لوحدك صعب. انضم لقنواتنا في Telegram، Discord، وTwitter. اسأل، شارك، تعلّم من غيرك.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- مصدر ومراجع -->
+      <section class="mb-12">
+        <div class="callout">
+          <p class="text-sm text-slate-700 leading-loose">
+            <strong>📖 ملاحظة عن المصدر:</strong> هذا الملخص مُعدّ بأسلوب تعليمي مستفيداً من كتاب "Hacker Roadmap: Hack Everything, Own the Web" المتاح في <a href="books.html" class="text-blue-600 font-bold hover:underline">مكتبة الموقع</a>. الكتاب مرجع ممتاز للتوسع.
+          </p>
+        </div>
+      </section>
+
+    </div>
+  </article>
+
+  <!-- CTA -->
+  <section class="py-16 px-6 bg-slate-50">
+    <div class="max-w-3xl mx-auto text-center">
+      <h2 class="text-3xl font-black mb-4 text-slate-900">جاهز تبدأ رحلتك؟</h2>
+      <p class="text-slate-600 mb-8 text-lg">حمّل الكتاب الأصلي أو ابدأ بمسار المبتدئ في موقعنا</p>
+      <div class="flex flex-wrap justify-center gap-4">
+        <a href="books.html" class="btn-primary">
+          <i class="fa-solid fa-book ml-2"></i>
+          المكتبة الكاملة
+        </a>
+        <a href="../index.html#paths" class="btn-secondary">
+          <i class="fa-solid fa-route ml-2"></i>
+          مسار المبتدئ
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="py-12 px-6 border-t border-slate-200 text-center">
+    <p class="text-slate-500 text-sm">© 2025 رحومي البراهيم | صُنع بـ 💙 للمجتمع العربي</p>
+  </footer>
+
+</body>
+</html>

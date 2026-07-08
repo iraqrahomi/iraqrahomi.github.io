@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ملخص Black Hat Python | CyberAr - Python للاختراق الأخلاقي</title>
+  <meta name="description" content="ملخص عربي لكتاب Black Hat Python لجاستن سايتز. تعلم بناء أدوات اختراق أخلاقي بـ Python: الشبكات، الويب، Windows، والـ Exploitation.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://iraqrahomi.github.io/pages/book-black-hat-python.html">
+
+  <meta property="og:title" content="ملخص Black Hat Python بالعربي">
+  <meta property="og:description" content="دليل Python للاختراق الأخلاقي">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "ملخص Black Hat Python - دليلك لبناء أدوات الاختراق",
+    "author": {"@type": "Person", "name": "رحومي البراهيم"},
+    "datePublished": "2026-02-28",
+    "inLanguage": "ar"
+  }
+  </script>
+
+  <link rel="icon" type="image/svg+xml" href="../assets/icons/favicon.svg">
+  <link rel="manifest" href="../manifest.json">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="../css/style.css">
+  <meta property="og:image" content="https://iraqrahomi.github.io/assets/og-image.png">
+  <meta property="og:title" content="ملخص Black Hat Python | CyberAr - Python للاختراق الأخلاقي">
+  <meta property="og:description" content="ملخص عربي لكتاب Black Hat Python لجاستن سايتز. تعلم بناء أدوات اختراق أخلاقي بـ Python: الشبكات، الويب، Windows، والـ Exploitation.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://iraqrahomi.github.io/pages/book-black-hat-python.html">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="ملخص Black Hat Python | CyberAr - Python للاختراق الأخلاقي">
+  <meta name="twitter:description" content="ملخص عربي لكتاب Black Hat Python لجاستن سايتز. تعلم بناء أدوات اختراق أخلاقي بـ Python: الشبكات، الويب، Windows، والـ Exploitation.">
+  <meta name="twitter:image" content="https://iraqrahomi.github.io/assets/og-image.png">
+</head>
+<body class="bg-white text-slate-900">
+
+  <nav class="fixed top-0 left-0 right-0 z-50 bg-white/85 backdrop-blur-xl border-b border-slate-200">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+      <a href="../index.html" class="flex items-center gap-3">
+        <img src="../assets/icons/logo.svg" alt="CyberAr" class="h-10">
+      </a>
+      <div class="hidden md:flex items-center gap-6 text-sm">
+        <a href="../index.html" class="nav-link">الرئيسية</a>
+        <a href="tools.html" class="nav-link">الأدوات</a>
+        <a href="ctf.html" class="nav-link">التحديات</a>
+        <a href="books.html" class="nav-link">المكتبة</a>
+        <a href="blog.html" class="nav-link active">المقالات</a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="pt-32 pb-12 px-6 bg-gradient-to-b from-slate-900 to-blue-900 text-white">
+    <div class="max-w-4xl mx-auto">
+      <nav class="text-sm text-slate-300 mb-6">
+        <a href="../index.html" class="hover:text-blue-300">الرئيسية</a>
+        <span class="mx-2">›</span>
+        <a href="books.html" class="hover:text-blue-300">المكتبة</a>
+        <span class="mx-2">›</span>
+        <span>Black Hat Python</span>
+      </nav>
+
+      <div class="flex flex-wrap items-center gap-3 mb-6">
+        <span class="chip">Python Hacking</span>
+        <span class="chip-soft">Justin Seitz</span>
+        <span class="text-xs text-slate-300">📅 28 فبراير 2026 · ⏱️ 15 دقيقة</span>
+      </div>
+
+      <h1 class="text-4xl md:text-5xl font-black mb-6 leading-tight">
+        ملخص <span class="text-cyan-400">Black Hat Python</span>
+      </h1>
+
+      <p class="text-xl text-slate-200 leading-relaxed mb-8">
+        دليلك الشامل لاستخدام Python في الاختراق الأخلاقي وبناء أدواتك الخاصة. من Justin Seitz - أحد أشهر كتب الأمن السيبراني عملياً.
+      </p>
+
+      <!-- Card -->
+      <div class="glass-card p-6 bg-white/10 border-white/20 text-white">
+        <div class="grid md:grid-cols-3 gap-4 items-center">
+          <div class="md:col-span-1 flex justify-center">
+            <div class="w-32 h-44 bg-gradient-to-br from-slate-700 to-slate-900 rounded-lg shadow-2xl flex items-center justify-center text-center p-4 border border-slate-600">
+              <div>
+                <i class="fa-brands fa-python text-5xl text-yellow-400 mb-2"></i>
+                <div class="text-xs font-black">BLACK HAT</div>
+                <div class="text-xs font-black">PYTHON</div>
+              </div>
+            </div>
+          </div>
+          <div class="md:col-span-2 text-right">
+            <h2 class="text-2xl font-black mb-3">Python Programming for Hackers and Pentesters</h2>
+            <p class="text-sm text-slate-300 mb-3">مقدمة Charlie Miller (باحث الأمن الشهير):</p>
+            <p class="text-sm text-slate-200 italic">
+              "الفرق بين script kiddies والمحترفين: المحترف يبني أدواته الخاصة بدلاً من استخدام أدوات غيره فقط."
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <article class="py-16 px-6">
+    <div class="max-w-3xl mx-auto prose-content">
+
+      <!-- ليش الكتاب -->
+      <section class="mb-12">
+        <h2 class="text-3xl font-black mb-6 text-slate-900 flex items-center gap-3">
+          <span class="w-10 h-10 rounded-lg bg-blue-100 flex items-center justify-center text-blue-600 font-black">؟</span>
+          ليش Black Hat Python؟
+        </h2>
+
+        <div class="space-y-4">
+          <div class="glass-card p-5">
+            <h3 class="font-black mb-2 text-slate-900">🐍 Python هي لغة الأمن السيبراني</h3>
+            <p class="text-slate-600 text-sm">أكثر أدوات الاختراق مكتوبة بـ Python (sqlmap, scapy, requests, impacket). تعلّمها = تقدر تفهم وتبني أدواتك.</p>
+          </div>
+
+          <div class="glass-card p-5">
+            <h3 class="font-black mb-2 text-slate-900">📚 لا يفترض خبرة عميقة</h3>
+            <p class="text-slate-600 text-sm">المؤلف Justin Seitz يقول بصراحة: "أنا لست expert في Python، أنا pentester أستخدمها بسرعة. هذا أسلوبي." يعني لو تعرف أساسيات Python، تقدر تتابع.</p>
+          </div>
+
+          <div class="glass-card p-5">
+            <h3 class="font-black mb-2 text-slate-900">🎯 عملي 100%</h3>
+            <p class="text-slate-600 text-sm">كل فصل يبني أداة حقيقية تشتغل — مو تنظير. تتعلم بكتابة كود حقيقي.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ما يغطيه -->
+      <section class="mb-12">
+        <h2 class="text-3xl font-black mb-6 text-slate-900 flex items-center gap-3">
+          <span class="w-10 h-10 rounded-lg bg-blue-100 flex items-center justify-center text-blue-600 font-black">📋</span>
+          ما يغطيه الكتاب
+        </h2>
+
+        <div class="space-y-3">
+          <div class="glass-card p-5 border-r-4 border-blue-500">
+            <h3 class="font-black mb-2 text-slate-900">الفصل 1: إعداد البيئة</h3>
+            <p class="text-sm text-slate-600">تثبيت Python 3، مكتبات أساسية، Kali Linux setup.</p>
+          </div>
+
+          <div class="glass-card p-5 border-r-4 border-blue-500">
+            <h3 class="font-black mb-2 text-slate-900">الفصل 2: الشبكات الأساسية</h3>
+            <p class="text-sm text-slate-600">بناء TCP Client/Server، استبدال Netcat بأداة Python خاصة.</p>
+          </div>
+
+          <div class="glass-card p-5 border-r-4 border-blue-500">
+            <h3 class="font-black mb-2 text-slate-900">الفصل 3: Raw Sockets & Sniffing</h3>
+            <p class="text-sm text-slate-600">التقاط وتحليل حزم الشبكة يدوياً.</p>
+          </div>
+
+          <div class="glass-card p-5 border-r-4 border-emerald-500">
+            <h3 class="font-black mb-2 text-slate-900">الفصل 4: استغلال HTTP</h3>
+            <p class="text-sm text-slate-600">بناء مكتبة HTTP خاصة، التعامل مع proxies، web scraping.</p>
+          </div>
+
+          <div class="glass-card p-5 border-r-4 border-emerald-500">
+            <h3 class="font-black mb-2 text-slate-900">الفصل 5: استخراج البيانات من الويب</h3>
+            <p class="text-sm text-slate-600">BeautifulSoup, HTML parsing, IoT discovery (Shodan-like).</p>
+          </div>
+
+          <div class="glass-card p-5 border-r-4 border-purple-500">
+            <h3 class="font-black mb-2 text-slate-900">الفصل 6-8: اختراق Windows</h3>
+            <p class="text-sm text-slate-600">Keyloggers، Screenshots، تنفيذ كود عن بعد، Privilege Escalation.</p>
+          </div>
+
+          <div class="glass-card p-5 border-r-4 border-purple-500">
+            <h3 class="font-black mb-2 text-slate-900">الفصل 9: استغلال Internet Explorer</h3>
+            <p class="text-sm text-slate-600">دراسة حالة لاستغلال متصفح قديم (تاريخي لكن مفهوم).</p>
+          </div>
+
+          <div class="glass-card p-5 border-r-4 border-amber-500">
+            <h3 class="font-black mb-2 text-slate-900">الفصل 10: Immunity Debugger</h3>
+            <p class="text-sm text-slate-600">أتمتة Reverse Engineering باستخدام debugger.</p>
+          </div>
+
+          <div class="glass-card p-5 border-r-4 border-amber-500">
+            <h3 class="font-black mb-2 text-slate-900">الفصل 11: Fuzzing</h3>
+            <p class="text-sm text-slate-600">بناء fuzzer لاكتشاف ثغرات.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- أدوات رئيسية تبنيها -->
+      <section class="mb-12">
+        <h2 class="text-3xl font-black mb-6 text-slate-900 flex items-center gap-3">
+          <span class="w-10 h-10 rounded-lg bg-blue-100 flex items-center justify-center text-blue-600 font-black">🛠️</span>
+          أدوات حقيقية تبنيها
+        </h2>
+
+        <div class="space-y-6">
+          <div class="glass-card p-6">
+            <h3 class="font-black text-lg mb-3 text-slate-900 flex items-center gap-2">
+              <i class="fa-solid fa-network-wired text-blue-600"></i>
+              أداة Netcat مخصصة بـ Python
+            </h3>
+            <p class="text-slate-600 text-sm mb-3">بديل لـ Netcat تدعم رفع/تنزيل الملفات، تنفيذ أوامر، reverse shells.</p>
+            <pre class="bg-slate-900 text-slate-100 p-4 rounded-lg text-xs font-mono overflow-x-auto" dir="ltr"><span class="text-emerald-400">import</span> socket
+
+<span class="text-slate-400"># TCP Client بسيط</span>
+client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+client.connect((<span class="text-yellow-400">"target.com"</span>, <span class="text-yellow-400">9999</span>))
+client.send(b<span class="text-yellow-400">"GET / HTTP/1.0\r\n\r\n"</span>)
+response = client.recv(<span class="text-yellow-400">4096</span>)
+<span class="text-emerald-400">print</span>(response.decode())</pre>
+          </div>
+
+          <div class="glass-card p-6">
+            <h3 class="font-black text-lg mb-3 text-slate-900 flex items-center gap-2">
+              <i class="fa-solid fa-keyboard text-red-600"></i>
+              Keylogger بسيط
+            </h3>
+            <p class="text-slate-600 text-sm mb-3">يسجل كل ضغطة لوحة المفاتيح. يستخدم في penetration testing فقط بإذن.</p>
+            <pre class="bg-slate-900 text-slate-100 p-4 rounded-lg text-xs font-mono overflow-x-auto" dir="ltr"><span class="text-emerald-400">from</span> pynput.keyboard <span class="text-emerald-400">import</span> Key, Listener
+
+<span class="text-emerald-400">def</span> <span class="text-blue-400">on_press</span>(key):
+    <span class="text-emerald-400">with</span> <span class="text-blue-400">open</span>(<span class="text-yellow-400">"log.txt"</span>, <span class="text-yellow-400">"a"</span>) <span class="text-emerald-400">as</span> f:
+        f.write(<span class="text-blue-400">str</span>(key))
+
+<span class="text-emerald-400">with</span> Listener(on_press=on_press) <span class="text-emerald-400">as</span> l:
+    l.join()</pre>
+          </div>
+
+          <div class="glass-card p-6">
+            <h3 class="font-black text-lg mb-3 text-slate-900 flex items-center gap-2">
+              <i class="fa-solid fa-globe text-emerald-600"></i>
+              مكتبة HTTP للـ proxies
+            </h3>
+            <p class="text-slate-600 text-sm mb-3">مثل Burp Suite لكن أنت تبنيها. للتعلم وفهم كيف proxies تعمل.</p>
+            <pre class="bg-slate-900 text-slate-100 p-4 rounded-lg text-xs font-mono overflow-x-auto" dir="ltr"><span class="text-emerald-400">import</span> requests
+
+<span class="text-slate-400"># Session للاحتفاظ بـ cookies</span>
+session = requests.Session()
+
+<span class="text-slate-400"># POST login</span>
+session.post(<span class="text-yellow-400">"https://target.com/login"</span>, data={
+    <span class="text-yellow-400">"username"</span>: <span class="text-yellow-400">"admin"</span>,
+    <span class="text-yellow-400">"password"</span>: <span class="text-yellow-400">"password"</span>
+})
+
+<span class="text-slate-400"># الوصول لـ dashboard</span>
+resp = session.get(<span class="text-yellow-400">"https://target.com/dashboard"</span>)
+<span class="text-emerald-400">print</span>(resp.text)</pre>
+          </div>
+        </div>
+      </section>
+
+      <!-- المكتبات الأساسية -->
+      <section class="mb-12">
+        <h2 class="text-3xl font-black mb-6 text-slate-900 flex items-center gap-3">
+          <span class="w-10 h-10 rounded-lg bg-blue-100 flex items-center justify-center text-blue-600 font-black">📦</span>
+          مكتبات Python الأساسية للأمن
+        </h2>
+
+        <div class="overflow-x-auto">
+          <table class="w-full glass-card text-sm">
+            <thead class="bg-slate-100">
+              <tr>
+                <th class="px-4 py-3 text-right font-black">المكتبة</th>
+                <th class="px-4 py-3 text-right font-black">الاستخدام</th>
+              </tr>
+            </thead>
+            <tbody class="text-slate-700">
+              <tr class="border-t"><td class="px-4 py-2 font-mono text-blue-700">socket</td><td class="px-4 py-2">الشبكات TCP/UDP الأساسية</td></tr>
+              <tr class="border-t"><td class="px-4 py-2 font-mono text-blue-700">requests</td><td class="px-4 py-2">HTTP requests سهلة</td></tr>
+              <tr class="border-t"><td class="px-4 py-2 font-mono text-blue-700">scapy</td><td class="px-4 py-2">معالجة حزم الشبكة المتقدمة</td></tr>
+              <tr class="border-t"><td class="px-4 py-2 font-mono text-blue-700">paramiko</td><td class="px-4 py-2">SSH connections</td></tr>
+              <tr class="border-t"><td class="px-4 py-2 font-mono text-blue-700">impacket</td><td class="px-4 py-2">بروتوكولات Windows (SMB, Kerberos)</td></tr>
+              <tr class="border-t"><td class="px-4 py-2 font-mono text-blue-700">BeautifulSoup</td><td class="px-4 py-2">HTML/XML parsing</td></tr>
+              <tr class="border-t"><td class="px-4 py-2 font-mono text-blue-700">pynput</td><td class="px-4 py-2">Keyboard/mouse monitoring</td></tr>
+              <tr class="border-t"><td class="px-4 py-2 font-mono text-blue-700">cryptography</td><td class="px-4 py-2">التشفير الحديث</td></tr>
+              <tr class="border-t"><td class="px-4 py-2 font-mono text-blue-700">pexpect</td><td class="px-4 py-2">أتمتة تطبيقات CLI</td></tr>
+              <tr class="border-t"><td class="px-4 py-2 font-mono text-blue-700">Pillow</td><td class="px-4 py-2">معالجة الصور (Screenshots)</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- نصائح من المؤلف -->
+      <section class="mb-12">
+        <h2 class="text-3xl font-black mb-6 text-slate-900 flex items-center gap-3">
+          <span class="w-10 h-10 rounded-lg bg-blue-100 flex items-center justify-center text-blue-600 font-black">💡</span>
+          نصائح ذهبية من Justin Seitz
+        </h2>
+
+        <div class="space-y-4">
+          <div class="glass-card p-5 border-r-4 border-yellow-500">
+            <h3 class="font-black mb-2 text-slate-900">🎯 "أفكاركم أهم من الكود"</h3>
+            <p class="text-slate-600 text-sm">Justin يقول: ما يحب يحط أمثلة "مثالية". يحب يعطيك الفكرة + الحد الأدنى، ثم يترك لك تجرّب. هذا أسلوب التعلم الحقيقي.</p>
+          </div>
+
+          <div class="glass-card p-5 border-r-4 border-yellow-500">
+            <h3 class="font-black mb-2 text-slate-900">⚡ "سرعة > كمال"</h3>
+            <p class="text-slate-600 text-sm">في الـ pentesting، تحتاج أداة تشتغل بسرعة وتؤدي الغرض. الكمال الجمالي مو ضروري. المهم النتيجة.</p>
+          </div>
+
+          <div class="glass-card p-5 border-r-4 border-yellow-500">
+            <h3 class="font-black mb-2 text-slate-900">📝 "حل واجباتي"</h3>
+            <p class="text-slate-600 text-sm">كل فصل فيه "Homework" - أفكار لبناء أدوات جديدة. لو فعلتها، تتعلم أكثر من قراءة الكتاب مرتين.</p>
+          </div>
+
+          <div class="glass-card p-5 border-r-4 border-yellow-500">
+            <h3 class="font-black mb-2 text-slate-900">🌐 "تعلّم GitHub"</h3>
+            <p class="text-slate-600 text-sm">كل أدواتك انشرها على GitHub. هذا يبني Portfolio قوي ويفتح لك فرص عمل.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- هل الكتاب ما زال صالح -->
+      <section class="mb-12">
+        <h2 class="text-3xl font-black mb-6 text-slate-900 flex items-center gap-3">
+          <span class="w-10 h-10 rounded-lg bg-blue-100 flex items-center justify-center text-blue-600 font-black">⚖️</span>
+          هل الكتاب ما زال صالحاً (2014)؟
+        </h2>
+
+        <div class="grid md:grid-cols-2 gap-4">
+          <div class="glass-card p-5 border-r-4 border-emerald-500">
+            <h3 class="font-black mb-2 text-emerald-700">✅ نقاط القوة</h3>
+            <ul class="text-sm text-slate-700 space-y-2">
+              <li>• أساسيات الشبكات مع Python = لم تتغير</li>
+              <li>• مكتبات مثل requests, scapy = لا تزال مستخدمة</li>
+              <li>• فلسفة "ابني أدواتك" = أبدية</li>
+              <li>• شرح الـ sockets = أساسي لكل pentester</li>
+            </ul>
+          </div>
+
+          <div class="glass-card p-5 border-r-4 border-orange-500">
+            <h3 class="font-black mb-2 text-orange-700">⚠️ نقاط ضعف</h3>
+            <ul class="text-sm text-slate-700 space-y-2">
+              <li>• يركز على Python 2 (قديم) - تحتاج تكييف لـ Python 3</li>
+              <li>• فصول Windows XP قديمة - الأنظمة الحديثة مختلفة</li>
+              <li>• IE 11 فصل تاريخي بحت</li>
+              <li>• ما يغطي مكتبات حديثة مثل httpx, asyncio</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="callout-blue mt-6">
+          <p class="font-bold mb-2 text-slate-900">💡 نصيحتي:</p>
+          <p class="text-sm text-slate-700">الكتاب يستحق القراءة للفلسفة والأفكار. لكن حضّر نفسك تكيّف الكود لـ Python 3 ومكتبات أحدث. لو أتقنت الكتاب، تعلّم Black Hat Python 2 (الإصدار الثاني المحدث).</p>
+        </div>
+      </section>
+
+      <!-- أخلاقيات -->
+      <section class="mb-12">
+        <div class="callout">
+          <h3 class="font-black mb-2 text-slate-900 flex items-center gap-2">
+            <i class="fa-solid fa-scale-balanced text-amber-600"></i>
+            ⚖️ ملاحظة أخلاقية مهمة
+          </h3>
+          <p class="text-sm text-slate-700 leading-loose">
+            الكتاب اسمه "Black Hat" لكنه موجّه للمتخصصين الأخلاقيين. المؤلف نفسه يعمل في Immunity (شركة اختبار اختراق). <strong>أي أداة تبنيها، استخدمها فقط على أنظمتك الخاصة أو بإذن كتابي.</strong>
+            <br><br>
+            Justin في مقدمته: "ما أبني أدوات للمهاجمين. أبني أدوات للمحترفين الذين يستخدمونها بحماية عملائهم."
+          </p>
+        </div>
+      </section>
+
+      <!-- بعد الكتاب -->
+      <section class="mb-12">
+        <h2 class="text-3xl font-black mb-6 text-slate-900 flex items-center gap-3">
+          <span class="w-10 h-10 rounded-lg bg-blue-100 flex items-center justify-center text-blue-600 font-black">📚</span>
+          بعد Black Hat Python، أكمل بـ:
+        </h2>
+
+        <div class="grid md:grid-cols-2 gap-4">
+          <a href="https://nostarch.com/black-hat-python2E" target="_blank" rel="noopener" class="glass-card p-5 block hover:scale-105 transition">
+            <h3 class="font-black mb-2 text-slate-900">Black Hat Python 2 (الإصدار الثاني)</h3>
+            <p class="text-xs text-slate-600">محدّث لـ Python 3، محتوى جديد عن Office Macros، GitHub attacks</p>
+          </a>
+          <a href="https://nostarch.com/gray-hat-python" target="_blank" rel="noopener" class="glass-card p-5 block hover:scale-105 transition">
+            <h3 class="font-black mb-2 text-slate-900">Gray Hat Python</h3>
+            <p class="text-xs text-slate-600">كتاب Justin الأول - عن Security Analysis و Reverse Engineering</p>
+          </a>
+          <a href="https://automatetheboringstuff.com/" target="_blank" rel="noopener" class="glass-card p-5 block hover:scale-105 transition">
+            <h3 class="font-black mb-2 text-slate-900">Automate the Boring Stuff</h3>
+            <p class="text-xs text-slate-600">لو محتاج أساسيات Python أقوى - مجاني 100%</p>
+          </a>
+          <a href="https://www.hackingarticles.in/python-hacking/" target="_blank" rel="noopener" class="glass-card p-5 block hover:scale-105 transition">
+            <h3 class="font-black mb-2 text-slate-900">Hacking Articles - Python</h3>
+            <p class="text-xs text-slate-600">مقالات وأمثلة عملية جديدة</p>
+          </a>
+        </div>
+      </section>
+
+    </div>
+  </article>
+
+  <!-- CTA -->
+  <section class="py-16 px-6 bg-slate-900 text-white">
+    <div class="max-w-3xl mx-auto text-center">
+      <h2 class="text-3xl font-black mb-4">ابدأ رحلتك مع Python Hacking</h2>
+      <p class="text-slate-300 mb-8 text-lg">حمّل الكتاب أو استكشف باقي كتبنا المتخصصة</p>
+      <div class="flex flex-wrap justify-center gap-4">
+        <a href="books.html" class="btn-primary">
+          <i class="fa-solid fa-book ml-2"></i>
+          المكتبة
+        </a>
+        <a href="ctf.html" class="btn-secondary">
+          <i class="fa-solid fa-flag ml-2"></i>
+          تحديات للتدريب
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="py-12 px-6 border-t border-slate-200 text-center">
+    <p class="text-slate-500 text-sm">© 2025 رحومي البراهيم | صُنع بـ 💙 للمجتمع العربي</p>
+  </footer>
+
+</body>
+</html>

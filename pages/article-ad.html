@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>هجمات Active Directory - دليل شامل | CyberAr</title>
+  <meta name="description" content="دليل شامل لهجمات Active Directory: Kerberoasting, Pass-the-Hash, DCSync, Golden Ticket. أدوات مثل BloodHound و Mimikatz.">
+  <link rel="canonical" href="https://iraqrahomi.github.io/pages/article-ad.html">
+  <meta property="og:title" content="هجمات Active Directory | CyberAr">
+  <meta property="og:description" content="دليل شامل لهجمات AD والاختراق الداخلي">
+  <meta property="og:type" content="article">
+  <meta property="og:image" content="https://iraqrahomi.github.io/assets/og-image.png">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "هجمات Active Directory - منهجية شاملة",
+    "author": {"@type": "Person", "name": "رحومي البراهيم"},
+    "datePublished": "2026-03-01",
+    "inLanguage": "ar"
+  }
+  </script>
+
+  <link rel="icon" type="image/svg+xml" href="../assets/icons/favicon.svg">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body class="bg-white text-slate-900">
+
+  <nav class="fixed top-0 left-0 right-0 z-50 bg-white/85 backdrop-blur-xl border-b border-slate-200">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+      <a href="../index.html" class="flex items-center gap-3">
+        <img src="../assets/icons/logo.svg" alt="CyberAr" class="h-10">
+      </a>
+      <div class="hidden md:flex items-center gap-6 text-sm">
+        <a href="../index.html" class="nav-link">الرئيسية</a>
+        <a href="tools.html" class="nav-link">الأدوات</a>
+        <a href="books.html" class="nav-link">المكتبة</a>
+        <a href="blog.html" class="nav-link active">المقالات</a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="pt-32 pb-12 px-6 bg-gradient-to-b from-indigo-50 to-white">
+    <div class="max-w-4xl mx-auto">
+      <nav class="text-sm text-slate-500 mb-6">
+        <a href="../index.html" class="hover:text-blue-600">الرئيسية</a>
+        <span class="mx-2">›</span>
+        <a href="blog.html" class="hover:text-blue-600">المقالات</a>
+        <span class="mx-2">›</span>
+        <span>Active Directory</span>
+      </nav>
+
+      <div class="flex flex-wrap items-center gap-3 mb-6">
+        <span class="chip">Advanced</span>
+        <span class="chip-soft">Red Team</span>
+        <span class="text-xs text-slate-500">📅 1 مارس 2026 · ⏱️ 30 دقيقة</span>
+      </div>
+
+      <h1 class="text-4xl md:text-5xl font-black mb-6 text-slate-900 leading-tight">
+        هجمات Active Directory - <span class="section-title accent">منهجية شاملة</span>
+      </h1>
+      <p class="text-xl text-slate-600 leading-relaxed">
+        تعلم كيف يستغل المهاجمون Active Directory في بيئات الشركات. من Kerberoasting إلى DCSync، مع أمثلة عملية.
+      </p>
+    </div>
+  </header>
+
+  <article class="py-12 px-6">
+    <div class="max-w-3xl mx-auto prose-content">
+
+      <!-- ما هي -->
+      <section class="mb-12">
+        <h2 class="text-3xl font-black mb-6 text-slate-900 flex items-center gap-3">
+          <span class="w-10 h-10 rounded-lg bg-indigo-100 flex items-center justify-center text-indigo-600 font-black">؟</span>
+          ما هو Active Directory؟
+        </h2>
+        <p class="text-slate-700 leading-loose text-lg mb-4">
+          Active Directory (AD) هو نظام <strong class="text-indigo-600">إدارة الهوية والصلاحيات</strong> من Microsoft، يستخدم في 95% من الشركات Fortune 500. يتحكم بكل شيء: المستخدمين، الصلاحيات، السياسات، الطابعات.
+        </p>
+        <p class="text-slate-700 leading-loose text-lg">
+          لهذا السبب، اختراق AD = اختراق الشركة كلها.
+        </p>
+      </section>
+
+      <!-- المرحلة 1 -->
+      <section class="mb-12">
+        <h2 class="text-3xl font-black mb-6 text-slate-900 flex items-center gap-3">
+          <span class="w-10 h-10 rounded-lg bg-indigo-100 flex items-center justify-center text-indigo-600 font-black">1</span>
+          المرحلة 1: الدخول الأولي
+        </h2>
+
+        <div class="space-y-4">
+          <div class="glass-card p-5 border-r-4 border-indigo-500">
+            <h3 class="font-black mb-2 text-slate-900">Phishing</h3>
+            <p class="text-sm text-slate-700 mb-2">الطريقة الأكثر شيوعاً. المهاجم يرسل بريد يحوي ملف Office ضار أو رابط تسجيل دخول مزور.</p>
+            <p class="text-xs text-slate-500">الأدوات: GoPhish, evilginx2, SET</p>
+          </div>
+
+          <div class="glass-card p-5 border-r-4 border-indigo-500">
+            <h3 class="font-black mb-2 text-slate-900">Credential Stuffing</h3>
+            <p class="text-sm text-slate-700">تجربة كلمات مرور مسرّبة من breaches أخرى (Have I Been Pwned).</p>
+          </div>
+
+          <div class="glass-card p-5 border-r-4 border-indigo-500">
+            <h3 class="font-black mb-2 text-slate-900">Public-facing Vulnerabilities</h3>
+            <p class="text-sm text-slate-700">ثغرة في VPN، Exchange، Citrix، Fortinet...</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Kerberoasting -->
+      <section class="mb-12">
+        <h2 class="text-3xl font-black mb-6 text-slate-900 flex items-center gap-3">
+          <span class="w-10 h-10 rounded-lg bg-red-100 flex items-center justify-center text-red-600 font-black">🔥</span>
+          المرحلة 2: Kerberoasting
+        </h2>
+
+        <div class="glass-card p-6 border-r-4 border-red-500">
+          <h3 class="font-black text-lg mb-3 text-slate-900">ما هو؟</h3>
+          <p class="text-slate-700 mb-3 text-sm">
+            أي حساب خدمة في AD عنده SPN (Service Principal Name) = له Kerberos ticket قابل للكسر offline.
+          </p>
+
+          <h3 class="font-black text-lg mb-3 text-slate-900 mt-4">كيف تنفذه بـ Impacket</h3>
+          <div class="bg-slate-900 text-slate-100 p-3 rounded-lg font-mono text-xs overflow-x-auto mb-3" dir="ltr">
+            <p class="text-emerald-400">GetUserSPNs.py 'domain.local/user:password' -dc-ip 10.0.0.1 -request</p>
+          </div>
+
+          <h3 class="font-black text-lg mb-3 mt-4 text-slate-900">كسر الـ Hash</h3>
+          <div class="bg-slate-900 text-slate-100 p-3 rounded-lg font-mono text-xs overflow-x-auto" dir="ltr">
+            <p class="text-emerald-400">hashcat -m 13100 hash.txt rockyou.txt</p>
+          </div>
+
+          <div class="callout-blue mt-4">
+            <p class="text-sm text-slate-700">
+              <strong>💡 نصيحة:</strong> الحسابات ذات كلمات مرور طويلة (>25 حرف) مقاومة لـ Kerberoasting. شجّع استخدام Managed Service Accounts.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- AS-REP Roasting -->
+      <section class="mb-12">
+        <h2 class="text-3xl font-black mb-6 text-slate-900 flex items-center gap-3">
+          <span class="w-10 h-10 rounded-lg bg-orange-100 flex items-center justify-center text-orange-600 font-black">🔥</span>
+          AS-REP Roasting
+        </h2>
+
+        <div class="glass-card p-6 border-r-4 border-orange-500">
+          <p class="text-slate-700 mb-3 text-sm">مثل Kerberoasting لكن بدون SPN - يستهدف حسابات بدون pre-authentication.</p>
+          <div class="bg-slate-900 text-slate-100 p-3 rounded-lg font-mono text-xs overflow-x-auto" dir="ltr">
+            <p class="text-emerald-400">GetNPUsers.py 'domain.local/' -usersfile users.txt -format hashcat -outputfile hashes.txt</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Pass-the-Hash -->
+      <section class="mb-12">
+        <h2 class="text-3xl font-black mb-6 text-slate-900 flex items-center gap-3">
+          <span class="w-10 h-10 rounded-lg bg-yellow-100 flex items-center justify-center text-yellow-600 font-black">🔥</span>
+          Pass-the-Hash (PtH)
+        </h2>
+
+        <div class="glass-card p-6 border-r-4 border-yellow-500">
+          <h3 class="font-black text-lg mb-3 text-slate-900">المفهوم</h3>
+          <p class="text-slate-700 mb-3 text-sm">
+            NTLM hash = كافي لتسجيل دخول. ما تحتاج كلمة المرور الأصلية. المهاجم يسرق الـ hash ويستخدمه مباشرة.
+          </p>
+
+          <h3 class="font-black text-lg mb-3 mt-4 text-slate-900">بـ Impacket</h3>
+          <div class="bg-slate-900 text-slate-100 p-3 rounded-lg font-mono text-xs overflow-x-auto mb-3" dir="ltr">
+            <p class="text-emerald-400">psexec.py 'domain/admin@10.0.0.1' -hashes aad3b435b51404eeaad3b435b51404ee:hash</p>
+          </div>
+
+          <h3 class="font-black text-lg mb-3 mt-4 text-slate-900">متى ينجح؟</h3>
+          <ul class="text-sm text-slate-700 space-y-1 mr-4 list-disc">
+            <li>الحسابات المحلية</li>
+            <li>حسابات بدون LSA Protection</li>
+            <li>أنظمة قديمة (XP, Server 2003)</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- BloodHound -->
+      <section class="mb-12">
+        <h2 class="text-3xl font-black mb-6 text-slate-900 flex items-center gap-3">
+          <span class="w-10 h-10 rounded-lg bg-pink-100 flex items-center justify-center text-pink-600 font-black">🗺️</span>
+          BloodHound - خريطة الهجوم
+        </h2>
+
+        <div class="glass-card p-6 border-r-4 border-pink-500">
+          <p class="text-slate-700 mb-3">
+            أداة رسم خرائط AD. تكشف أقصر مسار من Domain Users إلى Domain Admin بصرياً.
+          </p>
+
+          <h3 class="font-black text-lg mb-3 mt-4 text-slate-900">الاستخدام</h3>
+          <div class="bg-slate-900 text-slate-100 p-3 rounded-lg font-mono text-xs overflow-x-auto mb-3" dir="ltr">
+            <p class="text-emerald-400">bloodhound-python -u user -p 'pass' -d domain.local -ns 10.0.0.1 -c All</p>
+          </div>
+
+          <p class="text-sm text-slate-600">افتح BloodHound GUI، استورد JSON، استعرض:</p>
+          <ul class="text-sm text-slate-700 space-y-1 mr-4 list-disc mt-2">
+            <li><strong>Shortest Paths to Domain Admins</strong></li>
+            <li><strong>Find all Kerberoastable Users</strong></li>
+            <li><strong>Find Computers with Unconstrained Delegation</strong></li>
+            <li><strong>List of Domain Admins</strong></li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- DCSync -->
+      <section class="mb-12">
+        <h2 class="text-3xl font-black mb-6 text-slate-900 flex items-center gap-3">
+          <span class="w-10 h-10 rounded-lg bg-red-100 flex items-center justify-center text-red-600 font-black">👑</span>
+          DCSync - تاج الوصول
+        </h2>
+
+        <div class="glass-card p-6 border-r-4 border-red-500">
+          <h3 class="font-black text-lg mb-3 text-slate-900">ما هو؟</h3>
+          <p class="text-slate-700 mb-3 text-sm">
+            يحاكي Domain Controller لسحب كلمات مرور كل المستخدمين في الـ domain. يعطيك krbtgt hash = Golden Ticket.
+          </p>
+
+          <h3 class="font-black text-lg mb-3 mt-4 text-slate-900">الشروط</h3>
+          <ul class="text-sm text-slate-700 space-y-1 mr-4 list-disc">
+            <li>صلاحيات <strong>Replicating Directory Changes</strong> + <strong>Replicating Directory Changes All</strong></li>
+            <li>أو عضو في <strong>Domain Admins</strong> / <strong>Enterprise Admins</strong></li>
+          </ul>
+
+          <h3 class="font-black text-lg mb-3 mt-4 text-slate-900">بـ Impacket</h3>
+          <div class="bg-slate-900 text-slate-100 p-3 rounded-lg font-mono text-xs overflow-x-auto" dir="ltr">
+            <p class="text-emerald-400">secretsdump.py 'domain/admin:password@10.0.0.1'</p>
+          </div>
+
+          <div class="bg-red-50 border-r-4 border-red-500 p-3 rounded mt-4">
+            <p class="text-sm text-red-800">
+              🚨 <strong>Critical:</strong> لو الـ SOC عنده تنبيهات على Event ID 4662 (Directory Service Access)، ممكن يكتشفك.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Golden Ticket -->
+      <section class="mb-12">
+        <h2 class="text-3xl font-black mb-6 text-slate-900 flex items-center gap-3">
+          <span class="w-10 h-10 rounded-lg bg-purple-100 flex items-center justify-center text-purple-600 font-black">🎫</span>
+          Golden Ticket
+        </h2>
+
+        <div class="glass-card p-6 border-r-4 border-purple-500">
+          <p class="text-slate-700 mb-3">
+            لو حصلت على <strong>krbtgt hash</strong> عبر DCSync، تقدر تصنع Kerberos tickets بأي اسم وصلاحية لأي مدة.
+          </p>
+
+          <h3 class="font-black text-lg mb-3 mt-4 text-slate-900">بـ Mimikatz</h3>
+          <div class="bg-slate-900 text-slate-100 p-3 rounded-lg font-mono text-xs overflow-x-auto" dir="ltr">
+            <p class="text-emerald-400">kerberos::golden /user:admin /domain:domain.local /sid:S-1-5-21-... /krbtgt:HASH /endin:600 /renewmax:10080 /ptt</p>
+          </div>
+
+          <p class="text-sm text-slate-600 mt-4">⚠️ <strong>التخفيف الوحيد:</strong> غيّر krbtgt password مرتين (interval 10 ساعات) - حينها التذاكر المزورة تنتهي صلاحيتها.</p>
+        </div>
+      </section>
+
+      <!-- أدوات -->
+      <section class="mb-12">
+        <h2 class="text-3xl font-black mb-6 text-slate-900 flex items-center gap-3">
+          <span class="w-10 h-10 rounded-lg bg-indigo-100 flex items-center justify-center text-indigo-600 font-black">🛠️</span>
+          أدوات أساسية لـ AD
+        </h2>
+
+        <div class="grid md:grid-cols-2 gap-4">
+          <div class="glass-card p-4">
+            <h3 class="font-black mb-2 text-slate-900">Impacket</h3>
+            <p class="text-xs text-slate-600">Python toolkit - psexec, secretsdump, GetUserSPNs...</p>
+          </div>
+          <div class="glass-card p-4">
+            <h3 class="font-black mb-2 text-slate-900">BloodHound</h3>
+            <p class="text-xs text-slate-600">رسم خرائط AD بصرياً</p>
+          </div>
+          <div class="glass-card p-4">
+            <h3 class="font-black mb-2 text-slate-900">Mimikatz</h3>
+            <p class="text-xs text-slate-600">Golden Ticket, Pass-the-Hash</p>
+          </div>
+          <div class="glass-card p-4">
+            <h3 class="font-black mb-2 text-slate-900">Rubeus</h3>
+            <p class="text-xs text-slate-600">Kerberos attacks من Windows</p>
+          </div>
+          <div class="glass-card p-4">
+            <h3 class="font-black mb-2 text-slate-900">CrackMapExec</h3>
+            <p class="text-xs text-slate-600">Post-exploitation AD</p>
+          </div>
+          <div class="glass-card p-4">
+            <h3 class="font-black mb-2 text-slate-900">PowerView</h3>
+            <p class="text-xs text-slate-600">PowerShell enumeration</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- الدفاع -->
+      <section class="mb-12">
+        <h2 class="text-3xl font-black mb-6 text-slate-900 flex items-center gap-3">
+          <span class="w-10 h-10 rounded-lg bg-emerald-100 flex items-center justify-center text-emerald-600 font-black">🛡️</span>
+          كيف تحمي AD؟
+        </h2>
+
+        <div class="space-y-3">
+          <div class="glass-card p-4 border-r-4 border-emerald-500">
+            <h3 class="font-black mb-1 text-slate-900">✅ Tier Model</h3>
+            <p class="text-sm text-slate-700">افصل بين Domain Controllers (Tier 0)، Servers (Tier 1)، Workstations (Tier 2).</p>
+          </div>
+          <div class="glass-card p-4 border-r-4 border-emerald-500">
+            <h3 class="font-black mb-1 text-slate-900">✅ LAPS</h3>
+            <p class="text-sm text-slate-700">Local Admin Password Solution - كلمات مرور عشوائية لكل جهاز.</p>
+          </div>
+          <div class="glass-card p-4 border-r-4 border-emerald-500">
+            <h3 class="font-black mb-1 text-slate-900">✅ Protected Users Group</h3>
+            <p class="text-sm text-slate-700">حسابات حساسة لا تستطيع Kerberos أو NTLM.</p>
+          </div>
+          <div class="glass-card p-4 border-r-4 border-emerald-500">
+            <h3 class="font-black mb-1 text-slate-900">✅ Credential Guard</h3>
+            <p class="text-sm text-slate-700">VBS-based isolation لـ LSA - يمنع Mimikatz.</p>
+          </div>
+          <div class="glass-card p-4 border-r-4 border-emerald-500">
+            <h3 class="font-black mb-1 text-slate-900">✅ Monitoring</h3>
+            <p class="text-sm text-slate-700">SIEM rules لـ Event 4662, 4769, 4624 (Kerberos anomalies).</p>
+          </div>
+          <div class="glass-card p-4 border-r-4 border-emerald-500">
+            <h3 class="font-black mb-1 text-slate-900">✅ krbtgt rotation</h3>
+            <p class="text-sm text-slate-700">غيّر krbtgt مرتين سنوياً على الأقل.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- تدريب -->
+      <section class="mb-12">
+        <div class="callout-blue">
+          <h3 class="font-black text-lg mb-3 text-slate-900">🎯 للتدريب</h3>
+          <ul class="space-y-2 text-sm text-slate-700">
+            <li>• <strong>TryHackMe:</strong> Active Directory Basics, Attacktive Directory</li>
+            <li>• <strong>HackTheBox:</strong> Forest, Monteverde, Forest</li>
+            <li>• <strong>GOAD:</strong> Game of Active Directory - vulnerable lab</li>
+            <li>• <strong>PNPT:</strong> شهادة TCM Security العملية</li>
+          </ul>
+        </div>
+      </section>
+
+    </div>
+  </article>
+
+  <footer class="py-12 px-6 border-t border-slate-200 text-center">
+    <p class="text-slate-500 text-sm">© 2025 CyberAr · رحومي البراهيم</p>
+  </footer>
+
+</body>
+</html>

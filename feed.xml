@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>مرجع الأمن السيبراني - رحومي البراهيم</title>
+    <link>https://iraqrahomi.github.io/</link>
+    <description>مرجع شامل للمختصين العرب في الأمن السيبراني. مسارات تعلم، أدوات، تحديات CTF، شهادات مهنية.</description>
+    <language>ar</language>
+    <atom:link href="https://iraqrahomi.github.io/feed.xml" rel="self" type="application/rss+xml"/>
+
+    <item>
+      <title>دليل OWASP Top 10 الشامل للمختصين العرب</title>
+      <link>https://iraqrahomi.github.io/pages/blog.html#owasp-top-10-2024</link>
+      <guid>https://iraqrahomi.github.io/pages/blog.html#owasp-top-10-2024</guid>
+      <pubDate>Wed, 15 Jan 2026 00:00:00 +0300</pubDate>
+      <description>شرح تفصيلي لأخطر 10 ثغرات تطبيقات الويب في 2024 مع أمثلة عملية وكيفية الاستغلال والدفاع.</description>
+    </item>
+    <item>
+      <title>إتقان Burp Suite: من الصفر للاحتراف</title>
+      <link>https://iraqrahomi.github.io/pages/blog.html#burp-suite-mastery</link>
+      <guid>https://iraqrahomi.github.io/pages/blog.html#burp-suite-mastery</guid>
+      <pubDate>Wed, 22 Jan 2026 00:00:00 +0300</pubDate>
+      <description>دليل شامل لاستخدام Burp Suite في اختبار اختراق تطبيقات الويب.</description>
+    </item>
+    <item>
+      <title>SQL Injection: الهجوم والدفاع باحترافية</title>
+      <link>https://iraqrahomi.github.io/pages/blog.html#sql-injection-deep-dive</link>
+      <guid>https://iraqrahomi.github.io/pages/blog.html#sql-injection-deep-dive</guid>
+      <pubDate>Sun, 01 Feb 2026 00:00:00 +0300</pubDate>
+      <description>كل ما تحتاج معرفته عن SQL Injection: من الأساسيات إلى التقنيات المتقدمة.</description>
+    </item>
+    <item>
+      <title>إعداد بيئة اختبار الاختراق باستخدام Kali Linux</title>
+      <link>https://iraqrahomi.github.io/pages/blog.html#kali-linux-setup</link>
+      <guid>https://iraqrahomi.github.io/pages/blog.html#kali-linux-setup</guid>
+      <pubDate>Tue, 10 Feb 2026 00:00:00 +0300</pubDate>
+      <description>دليل خطوة بخطوة لتثبيت Kali Linux وتكوين بيئة اختبار الاختراق.</description>
+    </item>
+    <item>
+      <title>هجمات Active Directory: منهجية شاملة</title>
+      <link>https://iraqrahomi.github.io/pages/blog.html#active-directory-attacks</link>
+      <guid>https://iraqrahomi.github.io/pages/blog.html#active-directory-attacks</guid>
+      <pubDate>Fri, 20 Feb 2026 00:00:00 +0300</pubDate>
+      <description>دليل شامل لهجمات AD: Kerberoasting, Pass-the-Hash, DCSync, Golden Ticket.</description>
+    </item>
+  </channel>
+</rss>
